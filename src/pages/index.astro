@@ -115,15 +115,15 @@ const projectPanels = [
 						id={panel.id}
 						data-project-section="true"
 						data-nav-bg="var(--image-bg)"
-						class={`panel ${panel.className} grid min-h-screen grid-cols-2 grid-rows-[50vw_50vw_1fr] gap-px bg-black`}
+						class={`panel ${panel.className} grid min-h-screen grid-cols-2 grid-rows-[calc(50vw+var(--nav-height))_50vw_1fr] gap-px bg-black`}
 					>
-						<div class="panel__brand col-start-1 row-start-1 flex items-center justify-center p-6 text-center">
+						<div class="panel__brand col-start-1 row-start-1 flex items-center justify-center px-6 pb-6 pt-[calc(1.5rem+var(--nav-height))] text-center">
 							<p class="panel-brand-label text-[0.82rem] font-medium tracking-[0.35em] text-(--brand-text)">
 								{panel.brand}
 							</p>
 						</div>
 
-						<div class="panel__index col-start-2 row-start-1 flex items-center justify-center p-6">
+						<div class="panel__index col-start-2 row-start-1 flex items-center justify-center px-6 pb-6 pt-[calc(1.5rem+var(--nav-height))]">
 							<p class="panel-index-number text-[clamp(3.75rem,22vw,7.5rem)] font-thin leading-none text-(--index-text)">
 								{panel.index}
 							</p>
