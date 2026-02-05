@@ -4,39 +4,30 @@ import "../styles/global.css";
 const descriptionText =
 	"Ci affezioniamo ai gesti di tutti i giorni, ci piace mantenere quelle piccole tradizioni che scandiscono le nostre giornate. Questo ci da l’impressione che tutto sia in ordine. La nostra spalmabile preferita al mattino, quella che tra tutte abbiamo scelto, sul pane tostato con una tazza di caffè, per esempio. Siamo inconsapevoli dell’equilibrio che un semplice gesto come questo possa determinare, ma quando ci accorgiamo, assonnati, che manca dalla dispensa perché e finita, un po’ traballiamo.";
 
-const panels = [
-	{
-		id: "hero",
-		className: "panel--hero",
-		brand: "hey hemi",
-		index: "",
-		description: {
-			list: [
-				"Full-Stack Developer",
-				"Product Designer",
-				"SaaS Operations",
-				"Customer Support",
-				"Workflow Automation",
-				"Node.js",
-				"Strategic Planning",
-				"Customer Interviews",
-				"Conflict Resolution",
-				"React Developer",
-				"Database Schema Design",
-				"Figma Prototyping",
-				"MVP Scoping",
-				"E2E Customer Ownership",
-			],
-		},
-		imageLabel: "",
-	},
+const heroSkills = [
+	"Full-Stack Developer",
+	"Product Designer",
+	"SaaS Operations",
+	"Customer Support",
+	"Workflow Automation",
+	"Node.js",
+	"Strategic Planning",
+	"Customer Interviews",
+	"Conflict Resolution",
+	"React Developer",
+	"Database Schema Design",
+	"Figma Prototyping",
+	"MVP Scoping",
+	"E2E Customer Ownership",
+];
+
+const projectPanels = [
 	{
 		id: "about",
 		className: "panel--01",
 		brand: "WITH THANKS",
 		index: "01",
 		description: descriptionText,
-		imageLabel: "",
 	},
 	{
 		id: "wedding",
@@ -44,15 +35,13 @@ const panels = [
 		brand: "WEDDING READY",
 		index: "02",
 		description: descriptionText,
-		imageLabel: "",
 	},
 	{
 		id: "contact",
 		className: "panel--03",
-		brand: "WITH THANKS",
+		brand: "SHARESIES",
 		index: "03",
 		description: descriptionText,
-		imageLabel: "",
 	},
 ];
 ---
@@ -68,90 +57,82 @@ const panels = [
 	</head>
 	<body class="bg-black">
 		<main class="home grid gap-px bg-black">
+			<section
+				id="hero"
+				class="panel panel--hero grid min-h-screen grid-cols-2 grid-rows-[auto_1fr] gap-px bg-black pb-(--nav-height)"
+			>
+				<div class="panel__brand col-span-2 row-start-1 flex items-start justify-start p-0 text-left">
+					<h1 class="panel-hero-wordmark text-[40vw] font-bold leading-[0.75] tracking-[-0.04em] text-(--brand-text)/60">
+						hey hemi
+					</h1>
+				</div>
+
+				<div class="panel__description col-start-1 row-start-2 p-6">
+					<div class="flex h-full items-start">
+						<p class="text-right text-[clamp(2rem,7vw,3.3rem)] font-thin leading-[1.1] text-(--description-muted)">
+							Jack of all trades,
+							<br />
+							Master of <span class="font-medium italic">some</span>
+						</p>
+					</div>
+				</div>
+
+				<div class="panel__image col-start-2 row-start-2 p-6">
+					<div class="flex h-full items-end">
+						<ul class="w-full text-[clamp(0.98rem,3.9vw,1.55rem)] font-light leading-[1.45] text-(--description-text)">
+							{heroSkills.map((skill) => (
+								<li>{skill}</li>
+							))}
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<nav class="site-nav sticky top-0 z-50 -mt-(--nav-height) grid h-(--nav-height) grid-cols-[1fr_2fr] gap-px bg-black">
+				<a
+					href="#hero"
+					class="site-nav__brand flex items-center bg-(--nav-bg) px-4 text-[0.64rem] font-semibold uppercase tracking-[0.22em] text-(--nav-text)"
+				>
+					HEY HEMI
+				</a>
+				<div class="site-nav__links flex items-center justify-between bg-(--nav-bg) px-4">
+					<a href="#about" class="text-[0.64rem] font-medium uppercase tracking-[0.2em] text-(--nav-text)">
+						About
+					</a>
+					<a href="#contact" class="text-[0.64rem] font-medium uppercase tracking-[0.2em] text-(--nav-text)">
+						Contact
+					</a>
+				</div>
+			</nav>
+
 			{
-				panels.map((panel, panelIndex) => (
-					<>
-						<section
-							id={panel.id}
-							class={`panel ${panel.className} ${panel.id === "hero" ? "grid-rows-[auto_1fr] pb-(--nav-height)" : "grid-rows-[50vw_50vw_1fr]"} grid min-h-screen grid-cols-2 gap-px bg-black`}
-						>
-							<div
-								class={`panel__brand ${panel.id === "hero" ? "col-span-2 row-start-1 items-start justify-start p-0 text-left" : "col-start-1 row-start-1 items-center justify-center p-6 text-center"} flex`}
-							>
-								{panel.id === "hero" ? (
-									<h1 class="panel-hero-wordmark text-[40vw] font-bold leading-[0.75] tracking-[-0.04em] text-(--brand-text)/60">
-										{panel.brand}
-									</h1>
-								) : (
-									<p class="panel-brand-label text-[0.82rem] font-medium tracking-[0.35em] text-(--brand-text)">
-										{panel.brand}
-									</p>
-								)}
-							</div>
+				projectPanels.map((panel) => (
+					<section
+						id={panel.id}
+						class={`panel ${panel.className} grid min-h-screen grid-cols-2 grid-rows-[50vw_50vw_1fr] gap-px bg-black`}
+					>
+						<div class="panel__brand col-start-1 row-start-1 flex items-center justify-center p-6 text-center">
+							<p class="panel-brand-label text-[0.82rem] font-medium tracking-[0.35em] text-(--brand-text)">
+								{panel.brand}
+							</p>
+						</div>
 
-							<div class={`panel__index ${panel.id === "hero" ? "hidden" : "col-start-2 row-start-1"} flex items-center justify-center p-6`}>
-								{panel.id === "hero" ? (
-									<p class="panel-hero-wordmark text-[clamp(5rem,24vw,11rem)] leading-[0.75] tracking-[0.03em] text-(--index-text)">
-										{panel.index}
-									</p>
-								) : (
-									<p class="panel-index-number text-[clamp(3.75rem,22vw,7.5rem)] font-thin leading-none text-(--index-text)">
-										{panel.index}
-									</p>
-								)}
-							</div>
+						<div class="panel__index col-start-2 row-start-1 flex items-center justify-center p-6">
+							<p class="panel-index-number text-[clamp(3.75rem,22vw,7.5rem)] font-thin leading-none text-(--index-text)">
+								{panel.index}
+							</p>
+						</div>
 
-							<div class={`panel__description ${panel.id === "hero" ? "col-start-1 row-start-2" : "col-span-2 row-start-2"} p-6`}>
-								{panel.id === "hero" ? (
-									<div class="flex h-full items-start">
-										<p class="text-right text-[clamp(2rem,7vw,3.3rem)] font-thin leading-[1.1] text-(--description-muted)">
-											Jack of all trades,
-											<br />
-											Master of{" "}
-											<span class="font-medium italic">some</span>
-										</p>
-									</div>
-								) : (
-									<p class="panel-copy text-[clamp(0.98rem,3.9vw,1.55rem)] leading-[1.4] text-(--description-text)">
-										{panel.description}
-									</p>
-								)}
-							</div>
+						<div class="panel__description col-span-2 row-start-2 p-6">
+							<p class="panel-copy text-[clamp(0.98rem,3.9vw,1.55rem)] leading-[1.4] text-(--description-text)">
+								{panel.description}
+							</p>
+						</div>
 
-							<div class={`panel__image ${panel.id === "hero" ? "col-start-2 row-start-2" : "col-span-2 row-start-3"} p-6`}>
-								{panel.id === "hero" ? (
-									<div class="flex h-full items-end">
-										<ul class="w-full text-[clamp(0.98rem,3.9vw,1.55rem)] font-light leading-[1.45] text-(--description-text)">
-											{panel.description.list.map((item) => (
-												<li>{item}</li>
-											))}
-										</ul>
-									</div>
-								) : (
-									<div class="panel-image-frame h-full w-full rounded-[2.2rem]" />
-								)}
-							</div>
-						</section>
-
-						{panelIndex === 0 && (
-							<nav class="site-nav sticky top-0 z-50 -mt-(--nav-height) grid h-(--nav-height) grid-cols-[1fr_2fr] gap-px bg-black">
-								<a
-									href="#hero"
-									class="site-nav__brand flex items-center bg-(--nav-bg) px-4 text-[0.64rem] font-semibold uppercase tracking-[0.22em] text-(--nav-text)"
-								>
-									HEY HEMI
-								</a>
-								<div class="site-nav__links flex items-center justify-between bg-(--nav-bg) px-4">
-									<a href="#about" class="text-[0.64rem] font-medium uppercase tracking-[0.2em] text-(--nav-text)">
-										About
-									</a>
-									<a href="#contact" class="text-[0.64rem] font-medium uppercase tracking-[0.2em] text-(--nav-text)">
-										Contact
-									</a>
-								</div>
-							</nav>
-						)}
-					</>
+						<div class="panel__image col-span-2 row-start-3 p-6">
+							<div class="panel-image-frame h-full w-full rounded-[2.2rem]" />
+						</div>
+					</section>
 				))
 			}
 		</main>
