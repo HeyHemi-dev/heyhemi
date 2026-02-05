@@ -20,6 +20,7 @@ const heroSkills = [
 	"MVP Scoping",
 	"E2E Customer Ownership",
 ];
+const heroSkillsParallax = [...heroSkills, ...heroSkills, ...heroSkills];
 
 const projectPanels = [
 	{
@@ -59,7 +60,7 @@ const projectPanels = [
 		<main class="home grid gap-px bg-black">
 			<section
 				id="hero"
-				class="panel panel--hero grid min-h-screen grid-cols-2 grid-rows-[auto_1fr] gap-px bg-black pb-(--nav-height)"
+				class="panel panel--hero grid min-h-screen grid-cols-2 grid-rows-[auto_minmax(0,1fr)] gap-px bg-black pb-(--nav-height)"
 			>
 				<div class="panel__brand col-span-2 row-start-1 flex items-start justify-start p-0 text-left">
 					<h1 class="panel-hero-wordmark text-[40vw] font-bold leading-[0.75] tracking-[-0.04em] text-(--brand-text)/60">
@@ -67,7 +68,7 @@ const projectPanels = [
 					</h1>
 				</div>
 
-				<div class="panel__description col-start-1 row-start-2 p-6">
+				<div class="panel__description col-start-1 row-start-2 min-h-0 p-6">
 					<div class="flex h-full items-start">
 						<p class="text-right text-[clamp(2rem,7vw,3.3rem)] font-thin leading-[1.1] text-(--description-muted)">
 							Jack of all trades,
@@ -77,10 +78,13 @@ const projectPanels = [
 					</div>
 				</div>
 
-				<div class="panel__image col-start-2 row-start-2 p-6">
-					<div class="flex h-full items-end">
-						<ul class="w-full text-[clamp(0.98rem,3.9vw,1.55rem)] font-light leading-[1.45] text-(--description-text)">
-							{heroSkills.map((skill) => (
+				<div class="panel__image col-start-2 row-start-2 min-h-0 overflow-hidden p-6">
+					<div class="relative h-full min-h-0 overflow-hidden" data-hero-skills-viewport>
+						<ul
+							class="absolute top-0 left-0 m-0 w-full list-none p-0 text-[clamp(0.98rem,3.9vw,1.55rem)] font-light leading-[1.45] text-(--description-text) will-change-transform"
+							data-hero-skills-track
+						>
+							{heroSkillsParallax.map((skill) => (
 								<li>{skill}</li>
 							))}
 						</ul>
@@ -141,7 +145,10 @@ const projectPanels = [
 
 		<script>
 			import { initNavColorSync } from "../scripts/nav-color-sync";
+			import { initHeroSkillsParallax } from "../scripts/hero-skills-parallax";
+
 			initNavColorSync();
+			initHeroSkillsParallax();
 		</script>
 	</body>
 </html>
