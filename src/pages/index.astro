@@ -60,7 +60,7 @@ const projectPanels = [
 		<main class="home grid gap-px bg-black">
 			<section
 				id="hero"
-				class="panel panel--hero grid min-h-screen grid-cols-2 grid-rows-[auto_minmax(0,1fr)] gap-px bg-black pb-(--nav-height) sm:grid-cols-[2fr_1fr]"
+				class="panel panel--hero grid min-h-svh grid-cols-2 grid-rows-[auto_minmax(0,1fr)] gap-px bg-black pb-(--nav-height) sm:grid-cols-[2fr_1fr]"
 			>
 				<div class="panel__brand col-span-2 row-start-1 flex items-start justify-start p-0 text-left">
 					<h1 class="panel-hero-wordmark text-[40vw] sm:text-[22vw] sm:uppercase font-bold leading-[0.75] tracking-[-0.04em] text-(--brand-text)/60 -my-1">
@@ -70,7 +70,7 @@ const projectPanels = [
 
 				<div class="panel__description col-start-1 row-start-2 min-h-0 p-6">
 					<div class="flex h-full items-start justify-end">
-						<p class="text-right text-[clamp(2rem,7vw,3.3rem)] font-thin leading-[1.1] text-(--description-muted)">
+						<p class="text-right text-[2rem] font-thin leading-[1.1] text-(--description-muted)">
 							Jack of all trades,
 							<br />
 							Master of <span class="font-medium italic">some</span>
@@ -81,7 +81,7 @@ const projectPanels = [
 				<div class="panel__image col-start-2 row-start-2 min-h-0 overflow-hidden pt-0 pr-0 pb-0 pl-6">
 					<div class="relative h-full min-h-0 overflow-hidden" data-hero-skills-viewport>
 						<ul
-							class="absolute top-0 left-0 m-0 w-full list-none p-0 text-[clamp(0.98rem,3.9vw,1.55rem)] font-light leading-loose whitespace-nowrap text-(--description-text) will-change-transform "
+							class="absolute top-0 left-0 m-0 w-full list-none p-0 text-[0.98rem] font-light leading-loose whitespace-nowrap text-(--description-text) will-change-transform "
 							data-hero-skills-track
 						>
 							{heroSkillsParallax.map((skill) => (
@@ -115,27 +115,27 @@ const projectPanels = [
 						id={panel.id}
 						data-project-section="true"
 						data-nav-bg="var(--image-bg)"
-						class={`panel ${panel.className} grid min-h-screen grid-cols-2 grid-rows-[calc(50vw+var(--nav-height))_50vw_1fr] gap-px bg-black sm:h-[100dvh] sm:grid-cols-[1fr_2fr]`}
+						class={`panel ${panel.className} grid min-h-screen grid-cols-2 grid-rows-[calc(50vw+var(--nav-height))_50vw_1fr] gap-px bg-black sm:grid-cols-[1fr_2fr]`}
 					>
-						<div class="panel__brand col-start-1 row-start-1 flex items-center justify-center px-6 pb-6 pt-[calc(1.5rem+var(--nav-height))] text-center sm:col-span-1 sm:pt-6">
+						<div class="panel__brand col-start-1 row-start-1 flex items-center justify-center px-6 pb-6 pt-[calc(1.5rem+var(--nav-height))] text-center sm:col-span-1 sm:pt-[calc(1.5rem+var(--nav-height))]">
 							<p class="panel-brand-label text-[0.82rem] font-medium tracking-[0.35em] text-(--brand-text)">
 								{panel.brand}
 							</p>
 						</div>
 
 						<div class="panel__index col-start-2 row-start-1 flex items-center justify-center px-6 pb-6 pt-[calc(1.5rem+var(--nav-height))] sm:col-start-1 sm:row-start-4 sm:pt-6">
-							<p class="panel-index-number text-[clamp(3.75rem,22vw,7.5rem)] font-thin leading-none text-(--index-text)">
+							<p class="panel-index-number text-[3.75rem] font-thin leading-none text-(--index-text)">
 								{panel.index}
 							</p>
 						</div>
 
 						<div class="panel__description col-span-2 row-start-2 p-6 sm:col-span-1 sm:row-start-2 sm:row-span-2">
-							<p class="panel-copy text-[clamp(0.98rem,3.9vw,1.55rem)] leading-[1.4] text-(--description-text)">
+							<p class="panel-copy text-[0.98rem] leading-[1.4] text-(--description-text)">
 								{panel.description}
 							</p>
 						</div>
 
-						<div class="panel__image col-span-2 row-start-3 p-6 sm:col-start-2 sm:row-start-1 sm:row-span-4 sm:col-span-1">
+						<div class="panel__image col-span-2 row-start-3 p-6 sm:col-start-2 sm:row-start-1 sm:row-span-4 sm:col-span-1 sm:pt-[calc(1.5rem+var(--nav-height))]">
 							<div class="panel-image-frame h-full w-full rounded-[2.2rem]" />
 						</div>
 					</section>
