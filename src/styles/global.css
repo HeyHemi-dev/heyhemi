@@ -161,3 +161,10 @@ body {
 		padding-right: clamp(2rem, 8vw, 8rem);
 	}
 }
+
+@media (min-width: 640px) {
+	.panel:not(.panel--hero) {
+		--project-row: calc((100dvh - var(--nav-height)) / 4);
+		grid-template-rows: calc(var(--project-row) + var(--nav-height)) var(--project-row) var(--project-row) var(--project-row);
+	}
+}
