@@ -24,6 +24,12 @@
 	--nav-height: 3rem;
 }
 
+@media (min-width: 640px) {
+	:root {
+		--nav-height: 4.5rem;
+	}
+}
+
 html,
 body {
 	margin: 0;
