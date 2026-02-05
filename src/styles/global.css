@@ -73,6 +73,24 @@ body {
 	background: var(--image-frame-bg);
 }
 
+[data-hero-skills-viewport] {
+	--skills-fade-size: clamp(1.5rem, 14%, 4.5rem);
+	-webkit-mask-image: linear-gradient(
+		to bottom,
+		transparent 0,
+		#000 var(--skills-fade-size),
+		#000 calc(100% - var(--skills-fade-size)),
+		transparent 100%
+	);
+	mask-image: linear-gradient(
+		to bottom,
+		transparent 0,
+		#000 var(--skills-fade-size),
+		#000 calc(100% - var(--skills-fade-size)),
+		transparent 100%
+	);
+}
+
 .site-nav {
 	box-shadow: 0 1px 0 0 #000;
 }
