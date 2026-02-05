@@ -100,17 +100,12 @@ const panels = [
 								)}
 							</div>
 
-							<div class="panel__description col-span-2 row-start-2 p-6">
+							<div class={`panel__description ${panel.id === "hero" ? "col-start-1 row-start-2 row-span-2" : "col-span-2 row-start-2"} p-6`}>
 								{panel.id === "hero" ? (
-									<div class="grid h-full grid-cols-2 gap-6">
-										<p class="self-start whitespace-pre-line text-right text-[clamp(2rem,7vw,3.3rem)] leading-[1.1] text-[var(--description-muted)]">
+									<div class="flex h-full items-start">
+										<p class="whitespace-pre-line text-right text-[clamp(2rem,7vw,3.3rem)] leading-[1.1] text-[var(--description-muted)]">
 											{panel.description.heading}
 										</p>
-										<ul class="self-start text-[clamp(1rem,3.5vw,1.9rem)] leading-[1.45] text-[var(--description-text)]">
-											{panel.description.list.map((item) => (
-												<li>{item}</li>
-											))}
-										</ul>
 									</div>
 								) : (
 									<p class="panel-copy text-[clamp(0.98rem,3.9vw,1.55rem)] leading-[1.4] text-[var(--description-text)]">
@@ -119,8 +114,18 @@ const panels = [
 								)}
 							</div>
 
-							<div class="panel__image col-span-2 row-start-3 p-6">
-								<div class="panel-image-frame h-full w-full rounded-[2.2rem]" />
+							<div class={`panel__image ${panel.id === "hero" ? "col-start-2 row-start-2 row-span-2" : "col-span-2 row-start-3"} p-6`}>
+								{panel.id === "hero" ? (
+									<div class="flex h-full items-end">
+										<ul class="w-full text-[clamp(0.98rem,3.9vw,1.55rem)] leading-[1.45] text-[var(--description-text)]">
+											{panel.description.list.map((item) => (
+												<li>{item}</li>
+											))}
+										</ul>
+									</div>
+								) : (
+									<div class="panel-image-frame h-full w-full rounded-[2.2rem]" />
+								)}
 							</div>
 						</section>
 
