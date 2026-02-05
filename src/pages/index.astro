@@ -1,5 +1,61 @@
 ---
 import "../styles/global.css";
+
+const descriptionText =
+	"Ci affezioniamo ai gesti di tutti i giorni, ci piace mantenere quelle piccole tradizioni che scandiscono le nostre giornate. Questo ci da l’impressione che tutto sia in ordine. La nostra spalmabile preferita al mattino, quella che tra tutte abbiamo scelto, sul pane tostato con una tazza di caffè, per esempio. Siamo inconsapevoli dell’equilibrio che un semplice gesto come questo possa determinare, ma quando ci accorgiamo, assonnati, che manca dalla dispensa perché e finita, un po’ traballiamo.";
+
+const panels = [
+	{
+		id: "hero",
+		className: "panel--hero",
+		brand: "HEY",
+		index: "HEMI",
+		description: {
+			heading: "Jack of all trades,\nMaster of some",
+			list: [
+				"Full-Stack Developer",
+				"Product Designer",
+				"SaaS Operations",
+				"Customer Support",
+				"Workflow Automation",
+				"Node.js",
+				"Strategic Planning",
+				"Customer Interviews",
+				"Conflict Resolution",
+				"React Developer",
+				"Database Schema Design",
+				"Figma Prototyping",
+				"MVP Scoping",
+				"E2E Customer Ownership",
+			],
+		},
+		imageLabel: "",
+	},
+	{
+		id: "about",
+		className: "panel--01",
+		brand: "WITH THANKS",
+		index: "01",
+		description: descriptionText,
+		imageLabel: "",
+	},
+	{
+		id: "wedding",
+		className: "panel--02",
+		brand: "WEDDING READY",
+		index: "02",
+		description: descriptionText,
+		imageLabel: "",
+	},
+	{
+		id: "contact",
+		className: "panel--03",
+		brand: "WITH THANKS",
+		index: "03",
+		description: descriptionText,
+		imageLabel: "",
+	},
+];
 ---
 
 <html lang="en">
@@ -9,9 +65,86 @@ import "../styles/global.css";
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Hey Hemi</title>
 	</head>
-	<body>
-		<h1 class="text-4xl font-bold text-slate-900">Astro + Tailwind v4</h1>
+	<body class="bg-black">
+		<main class="home grid gap-px bg-black">
+			{
+				panels.map((panel, panelIndex) => (
+					<>
+						<section
+							id={panel.id}
+							class={`panel ${panel.className} grid min-h-[100vh] min-h-[100dvh] grid-cols-2 grid-rows-[50vw_50vw_1fr] gap-px bg-black`}
+						>
+							<div class="panel__brand col-start-1 row-start-1 flex items-center justify-center p-6 text-center">
+								{panel.id === "hero" ? (
+									<h1 class="panel-hero-wordmark text-[clamp(5rem,24vw,11rem)] leading-[0.75] tracking-[0.03em] text-[var(--brand-text)]">
+										{panel.brand}
+									</h1>
+								) : (
+									<p class="panel-brand-label text-[0.82rem] font-medium tracking-[0.35em] text-[var(--brand-text)]">
+										{panel.brand}
+									</p>
+								)}
+							</div>
+
+							<div class="panel__index col-start-2 row-start-1 flex items-center justify-center p-6">
+								{panel.id === "hero" ? (
+									<p class="panel-hero-wordmark text-[clamp(5rem,24vw,11rem)] leading-[0.75] tracking-[0.03em] text-[var(--index-text)]">
+										{panel.index}
+									</p>
+								) : (
+									<p class="panel-index-number text-[clamp(3.75rem,22vw,7.5rem)] leading-none text-[var(--index-text)]">
+										{panel.index}
+									</p>
+								)}
+							</div>
+
+							<div class="panel__description col-span-2 row-start-2 p-6">
+								{panel.id === "hero" ? (
+									<div class="grid h-full grid-cols-2 gap-6">
+										<p class="self-start whitespace-pre-line text-right text-[clamp(2rem,7vw,3.3rem)] leading-[1.1] text-[var(--description-muted)]">
+											{panel.description.heading}
+										</p>
+										<ul class="self-start text-[clamp(1rem,3.5vw,1.9rem)] leading-[1.45] text-[var(--description-text)]">
+											{panel.description.list.map((item) => (
+												<li>{item}</li>
+											))}
+										</ul>
+									</div>
+								) : (
+									<p class="panel-copy text-[clamp(0.98rem,3.9vw,1.55rem)] leading-[1.4] text-[var(--description-text)]">
+										{panel.description}
+									</p>
+								)}
+							</div>
+
+							<div class="panel__image col-span-2 row-start-3 p-6">
+								<div class="panel-image-frame h-full w-full rounded-[2.2rem]" />
+							</div>
+						</section>
+
+						{panelIndex === 0 && (
+							<nav class="site-nav sticky top-0 z-50 grid h-12 grid-cols-[1fr_2fr] gap-px bg-black">
+								<a
+									href="#hero"
+									class="site-nav__brand flex items-center bg-[var(--nav-bg)] px-4 text-[0.64rem] font-semibold uppercase tracking-[0.22em] text-[var(--nav-text)]"
+								>
+									HEY HEMI
+								</a>
+								<div class="site-nav__links flex items-center justify-between bg-[var(--nav-bg)] px-4">
+									<a href="#about" class="text-[0.64rem] font-medium uppercase tracking-[0.2em] text-[var(--nav-text)]">
+										About
+									</a>
+									<a href="#contact" class="text-[0.64rem] font-medium uppercase tracking-[0.2em] text-[var(--nav-text)]">
+										Contact
+									</a>
+								</div>
+							</nav>
+						)}
+					</>
+				))
+			}
+		</main>
 	</body>
 </html>

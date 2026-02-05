@@ -1,1 +1,106 @@
 @import "tailwindcss";
+
+:root {
+	--separator: #000;
+	--nav-bg: #f1c65d;
+	--nav-text: #111111;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family:
+		"Helvetica Neue",
+		Helvetica,
+		Arial,
+		sans-serif;
+}
+
+.home {
+	background: var(--separator);
+}
+
+.panel {
+	background: var(--separator);
+}
+
+.panel__brand {
+	background: var(--brand-bg);
+}
+
+.panel__index {
+	background: var(--index-bg);
+}
+
+.panel__description {
+	background: var(--description-bg);
+}
+
+.panel__image {
+	background: var(--image-bg);
+}
+
+.panel-image-frame {
+	background: var(--image-frame-bg);
+}
+
+.panel--hero {
+	--brand-bg: #17397a;
+	--index-bg: #17397a;
+	--description-bg: #d6dbe4;
+	--image-bg: #d6dbe4;
+	--image-frame-bg: transparent;
+	--brand-text: #ffffff;
+	--index-text: #ffffff;
+	--description-text: #20232d;
+	--description-muted: #363c45;
+}
+
+.panel--01 {
+	--brand-bg: #a94012;
+	--index-bg: #255f29;
+	--description-bg: #f2864a;
+	--image-bg: #ddd5b0;
+	--image-frame-bg: #d2caa5;
+	--brand-text: #f6eadf;
+	--index-text: #98be9b;
+	--description-text: #2f2d26;
+}
+
+.panel--02 {
+	--brand-bg: #005e52;
+	--index-bg: #e6f72a;
+	--description-bg: #81d2c2;
+	--image-bg: #cbe0de;
+	--image-frame-bg: #bfd6d2;
+	--brand-text: #d3e9e3;
+	--index-text: #2c2f1e;
+	--description-text: #204448;
+}
+
+.panel--03 {
+	--brand-bg: #7e0067;
+	--index-bg: #f7008b;
+	--description-bg: #e6caec;
+	--image-bg: #ebebee;
+	--image-frame-bg: #dddddf;
+	--brand-text: #f8e6fa;
+	--index-text: #f5cce8;
+	--description-text: #3f2f45;
+}
+
+@media (min-width: 768px) {
+	.panel__description,
+	.panel__image {
+		padding-left: clamp(2rem, 8vw, 8rem);
+		padding-right: clamp(2rem, 8vw, 8rem);
+	}
+}
