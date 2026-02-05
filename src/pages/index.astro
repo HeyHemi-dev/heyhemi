@@ -74,7 +74,7 @@ const panels = [
 					<>
 						<section
 							id={panel.id}
-							class={`panel ${panel.className} grid min-h-[100vh] min-h-[100dvh] grid-cols-2 grid-rows-[50vw_50vw_1fr] gap-px bg-black`}
+							class={`panel ${panel.className} ${panel.id === "hero" ? "pb-[var(--nav-height)]" : ""} grid min-h-[100vh] min-h-[100dvh] grid-cols-2 grid-rows-[50vw_50vw_1fr] gap-px bg-black`}
 						>
 							<div class={`panel__brand ${panel.id === "hero" ? "col-span-2 row-start-1" : "col-start-1 row-start-1"} flex items-center justify-center p-6 text-center`}>
 								{panel.id === "hero" ? (
@@ -130,7 +130,7 @@ const panels = [
 						</section>
 
 						{panelIndex === 0 && (
-							<nav class="site-nav sticky top-0 z-50 grid h-12 grid-cols-[1fr_2fr] gap-px bg-black">
+							<nav class="site-nav sticky top-0 z-50 -mt-[var(--nav-height)] grid h-[var(--nav-height)] grid-cols-[1fr_2fr] gap-px bg-black">
 								<a
 									href="#hero"
 									class="site-nav__brand flex items-center bg-[var(--nav-bg)] px-4 text-[0.64rem] font-semibold uppercase tracking-[0.22em] text-[var(--nav-text)]"
