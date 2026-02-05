@@ -8,7 +8,7 @@ const panels = [
 	{
 		id: "hero",
 		className: "panel--hero",
-		brand: "HEY HEMI",
+		brand: "hey hemi",
 		index: "",
 		description: {
 			list: [
@@ -73,13 +73,13 @@ const panels = [
 					<>
 						<section
 							id={panel.id}
-							class={`panel ${panel.className} ${panel.id === "hero" ? "pb-[var(--nav-height)]" : ""} grid min-h-[100vh] min-h-[100dvh] grid-cols-2 grid-rows-[50vw_50vw_1fr] gap-px bg-black`}
+							class={`panel ${panel.className} ${panel.id === "hero" ? "grid-rows-[auto_1fr] pb-[var(--nav-height)]" : "grid-rows-[50vw_50vw_1fr]"} grid min-h-[100vh] min-h-[100dvh] grid-cols-2 gap-px bg-black`}
 						>
 							<div
 								class={`panel__brand ${panel.id === "hero" ? "col-span-2 row-start-1 items-start justify-start p-0 text-left" : "col-start-1 row-start-1 items-center justify-center p-6 text-center"} flex`}
 							>
 								{panel.id === "hero" ? (
-									<h1 class="panel-hero-wordmark text-[42vw] font-thin leading-[0.76] tracking-[0.04em] text-[var(--brand-text)]">
+									<h1 class="panel-hero-wordmark text-[40vw] font-bold leading-[0.75] tracking-[-0.04em] text-(--brand-text)/60">
 										{panel.brand}
 									</h1>
 								) : (
@@ -101,7 +101,7 @@ const panels = [
 								)}
 							</div>
 
-							<div class={`panel__description ${panel.id === "hero" ? "col-start-1 row-start-2 row-span-2" : "col-span-2 row-start-2"} p-6`}>
+							<div class={`panel__description ${panel.id === "hero" ? "col-start-1 row-start-2" : "col-span-2 row-start-2"} p-6`}>
 								{panel.id === "hero" ? (
 									<div class="flex h-full items-start">
 										<p class="text-right text-[clamp(2rem,7vw,3.3rem)] font-thin leading-[1.1] text-[var(--description-muted)]">
@@ -118,7 +118,7 @@ const panels = [
 								)}
 							</div>
 
-							<div class={`panel__image ${panel.id === "hero" ? "col-start-2 row-start-2 row-span-2" : "col-span-2 row-start-3"} p-6`}>
+							<div class={`panel__image ${panel.id === "hero" ? "col-start-2 row-start-2" : "col-span-2 row-start-3"} p-6`}>
 								{panel.id === "hero" ? (
 									<div class="flex h-full items-end">
 										<ul class="w-full text-[clamp(0.98rem,3.9vw,1.55rem)] font-light leading-[1.45] text-[var(--description-text)]">
