@@ -38,6 +38,12 @@ body {
 	font-optical-sizing: auto;
 }
 
+/* Apply text-box trimming globally to all rendered copy-like elements. */
+:where(h1, h2, h3, h4, h5, h6, p, a, li, span) {
+	text-box-trim: both;
+	text-box-edge: cap alphabetic;
+}
+
 .home {
 	background: var(--separator);
 }
