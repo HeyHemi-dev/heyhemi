@@ -1,5 +1,5 @@
 export function initHeroSkillsParallax(): void {
-	const START_OFFSET_RATIO = 0.75;
+	const START_OFFSET_RATIO = 0.55;
 	const PARALLAX_SPEED = 0.40;
 
 	const hero = document.querySelector<HTMLElement>("#hero");
