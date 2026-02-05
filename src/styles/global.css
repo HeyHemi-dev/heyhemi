@@ -100,6 +100,29 @@ body {
 	);
 }
 
+.hero-skills-track {
+	animation: hero-skills-scroll var(--hero-skills-duration, 18s) linear infinite;
+}
+
+@keyframes hero-skills-scroll {
+	from {
+		transform: translate3d(0, 0, 0);
+	}
+	to {
+		transform: translate3d(0, -50%, 0);
+	}
+}
+
+@media (min-width: 640px) {
+	.hero-skills-track {
+		animation-play-state: paused;
+	}
+
+	.panel--hero .panel__image:hover .hero-skills-track {
+		animation-play-state: running;
+	}
+}
+
 .site-nav {
 	box-shadow: 0 1px 0 0 #000;
 }

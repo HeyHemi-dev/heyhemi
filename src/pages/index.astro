@@ -20,7 +20,9 @@ const heroSkills = [
 	"MVP Scoping",
 	"E2E Customer Ownership",
 ];
-const heroSkillsParallax = [...heroSkills, ...heroSkills, ...heroSkills];
+const HERO_SKILLS_REPEAT = 100;
+const heroSkillsParallax = Array.from({ length: HERO_SKILLS_REPEAT }, () => heroSkills).flat();
+const HERO_SKILLS_DURATION = `${HERO_SKILLS_REPEAT * 6}s`;
 
 const projectPanels = [
 	{
@@ -78,10 +80,14 @@ const projectPanels = [
 					</div>
 				</div>
 
-				<div class="panel__image col-start-2 row-start-2 min-h-0 overflow-hidden pt-0 pr-0 pb-0 pl-6">
-					<div class="relative h-full min-h-0 overflow-hidden" data-hero-skills-viewport>
-						<ul
-							class="absolute top-0 left-0 m-0 w-full list-none p-0 text-[0.98rem] font-light leading-loose whitespace-nowrap text-(--description-text) will-change-transform "
+					<div class="panel__image col-start-2 row-start-2 min-h-0 overflow-hidden pt-0 pr-0 pb-0 pl-6">
+					<div
+						class="relative h-full min-h-0 overflow-hidden"
+						data-hero-skills-viewport
+						style={`--hero-skills-duration: ${HERO_SKILLS_DURATION};`}
+					>
+							<ul
+							class="hero-skills-track absolute top-0 left-0 m-0 w-full list-none p-0 text-[0.98rem] font-light leading-loose whitespace-nowrap text-(--description-text) will-change-transform"
 							data-hero-skills-track
 						>
 							{heroSkillsParallax.map((skill) => (
@@ -145,10 +151,8 @@ const projectPanels = [
 
 		<script>
 			import { initNavColorSync } from "../scripts/nav-color-sync";
-			import { initHeroSkillsParallax } from "../scripts/hero-skills-parallax";
 
 			initNavColorSync();
-			initHeroSkillsParallax();
 		</script>
 	</body>
 </html>
