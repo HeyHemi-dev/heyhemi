@@ -146,8 +146,8 @@ body {
 }
 
 @media (min-width: 768px) {
-	.panel__description,
-	.panel__image {
+	.panel:not(.panel--hero) > .panel__description,
+	.panel:not(.panel--hero) > .panel__image {
 		padding-left: clamp(2rem, 8vw, 8rem);
 		padding-right: clamp(2rem, 8vw, 8rem);
 	}

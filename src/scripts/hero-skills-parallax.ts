@@ -1,5 +1,6 @@
 export function initHeroSkillsParallax(): void {
-	const START_OFFSET_RATIO = 0.8;
+	const START_OFFSET_RATIO = 0.75;
+	const PARALLAX_SPEED = 0.40;
 
 	const hero = document.querySelector<HTMLElement>("#hero");
 	const viewport = document.querySelector<HTMLElement>("[data-hero-skills-viewport]");
@@ -19,7 +20,7 @@ export function initHeroSkillsParallax(): void {
 		const totalRange = Math.max(1, rect.height);
 		const progress = Math.min(1, Math.max(0, -rect.top / totalRange));
 		const startOffset = viewport.clientHeight * START_OFFSET_RATIO;
-		const shiftY = startOffset - progress * (maxShift + startOffset);
+		const shiftY = startOffset - progress * (maxShift + startOffset) * PARALLAX_SPEED;
 		track.style.transform = `translate3d(0, ${shiftY}px, 0)`;
 	};
 
