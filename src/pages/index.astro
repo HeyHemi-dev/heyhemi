@@ -75,9 +75,11 @@ const panels = [
 							id={panel.id}
 							class={`panel ${panel.className} ${panel.id === "hero" ? "pb-[var(--nav-height)]" : ""} grid min-h-[100vh] min-h-[100dvh] grid-cols-2 grid-rows-[50vw_50vw_1fr] gap-px bg-black`}
 						>
-							<div class={`panel__brand ${panel.id === "hero" ? "col-span-2 row-start-1" : "col-start-1 row-start-1"} flex items-center justify-center p-6 text-center`}>
+							<div
+								class={`panel__brand ${panel.id === "hero" ? "col-span-2 row-start-1 items-start justify-start p-0 text-left" : "col-start-1 row-start-1 items-center justify-center p-6 text-center"} flex`}
+							>
 								{panel.id === "hero" ? (
-									<h1 class="panel-hero-wordmark text-[clamp(4.5rem,23vw,11rem)] font-thin leading-[0.78] tracking-[0.04em] text-[var(--brand-text)]">
+									<h1 class="panel-hero-wordmark text-[42vw] font-thin leading-[0.76] tracking-[0.04em] text-[var(--brand-text)]">
 										{panel.brand}
 									</h1>
 								) : (
