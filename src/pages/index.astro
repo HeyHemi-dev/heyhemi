@@ -8,8 +8,8 @@ const panels = [
 	{
 		id: "hero",
 		className: "panel--hero",
-		brand: "HEY",
-		index: "HEMI",
+		brand: "HEY HEMI",
+		index: "",
 		description: {
 			heading: "Jack of all trades,\nMaster of some",
 			list: [
@@ -76,9 +76,9 @@ const panels = [
 							id={panel.id}
 							class={`panel ${panel.className} grid min-h-[100vh] min-h-[100dvh] grid-cols-2 grid-rows-[50vw_50vw_1fr] gap-px bg-black`}
 						>
-							<div class="panel__brand col-start-1 row-start-1 flex items-center justify-center p-6 text-center">
+							<div class={`panel__brand ${panel.id === "hero" ? "col-span-2 row-start-1" : "col-start-1 row-start-1"} flex items-center justify-center p-6 text-center`}>
 								{panel.id === "hero" ? (
-									<h1 class="panel-hero-wordmark text-[clamp(5rem,24vw,11rem)] leading-[0.75] tracking-[0.03em] text-[var(--brand-text)]">
+									<h1 class="panel-hero-wordmark text-[clamp(4.5rem,23vw,11rem)] leading-[0.78] tracking-[0.04em] text-[var(--brand-text)]">
 										{panel.brand}
 									</h1>
 								) : (
@@ -88,7 +88,7 @@ const panels = [
 								)}
 							</div>
 
-							<div class="panel__index col-start-2 row-start-1 flex items-center justify-center p-6">
+							<div class={`panel__index ${panel.id === "hero" ? "hidden" : "col-start-2 row-start-1"} flex items-center justify-center p-6`}>
 								{panel.id === "hero" ? (
 									<p class="panel-hero-wordmark text-[clamp(5rem,24vw,11rem)] leading-[0.75] tracking-[0.03em] text-[var(--index-text)]">
 										{panel.index}
