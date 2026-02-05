@@ -19,6 +19,7 @@
 :root {
 	--separator: #000;
 	--nav-bg: #f1c65d;
+	--nav-bg-active: var(--nav-bg);
 	--nav-text: #111111;
 	--nav-height: 3rem;
 }
@@ -70,6 +71,15 @@ body {
 
 .panel-image-frame {
 	background: var(--image-frame-bg);
+}
+
+.site-nav {
+	box-shadow: 0 1px 0 0 #000;
+}
+
+.site-nav__brand,
+.site-nav__links {
+	transition: background-color 220ms ease;
 }
 
 .panel--hero {
