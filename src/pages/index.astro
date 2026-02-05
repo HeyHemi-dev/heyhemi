@@ -91,11 +91,11 @@ const projectPanels = [
 			<nav class="site-nav sticky top-0 z-50 -mt-(--nav-height) grid h-(--nav-height) grid-cols-2 gap-px bg-black">
 				<a
 					href="#hero"
-					class="site-nav__brand flex items-center bg-(--nav-bg) px-4 text-[0.64rem] font-semibold uppercase tracking-[0.22em] text-(--nav-text)"
+					class="site-nav__brand flex items-center bg-(--nav-bg-active) px-4 text-[0.64rem] font-semibold uppercase tracking-[0.22em] text-(--nav-text)"
 				>
 					HEY HEMI
 				</a>
-				<div class="site-nav__links flex items-center justify-between bg-(--nav-bg) px-4">
+				<div class="site-nav__links flex items-center justify-between bg-(--nav-bg-active) px-4">
 					<a href="#about" class="text-[0.64rem] font-medium uppercase tracking-[0.2em] text-(--nav-text)">
 						About
 					</a>
@@ -109,6 +109,8 @@ const projectPanels = [
 				projectPanels.map((panel) => (
 					<section
 						id={panel.id}
+						data-project-section="true"
+						data-nav-bg="var(--image-bg)"
 						class={`panel ${panel.className} grid min-h-screen grid-cols-2 grid-rows-[50vw_50vw_1fr] gap-px bg-black`}
 					>
 						<div class="panel__brand col-start-1 row-start-1 flex items-center justify-center p-6 text-center">
@@ -136,5 +138,64 @@ const projectPanels = [
 				))
 			}
 		</main>
+
+		<script is:inline>
+			(() => {
+				const nav = document.querySelector(".site-nav");
+				if (!nav) return;
+
+				const sections = Array.from(document.querySelectorAll('[data-project-section="true"]'));
+				if (!sections.length) return;
+
+				const defaultNavColor = getComputedStyle(document.documentElement).getPropertyValue("--nav-bg").trim() || "#f1c65d";
+				const sectionColors = new Map();
+				let ticking = false;
+
+				const setNavColor = (color) => {
+					nav.style.setProperty("--nav-bg-active", color || defaultNavColor);
+				};
+
+				const computeSectionColors = () => {
+					sections.forEach((section) => {
+						const imageColor = getComputedStyle(section).getPropertyValue("--image-bg").trim();
+						sectionColors.set(section, imageColor || defaultNavColor);
+					});
+				};
+
+				const refreshNavColor = () => {
+					const navBottom = nav.getBoundingClientRect().bottom;
+					const activeSection = sections.find((section) => {
+						const rect = section.getBoundingClientRect();
+						return rect.top <= navBottom && rect.bottom > navBottom;
+					});
+
+					if (!activeSection) {
+						setNavColor(defaultNavColor);
+						return;
+					}
+
+					setNavColor(sectionColors.get(activeSection) || defaultNavColor);
+				};
+
+				const queueRefresh = () => {
+					if (ticking) return;
+					ticking = true;
+					window.requestAnimationFrame(() => {
+						refreshNavColor();
+						ticking = false;
+					});
+				};
+
+				computeSectionColors();
+				setNavColor(defaultNavColor);
+				refreshNavColor();
+				window.addEventListener("scroll", queueRefresh, { passive: true });
+
+				window.addEventListener("resize", () => {
+					computeSectionColors();
+					queueRefresh();
+				});
+			})();
+		</script>
 	</body>
 </html>
