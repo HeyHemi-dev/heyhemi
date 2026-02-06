@@ -64,18 +64,21 @@ const projectPanels = [
 				id="hero"
 				class="panel panel--hero grid min-h-svh grid-cols-2 grid-rows-[auto_minmax(0,1fr)] gap-px bg-black pb-(--nav-height) sm:grid-cols-[2fr_1fr]"
 			>
-				<div class="panel__brand col-span-2 row-start-1 flex items-start justify-start p-0 text-left">
-					<h1 class="panel-hero-wordmark text-[40vw] sm:text-[22vw] sm:uppercase font-bold leading-[0.75] tracking-[-0.04em] text-(--brand-text)/60 -my-1">
-						hey Hemi
+				<div class="panel__brand col-span-2 row-start-1 flex items-baseline sm:justify-center  p-0 overflow-clip">
+					<h1 class="panel-hero-wordmark text-[32vw] grow grid grid-cols-[auto_1fr] sm:grid-cols-[auto_auto_1fr] sm:text-[21vw] leading-[0.75] tracking-[-0.03em] text-(--brand-text)  whitespace-nowrap font-bold">
+						<span class="col-start-1 row-start-2 sm:col-start-1 sm:row-start-1 bg-[#10316B] w-full aspect-square rounded-full flex items-center justify-center text-[25%] font-extralight text-(--brand-text)/50 tracking-normal ">hey!</span>
+						<span class=" justify-self-end col-span-2 sm:col-span-1">I'm</span>
+						<span class="  col-span-1 justify-self-end">Hemi</span>
+
 					</h1>
 				</div>
 
 				<div class="panel__description col-start-1 row-start-2 min-h-0 p-6">
 					<div class="flex h-full items-start justify-end">
-						<p class="text-right text-[2rem] font-thin leading-[1.1] text-(--description-muted)">
-							Jack of all trades,
-							<br />
-							Master of <span class="font-medium italic">some</span>
+						<p class="text-right text-[2rem] font-thin leading-[1.1] text-(--description-muted) flex flex-col gap-y-[0.5em]">
+							<span>Jack of all trades,</span>
+							
+							<span>Master of <span class="font-medium italic">some</span></span>
 						</p>
 					</div>
 				</div>
@@ -103,11 +106,11 @@ const projectPanels = [
 					href="#hero"
 					class="site-nav__brand flex items-center bg-(--nav-bg-active) px-4 text-[0.64rem] font-semibold uppercase tracking-[0.22em] text-(--nav-text)"
 				>
-					HEY HEMI
+					About
 				</a>
 				<div class="site-nav__links flex items-center justify-between bg-(--nav-bg-active) px-4">
 					<a href="#about" class="text-[0.64rem] font-medium uppercase tracking-[0.2em] text-(--nav-text)">
-						About
+						Work
 					</a>
 					<a href="#contact" class="text-[0.64rem] font-medium uppercase tracking-[0.2em] text-(--nav-text)">
 						Contact
