@@ -4,7 +4,7 @@ import { withThanksProject as project } from "../../data/projects/with-thanks";
 import ProjectLayout from "../../layouts/ProjectLayout.astro";
 
 const MARQUEE_REPEAT = 100;
-const MARQUEE_SECONDS_PER_ITEM = 2;
+const MARQUEE_SECONDS_PER_ITEM = 3;
 const marqueeBase = project.role.split("•").map((item) => item.trim());
 const marqueeItems = Array.from(
   { length: MARQUEE_REPEAT },
@@ -28,7 +28,9 @@ const marqueeDuration = `${marqueeItems.length * MARQUEE_SECONDS_PER_ITEM}s`;
       </a>
     </section>
 
-    <section class="bg-(--brand-bg) p-6 sm:p-12 col-span-full grid place-items-center aspect-2/1">
+    <section
+      class="col-span-full grid aspect-2/1 place-items-center bg-(--brand-bg) p-6 sm:p-12"
+    >
       <h1
         class="text-left text-[0.82rem] font-medium tracking-[0.35em] text-(--brand-text) uppercase"
       >
@@ -36,17 +38,31 @@ const marqueeDuration = `${marqueeItems.length * MARQUEE_SECONDS_PER_ITEM}s`;
       </h1>
     </section>
 
-    <section class="overflow-x-clip bg-(--brand-bg) p-0 col-span-full">
+    <section class="col-span-full overflow-x-clip bg-(--brand-bg) p-0">
       <div
-        class="project-marquee"
+        class="project-marquee overflow-x-hidden overflow-y-clip whitespace-nowrap"
         style={`--project-marquee-duration: ${marqueeDuration};`}
+        aria-label={`Roles: ${marqueeBase.join(", ")}`}
       >
-        <div class="project-marquee-track">
-          {
-            marqueeItems.map((item) => (
-              <p class="project-marquee-item">{item}</p>
-            ))
-          }
+        <div class="project-marquee-track flex w-max p-0">
+          <div class="project-marquee-group flex items-start gap-x-10" aria-hidden="true">
+            {
+              marqueeItems.map((item) => (
+                <p class="text-[10vw] font-extrabold leading-none tracking-[0.2em] text-(--brand-text) uppercase">
+                  {item}
+                </p>
+              ))
+            }
+          </div>
+          <div class="project-marquee-group flex items-start gap-x-10" aria-hidden="true">
+            {
+              marqueeItems.map((item) => (
+                <p class="text-[10vw] font-extrabold leading-none tracking-[0.2em] text-(--brand-text) uppercase">
+                  {item}
+                </p>
+              ))
+            }
+          </div>
         </div>
       </div>
     </section>

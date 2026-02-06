@@ -53,90 +53,6 @@ body {
   text-box-edge: cap alphabetic;
 }
 
-.home {
-  background: var(--separator);
-}
-
-.panel {
-  background: var(--separator);
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-
-.panel__brand {
-  background: var(--brand-bg);
-}
-
-.panel__index {
-  background: var(--index-bg);
-}
-
-.panel__description {
-  background: var(--description-bg);
-  min-height: 0;
-}
-
-.panel__image {
-  background: var(--image-bg);
-}
-
-.panel-image-frame {
-  position: relative;
-  overflow: hidden;
-  background: var(--image-frame-bg);
-  min-height: 0;
-}
-
-.panel-image-link {
-  display: block;
-  overflow: hidden;
-  border-radius: 2.2rem;
-}
-
-.panel-image-frame picture {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.panel-image-media {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.panel__image {
-  min-height: 0;
-}
-
-.panel-description-scroll {
-  min-height: 0;
-}
-
-.panel-image-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.45);
-  opacity: 0;
-  transition: opacity 200ms ease;
-}
-
-.panel-image-overlay-text {
-  color: #ffffff;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-}
-
-.panel-image-link:hover .panel-image-overlay {
-  opacity: 1;
-}
 
 [data-hero-skills-viewport] {
   --skills-fade-size: clamp(1.5rem, 14%, 4.5rem);
@@ -178,26 +94,9 @@ body {
   animation: hero-skills-scroll var(--hero-skills-duration, 18s) linear infinite;
 }
 
-.project-marquee {
-  overflow-x: hidden;
-  overflow-y: clip;
-  white-space: nowrap;
-}
-
 .project-marquee-track {
-  display: inline-flex;
-  gap: 2.5rem;
-  padding: 0;
   animation: project-marquee-scroll var(--project-marquee-duration, 26s) linear infinite;
   will-change: transform;
-}
-
-.project-marquee-item {
-  font-weight: 800;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  font-size: 10vw;
-  color: var(--brand-text);
 }
 
 @keyframes project-marquee-scroll {
@@ -228,14 +127,6 @@ body {
   }
 }
 
-.site-nav {
-  box-shadow: 0 1px 0 0 #000;
-}
-
-.site-nav__brand,
-.site-nav__links {
-  transition: background-color 220ms ease;
-}
 
 .panel--hero {
   --brand-bg: #17397a;
