@@ -5,7 +5,7 @@ import NavLink from "../components/NavLink.astro";
 import withThanksImage from "../assets/projects/with_thanks_comp.png";
 
 const descriptionText =
-	"Ci affezioniamo ai gesti di tutti i giorni, ci piace mantenere quelle piccole tradizioni che scandiscono le nostre giornate. Questo ci da l’impressione che tutto sia in ordine. La nostra spalmabile preferita al mattino, quella che tra tutte abbiamo scelto, sul pane tostato con una tazza di caffè, per esempio. Siamo inconsapevoli dell’equilibrio che un semplice gesto come questo possa determinare, ma quando ci accorgiamo, assonnati, che manca dalla dispensa perché e finita, un po’ traballiamo.";
+	"Wedding Ready is wedding platform inspired by Pinterest, which aims to solve the problem for couples making their dreams a reality. Every idea on Wedding Ready links directly to local suppliers who can bring it to life.";
 
 const heroSkills = [
 	"Full-Stack Developer",
@@ -33,7 +33,7 @@ const projectPanels = [
 		className: "panel--01",
 		brand: "WITH THANKS",
 		index: "01",
-		description: descriptionText,
+		description: "With Thanks is the fastest and easiest way to collect wedding supplier details from just-married couples, formatted and ready-to-paste into Instagram. Fullstack Tanstack Start application (Vite), deployed on Vercel, with Better Auth, and Neon DB.",
 		image: withThanksImage,
 		imageAlt: "With Thanks project preview",
 	},
@@ -85,7 +85,7 @@ const projectPanels = [
 				<div class="panel__description col-start-1 row-start-2 min-h-0 p-6">
 					<div class="flex h-full items-start justify-end">
 						<p class="text-right text-[2rem] font-thin leading-[1.1] text-(--description-muted) flex flex-col gap-y-[0.5em]">
-							<span>Jack of all trades,</span>
+							<span>Jack of many trades,</span>
 							
 							<span>Master of <span class="font-medium italic">some</span></span>
 						</p>
@@ -112,11 +112,11 @@ const projectPanels = [
 
 			<nav class="site-nav sticky top-0 z-50 -mt-(--nav-height) grid h-(--nav-height) grid-cols-2 gap-px bg-black">
 				<div class="site-nav__brand flex items-center bg-(--nav-bg-active) px-4">
-					<NavLink href="#hero">About</NavLink>
+					<NavLink href="#hero">Contact Hemi</NavLink>
 				</div>
 				<div class="site-nav__links flex items-center justify-between bg-(--nav-bg-active) px-4">
 					<NavLink href="#about">Work</NavLink>
-					<NavLink href="#contact">Contact</NavLink>
+					<NavLink href="#contact">About</NavLink>
 				</div>
 			</nav>
 
@@ -126,7 +126,7 @@ const projectPanels = [
 						id={panel.id}
 						data-project-section="true"
 						data-nav-bg="var(--image-bg)"
-						class={`panel ${panel.className} grid h-[100dvh] grid-cols-2 grid-rows-[calc(50vw+var(--nav-height))_50vw_1fr] gap-px bg-black sm:grid-cols-[1fr_2fr]`}
+						class={`panel ${panel.className} grid h-screen grid-cols-2 grid-rows-[calc(50vw+var(--nav-height))_50vw_1fr] gap-px bg-black sm:grid-cols-[1fr_2fr]`}
 					>
 						<div class="panel__brand col-start-1 row-start-1 flex items-center justify-center px-6 pb-6 pt-[calc(1.5rem+var(--nav-height))] text-center sm:col-span-1 sm:pt-[calc(1.5rem+var(--nav-height))]">
 							<p class="panel-brand-label text-[0.82rem] font-medium tracking-[0.35em] text-(--brand-text)">
@@ -136,7 +136,7 @@ const projectPanels = [
 
 						<div class="panel__index col-start-2 row-start-1 flex items-center justify-center px-6 pb-6 pt-[calc(1.5rem+var(--nav-height))] sm:col-start-1 sm:row-start-4 sm:pt-6">
 							<p class="panel-index-number text-[3.75rem] font-thin leading-none text-(--index-text)">
-								{panel.index}
+								<span>-></span>
 							</p>
 						</div>
 

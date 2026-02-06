@@ -150,7 +150,7 @@ body {
 }
 
 [data-project-description-viewport] {
-	--description-fade-size: clamp(1.2rem, 12%, 3rem);
+	--description-fade-size: clamp(1.2rem, 12%, 2rem);
 	-webkit-mask-image: linear-gradient(
 		to bottom,
 		transparent 0,
@@ -234,8 +234,8 @@ body {
 }
 
 .panel--03 {
-	--brand-bg: #7e0067;
-	--index-bg: #f7008b;
+	--brand-bg: #f7008b;
+	--index-bg: #7e0067;
 	--description-bg: #e6caec;
 	--image-bg: #ebebee;
 	--image-frame-bg: #dddddf;
