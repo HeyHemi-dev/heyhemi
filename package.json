@@ -9,7 +9,8 @@
     "astro": "astro",
     "deploy:preview": "astro build && wrangler pages deploy ./dist --project-name heyhemi --branch preview",
     "deploy:main": "astro build && wrangler pages deploy ./dist --project-name heyhemi --branch main",
-    "cf-typegen": "wrangler types"
+    "cf-typegen": "wrangler types",
+    "format": "exec prettier . --write"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.12",
