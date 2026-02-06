@@ -3,189 +3,222 @@ import "../styles/global.css";
 import { Image } from "astro:assets";
 import NavLink from "../components/NavLink.astro";
 import withThanksImage from "../assets/projects/with_thanks_comp.png";
+import weddingReadyImage from "../assets/projects/wedding_ready_comp.png";
+import sharesiesImage from "../assets/projects/sharesies_open_comp.png";
 
 const descriptionText =
-	"Wedding Ready is wedding platform inspired by Pinterest, which aims to solve the problem for couples making their dreams a reality. Every idea on Wedding Ready links directly to local suppliers who can bring it to life.";
+  "Wedding Ready is wedding platform inspired by Pinterest, which aims to solve the problem for couples making their dreams a reality. Every idea on Wedding Ready links directly to local suppliers who can bring it to life.";
 
 const heroSkills = [
-	"Full-Stack Developer",
-	"Product Designer",
-	"SaaS Operations",
-	"Customer Support",
-	"Workflow Automation",
-	"Node.js",
-	"Strategic Planning",
-	"Customer Interviews",
-	"Conflict Resolution",
-	"React Developer",
-	"Database Schema Design",
-	"Figma Prototyping",
-	"MVP Scoping",
-	"E2E Customer Ownership",
+  "Full-Stack Developer",
+  "Product Designer",
+  "SaaS Operations",
+  "Customer Support",
+  "Workflow Automation",
+  "Node.js",
+  "Strategic Planning",
+  "Customer Interviews",
+  "Conflict Resolution",
+  "React Developer",
+  "Database Schema Design",
+  "Figma Prototyping",
+  "MVP Scoping",
+  "E2E Customer Ownership",
 ];
 const HERO_SKILLS_REPEAT = 100;
-const heroSkillsParallax = Array.from({ length: HERO_SKILLS_REPEAT }, () => heroSkills).flat();
+const heroSkillsParallax = Array.from(
+  { length: HERO_SKILLS_REPEAT },
+  () => heroSkills,
+).flat();
 const HERO_SKILLS_DURATION = `${HERO_SKILLS_REPEAT * 6}s`;
 
 const projectPanels = [
-	{
-		id: "about",
-		className: "panel--01",
-		brand: "WITH THANKS",
-		index: "01",
-		description: "With Thanks is the fastest and easiest way to collect wedding supplier details from just-married couples, formatted and ready-to-paste into Instagram. Fullstack Tanstack Start application (Vite), deployed on Vercel, with Better Auth, and Neon DB.",
-		image: withThanksImage,
-		imageAlt: "With Thanks project preview",
-	},
-	{
-		id: "wedding",
-		className: "panel--02",
-		brand: "WEDDING READY",
-		index: "02",
-		description: descriptionText,
-		image: null,
-		imageAlt: "",
-	},
-	{
-		id: "contact",
-		className: "panel--03",
-		brand: "SHARESIES",
-		index: "03",
-		description: descriptionText,
-		image: null,
-		imageAlt: "",
-	},
+  {
+    id: "about",
+    className: "panel--01",
+    brand: "WITH THANKS",
+    index: "01",
+    description:
+      "With Thanks is the fastest and easiest way to collect wedding supplier details from just-married couples, formatted and ready-to-paste into Instagram. Fullstack Tanstack Start application (Vite), deployed on Vercel, with Better Auth, and Neon DB.",
+    image: withThanksImage,
+    imageAlt: "With Thanks project preview",
+    href: "#about",
+  },
+  {
+    id: "wedding",
+    className: "panel--02",
+    brand: "WEDDING READY",
+    index: "02",
+    description: descriptionText,
+    image: weddingReadyImage,
+    imageAlt: "Wedding Ready project preview",
+    href: "#wedding",
+  },
+  {
+    id: "contact",
+    className: "panel--03",
+    brand: "SHARESIES",
+    index: "03",
+    description: descriptionText,
+    image: sharesiesImage,
+    imageAlt: "Sharesies project preview",
+    href: "#contact",
+  },
 ];
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Hey Hemi</title>
-	</head>
-	<body class="bg-black">
-		<main class="home grid gap-px bg-black">
-			<section
-				id="hero"
-				class="panel panel--hero grid min-h-svh grid-cols-2 grid-rows-[auto_minmax(0,1fr)] gap-px bg-black pb-(--nav-height) sm:grid-cols-[2fr_1fr]"
-			>
-				<div class="panel__brand col-span-2 row-start-1 flex items-baseline sm:justify-center  p-0 overflow-clip">
-					<h1 class="panel-hero-wordmark text-[32vw] grow grid grid-cols-[auto_1fr] sm:grid-cols-[auto_auto_1fr] sm:text-[21vw] leading-[0.75] tracking-[-0.03em] text-(--brand-text)  whitespace-nowrap font-bold">
-						<span class="col-start-1 row-start-2 sm:col-start-1 sm:row-start-1 bg-[#10316B] w-full aspect-square rounded-full flex items-center justify-center text-[25%] font-extralight text-(--brand-text)/50 tracking-normal ">hey!</span>
-						<span class=" justify-self-end col-span-2 sm:col-span-1">I'm</span>
-						<span class="  col-span-1 justify-self-end">Hemi</span>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Hey Hemi</title>
+  </head>
+  <body class="bg-black">
+    <main class="home grid gap-px bg-black">
+      <section
+        id="hero"
+        class="panel panel--hero grid min-h-svh grid-cols-2 grid-rows-[auto_minmax(0,1fr)] gap-px bg-black pb-(--nav-height) sm:grid-cols-[2fr_1fr]"
+      >
+        <div
+          class="panel__brand col-span-2 row-start-1 flex items-baseline overflow-clip p-0 sm:justify-center"
+        >
+          <h1
+            class="panel-hero-wordmark grid grow grid-cols-[auto_1fr] text-[32vw] leading-[0.75] font-bold tracking-[-0.03em] whitespace-nowrap text-(--brand-text) sm:grid-cols-[auto_auto_1fr] sm:text-[21vw]"
+          >
+            <span
+              class="col-start-1 row-start-2 flex aspect-square w-full items-center justify-center rounded-full bg-[#10316B] text-[25%] font-extralight tracking-normal text-(--brand-text)/50 sm:col-start-1 sm:row-start-1"
+              >hey!</span
+            >
+            <span class="col-span-2 justify-self-end sm:col-span-1">I'm</span>
+            <span class="col-span-1 justify-self-end">Hemi</span>
+          </h1>
+        </div>
 
-					</h1>
-				</div>
+        <div class="panel__description col-start-1 row-start-2 min-h-0 p-6">
+          <div class="flex h-full items-start justify-end">
+            <p
+              class="flex flex-col gap-y-[0.5em] text-right text-[2rem] leading-[1.1] font-thin text-(--description-muted)"
+            >
+              <span>Jack of many trades,</span>
 
-				<div class="panel__description col-start-1 row-start-2 min-h-0 p-6">
-					<div class="flex h-full items-start justify-end">
-						<p class="text-right text-[2rem] font-thin leading-[1.1] text-(--description-muted) flex flex-col gap-y-[0.5em]">
-							<span>Jack of many trades,</span>
-							
-							<span>Master of <span class="font-medium italic">some</span></span>
-						</p>
-					</div>
-				</div>
+              <span>Master of <span class="font-medium italic">some</span></span
+              >
+            </p>
+          </div>
+        </div>
 
-					<div class="panel__image col-start-2 row-start-2 min-h-0 overflow-hidden pt-0 pr-0 pb-0 pl-6">
-					<div
-						class="relative h-full min-h-0 overflow-hidden"
-						data-hero-skills-viewport
-						style={`--hero-skills-duration: ${HERO_SKILLS_DURATION};`}
-					>
-							<ul
-							class="hero-skills-track absolute top-0 left-0 m-0 w-full list-none p-0 text-[0.98rem] font-light leading-loose whitespace-nowrap text-(--description-text) will-change-transform"
-							data-hero-skills-track
-						>
-							{heroSkillsParallax.map((skill) => (
-								<li>{skill}</li>
-							))}
-						</ul>
-					</div>
-				</div>
-			</section>
+        <div
+          class="panel__image col-start-2 row-start-2 min-h-0 overflow-hidden pt-0 pr-0 pb-0 pl-6"
+        >
+          <div
+            class="relative h-full min-h-0 overflow-hidden"
+            data-hero-skills-viewport
+            style={`--hero-skills-duration: ${HERO_SKILLS_DURATION};`}
+          >
+            <ul
+              class="hero-skills-track absolute top-0 left-0 m-0 w-full list-none p-0 text-[0.98rem] leading-loose font-light whitespace-nowrap text-(--description-text) will-change-transform"
+              data-hero-skills-track
+            >
+              {heroSkillsParallax.map((skill) => <li>{skill}</li>)}
+            </ul>
+          </div>
+        </div>
+      </section>
 
-			<nav class="site-nav sticky top-0 z-50 -mt-(--nav-height) grid h-(--nav-height) grid-cols-2 gap-px bg-black">
-				<div class="site-nav__brand flex items-center bg-(--nav-bg-active) px-4">
-					<NavLink href="#hero">Contact Hemi</NavLink>
-				</div>
-				<div class="site-nav__links flex items-center justify-between bg-(--nav-bg-active) px-4">
-					<NavLink href="#about">Work</NavLink>
-					<NavLink href="#contact">About</NavLink>
-				</div>
-			</nav>
+      <nav
+        class="site-nav sticky top-0 z-50 -mt-(--nav-height) grid h-(--nav-height) grid-cols-2 gap-px bg-black"
+      >
+        <div
+          class="site-nav__brand flex items-center bg-(--nav-bg-active) px-4"
+        >
+          <NavLink href="#hero">Contact Hemi</NavLink>
+        </div>
+        <div
+          class="site-nav__links flex items-center justify-between bg-(--nav-bg-active) px-4"
+        >
+          <NavLink href="#about">Work</NavLink>
+          <NavLink href="#contact">About</NavLink>
+        </div>
+      </nav>
 
-			{
-				projectPanels.map((panel) => (
-					<section
-						id={panel.id}
-						data-project-section="true"
-						data-nav-bg="var(--image-bg)"
-						class={`panel ${panel.className} grid h-screen grid-cols-2 grid-rows-[calc(50vw+var(--nav-height))_50vw_1fr] gap-px bg-black sm:grid-cols-[1fr_2fr]`}
-					>
-						<div class="panel__brand col-start-1 row-start-1 flex items-center justify-center px-6 pb-6 pt-[calc(1.5rem+var(--nav-height))] text-center sm:col-span-1 sm:pt-[calc(1.5rem+var(--nav-height))]">
-							<p class="panel-brand-label text-[0.82rem] font-medium tracking-[0.35em] text-(--brand-text)">
-								{panel.brand}
-							</p>
-						</div>
+      {
+        projectPanels.map((panel) => (
+          <section
+            id={panel.id}
+            data-project-section="true"
+            data-nav-bg="var(--image-bg)"
+            class={`panel ${panel.className} grid h-screen grid-cols-2 grid-rows-[calc(50vw+var(--nav-height))_50vw_1fr] gap-px bg-black sm:grid-cols-[1fr_2fr]`}
+          >
+            <div class="panel__brand col-start-1 row-start-1 flex items-center justify-center px-6 pt-[calc(1.5rem+var(--nav-height))] pb-6 text-center sm:col-span-1 sm:pt-[calc(1.5rem+var(--nav-height))]">
+              <p class="panel-brand-label text-[0.82rem] font-medium tracking-[0.35em] text-(--brand-text)">
+                {panel.brand}
+              </p>
+            </div>
 
-						<div class="panel__index col-start-2 row-start-1 flex items-center justify-center px-6 pb-6 pt-[calc(1.5rem+var(--nav-height))] sm:col-start-1 sm:row-start-4 sm:pt-6">
-							<p class="panel-index-number text-[3.75rem] font-thin leading-none text-(--index-text)">
-								<span>-></span>
-							</p>
-						</div>
+            <div class="panel__index col-start-2 row-start-1 flex items-center justify-center px-6 pt-[calc(1.5rem+var(--nav-height))] pb-6 sm:col-start-1 sm:row-start-4 sm:pt-6">
+              <p class="panel-index-number text-[3.75rem] leading-none font-thin text-(--index-text)">
+                <span>-&gt;</span>
+              </p>
+            </div>
 
-						<div class="panel__description col-span-2 row-start-2 min-h-0 sm:col-span-1 sm:row-start-2 sm:row-span-2">
-							<div class="panel-description-scroll h-full overflow-auto" data-project-description-viewport>
-								<div class="h-full p-6">
-									<p class="panel-copy text-[0.98rem] leading-[1.4] text-(--description-text)">
-										{panel.description}
-									</p>
-								</div>
-							</div>
-						</div>
+            <div class="panel__description col-span-2 row-start-2 min-h-0 sm:col-span-1 sm:row-span-2 sm:row-start-2">
+              <div
+                class="panel-description-scroll h-full overflow-auto"
+                data-project-description-viewport
+              >
+                <div class="h-full p-6">
+                  <p class="panel-copy text-[0.98rem] leading-[1.4] text-(--description-text)">
+                    {panel.description}
+                  </p>
+                </div>
+              </div>
+            </div>
 
-						<div class="panel__image col-span-2 row-start-3 p-6 sm:col-start-2 sm:row-start-1 sm:row-span-4 sm:col-span-1 sm:pt-[calc(1.5rem+var(--nav-height))]">
-							<div class="panel-image-frame h-full w-full rounded-[2.2rem]">
-								{panel.image ? (
-									<Image
-										src={panel.image}
-										alt={panel.imageAlt}
-										width={1024}
-										height={1536}
-										sizes="(min-width: 640px) 66vw, 100vw"
-										class="panel-image-media"
-										loading="lazy"
-										decoding="async"
-									/>
-								) : (
-									<img
-										class="panel-image-media"
-										src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
-										alt=""
-										loading="lazy"
-										decoding="async"
-									/>
-								)}
-								<div class="panel-image-overlay" aria-hidden="true">
-									<span class="panel-image-overlay-text">View project</span>
-								</div>
-							</div>
-						</div>
-					</section>
-				))
-			}
-		</main>
+            <div class="panel__image col-span-2 row-start-3 p-6 sm:col-span-1 sm:col-start-2 sm:row-span-4 sm:row-start-1 sm:pt-[calc(1.5rem+var(--nav-height))]">
+              <a
+                class="panel-image-link h-full w-full rounded-[2.2rem]"
+                href={panel.href}
+                aria-label={`View ${panel.brand} project`}
+              >
+                <div class="panel-image-frame h-full w-full">
+                  {panel.image ? (
+                    <Image
+                      src={panel.image}
+                      alt={panel.imageAlt}
+                      width={1024}
+                      height={1536}
+                      sizes="(min-width: 640px) 66vw, 100vw"
+                      class="panel-image-media"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <img
+                      class="panel-image-media"
+                      src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  )}
+                  <div class="panel-image-overlay" aria-hidden="true">
+                    <span class="panel-image-overlay-text">View project</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </section>
+        ))
+      }
+    </main>
 
-		<script>
-			import { initNavColorSync } from "../scripts/nav-color-sync";
+    <script>
+      import { initNavColorSync } from "../scripts/nav-color-sync";
 
-			initNavColorSync();
-		</script>
-	</body>
+      initNavColorSync();
+    </script>
+  </body>
 </html>
