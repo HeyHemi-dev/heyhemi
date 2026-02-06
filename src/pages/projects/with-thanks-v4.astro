@@ -29,7 +29,7 @@ const marqueeDuration = `${marqueeItems.length * MARQUEE_SECONDS_PER_ITEM}s`;
     </section>
 
     <section
-      class="col-span-full grid aspect-2/1 place-items-center bg-(--brand-bg) p-6 sm:p-12"
+      class="col-span-full grid aspect-2/1 max-h-[25dvh] w-full place-items-center bg-(--brand-bg) p-6 sm:p-12"
     >
       <h1
         class="text-left text-[0.82rem] font-medium tracking-[0.35em] text-(--brand-text) uppercase"
@@ -45,19 +45,25 @@ const marqueeDuration = `${marqueeItems.length * MARQUEE_SECONDS_PER_ITEM}s`;
         aria-label={`Roles: ${marqueeBase.join(", ")}`}
       >
         <div class="project-marquee-track flex w-max p-0">
-          <div class="project-marquee-group flex items-start gap-x-10" aria-hidden="true">
+          <div
+            class="project-marquee-group flex items-start gap-x-10"
+            aria-hidden="true"
+          >
             {
               marqueeItems.map((item) => (
-                <p class="text-[10vw] font-extrabold leading-none tracking-[0.2em] text-(--brand-text) uppercase">
+                <p class="text-4xl leading-none font-extrabold tracking-[0.2em] text-(--description-bg) uppercase">
                   {item}
                 </p>
               ))
             }
           </div>
-          <div class="project-marquee-group flex items-start gap-x-10" aria-hidden="true">
+          <div
+            class="project-marquee-group flex items-start gap-x-10"
+            aria-hidden="true"
+          >
             {
               marqueeItems.map((item) => (
-                <p class="text-[10vw] font-extrabold leading-none tracking-[0.2em] text-(--brand-text) uppercase">
+                <p class="text-4xl leading-none font-extrabold tracking-[0.2em] text-(--brand-text) uppercase">
                   {item}
                 </p>
               ))
@@ -67,67 +73,49 @@ const marqueeDuration = `${marqueeItems.length * MARQUEE_SECONDS_PER_ITEM}s`;
       </div>
     </section>
 
-    <section class="grid gap-px bg-black sm:grid-cols-[1fr_2fr]">
-      <div class="bg-(--description-bg) p-6 sm:p-12">
+    <section class="col-span-full bg-(--image-bg) sm:col-span-1 sm:row-span-2">
+      <div class="sticky top-0 p-6 sm:p-12">
         <h2 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
           Overview
         </h2>
         <p class="mt-4 text-[1rem] leading-[1.6]">{project.overview}</p>
         <p class="mt-4 text-[1rem] leading-[1.6]">{project.overviewDetail}</p>
       </div>
-      <div class="bg-(--image-bg) p-6 sm:p-12">
-        <div class="overflow-hidden rounded-[2rem] bg-(--image-frame-bg)">
-          <Image
-            src={project.gallery[0].src}
-            alt={project.gallery[0].alt}
-            width={1024}
-            height={1536}
-            sizes="(min-width: 640px) 66vw, 100vw"
-            class="h-full w-full object-cover"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
+    </section>
+
+    <section class="col-span-full bg-(--image-bg) p-6 sm:col-span-1 sm:p-12">
+      <div class="overflow-hidden rounded-4xl bg-(--image-frame-bg)">
+        <Image
+          src={project.gallery[0].src}
+          alt={project.gallery[0].alt}
+          width={1024}
+          height={1536}
+          sizes="(min-width: 640px) 66vw, 100vw"
+          class="h-full w-full object-cover"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
     </section>
 
-    <section class="grid gap-px bg-black sm:grid-cols-[1fr_2fr]">
-      <div class="bg-(--description-bg) p-6 sm:p-12">
-        <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
-          Timeline
-        </h3>
-        <ol class="mt-6 space-y-5 border-l border-black/20 pl-4">
-          {
-            project.process.map((step, index) => (
-              <li class="space-y-2">
-                <p class="text-[0.7rem] font-semibold tracking-[0.18em] uppercase">
-                  Phase {index + 1}
-                </p>
-                <p class="text-[0.95rem] leading-[1.5]">{step}</p>
-              </li>
-            ))
-          }
-        </ol>
-      </div>
-      <div class="bg-(--image-bg) p-6 sm:p-12">
-        <div class="grid gap-4 sm:grid-cols-2">
-          {
-            project.gallery.slice(1, 5).map((image) => (
-              <div class="overflow-hidden rounded-[1.6rem] bg-(--image-frame-bg)">
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  width={1024}
-                  height={1536}
-                  sizes="(min-width: 640px) 40vw, 100vw"
-                  class="h-full w-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            ))
-          }
-        </div>
+    <section class="col-span-full bg-(--image-bg) p-6 sm:col-span-1 sm:p-12">
+      <div class="grid grid-cols-2 gap-4">
+        {
+          project.gallery.slice(1, 5).map((image) => (
+            <div class="overflow-hidden rounded-[1.6rem] bg-(--image-frame-bg)">
+              <Image
+                src={image.src}
+                alt={image.alt}
+                width={1024}
+                height={1536}
+                sizes="(min-width: 640px) 40vw, 100vw"
+                class="h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          ))
+        }
       </div>
     </section>
 
