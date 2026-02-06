@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import NavLink from "../components/NavLink.astro";
 
 const descriptionText =
 	"Ci affezioniamo ai gesti di tutti i giorni, ci piace mantenere quelle piccole tradizioni che scandiscono le nostre giornate. Questo ci da l’impressione che tutto sia in ordine. La nostra spalmabile preferita al mattino, quella che tra tutte abbiamo scelto, sul pane tostato con una tazza di caffè, per esempio. Siamo inconsapevoli dell’equilibrio che un semplice gesto come questo possa determinare, ma quando ci accorgiamo, assonnati, che manca dalla dispensa perché e finita, un po’ traballiamo.";
@@ -102,19 +103,12 @@ const projectPanels = [
 			</section>
 
 			<nav class="site-nav sticky top-0 z-50 -mt-(--nav-height) grid h-(--nav-height) grid-cols-2 gap-px bg-black">
-				<a
-					href="#hero"
-					class="site-nav__brand flex items-center bg-(--nav-bg-active) px-4 text-[0.64rem] font-semibold uppercase tracking-[0.22em] text-(--nav-text)"
-				>
-					About
-				</a>
+				<div class="site-nav__brand flex items-center bg-(--nav-bg-active) px-4">
+					<NavLink href="#hero">About</NavLink>
+				</div>
 				<div class="site-nav__links flex items-center justify-between bg-(--nav-bg-active) px-4">
-					<a href="#about" class="text-[0.64rem] font-medium uppercase tracking-[0.2em] text-(--nav-text)">
-						Work
-					</a>
-					<a href="#contact" class="text-[0.64rem] font-medium uppercase tracking-[0.2em] text-(--nav-text)">
-						Contact
-					</a>
+					<NavLink href="#about">Work</NavLink>
+					<NavLink href="#contact">Contact</NavLink>
 				</div>
 			</nav>
 
