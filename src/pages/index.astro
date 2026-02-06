@@ -1,6 +1,8 @@
 ---
 import "../styles/global.css";
+import { Image } from "astro:assets";
 import NavLink from "../components/NavLink.astro";
+import withThanksImage from "../assets/projects/with_thanks_comp.png";
 
 const descriptionText =
 	"Ci affezioniamo ai gesti di tutti i giorni, ci piace mantenere quelle piccole tradizioni che scandiscono le nostre giornate. Questo ci da l’impressione che tutto sia in ordine. La nostra spalmabile preferita al mattino, quella che tra tutte abbiamo scelto, sul pane tostato con una tazza di caffè, per esempio. Siamo inconsapevoli dell’equilibrio che un semplice gesto come questo possa determinare, ma quando ci accorgiamo, assonnati, che manca dalla dispensa perché e finita, un po’ traballiamo.";
@@ -32,6 +34,8 @@ const projectPanels = [
 		brand: "WITH THANKS",
 		index: "01",
 		description: descriptionText,
+		image: withThanksImage,
+		imageAlt: "With Thanks project preview",
 	},
 	{
 		id: "wedding",
@@ -39,6 +43,8 @@ const projectPanels = [
 		brand: "WEDDING READY",
 		index: "02",
 		description: descriptionText,
+		image: null,
+		imageAlt: "",
 	},
 	{
 		id: "contact",
@@ -46,6 +52,8 @@ const projectPanels = [
 		brand: "SHARESIES",
 		index: "03",
 		description: descriptionText,
+		image: null,
+		imageAlt: "",
 	},
 ];
 ---
@@ -118,7 +126,7 @@ const projectPanels = [
 						id={panel.id}
 						data-project-section="true"
 						data-nav-bg="var(--image-bg)"
-						class={`panel ${panel.className} grid min-h-screen grid-cols-2 grid-rows-[calc(50vw+var(--nav-height))_50vw_1fr] gap-px bg-black sm:grid-cols-[1fr_2fr]`}
+						class={`panel ${panel.className} grid h-[100dvh] grid-cols-2 grid-rows-[calc(50vw+var(--nav-height))_50vw_1fr] gap-px bg-black sm:grid-cols-[1fr_2fr]`}
 					>
 						<div class="panel__brand col-start-1 row-start-1 flex items-center justify-center px-6 pb-6 pt-[calc(1.5rem+var(--nav-height))] text-center sm:col-span-1 sm:pt-[calc(1.5rem+var(--nav-height))]">
 							<p class="panel-brand-label text-[0.82rem] font-medium tracking-[0.35em] text-(--brand-text)">
@@ -132,14 +140,42 @@ const projectPanels = [
 							</p>
 						</div>
 
-						<div class="panel__description col-span-2 row-start-2 p-6 sm:col-span-1 sm:row-start-2 sm:row-span-2">
-							<p class="panel-copy text-[0.98rem] leading-[1.4] text-(--description-text)">
-								{panel.description}
-							</p>
+						<div class="panel__description col-span-2 row-start-2 min-h-0 sm:col-span-1 sm:row-start-2 sm:row-span-2">
+							<div class="panel-description-scroll h-full overflow-auto" data-project-description-viewport>
+								<div class="h-full p-6">
+									<p class="panel-copy text-[0.98rem] leading-[1.4] text-(--description-text)">
+										{panel.description}
+									</p>
+								</div>
+							</div>
 						</div>
 
 						<div class="panel__image col-span-2 row-start-3 p-6 sm:col-start-2 sm:row-start-1 sm:row-span-4 sm:col-span-1 sm:pt-[calc(1.5rem+var(--nav-height))]">
-							<div class="panel-image-frame h-full w-full rounded-[2.2rem]" />
+							<div class="panel-image-frame h-full w-full rounded-[2.2rem]">
+								{panel.image ? (
+									<Image
+										src={panel.image}
+										alt={panel.imageAlt}
+										width={1024}
+										height={1536}
+										sizes="(min-width: 640px) 66vw, 100vw"
+										class="panel-image-media"
+										loading="lazy"
+										decoding="async"
+									/>
+								) : (
+									<img
+										class="panel-image-media"
+										src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
+										alt=""
+										loading="lazy"
+										decoding="async"
+									/>
+								)}
+								<div class="panel-image-overlay" aria-hidden="true">
+									<span class="panel-image-overlay-text">View project</span>
+								</div>
+							</div>
 						</div>
 					</section>
 				))

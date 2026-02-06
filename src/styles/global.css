@@ -72,6 +72,7 @@ body {
 
 .panel__description {
 	background: var(--description-bg);
+	min-height: 0;
 }
 
 .panel__image {
@@ -79,7 +80,55 @@ body {
 }
 
 .panel-image-frame {
+	position: relative;
+	overflow: hidden;
 	background: var(--image-frame-bg);
+	min-height: 0;
+}
+
+.panel-image-frame picture {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.panel-image-media {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+
+.panel__image {
+	min-height: 0;
+}
+
+.panel-description-scroll {
+	min-height: 0;
+}
+
+.panel-image-overlay {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0, 0, 0, 0.45);
+	opacity: 0;
+	transition: opacity 200ms ease;
+}
+
+.panel-image-overlay-text {
+	color: #ffffff;
+	font-size: 0.7rem;
+	font-weight: 600;
+	letter-spacing: 0.26em;
+	text-transform: uppercase;
+}
+
+.panel-image-frame:hover .panel-image-overlay {
+	opacity: 1;
 }
 
 [data-hero-skills-viewport] {
@@ -96,6 +145,24 @@ body {
 		transparent 0,
 		#000 var(--skills-fade-size),
 		#000 calc(100% - var(--skills-fade-size)),
+		transparent 100%
+	);
+}
+
+[data-project-description-viewport] {
+	--description-fade-size: clamp(1.2rem, 12%, 3rem);
+	-webkit-mask-image: linear-gradient(
+		to bottom,
+		transparent 0,
+		#000 var(--description-fade-size),
+		#000 calc(100% - var(--description-fade-size)),
+		transparent 100%
+	);
+	mask-image: linear-gradient(
+		to bottom,
+		transparent 0,
+		#000 var(--description-fade-size),
+		#000 calc(100% - var(--description-fade-size)),
 		transparent 100%
 	);
 }
