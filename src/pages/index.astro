@@ -107,10 +107,12 @@ const projectPanels = [
             class="relative h-full min-h-0 overflow-hidden"
             data-hero-skills-viewport
             style={`--hero-skills-duration: ${HERO_SKILLS_DURATION};`}
+            aria-label={`Hemi's skills: ${heroSkills.join(", ")}`}
           >
             <ul
               class="hero-skills-track absolute top-0 left-0 m-0 w-full list-none p-0 text-[0.98rem] grid gap-y-[1.2em] font-light whitespace-nowrap text-(--description-text) will-change-transform"
               data-hero-skills-track
+              aria-hidden="true"
             >
               {heroSkillsParallax.map((skill) => <li>{skill}</li>)}
             </ul>
