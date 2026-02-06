@@ -7,7 +7,8 @@
 		"build": "astro build",
 		"preview": "astro build && wrangler pages dev",
 		"astro": "astro",
-		"deploy:cf": "astro build && wrangler pages deploy",
+		"deploy:preview": "astro build && wrangler pages deploy ./dist --project-name heyhemi --branch preview",
+		"deploy:main": "astro build && wrangler pages deploy ./dist --project-name heyhemi --branch main",
 		"cf-typegen": "wrangler types"
 	},
 	"dependencies": {
