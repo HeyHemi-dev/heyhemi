@@ -253,9 +253,9 @@ body {
 
 @media (min-width: 640px) {
   .panel:not(.panel--hero) {
-    --project-row: calc((100dvh - var(--nav-height)) / 4);
+    --project-row: calc((100dvh - var(--nav-height)) / 4 - 1px);
     grid-template-rows:
-      calc(var(--project-row) + var(--nav-height)) var(--project-row)
+      calc(var(--project-row) + var(--nav-height) + 1px) var(--project-row)
       var(--project-row) var(--project-row);
   }
 }
