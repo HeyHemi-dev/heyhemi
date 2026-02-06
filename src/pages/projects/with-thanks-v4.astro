@@ -1,0 +1,183 @@
+---
+import { Image } from "astro:assets";
+import { withThanksProject as project } from "../../data/projects/with-thanks";
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+
+const MARQUEE_REPEAT = 100;
+const MARQUEE_SECONDS_PER_ITEM = 2;
+const marqueeBase = project.role.split("•").map((item) => item.trim());
+const marqueeItems = Array.from(
+  { length: MARQUEE_REPEAT },
+  () => marqueeBase,
+).flat();
+const marqueeDuration = `${marqueeItems.length * MARQUEE_SECONDS_PER_ITEM}s`;
+---
+
+<ProjectLayout title={`${project.title} — Case Study`}>
+  <main class="panel--01 grid min-h-screen grid-cols-2 gap-px bg-black">
+    <section
+      class="col-span-full bg-(--image-bg) px-6 py-0"
+      style="height: var(--nav-height);"
+    >
+      <a
+        href="/"
+        class="inline-flex h-full items-center gap-2 text-[0.7rem] font-semibold tracking-[0.22em] text-(--description-text) uppercase"
+      >
+        <span>←</span>
+        Back
+      </a>
+    </section>
+
+    <section class="bg-(--brand-bg) p-6 sm:p-12 col-span-full grid place-items-center aspect-2/1">
+      <h1
+        class="text-left text-[0.82rem] font-medium tracking-[0.35em] text-(--brand-text) uppercase"
+      >
+        {project.title}
+      </h1>
+    </section>
+
+    <section class="overflow-x-clip bg-(--brand-bg) p-0 col-span-full">
+      <div
+        class="project-marquee"
+        style={`--project-marquee-duration: ${marqueeDuration};`}
+      >
+        <div class="project-marquee-track">
+          {
+            marqueeItems.map((item) => (
+              <p class="project-marquee-item">{item}</p>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="grid gap-px bg-black sm:grid-cols-[1fr_2fr]">
+      <div class="bg-(--description-bg) p-6 sm:p-12">
+        <h2 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+          Overview
+        </h2>
+        <p class="mt-4 text-[1rem] leading-[1.6]">{project.overview}</p>
+        <p class="mt-4 text-[1rem] leading-[1.6]">{project.overviewDetail}</p>
+      </div>
+      <div class="bg-(--image-bg) p-6 sm:p-12">
+        <div class="overflow-hidden rounded-[2rem] bg-(--image-frame-bg)">
+          <Image
+            src={project.gallery[0].src}
+            alt={project.gallery[0].alt}
+            width={1024}
+            height={1536}
+            sizes="(min-width: 640px) 66vw, 100vw"
+            class="h-full w-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="grid gap-px bg-black sm:grid-cols-[1fr_2fr]">
+      <div class="bg-(--description-bg) p-6 sm:p-12">
+        <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+          Timeline
+        </h3>
+        <ol class="mt-6 space-y-5 border-l border-black/20 pl-4">
+          {
+            project.process.map((step, index) => (
+              <li class="space-y-2">
+                <p class="text-[0.7rem] font-semibold tracking-[0.18em] uppercase">
+                  Phase {index + 1}
+                </p>
+                <p class="text-[0.95rem] leading-[1.5]">{step}</p>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+      <div class="bg-(--image-bg) p-6 sm:p-12">
+        <div class="grid gap-4 sm:grid-cols-2">
+          {
+            project.gallery.slice(1, 5).map((image) => (
+              <div class="overflow-hidden rounded-[1.6rem] bg-(--image-frame-bg)">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={1024}
+                  height={1536}
+                  sizes="(min-width: 640px) 40vw, 100vw"
+                  class="h-full w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="grid gap-px bg-black sm:grid-cols-3">
+      <div class="bg-(--description-bg) p-6 sm:p-12">
+        <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+          Scope
+        </h3>
+        <ul class="mt-4 space-y-2 text-[0.95rem]">
+          {project.scope.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+      <div class="bg-(--description-bg) p-6 sm:p-12">
+        <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+          Goals
+        </h3>
+        <ul class="mt-4 space-y-2 text-[0.95rem]">
+          {project.goals.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+      <div class="bg-(--brand-bg) p-6 text-(--brand-text) sm:p-12">
+        <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+          Outcomes
+        </h3>
+        <ul class="mt-4 space-y-2 text-[0.95rem]">
+          {project.outcomes.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="grid gap-px bg-black sm:grid-cols-[1.2fr_0.8fr]">
+      <div class="bg-(--description-bg) p-6 sm:p-12">
+        <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+          Links
+        </h3>
+        <div
+          class="mt-4 flex flex-wrap gap-4 text-[0.9rem] font-semibold tracking-[0.18em] uppercase"
+        >
+          <a class="underline underline-offset-4" href={project.links.live}
+            >Live site</a
+          >
+          <a class="underline underline-offset-4" href={project.links.repo}
+            >Repo</a
+          >
+          <a class="underline underline-offset-4" href={project.links.writeup}
+            >Write‑up</a
+          >
+        </div>
+      </div>
+      <div class="bg-(--description-bg) p-6 sm:p-12">
+        <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+          Next
+        </h3>
+        <div class="mt-4 space-y-3">
+          {
+            project.related.map((item) => (
+              <a
+                href={item.href}
+                class="block text-[0.95rem] font-semibold tracking-[0.18em] uppercase underline underline-offset-4"
+              >
+                {item.label}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+</ProjectLayout>

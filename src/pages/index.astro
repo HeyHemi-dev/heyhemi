@@ -1,5 +1,5 @@
 ---
-import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import NavLink from "../components/NavLink.astro";
 import withThanksImage from "../assets/projects/with_thanks_comp.png";
@@ -66,16 +66,7 @@ const projectPanels = [
 ];
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Hey Hemi</title>
-  </head>
-  <body class="bg-black">
+<BaseLayout title="Hey Hemi">
     <main class="home grid gap-y-px bg-black">
       <section
         id="hero"
@@ -85,7 +76,7 @@ const projectPanels = [
           class="panel__brand col-span-2 row-start-1 flex items-baseline overflow-clip p-0 sm:justify-center"
         >
           <h1
-            class="panel-hero-wordmark grid grow grid-cols-[auto_1fr] text-[32vw] leading-[0.75] font-bold tracking-[-0.03em] whitespace-nowrap text-(--brand-text) sm:grid-cols-[auto_auto_1fr] sm:text-[21vw]"
+            class="panel-hero-wordmark grid grow grid-cols-[auto_1fr] text-[32vw] font-bold tracking-tight whitespace-nowrap text-(--brand-text) sm:grid-cols-[auto_auto_1fr] sm:text-[21vw]"
           >
             <span
               class="col-start-1 row-start-2 flex aspect-square w-full items-center justify-center rounded-full bg-[#10316B] text-[25%] font-extralight tracking-normal text-(--brand-text)/50 sm:col-start-1 sm:row-start-1"
@@ -118,7 +109,7 @@ const projectPanels = [
             style={`--hero-skills-duration: ${HERO_SKILLS_DURATION};`}
           >
             <ul
-              class="hero-skills-track absolute top-0 left-0 m-0 w-full list-none p-0 text-[0.98rem] leading-loose font-light whitespace-nowrap text-(--description-text) will-change-transform"
+              class="hero-skills-track absolute top-0 left-0 m-0 w-full list-none p-0 text-[0.98rem] grid gap-y-[1.2em] font-light whitespace-nowrap text-(--description-text) will-change-transform"
               data-hero-skills-track
             >
               {heroSkillsParallax.map((skill) => <li>{skill}</li>)}
@@ -219,5 +210,4 @@ const projectPanels = [
 
       initNavColorSync();
     </script>
-  </body>
-</html>
+</BaseLayout>
