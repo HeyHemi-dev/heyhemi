@@ -251,6 +251,7 @@ body {
   --description-text: #3f2f45;
 }
 
+/* Subtract 1px to each row to allow for the gap-y-px, add 1px to the first row since there is one less gaps than there are panels */
 @media (min-width: 640px) {
   .panel:not(.panel--hero) {
     --project-row: calc((100dvh - var(--nav-height)) / 4 - 1px);
