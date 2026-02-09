@@ -53,7 +53,6 @@ body {
   text-box-edge: cap alphabetic;
 }
 
-
 [data-hero-skills-viewport] {
   --skills-fade-size: clamp(1.5rem, 14%, 4.5rem);
   -webkit-mask-image: linear-gradient(
@@ -94,8 +93,6 @@ body {
   animation: hero-skills-scroll var(--hero-skills-duration, 18s) linear infinite;
 }
 
-
-
 @keyframes hero-skills-scroll {
   from {
     transform: translate3d(0, 0, 0);
@@ -116,7 +113,8 @@ body {
 }
 
 .project-marquee-track {
-  animation: project-marquee-scroll var(--project-marquee-duration, 26s) linear infinite;
+  animation: project-marquee-scroll var(--project-marquee-duration, 26s) linear
+    infinite;
   will-change: transform;
 }
 
@@ -129,8 +127,7 @@ body {
   }
 }
 
-
-.panel--hero {
+#hero {
   --brand-bg: #17397a;
   --index-bg: #17397a;
   --description-bg: #d6dbe4;
@@ -142,7 +139,7 @@ body {
   --description-muted: #363c45;
 }
 
-.panel--01 {
+#with-thanks {
   --brand-bg: #a94012;
   --index-bg: #255f29;
   --description-bg: #f2864a;
@@ -153,7 +150,7 @@ body {
   --description-text: #2f2d26;
 }
 
-.panel--02 {
+#wedding-ready {
   --brand-bg: #005e52;
   --index-bg: #e6f72a;
   --description-bg: #81d2c2;
@@ -164,7 +161,7 @@ body {
   --description-text: #204448;
 }
 
-.panel--03 {
+#sharesies {
   --brand-bg: #f7008b;
   --index-bg: #7e0067;
   --description-bg: #e6caec;
