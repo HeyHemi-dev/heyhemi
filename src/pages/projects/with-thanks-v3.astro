@@ -5,123 +5,153 @@ import ProjectLayout from "../../layouts/ProjectLayout.astro";
 ---
 
 <ProjectLayout title={`${project.title} — Case Study`}>
-	<main class="panel--01 min-h-screen bg-black">
-			<div class="grid gap-px bg-black p-4 sm:p-6">
-				<header class="grid gap-px bg-black sm:grid-cols-6">
-					<div class="bg-(--brand-bg) p-6 sm:col-span-4">
-						<a href="/" class="inline-flex items-center gap-2 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-(--brand-text)">
-							<span>←</span>
-							Back
-						</a>
-						<h1 class="mt-6 text-[clamp(2rem,6vw,4rem)] font-semibold uppercase tracking-[-0.02em] text-(--brand-text)">
-							{project.title}
-						</h1>
-						<p class="mt-3 text-[1rem] leading-[1.6] text-(--brand-text)">{project.tagline}</p>
-					</div>
-					<div class="bg-(--description-bg) p-6 sm:col-span-2">
-						<p class="text-[0.8rem] font-semibold uppercase tracking-[0.22em]">Role</p>
-						<p class="mt-3 text-[1rem] leading-[1.6]">{project.role}</p>
-					</div>
-				</header>
+  <main class="panel--01 min-h-screen bg-black">
+    <div class="grid gap-px bg-black p-4 sm:p-6">
+      <header class="grid gap-px bg-black sm:grid-cols-6">
+        <div class="bg-(--brand-bg) p-6 sm:col-span-4">
+          <a
+            href="/"
+            class="inline-flex items-center gap-2 text-[0.7rem] font-semibold tracking-[0.22em] text-(--brand-text) uppercase"
+          >
+            <span>←</span>
+            Back
+          </a>
+          <h1
+            class="mt-6 text-[clamp(2rem,6vw,4rem)] font-semibold tracking-[-0.02em] text-(--brand-text) uppercase"
+          >
+            {project.title}
+          </h1>
+          <p class="mt-3 text-[1rem] leading-[1.6] text-(--brand-text)">
+            {project.tagline}
+          </p>
+        </div>
+        <div class="bg-(--description-bg) p-6 sm:col-span-2">
+          <p class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+            Role
+          </p>
+          <p class="mt-3 text-[1rem] leading-[1.6]">{project.role}</p>
+        </div>
+      </header>
 
-				<section class="grid gap-px bg-black sm:grid-cols-6">
-					<div class="bg-(--description-bg) p-6 sm:col-span-3">
-						<h2 class="text-[0.8rem] font-semibold uppercase tracking-[0.22em]">Overview</h2>
-						<p class="mt-4 text-[1rem] leading-[1.6]">{project.overview}</p>
-						<p class="mt-4 text-[1rem] leading-[1.6]">{project.overviewDetail}</p>
-					</div>
-					<div class="bg-(--image-bg) p-6 sm:col-span-3">
-						<div class="overflow-hidden rounded-[2rem] bg-(--image-frame-bg)">
-							<Image
-								src={project.gallery[0].src}
-								alt={project.gallery[0].alt}
-								width={1024}
-								height={1536}
-								sizes="(min-width: 640px) 60vw, 100vw"
-								class="h-full w-full object-cover"
-								loading="lazy"
-								decoding="async"
-							/>
-						</div>
-					</div>
-				</section>
+      <section class="grid gap-px bg-black sm:grid-cols-6">
+        <div class="bg-(--description-bg) p-6 sm:col-span-3">
+          <h2 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+            Overview
+          </h2>
+          <p class="mt-4 text-[1rem] leading-[1.6]">{project.overview}</p>
+          <p class="mt-4 text-[1rem] leading-[1.6]">{project.overviewDetail}</p>
+        </div>
+        <div class="bg-(--image-bg) p-6 sm:col-span-3">
+          <div class="overflow-hidden rounded-[2rem] bg-(--image-frame-bg)">
+            <Image
+              src={project.gallery[0].src}
+              alt={project.gallery[0].alt}
+              width={1024}
+              height={1536}
+              sizes="(min-width: 640px) 60vw, 100vw"
+              class="h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </section>
 
-				<section class="grid gap-px bg-black sm:grid-cols-6">
-					<div class="bg-(--description-bg) p-6 sm:col-span-2">
-						<h3 class="text-[0.8rem] font-semibold uppercase tracking-[0.22em]">Scope</h3>
-						<ul class="mt-4 space-y-2 text-[0.95rem]">
-							{project.scope.map((item) => (
-								<li>{item}</li>
-							))}
-						</ul>
-					</div>
-					<div class="bg-(--description-bg) p-6 sm:col-span-2">
-						<h3 class="text-[0.8rem] font-semibold uppercase tracking-[0.22em]">Goals</h3>
-						<ul class="mt-4 space-y-2 text-[0.95rem]">
-							{project.goals.map((item) => (
-								<li>{item}</li>
-							))}
-						</ul>
-					</div>
-					<div class="bg-(--description-bg) p-6 sm:col-span-2">
-						<h3 class="text-[0.8rem] font-semibold uppercase tracking-[0.22em]">Outcomes</h3>
-						<ul class="mt-4 space-y-2 text-[0.95rem]">
-							{project.outcomes.map((item) => (
-								<li>{item}</li>
-							))}
-						</ul>
-					</div>
-				</section>
+      <section class="grid gap-px bg-black sm:grid-cols-6">
+        <div class="bg-(--description-bg) p-6 sm:col-span-2">
+          <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+            Scope
+          </h3>
+          <ul class="mt-4 space-y-2 text-[0.95rem]">
+            {project.scope.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+        <div class="bg-(--description-bg) p-6 sm:col-span-2">
+          <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+            Goals
+          </h3>
+          <ul class="mt-4 space-y-2 text-[0.95rem]">
+            {project.goals.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+        <div class="bg-(--description-bg) p-6 sm:col-span-2">
+          <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+            Outcomes
+          </h3>
+          <ul class="mt-4 space-y-2 text-[0.95rem]">
+            {project.outcomes.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </section>
 
-				<section class="grid gap-px bg-black sm:grid-cols-6">
-					<div class="bg-(--image-bg) p-6 sm:col-span-4">
-						<div class="grid gap-4 sm:grid-cols-2">
-							{project.gallery.slice(1, 5).map((image) => (
-								<div class="overflow-hidden rounded-[1.6rem] bg-(--image-frame-bg)">
-									<Image
-										src={image.src}
-										alt={image.alt}
-										width={1024}
-										height={1536}
-										sizes="(min-width: 640px) 40vw, 100vw"
-										class="h-full w-full object-cover"
-										loading="lazy"
-										decoding="async"
-									/>
-								</div>
-							))}
-						</div>
-					</div>
-					<div class="bg-(--brand-bg) p-6 text-(--brand-text) sm:col-span-2">
-						<h3 class="text-[0.8rem] font-semibold uppercase tracking-[0.22em]">Process</h3>
-						<div class="mt-4 space-y-3 text-[0.95rem] leading-[1.5]">
-							{project.process.map((step) => (
-								<p>{step}</p>
-							))}
-						</div>
-					</div>
-				</section>
+      <section class="grid gap-px bg-black sm:grid-cols-6">
+        <div class="bg-(--image-bg) p-6 sm:col-span-4">
+          <div class="grid gap-4 sm:grid-cols-2">
+            {
+              project.gallery.slice(1, 5).map((image) => (
+                <div class="overflow-hidden rounded-[1.6rem] bg-(--image-frame-bg)">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    width={1024}
+                    height={1536}
+                    sizes="(min-width: 640px) 40vw, 100vw"
+                    class="h-full w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              ))
+            }
+          </div>
+        </div>
+        <div class="bg-(--brand-bg) p-6 text-(--brand-text) sm:col-span-2">
+          <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+            Process
+          </h3>
+          <div class="mt-4 space-y-3 text-[0.95rem] leading-[1.5]">
+            {project.process.map((step) => <p>{step}</p>)}
+          </div>
+        </div>
+      </section>
 
-				<section class="grid gap-px bg-black sm:grid-cols-6">
-					<div class="bg-(--description-bg) p-6 sm:col-span-3">
-						<h3 class="text-[0.8rem] font-semibold uppercase tracking-[0.22em]">Links</h3>
-						<div class="mt-4 flex flex-wrap gap-4 text-[0.9rem] font-semibold uppercase tracking-[0.18em]">
-							<a class="underline underline-offset-4" href={project.links.live}>Live site</a>
-							<a class="underline underline-offset-4" href={project.links.repo}>Repo</a>
-							<a class="underline underline-offset-4" href={project.links.writeup}>Write‑up</a>
-						</div>
-					</div>
-					<div class="bg-(--description-bg) p-6 sm:col-span-3">
-						<h3 class="text-[0.8rem] font-semibold uppercase tracking-[0.22em]">Next</h3>
-						<div class="mt-4 space-y-3">
-							{project.related.map((item) => (
-								<a href={item.href} class="block text-[0.95rem] font-semibold uppercase tracking-[0.18em] underline underline-offset-4">
-									{item.label}
-								</a>
-							))}
-						</div>
-					</div>
-				</section>
-			</div>
-	</main>
+      <section class="grid gap-px bg-black sm:grid-cols-6">
+        <div class="bg-(--description-bg) p-6 sm:col-span-3">
+          <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+            Links
+          </h3>
+          <div
+            class="mt-4 flex flex-wrap gap-4 text-[0.9rem] font-semibold tracking-[0.18em] uppercase"
+          >
+            <a class="underline underline-offset-4" href={project.links.live}
+              >Live site</a
+            >
+            <a class="underline underline-offset-4" href={project.links.repo}
+              >Repo</a
+            >
+            <a class="underline underline-offset-4" href={project.links.writeup}
+              >Write‑up</a
+            >
+          </div>
+        </div>
+        <div class="bg-(--description-bg) p-6 sm:col-span-3">
+          <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+            Next
+          </h3>
+          <div class="mt-4 space-y-3">
+            {
+              project.related.map((item) => (
+                <a
+                  href={item.href}
+                  class="block text-[0.95rem] font-semibold tracking-[0.18em] uppercase underline underline-offset-4"
+                >
+                  {item.label}
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
 </ProjectLayout>
