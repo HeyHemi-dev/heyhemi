@@ -14,7 +14,7 @@ const marqueeDuration = `${marqueeItems.length * MARQUEE_SECONDS_PER_ITEM}s`;
 ---
 
 <ProjectLayout title={`${project.title} — Case Study`}>
-  <main class="panel--01 grid min-h-screen grid-cols-2 gap-px bg-black">
+  <main id={project.slug} class="grid min-h-screen grid-cols-2 gap-px bg-black">
     <section
       class="col-span-full bg-(--image-bg) px-6 py-0"
       style="height: var(--nav-height);"
@@ -119,31 +119,29 @@ const marqueeDuration = `${marqueeItems.length * MARQUEE_SECONDS_PER_ITEM}s`;
       </div>
     </section>
 
-    <section class="grid gap-px bg-black sm:grid-cols-3">
-      <div class="bg-(--description-bg) p-6 sm:p-12">
-        <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
-          Scope
-        </h3>
-        <ul class="mt-4 space-y-2 text-[0.95rem]">
-          {project.scope.map((item) => <li>{item}</li>)}
-        </ul>
-      </div>
-      <div class="bg-(--description-bg) p-6 sm:p-12">
-        <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
-          Goals
-        </h3>
-        <ul class="mt-4 space-y-2 text-[0.95rem]">
-          {project.goals.map((item) => <li>{item}</li>)}
-        </ul>
-      </div>
-      <div class="bg-(--brand-bg) p-6 text-(--brand-text) sm:p-12">
-        <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
-          Outcomes
-        </h3>
-        <ul class="mt-4 space-y-2 text-[0.95rem]">
-          {project.outcomes.map((item) => <li>{item}</li>)}
-        </ul>
-      </div>
+    <section class="bg-(--description-bg) p-6 sm:p-12">
+      <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+        Scope
+      </h3>
+      <ul class="mt-4 space-y-2 text-[0.95rem]">
+        {project.scope.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+    <section class="bg-(--description-bg) p-6 sm:p-12">
+      <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+        Goals
+      </h3>
+      <ul class="mt-4 space-y-2 text-[0.95rem]">
+        {project.goals.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+    <section class="bg-(--brand-bg) p-6 text-(--brand-text) sm:p-12">
+      <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+        Outcomes
+      </h3>
+      <ul class="mt-4 space-y-2 text-[0.95rem]">
+        {project.outcomes.map((item) => <li>{item}</li>)}
+      </ul>
     </section>
 
     <section class="grid gap-px bg-black sm:grid-cols-[1.2fr_0.8fr]">
