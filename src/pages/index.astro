@@ -31,7 +31,7 @@ const HERO_SKILLS_DURATION = `${HERO_SKILLS_REPEAT * 6}s`;
 
 const projectPanels = [
   {
-    id: "about",
+    id: "with-thanks",
     className: "panel--01",
     brand: "WITH THANKS",
     index: "01",
@@ -39,10 +39,10 @@ const projectPanels = [
       "With Thanks is the fastest and easiest way to collect wedding supplier details from just-married couples, formatted and ready-to-paste into Instagram. Fullstack Tanstack Start application (Vite), deployed on Vercel, with Better Auth, and Neon DB.",
     image: withThanksImage,
     imageAlt: "With Thanks project preview",
-    href: "#about",
+    href: "#with-thanks",
   },
   {
-    id: "wedding",
+    id: "wedding-ready",
     className: "panel--02",
     brand: "WEDDING READY",
     index: "02",
@@ -50,10 +50,10 @@ const projectPanels = [
       "Wedding Ready is wedding platform inspired by Pinterest, which aims to solve the problem for couples making their dreams a reality. Every idea on Wedding Ready links directly to local suppliers who can bring it to life.",
     image: weddingReadyImage,
     imageAlt: "Wedding Ready project preview",
-    href: "#wedding",
+    href: "#wedding-ready",
   },
   {
-    id: "contact",
+    id: "sharesies",
     className: "panel--03",
     brand: "SHARESIES",
     index: "03",
@@ -61,7 +61,7 @@ const projectPanels = [
       "At Sharesies, I developed a self-service portal for companies managing employee share schemes (ESS) during my summer internship. This was the first step in a major expanding Sharesies Open’s feature set. The portal will replace a manual, spreadsheet-based workflow with a fully integrated company-facing interface. ",
     image: sharesiesImage,
     imageAlt: "Sharesies project preview",
-    href: "#contact",
+    href: "#sharesies",
   },
 ];
 ---
@@ -124,12 +124,12 @@ const projectPanels = [
         class="site-nav sticky top-0 z-50 -mt-(--nav-height) grid h-(--nav-height) grid-cols-2 gap-px bg-black shadow-[0_1px_0_0_#000]"
       >
         <div
-          class="flex items-center bg-(--nav-bg-active) px-4 transition-colors duration-[220ms]"
+          class="flex items-center bg-(--nav-bg-active) px-4 transition-colors duration-200"
         >
           <NavLink href="#hero">Contact Hemi</NavLink>
         </div>
         <div
-          class="flex items-center justify-between bg-(--nav-bg-active) px-4 transition-colors duration-[220ms]"
+          class="flex items-center justify-between bg-(--nav-bg-active) px-4 transition-colors duration-200"
         >
           <NavLink href="#about">Work</NavLink>
           <NavLink href="#contact">About</NavLink>
@@ -142,7 +142,7 @@ const projectPanels = [
             id={panel.id}
             data-project-section="true"
             data-nav-bg="var(--image-bg)"
-            class={`${panel.className} grid h-screen grid-cols-2 grid-rows-[calc(50vw+var(--nav-height))_50vw_1fr] gap-px bg-black snap-start snap-always sm:grid-cols-[1fr_2fr]`}
+            class={`${panel.className} panel grid h-screen grid-cols-2 grid-rows-[calc(50vw+var(--nav-height))_50vw_1fr] gap-px bg-black snap-start snap-always sm:grid-cols-[1fr_2fr]`}
           >
             <div class="col-start-1 row-start-1 flex items-center justify-center bg-(--brand-bg) px-6 pt-[calc(1.5rem+var(--nav-height))] pb-6 text-center sm:col-span-1 sm:pt-[calc(1.5rem+var(--nav-height))]">
               <p class="panel-brand-label text-[0.82rem] font-medium tracking-[0.35em] text-(--brand-text)">
@@ -197,7 +197,7 @@ const projectPanels = [
                     />
                   )}
                   <div
-                    class="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/45 opacity-0 transition-opacity duration-[200ms] group-hover:opacity-100"
+                    class="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/45 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
                     aria-hidden="true"
                   >
                     <span class="text-[0.7rem] font-semibold uppercase tracking-[0.26em] text-white">View project</span>
