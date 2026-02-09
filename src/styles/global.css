@@ -94,19 +94,7 @@ body {
   animation: hero-skills-scroll var(--hero-skills-duration, 18s) linear infinite;
 }
 
-.project-marquee-track {
-  animation: project-marquee-scroll var(--project-marquee-duration, 26s) linear infinite;
-  will-change: transform;
-}
 
-@keyframes project-marquee-scroll {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
 
 @keyframes hero-skills-scroll {
   from {
@@ -124,6 +112,20 @@ body {
 
   .panel--hero .panel__image:hover .hero-skills-track {
     animation-play-state: running;
+  }
+}
+
+.project-marquee-track {
+  animation: project-marquee-scroll var(--project-marquee-duration, 26s) linear infinite;
+  will-change: transform;
+}
+
+@keyframes project-marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
