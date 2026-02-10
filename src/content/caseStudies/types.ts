@@ -1,5 +1,4 @@
-export type ImageBlock = {
-  type: "image";
+export type ImageAsset = {
   src: string;
   alt: string;
   caption?: string;
@@ -14,7 +13,7 @@ export type ContentBlock =
   | { type: "list"; items: string[] }
   | { type: "callout"; title?: string; text: string }
   | { type: "code"; language: CodeLanguage; code: string }
-  | ImageBlock;
+  | ({ type: "image" } & ImageAsset);
 
 export type ConstraintDecisionRow = {
   constraint: string;
@@ -25,11 +24,6 @@ export type ConstraintDecisionRow = {
 export type ConstraintsDecisionsTable = {
   caption?: string;
   rows: ConstraintDecisionRow[];
-};
-
-export type LogoAsset = {
-  src: string;
-  alt: string;
 };
 
 // These map directly to CSS custom properties used by project sections.
@@ -48,13 +42,13 @@ export type CaseStudyTheme = {
 // Minimal shape needed for index/home cards.
 export type CaseStudyPreview = {
   description: string;
-  image: ImageBlock;
+  image: ImageAsset;
 };
 
 export type CaseStudy = {
   slug: string;
   name: string;
-  logo?: LogoAsset;
+  logo?: ImageAsset;
   oneLiner: string;
   role: string;
   techStack: string[];
@@ -66,7 +60,7 @@ export type CaseStudy = {
   };
 
   systemOverview: {
-    diagram: ImageBlock;
+    diagram: ImageAsset;
     flowNote?: string;
   };
 

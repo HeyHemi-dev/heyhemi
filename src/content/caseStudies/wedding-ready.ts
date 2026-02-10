@@ -12,7 +12,6 @@ export const weddingReadyCaseStudy = {
   },
   systemOverview: {
     diagram: {
-      type: "image",
       src: "",
       alt: "",
     },
@@ -25,7 +24,6 @@ export const weddingReadyCaseStudy = {
   preview: {
     description: "",
     image: {
-      type: "image",
       src: "",
       alt: "",
     },
