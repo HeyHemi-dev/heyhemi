@@ -9,14 +9,14 @@ Case study pages are designed to present concrete engineering decisions and outc
 
 The goal is not storytelling for its own sake. The goal is hiring signal.
 
-Case studies should make it easy for readers to answer:
+Case studies should make it easy for readers to answer, quickly:
 
 - What problem was solved?
-- How does the system work?
-- What constraints existed?
-- Why were these decisions made?
+- How is the solution structured end-to-end?
+- Which constraints shaped the implementation?
+- Which decisions were made, and why?
 - What trade-offs were accepted?
-- What changed because of the work?
+- What outcomes resulted from the work?
 
 ## Content Rules
 
