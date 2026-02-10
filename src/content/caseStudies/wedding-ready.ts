@@ -32,7 +32,7 @@ export const weddingReadyCaseStudy = {
     solution:
       "Wedding Ready combines inspiration and sourcing: users browse and save vendor-created pins, and each pin links directly to the relevant local suppliers.",
     technicalWhy:
-      "The product lives or dies on perceived speed and trust: an image-heavy feed must feel instant, while uploads, auth, and data integrity stay tight end-to-end.",
+      "Fresh, relevant content is the product. That meant investing in a low-friction supplier publishing flow (batch uploads, fast tagging, good defaults) while keeping validation, auth, and data integrity tight end-to-end.",
   },
   systemOverview: {
     diagram: {
@@ -47,11 +47,12 @@ export const weddingReadyCaseStudy = {
     caption: "Constraints that shaped the implementation.",
     rows: [
       {
-        constraint: "Image-heavy browsing must feel fast and responsive.",
+        constraint:
+          "Fresh content and accurate supplier tagging require a low-friction publishing workflow.",
         decision:
-          "Use TanStack Query with proactive cache seeding and optimistic mutations so common interactions do not trigger follow-up fetches.",
+          "Build a multi-stage upload flow that supports up to 10 images at once, with lightweight tagging UX to link pins to the right suppliers without overwhelming the user.",
         tradeOff:
-          "More cache complexity and invalidation edge cases compared to always refetching.",
+          "More complex form state, validation, and error recovery than a single-step upload form.",
       },
       {
         constraint: "Uploads must be secure and avoid malformed or orphaned records.",
@@ -77,54 +78,66 @@ export const weddingReadyCaseStudy = {
     ],
   },
   deepDive: [
-    { type: "h2", text: "Deep Dive: Cache Seeding to Avoid N+1 Save-State Fetches" },
+    {
+      type: "h2",
+      text: "Deep Dive: Batch Upload + Supplier Tagging Without a Clunky Form",
+    },
     {
       type: "p",
-      text: "In an infinite-scrolling, image-heavy feed, even small interaction delays add up. A common anti-pattern is fetching a list of pins and then making separate requests to resolve per-item saved state (an N+1 problem).",
+      text: "Wedding Ready needs fresh pins to stay useful, and pins only work if they link to the right local suppliers. The hard part was making supplier uploads fast enough to be repeatable, while keeping tagging accurate and the UI calm.",
     },
     { type: "h3", text: "Approach" },
     {
       type: "list",
       items: [
-        "When fetching pins in bulk, also fetch (or compute) the saved state for each pin in the same response.",
-        "Seed the per-pin cache entries immediately so later interactions do not trigger extra fetches.",
-        "Use optimistic updates for save/unsave so the UI responds instantly and then reconciles on success/failure.",
+        "Use a multi-stage form to reduce cognitive load: upload -> details -> tagging -> review.",
+        "Support batch selection (up to 10 images) and keep per-image metadata lightweight.",
+        "Make tagging fast with search-first UI and sensible defaults (remember last-used suppliers where possible).",
+        "Validate on both client and server so errors are caught early, but server remains the source of truth.",
       ],
     },
     {
       type: "code",
       language: "ts",
       code: [
-        "// Pseudocode: seed per-pin saved state while ingesting a feed page.",
-        "pins.forEach((pin) => {",
-        "  queryClient.setQueryData([\"pin\", pin.id, \"saved\"], pin.isSaved);",
-        "});",
+        "// Pseudocode: multi-stage upload state (batch files + per-file metadata).",
+        "type UploadStage = \"upload\" | \"details\" | \"tag\" | \"review\";",
         "",
-        "// Later: mutations can optimistically flip the cached value.",
-        "await mutateSavePin({",
-        "  onMutate: ({ id }) => queryClient.setQueryData([\"pin\", id, \"saved\"], true),",
-        "});",
+        "type DraftPin = {",
+        "  fileKey: string;",
+        "  caption?: string;",
+        "  taggedSupplierIds: string[];",
+        "};",
+        "",
+        "const MAX_FILES = 10;",
+        "const [stage, setStage] = useState<UploadStage>(\"upload\");",
+        "const [drafts, setDrafts] = useState<DraftPin[]>([]);",
+        "",
+        "function onFilesSelected(files: File[]) {",
+        "  if (files.length > MAX_FILES) throw new Error(\"Too many files\");",
+        "  // Upload files and store fileKeys, then initialize drafts.",
+        "}",
       ].join(\"\\n\"),
     },
     {
       type: "callout",
       title: "Trade-off",
-      text: "This pattern shifts complexity into client caching. It requires clear query keys and disciplined invalidation to avoid stale or inconsistent saved state.",
+      text: "A multi-stage flow improves UX, but it increases the number of states and failure modes. I kept it manageable by making the server authoritative and keeping draft state explicit and serializable.",
     },
     { type: "h3", text: "Outcome" },
     {
       type: "list",
       items: [
-        "Eliminated follow-up save-state requests when interacting with pins in the feed.",
-        "Improved perceived speed by keeping common actions instant and predictable.",
-        "Scaled more cleanly with infinite scroll by treating per-pin state as a first-class cache entry.",
+        "Suppliers can upload up to 10 images in one go, then tag the right suppliers without getting buried in fields.",
+        "Pins reliably link to relevant local suppliers, reinforcing the core product promise.",
+        "The flow stays extensible as requirements grow (more metadata, moderation, ranking signals).",
       ],
     },
   ],
   outcomes: [
     "Built a full-stack, server-rendered Next.js application with clear boundaries between UI, server actions/handlers, operations, and data access.",
     "Implemented secure, validated file uploads integrated with authentication and database record creation.",
-    "Used advanced TanStack Query patterns (cache seeding + optimistic updates) to remove avoidable network chatter in the feed experience.",
+    "Designed a multi-stage supplier publishing workflow with batch uploads and fast supplier tagging to support fresh content and accurate pin-to-supplier links.",
     "Defined a layered, type-safe data model using Drizzle + Zod to keep DB, server, and client in sync without leaking unsafe fields.",
   ],
   theme: {
