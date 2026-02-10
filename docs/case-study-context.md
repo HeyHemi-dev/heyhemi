@@ -9,16 +9,14 @@ Case study pages are designed to present concrete engineering decisions and outc
 
 The goal is not storytelling for its own sake. The goal is hiring signal.
 
-## Case Study Structure
+Case studies should make it easy for readers to answer:
 
-Each case study should include:
-
-1. Header / Snapshot
-2. Problem & Solution
-3. System Overview
-4. Key Engineering Constraints, Decisions & Trade-offs
-5. One Deep-Dive Example
-6. Outcomes
+- What problem was solved?
+- How does the system work?
+- What constraints existed?
+- Why were these decisions made?
+- What trade-offs were accepted?
+- What changed because of the work?
 
 ## Content Rules
 
@@ -76,27 +74,4 @@ Add concise outcome statements that describe impact.
 
 ## Data Model Reference
 
-Type definitions live at:
-
-- `src/content/caseStudies/types.ts`
-
-Current core types:
-
-- `CaseStudy`
-- `ContentBlock`
-- `ConstraintsDecisionsTable`
-- `ConstraintDecisionRow`
-- `ImageBlock`
-
-## Editorial Intent
-
-Case studies should make it easy for readers to answer:
-
-- What problem was solved?
-- How does the system work?
-- What constraints existed?
-- Why were these decisions made?
-- What trade-offs were accepted?
-- What changed because of the work?
-
-If those answers are clear in under a few minutes, the case study is doing its job.
+See `src/content/caseStudies/types.ts` for the source-of-truth schema.
