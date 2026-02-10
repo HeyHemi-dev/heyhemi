@@ -130,13 +130,13 @@ const projectPanels = [
       <div
         class="flex items-center justify-between bg-(--nav-bg-active) px-4 transition-colors duration-200"
       >
-        <NavLink href="#about">Work</NavLink>
+        <NavLink href={`#${projectPanels[0].id}`}>Work</NavLink>
         <NavLink href="#contact">About</NavLink>
       </div>
     </nav>
 
     {
-      projectPanels.map((panel) => (
+      projectPanels.map((panel, index) => (
         <section
           id={panel.id}
           data-project-section="true"
