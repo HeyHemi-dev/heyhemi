@@ -27,6 +27,11 @@ export type ConstraintsDecisionsTable = {
   rows: ConstraintDecisionRow[];
 };
 
+export type LogoAsset = {
+  src: string;
+  alt: string;
+};
+
 // These map directly to CSS custom properties used by project sections.
 export type CaseStudyTheme = {
   brandBg: string;
@@ -42,7 +47,6 @@ export type CaseStudyTheme = {
 
 // Minimal shape needed for index/home cards.
 export type CaseStudyPreview = {
-  brand: string;
   description: string;
   image: ImageBlock;
 };
@@ -50,6 +54,7 @@ export type CaseStudyPreview = {
 export type CaseStudy = {
   slug: string;
   name: string;
+  logo?: LogoAsset;
   oneLiner: string;
   role: string;
   techStack: string[];
