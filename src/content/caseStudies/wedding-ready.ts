@@ -3,6 +3,11 @@ import type { CaseStudy } from "./types";
 export const weddingReadyCaseStudy = {
   slug: "wedding-ready",
   name: "Wedding Ready",
+  excerpt: "",
+  heroImage: {
+    src: "",
+    alt: "",
+  },
   oneLiner: "",
   role: "",
   techStack: [],
@@ -21,13 +26,6 @@ export const weddingReadyCaseStudy = {
   },
   deepDive: [],
   outcomes: [],
-  preview: {
-    description: "",
-    image: {
-      src: "",
-      alt: "",
-    },
-  },
   theme: {
     brandBg: "",
     indexBg: "",

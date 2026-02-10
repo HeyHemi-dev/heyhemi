@@ -41,14 +41,14 @@ export type CaseStudyTheme = {
 
 // Minimal shape needed for index/home cards.
 export type CaseStudyPreview = {
-  description: string;
-  image: ImageAsset;
-};
-
-export type CaseStudy = {
   slug: string;
   name: string;
   logo?: ImageAsset;
+  excerpt: string;
+  heroImage: ImageAsset;
+};
+
+export type CaseStudy = CaseStudyPreview & {
   oneLiner: string;
   role: string;
   techStack: string[];
@@ -69,9 +69,6 @@ export type CaseStudy = {
   deepDive: ContentBlock[];
 
   outcomes: string[];
-
-  // Reusable fields for non-detail surfaces.
-  preview: CaseStudyPreview;
 
   // Per-case-study design tokens that can be emitted as CSS variables.
   theme: CaseStudyTheme;
