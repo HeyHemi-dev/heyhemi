@@ -1,9 +1,11 @@
 export type ImageBlock = {
   type: "image";
-  src: string; // e.g. "/images/weddingready/architecture.png"
+  src: string;
   alt: string;
   caption?: string;
 };
+
+export type CodeLanguage = "ts" | "js" | "sql" | "bash" | "txt";
 
 export type ContentBlock =
   | { type: "h2"; text: string }
@@ -11,22 +13,38 @@ export type ContentBlock =
   | { type: "p"; text: string }
   | { type: "list"; items: string[] }
   | { type: "callout"; title?: string; text: string }
-  | {
-      type: "code";
-      language: "ts" | "js" | "sql" | "bash" | "txt";
-      code: string;
-    }
+  | { type: "code"; language: CodeLanguage; code: string }
   | ImageBlock;
 
 export type ConstraintDecisionRow = {
   constraint: string;
-  decision: string; // include the "why" in the sentence
+  decision: string;
   tradeOff: string;
 };
 
 export type ConstraintsDecisionsTable = {
   caption?: string;
-  rows: ConstraintDecisionRow[]; // 2-4 rows
+  rows: ConstraintDecisionRow[];
+};
+
+// These map directly to CSS custom properties used by project sections.
+export type CaseStudyTheme = {
+  brandBg: string;
+  indexBg: string;
+  descriptionBg: string;
+  imageBg: string;
+  imageFrameBg: string;
+  brandText: string;
+  indexText: string;
+  descriptionText: string;
+  descriptionMuted?: string;
+};
+
+// Minimal shape needed for index/home cards.
+export type CaseStudyPreview = {
+  brand: string;
+  description: string;
+  image: ImageBlock;
 };
 
 export type CaseStudy = {
@@ -43,13 +61,19 @@ export type CaseStudy = {
   };
 
   systemOverview: {
-    diagram: ImageBlock; // the one allowed diagram
-    flowNote?: string; // 1-2 lines
+    diagram: ImageBlock;
+    flowNote?: string;
   };
 
-  constraintsDecisions: ConstraintsDecisionsTable; // the one allowed table
+  constraintsDecisions: ConstraintsDecisionsTable;
 
-  deepDive: ContentBlock[]; // free-form but renderable blocks
+  deepDive: ContentBlock[];
 
-  nextSteps: string[]; // 2-3 bullets
+  nextSteps: string[];
+
+  // Reusable fields for non-detail surfaces.
+  preview: CaseStudyPreview;
+
+  // Per-case-study design tokens that can be emitted as CSS variables.
+  theme: CaseStudyTheme;
 };
