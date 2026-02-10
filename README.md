@@ -26,4 +26,4 @@ All commands run from the repository root:
 
 ## Documentation
 
-- `docs/portfolio-context.md`: Case study structure, writing rules, and schema notes.
+- `docs/case-study-context.md`: Case study structure, writing rules, and schema notes.

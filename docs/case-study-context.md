@@ -14,11 +14,11 @@ The goal is not storytelling for its own sake. The goal is hiring signal.
 Each case study should include:
 
 1. Header / Snapshot
-2. TL;DR (Problem -> Solution)
+2. Problem & Solution
 3. System Overview
 4. Key Engineering Constraints, Decisions & Trade-offs
 5. One Deep-Dive Example
-6. What I'd Do Next
+6. Outcomes
 
 ## Content Rules
 
@@ -26,7 +26,7 @@ Each case study should include:
 - Exactly 1 table (Constraints/Decisions/Trade-offs)
 - Keep sections short and non-repetitive
 - Deep dive should focus on one concrete technical problem
-- Next steps should be practical and grounded (2-3 bullets)
+- Outcomes should be concrete and evidence-based where possible
 
 ## Section Guidance
 
@@ -39,7 +39,7 @@ Include:
 - your role
 - tech stack
 
-### 2) TL;DR (Problem -> Solution)
+### 2) Problem & Solution
 
 Keep it tight:
 
@@ -70,9 +70,9 @@ Cover:
 - your approach
 - outcome/impact
 
-### 6) What I'd Do Next
+### 6) Outcomes
 
-Add 2-3 practical follow-up improvements.
+Add concise outcome statements that describe impact.
 
 ## Data Model Reference
 
@@ -97,6 +97,6 @@ Case studies should make it easy for readers to answer:
 - What constraints existed?
 - Why were these decisions made?
 - What trade-offs were accepted?
-- What would be improved next?
+- What changed because of the work?
 
 If those answers are clear in under a few minutes, the case study is doing its job.

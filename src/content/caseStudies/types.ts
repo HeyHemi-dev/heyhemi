@@ -54,7 +54,7 @@ export type CaseStudy = {
   role: string;
   techStack: string[];
 
-  tldr: {
+  problemSolution: {
     problem: string;
     solution: string;
     technicalWhy?: string;
@@ -69,7 +69,7 @@ export type CaseStudy = {
 
   deepDive: ContentBlock[];
 
-  nextSteps: string[];
+  outcomes: string[];
 
   // Reusable fields for non-detail surfaces.
   preview: CaseStudyPreview;
