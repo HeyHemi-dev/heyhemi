@@ -122,13 +122,13 @@ const related = [
       <div class="sticky top-0 grid gap-12 p-6 sm:p-12">
         <section class="flex flex-col gap-10 text-sm leading-relaxed font-normal text-(--description-text)">
           <div class="flex w-full flex-col gap-5">
-            <h3 class="font-light text-(--description-text)">
+            <h3 class="font-light">
               Problem
             </h3>
             <MarkdownContent value={problem} />
           </div>
           <div class="flex w-full flex-col gap-5">
-            <h3 class="font-light text-(--description-text)">
+            <h3 class="font-light">
               Solution
             </h3>
             <MarkdownContent value={solution} />
@@ -136,7 +136,7 @@ const related = [
           {
             technicalWhy && (
               <div class="flex w-full flex-col gap-5">
-                <h3 class="font-light text-(--description-text)">
+                <h3 class="font-light">
                   Technical Why
                 </h3>
                 <MarkdownContent value={technicalWhy} />
@@ -148,10 +148,10 @@ const related = [
     </section>
 
     <section class="flex flex-col gap-5 bg-(--image-bg) p-6 text-(--description-text) sm:p-12">
-      <h3 class="font-light text-(--description-text)">
+      <h3 class="font-light">
         Tech Stack
       </h3>
-      <ul class="flex w-full list-disc flex-col gap-3 pl-5 text-sm leading-relaxed font-normal marker:text-(--description-text)">
+      <ul class="flex w-full list-disc flex-col gap-3 pl-5 text-sm leading-relaxed font-normal">
         {techStack.map((item) => <li><MarkdownContent value={item} /></li>)}
       </ul>
     </section>
@@ -180,7 +180,7 @@ const related = [
         </div>
         {
           flowNote && (
-            <div class="grid gap-5 text-sm leading-relaxed font-normal text-(--description-text)">
+            <div class="grid gap-5 text-sm leading-relaxed font-normal">
               <MarkdownContent value={flowNote} />
             </div>
           )
