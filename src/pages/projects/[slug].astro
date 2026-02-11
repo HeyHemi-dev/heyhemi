@@ -19,7 +19,6 @@ const marqueeBase = caseStudy.role.split("•").map((item) => item.trim());
 const marqueeItems = Array.from({ length: MARQUEE_REPEAT }, () => marqueeBase).flat();
 const marqueeDuration = `${marqueeItems.length * MARQUEE_SECONDS_PER_ITEM}s`;
 
-const overview = caseStudy.oneLiner;
 const techStack = caseStudy.techStack.map((item) =>
   typeof item === "string" ? item : item.text,
 );
@@ -83,11 +82,16 @@ const related = [
     <section
       class="col-span-full grid aspect-2/1 max-h-[25dvh] w-full place-items-center bg-(--brand-bg) p-6 sm:p-12"
     >
-      <h1
-        class="text-left text-[0.82rem] font-medium tracking-[0.35em] text-(--brand-text) uppercase"
-      >
-        {caseStudy.name}
-      </h1>
+      <div class="grid max-w-2xl gap-4 text-center">
+        <h1
+          class="text-[0.82rem] font-medium tracking-[0.35em] text-(--brand-text) uppercase"
+        >
+          {caseStudy.name}
+        </h1>
+        <p class="text-xs font-light leading-relaxed text-(--brand-text)/75">
+          {caseStudy.oneLiner}
+        </p>
+      </div>
     </section>
 
     <section class="col-span-full overflow-x-clip bg-(--brand-bg) p-0">
@@ -125,22 +129,8 @@ const related = [
       </div>
     </section>
 
-    <section class="col-span-full bg-(--image-bg) sm:col-span-1 sm:row-span-2">
+    <section class="bg-(--image-bg) sm:col-span-1 sm:row-span-2">
       <div class="sticky top-0 grid gap-12 p-6 sm:p-12">
-        <section class="grid gap-4">
-          <h2 class="font-light text-(--description-text)">
-            Overview
-          </h2>
-          <p class="text-sm leading-relaxed font-normal">{overview}</p>
-        </section>
-        <section class="grid gap-4">
-          <h3 class="font-light text-(--description-text)">
-            Tech Stack
-          </h3>
-          <ul class="grid list-disc gap-3 pl-5 text-sm leading-relaxed font-normal marker:text-(--description-text)">
-            {techStack.map((item) => <li>{item}</li>)}
-          </ul>
-        </section>
         <section class="grid gap-6">
           <div class="grid gap-4">
             <h3 class="font-light text-(--description-text)">
@@ -168,6 +158,15 @@ const related = [
       </div>
     </section>
 
+    <section class="bg-(--description-bg) p-6 sm:p-12">
+      <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+        Tech Stack
+      </h3>
+      <ul class="mt-4 grid list-disc gap-3 pl-5 text-sm leading-relaxed font-normal marker:text-(--description-text)">
+        {techStack.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+
     <section class="col-span-full bg-(--image-bg) p-6 sm:col-span-1 sm:p-12">
       <div class="overflow-hidden rounded-4xl bg-(--image-frame-bg)">
         <img
@@ -181,7 +180,6 @@ const related = [
         />
       </div>
     </section>
-
     <section class="bg-(--description-bg) p-6 sm:p-12">
       <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
         Scope
