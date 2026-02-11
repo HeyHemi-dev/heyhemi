@@ -4,7 +4,7 @@ export const weddingReadyCaseStudy = {
   slug: "wedding-ready",
   name: "Wedding Ready",
   excerpt:
-    "Pinterest-inspired wedding planning platform built with Next.js + Supabase, featuring a ranked tile feed (simple scoring algorithm + React Query cache to avoid N+1 save-state fetching) and a multi-step batch upload flow for supplier crediting.",
+    "Work-in-progress MVP: a Pinterest-inspired wedding planning platform built with Next.js + Supabase, featuring a ranked tile feed (simple scoring algorithm + React Query cache to avoid N+1 save-state fetching) and a multi-step batch upload flow for supplier crediting.",
   heroImage: {
     src: "/wedding-ready/hero.png",
     alt: "Wedding Ready project preview",
