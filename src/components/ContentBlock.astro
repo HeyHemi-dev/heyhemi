@@ -1,0 +1,59 @@
+---
+import Heading from "./Heading.astro";
+import MarkdownContent from "./MarkdownContent.astro";
+import type { ContentBlock } from "../content/caseStudies/types";
+
+const { block } = Astro.props as { block: ContentBlock };
+---
+
+{
+  block.type === "h3" ? (
+    <Heading as="h3" style="h3">{block.text}</Heading>
+  ) : block.type === "md" ? (
+    <MarkdownContent value={block} />
+  ) : block.type === "p" ? (
+    <p class="whitespace-pre-line">{block.text}</p>
+  ) : block.type === "ul" ? (
+    <ul class="flex list-disc flex-col gap-3 pl-5">
+      {
+        block.items.map((item) => (
+          <li>
+            <MarkdownContent value={item} />
+          </li>
+        ))
+      }
+    </ul>
+  ) : block.type === "image" ? (
+    <div class="grid gap-3">
+      <div class="overflow-hidden rounded-4xl bg-(--image-frame-bg)">
+        <img
+          src={block.src}
+          alt={block.alt}
+          class="h-full w-full object-cover"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      {
+        block.caption && (
+          <p class="px-4 text-xs leading-relaxed font-normal text-pretty text-(--description-text)/75">
+            {block.caption}
+          </p>
+        )
+      }
+    </div>
+  ) : block.type === "callout" ? (
+    <aside class="grid gap-3 rounded-4xl bg-(--description-bg)/25 p-4 sm:p-6">
+      {
+        block.title && (
+          <Heading as="h4" style="h3">
+            {block.title}
+          </Heading>
+        )
+      }
+      <MarkdownContent value={block.text} />
+    </aside>
+  ) : (
+    <pre class="overflow-x-auto rounded-4xl bg-black/10 p-4 text-sm sm:p-6"><code>{block.code}</code></pre>
+  )
+}

@@ -96,8 +96,9 @@ export const weddingReadyCaseStudy = {
       },
     ],
   },
-  deepDive: [
-    { type: "h2", text: "Multi-Step Tile Upload (Batch + Supplier Crediting)" },
+  deepDive: {
+    title: "Multi-Step Tile Upload (Batch + Supplier Crediting)",
+    content: [
     { type: "h3", text: "Problem" },
     {
       type: "md",
@@ -133,10 +134,10 @@ export const weddingReadyCaseStudy = {
     {
       type: "ul",
       items: [
-        "- `UploadProvider` owns the batch file list, stable `uploadId`s, and object URL lifecycle (add/remove/cleanup). It does not own form state or mutations.",
-        "- `UploadPreviewItem` owns one tile's lifecycle: build payload, run the upload mutation, show progress, and remove the item from the batch on success.",
-        "- `UploadPreviewForm` owns form state (React Hook Form), step state, and credit rows via `useFieldArray`.",
-        "- Each credit row owns its own supplier search input (debounced query + shared cache by search term).",
+        "`UploadProvider` owns the batch file list, stable `uploadId`s, and object URL lifecycle (add/remove/cleanup). It does not own form state or mutations.",
+        "`UploadPreviewItem` owns one tile's lifecycle: build payload, run the upload mutation, show progress, and remove the item from the batch on success.",
+        "`UploadPreviewForm` owns form state (React Hook Form), step state, and credit rows via `useFieldArray`.",
+        "Each credit row owns its own supplier search input (debounced query + shared cache by search term).",
       ],
     },
     { type: "h3", text: "Performance: Avoiding Unnecessary Re-renders" },
@@ -147,9 +148,9 @@ export const weddingReadyCaseStudy = {
     {
       type: "ul",
       items: [
-        "- Stable keys: `uploadId` per tile card and `field.id` per credit row keep component identity stable.",
-        "- High-frequency actions (typing, supplier search) stay local to a single card/row.",
-        "- List-level updates only happen on low-frequency events (add/remove/clear files).",
+        "Stable keys: `uploadId` per tile card and `field.id` per credit row keep component identity stable.",
+        "High-frequency actions (typing, supplier search) stay local to a single card/row.",
+        "List-level updates only happen on low-frequency events (add/remove/clear files).",
       ],
     },
     { type: "h3", text: "Outcome" },
@@ -161,7 +162,8 @@ export const weddingReadyCaseStudy = {
         "The flow stays extensible as requirements grow (more metadata, moderation, ranking signals).",
       ],
     },
-  ],
+    ],
+  },
   outcomes: [
     "Built a full-stack, server-rendered Next.js application with clear boundaries between UI, server actions/handlers, operations, and data access.",
     "Implemented secure, validated file uploads integrated with authentication and database record creation.",

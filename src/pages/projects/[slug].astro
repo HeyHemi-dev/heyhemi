@@ -1,7 +1,9 @@
 ---
 import type { GetStaticPaths } from "astro";
+import ContentBlock from "../../components/ContentBlock.astro";
 import Heading from "../../components/Heading.astro";
 import MarkdownContent from "../../components/MarkdownContent.astro";
+import Panel from "../../components/Panel.astro";
 import ProjectLayout from "../../layouts/ProjectLayout.astro";
 import { allCaseStudies } from "../../content/caseStudies";
 import type { CaseStudy } from "../../content/caseStudies/types";
@@ -28,6 +30,7 @@ const problem = caseStudy.problemSolution.problem;
 const solution = caseStudy.problemSolution.solution;
 const technicalWhy = caseStudy.problemSolution.technicalWhy;
 const flowNote = caseStudy.architecture.flowNote;
+const deepDive = caseStudy.deepDive;
 
 const scope = [
   "Product design + UX",
@@ -269,6 +272,31 @@ const related = [{ label: "With Thanks", href: "/projects/with-thanks-v4" }];
           }
         </div>
       </div>
+    </section>
+    <section class="col-span-full min-w-0 grid gap-px">
+      <Panel
+        as="header"
+        background="accent"
+        class="min-w-0 overflow-x-clip text-(--description-text)"
+      >
+        <Heading
+          as="h3"
+          style="h3"
+          class="text-xl leading-none font-extrabold tracking-[0.2em] whitespace-nowrap uppercase"
+        >
+          {deepDive.title}
+        </Heading>
+      </Panel>
+      <Panel
+        background="secondary"
+        class="grid gap-8 text-sm leading-relaxed font-normal text-(--description-text)"
+      >
+        {
+          deepDive.content.map((block) => (
+            <ContentBlock block={block} />
+          ))
+        }
+      </Panel>
     </section>
 
     <section class="grid gap-px bg-black sm:grid-cols-[1.2fr_0.8fr]">

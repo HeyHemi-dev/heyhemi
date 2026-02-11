@@ -15,7 +15,6 @@ export type CodeLanguage = "ts" | "js" | "sql" | "bash" | "txt";
 
 export type ContentBlock =
   | MarkdownText
-  | { type: "h2"; text: string }
   | { type: "h3"; text: string }
   | { type: "p"; text: string }
   | { type: "ul"; items: string[] }
@@ -72,7 +71,10 @@ export type CaseStudy = CaseStudyPreview & {
     rows: ConstraintDecisionRow[];
   };
 
-  deepDive: ContentBlock[];
+  deepDive: {
+    title: string;
+    content: ContentBlock[];
+  };
 
   outcomes: RichText[];
 
