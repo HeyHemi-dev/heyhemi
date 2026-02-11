@@ -1,30 +1,32 @@
 ---
-type HeadingTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
-type HeadingTone = "default" | "muted" | "brand";
+type HeadingTag = "h1" | "h2" | "h3" | "h4";
+type HeadingStyle = "h1" | "h2" | "h3" | "h4";
 
 type Props = {
   as?: HeadingTag;
   class?: string;
-  tone?: HeadingTone;
+  headingStyle: HeadingStyle;
 };
 
 const {
-  as: Tag = "h3",
+  as,
   class: className = "",
-  tone = "default",
+  headingStyle,
   ...rest
 } = Astro.props as Props;
 
-const toneClasses: Record<HeadingTone, string> = {
-  default: "text-(--description-text)",
-  muted: "text-(--description-text)/75",
-  brand: "text-(--brand-text)",
+const styleClasses: Record<HeadingStyle, string> = {
+  h1: "text-6xl leading-none font-thin",
+  h2: "text-3xl leading-tight font-thin",
+  h3: "text-base leading-snug font-light",
+  h4: "text-sm font-medium tracking-[0.35em] uppercase",
 };
 
-const classes = ["font-light", toneClasses[tone], className].filter(Boolean).join(" ");
+const Tag = as ?? headingStyle;
+const effectiveStyle = headingStyle;
+const classes = [styleClasses[effectiveStyle], className].filter(Boolean).join(" ");
 ---
 
 <Tag class={classes} {...rest}>
   <slot />
 </Tag>
-

@@ -1,5 +1,6 @@
 ---
 import type { GetStaticPaths } from "astro";
+import Heading from "../../components/Heading.astro";
 import MarkdownContent from "../../components/MarkdownContent.astro";
 import ProjectLayout from "../../layouts/ProjectLayout.astro";
 import { allCaseStudies } from "../../content/caseStudies";
@@ -120,23 +121,23 @@ const related = [
 
     <section class="flex flex-col gap-10 bg-(--image-bg) p-6 text-sm leading-relaxed font-normal text-(--description-text) sm:col-span-1 sm:row-span-2 sm:p-12">
       <div class="flex w-full flex-col gap-5">
-        <h3 class="font-light">
+        <Heading as="h3" headingStyle="h3">
           Problem
-        </h3>
+        </Heading>
         <MarkdownContent value={problem} />
       </div>
       <div class="flex w-full flex-col gap-5">
-        <h3 class="font-light">
+        <Heading as="h3" headingStyle="h3">
           Solution
-        </h3>
+        </Heading>
         <MarkdownContent value={solution} />
       </div>
       {
         technicalWhy && (
           <div class="flex w-full flex-col gap-5">
-            <h3 class="font-light">
+            <Heading as="h3" headingStyle="h3">
               Technical Why
-            </h3>
+            </Heading>
             <MarkdownContent value={technicalWhy} />
           </div>
         )
@@ -144,9 +145,9 @@ const related = [
     </section>
 
     <section class="flex flex-col gap-5 bg-(--image-bg) p-6 text-(--description-text) sm:p-12">
-      <h3 class="font-light">
+      <Heading as="h3" headingStyle="h3">
         Tech Stack
-      </h3>
+      </Heading>
       <ul class="flex w-full list-disc flex-col gap-3 pl-5 text-sm leading-relaxed font-normal">
         {techStack.map((item) => <li><MarkdownContent value={item} /></li>)}
       </ul>
