@@ -1,4 +1,6 @@
 ---
+import { cn } from "../utils/cn";
+
 type HeadingTag = "h1" | "h2" | "h3" | "h4" | "p";
 type HeadingStyle = "h1" | "h2" | "h3" | "h4";
 
@@ -24,7 +26,7 @@ const styleClasses: Record<HeadingStyle, string> = {
 
 const Tag = as ?? style;
 const effectiveStyle = style;
-const classes = [styleClasses[effectiveStyle], className].filter(Boolean).join(" ");
+const classes = cn(styleClasses[effectiveStyle], className);
 ---
 
 <Tag class={classes} {...rest}>
