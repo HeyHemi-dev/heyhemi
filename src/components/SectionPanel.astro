@@ -1,0 +1,38 @@
+---
+type PanelTag = "section" | "article" | "aside" | "div";
+type PanelTone = "description" | "image" | "brand";
+
+type Props = {
+  as?: PanelTag;
+  class?: string;
+  tone?: PanelTone;
+  padded?: boolean;
+};
+
+const {
+  as: Tag = "section",
+  class: className = "",
+  tone = "description",
+  padded = true,
+  ...rest
+} = Astro.props as Props;
+
+const toneClasses: Record<PanelTone, string> = {
+  description: "bg-(--description-bg)",
+  image: "bg-(--image-bg)",
+  brand: "bg-(--brand-bg)",
+};
+
+const classes = [
+  toneClasses[tone],
+  padded ? "p-6 sm:p-12" : "",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<Tag class={classes} {...rest}>
+  <slot />
+</Tag>
+
