@@ -1,0 +1,33 @@
+---
+import type { MarkdownInlineToken } from "../utils/markdown";
+
+const {
+  tokens = [],
+  inlineCodeClass = "rounded bg-black/10 px-1 py-0.5 font-mono text-[0.9em]",
+  linkClass = "underline underline-offset-2",
+} = Astro.props as {
+  tokens?: MarkdownInlineToken[];
+  inlineCodeClass?: string;
+  linkClass?: string;
+};
+---
+
+{
+  tokens.map((token) => {
+    if (token.type === "text") return token.value;
+    if (token.type === "strong") return <strong>{token.value}</strong>;
+    if (token.type === "emphasis") return <em>{token.value}</em>;
+    if (token.type === "inlineCode") return <code class={inlineCodeClass}>{token.value}</code>;
+    if (token.type === "link") {
+      return (
+        <a href={token.url} class={linkClass}>
+          {token.value}
+        </a>
+      );
+    }
+    if (token.type === "delete") return <del>{token.value}</del>;
+    if (token.type === "break") return <br />;
+    return null;
+  })
+}
+
