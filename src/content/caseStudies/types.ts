@@ -5,7 +5,7 @@ export type ImageAsset = {
 };
 
 export type MarkdownText = {
-  format: "md";
+  type: "md";
   text: string;
 };
 
@@ -14,11 +14,12 @@ export type RichText = string | MarkdownText;
 export type CodeLanguage = "ts" | "js" | "sql" | "bash" | "txt";
 
 export type ContentBlock =
+  | MarkdownText
   | { type: "h2"; text: string }
   | { type: "h3"; text: string }
-  | { type: "p"; text: RichText }
-  | { type: "list"; items: RichText[] }
-  | { type: "callout"; title?: string; text: RichText }
+  | { type: "p"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "callout"; title?: string; text: string }
   | { type: "code"; language: CodeLanguage; code: string }
   | ({ type: "image" } & ImageAsset);
 
