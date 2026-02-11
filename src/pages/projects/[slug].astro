@@ -131,14 +131,14 @@ const related = [
 
     <section class="bg-(--image-bg) sm:col-span-1 sm:row-span-2">
       <div class="sticky top-0 grid gap-12 p-6 sm:p-12">
-        <section class="grid gap-6">
-          <div class="grid gap-4">
+        <section class="flex flex-col gap-10">
+          <div class="flex w-full flex-col gap-5">
             <h3 class="font-light text-(--description-text)">
               Problem
             </h3>
             <p class="text-sm leading-relaxed font-normal">{problem}</p>
           </div>
-          <div class="grid gap-4">
+          <div class="flex w-full flex-col gap-5">
             <h3 class="font-light text-(--description-text)">
               Solution
             </h3>
@@ -146,7 +146,7 @@ const related = [
           </div>
           {
             technicalWhy && (
-              <div class="grid gap-4">
+              <div class="flex w-full flex-col gap-5">
                 <h3 class="font-light text-(--description-text)">
                   Technical Why
                 </h3>
@@ -158,26 +158,35 @@ const related = [
       </div>
     </section>
 
-    <section class="bg-(--description-bg) p-6 sm:p-12">
-      <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+    <section class="flex flex-col gap-5 bg-(--image-bg) p-6 sm:p-12">
+      <h3 class="font-light text-(--description-text)">
         Tech Stack
       </h3>
-      <ul class="mt-4 grid list-disc gap-3 pl-5 text-sm leading-relaxed font-normal marker:text-(--description-text)">
+      <ul class="flex w-full list-disc flex-col gap-3 pl-5 text-sm leading-relaxed font-normal marker:text-(--description-text)">
         {techStack.map((item) => <li>{item}</li>)}
       </ul>
     </section>
 
     <section class="col-span-full bg-(--image-bg) p-6 sm:col-span-1 sm:p-12">
-      <div class="overflow-hidden rounded-4xl bg-(--image-frame-bg)">
-        <img
-          src={caseStudy.systemOverview.diagram.src}
-          alt={caseStudy.systemOverview.diagram.alt}
-          width="1024"
-          height="1536"
-          class="h-full w-full object-cover"
-          loading="lazy"
-          decoding="async"
-        />
+      <div class="flex flex-col gap-3">
+        <div class="overflow-hidden rounded-4xl bg-(--image-frame-bg)">
+          <img
+            src={caseStudy.systemOverview.diagram.src}
+            alt={caseStudy.systemOverview.diagram.alt}
+            width="1024"
+            height="1536"
+            class="h-full w-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        {
+          caseStudy.systemOverview.diagram.caption && (
+            <p class="px-4 text-pretty text-xs leading-relaxed font-normal text-(--description-text)/75">
+              {caseStudy.systemOverview.diagram.caption}
+            </p>
+          )
+        }
       </div>
     </section>
     <section class="bg-(--description-bg) p-6 sm:p-12">
