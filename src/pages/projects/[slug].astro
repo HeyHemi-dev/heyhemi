@@ -1,11 +1,32 @@
 ---
+import type { GetStaticPaths } from "astro";
 import { Image } from "astro:assets";
 import ProjectLayout from "../../layouts/ProjectLayout.astro";
 import weddingReadyComposite from "../../assets/projects/wedding-ready/wedding-ready-composite.png";
 import weddingReadyFeedDiagram from "../../assets/projects/wedding-ready/wedding-ready-diagram-feed.png";
-import { weddingReadyCaseStudy } from "../../content/caseStudies";
+import { allCaseStudies } from "../../content/caseStudies";
+import type { CaseStudy } from "../../content/caseStudies/types";
 
-const caseStudy = weddingReadyCaseStudy;
+export const getStaticPaths = (() =>
+  allCaseStudies.map((caseStudy) => ({
+    params: { slug: caseStudy.slug },
+    props: { caseStudy },
+  }))) satisfies GetStaticPaths;
+
+const { caseStudy } = Astro.props as { caseStudy: CaseStudy };
+
+const mediaBySlug = {
+  "wedding-ready": {
+    hero: weddingReadyComposite,
+    feedDiagram: weddingReadyFeedDiagram,
+  },
+} as const;
+
+const media = mediaBySlug[caseStudy.slug as keyof typeof mediaBySlug];
+
+if (!media) {
+  throw new Error(`Missing media mapping for case study slug: ${caseStudy.slug}`);
+}
 
 const MARQUEE_REPEAT = 100;
 const MARQUEE_SECONDS_PER_ITEM = 3;
@@ -44,7 +65,7 @@ const related = [
 ];
 
 const gridImages: Array<{ src: string; alt: string } | { src: any; alt: string }> = [
-  { src: weddingReadyFeedDiagram, alt: "Wedding Ready feed ranking diagram" },
+  { src: media.feedDiagram, alt: "Wedding Ready feed ranking diagram" },
   { src: caseStudy.systemOverview.diagram.src, alt: caseStudy.systemOverview.diagram.alt },
   { src: "/wedding-ready/upload-component-hierarchy.svg", alt: "Upload flow component hierarchy diagram" },
   { src: "/wedding-ready/system-diagram.svg", alt: "Wedding Ready system overview diagram" },
@@ -124,7 +145,7 @@ const gridImages: Array<{ src: string; alt: string } | { src: any; alt: string }
     <section class="col-span-full bg-(--image-bg) p-6 sm:col-span-1 sm:p-12">
       <div class="overflow-hidden rounded-4xl bg-(--image-frame-bg)">
         <Image
-          src={weddingReadyComposite}
+          src={media.hero}
           alt={caseStudy.heroImage.alt}
           width={1024}
           height={1536}
@@ -233,4 +254,3 @@ const gridImages: Array<{ src: string; alt: string } | { src: any; alt: string }
     </section>
   </main>
 </ProjectLayout>
-
