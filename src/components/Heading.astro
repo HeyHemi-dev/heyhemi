@@ -1,17 +1,17 @@
 ---
-type HeadingTag = "h1" | "h2" | "h3" | "h4";
+type HeadingTag = "h1" | "h2" | "h3" | "h4" | "p";
 type HeadingStyle = "h1" | "h2" | "h3" | "h4";
 
 type Props = {
   as?: HeadingTag;
   class?: string;
-  headingStyle: HeadingStyle;
+  style: HeadingStyle;
 };
 
 const {
   as,
   class: className = "",
-  headingStyle,
+  style,
   ...rest
 } = Astro.props as Props;
 
@@ -22,8 +22,8 @@ const styleClasses: Record<HeadingStyle, string> = {
   h4: "text-sm font-medium tracking-[0.35em] uppercase",
 };
 
-const Tag = as ?? headingStyle;
-const effectiveStyle = headingStyle;
+const Tag = as ?? style;
+const effectiveStyle = style;
 const classes = [styleClasses[effectiveStyle], className].filter(Boolean).join(" ");
 ---
 

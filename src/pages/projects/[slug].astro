@@ -17,7 +17,10 @@ const { caseStudy } = Astro.props as { caseStudy: CaseStudy };
 const MARQUEE_REPEAT = 100;
 const MARQUEE_SECONDS_PER_ITEM = 3;
 const marqueeBase = caseStudy.role.split("•").map((item) => item.trim());
-const marqueeItems = Array.from({ length: MARQUEE_REPEAT }, () => marqueeBase).flat();
+const marqueeItems = Array.from(
+  { length: MARQUEE_REPEAT },
+  () => marqueeBase,
+).flat();
 const marqueeDuration = `${marqueeItems.length * MARQUEE_SECONDS_PER_ITEM}s`;
 
 const techStack = caseStudy.techStack;
@@ -41,7 +44,9 @@ const goals = [
   "Maintain a type-safe, layered architecture across client/server/DB",
 ];
 
-const outcomes = caseStudy.outcomes.map((item) => (typeof item === "string" ? item : item.text));
+const outcomes = caseStudy.outcomes.map((item) =>
+  typeof item === "string" ? item : item.text,
+);
 
 const links = [
   { label: "Docs", href: "/wedding-ready/README.md" },
@@ -49,13 +54,14 @@ const links = [
   { label: "Architecture", href: "/wedding-ready/architecture.md" },
 ].filter((item) => item.href);
 
-const related = [
-  { label: "With Thanks", href: "/projects/with-thanks-v4" },
-];
+const related = [{ label: "With Thanks", href: "/projects/with-thanks-v4" }];
 ---
 
 <ProjectLayout title={`${caseStudy.name} — Case Study`}>
-  <main id={caseStudy.slug} class="grid min-h-screen grid-cols-2 gap-px bg-black">
+  <main
+    id={caseStudy.slug}
+    class="grid min-h-screen grid-cols-2 gap-px bg-black"
+  >
     <section
       class="col-span-full bg-(--image-bg) px-6 py-0"
       style="height: var(--nav-height);"
@@ -65,7 +71,7 @@ const related = [
         class="inline-flex h-full items-center gap-2 text-[0.7rem] font-semibold tracking-[0.22em] text-(--description-text) uppercase"
       >
         <span>←</span>
-        Back
+        Home
       </a>
     </section>
 
@@ -78,7 +84,9 @@ const related = [
         >
           {caseStudy.name}
         </h1>
-        <p class="text-balance text-sm font-normal leading-relaxed text-(--brand-text)/75">
+        <p
+          class="text-sm leading-relaxed font-normal text-balance text-(--brand-text)/75"
+        >
           {caseStudy.oneLiner}
         </p>
       </div>
@@ -119,23 +127,21 @@ const related = [
       </div>
     </section>
 
-    <section class="flex flex-col gap-10 bg-(--image-bg) p-6 text-sm leading-relaxed font-normal text-(--description-text) sm:col-span-1 sm:row-span-2 sm:p-12">
+    <section
+      class="flex flex-col gap-10 bg-(--image-bg) p-6 text-sm leading-relaxed font-normal text-(--description-text) sm:col-span-1 sm:row-span-2 sm:p-12"
+    >
       <div class="flex w-full flex-col gap-5">
-        <Heading as="h3" headingStyle="h3">
-          Problem
-        </Heading>
+        <Heading as="h3" style="h3"> Problem </Heading>
         <MarkdownContent value={problem} />
       </div>
       <div class="flex w-full flex-col gap-5">
-        <Heading as="h3" headingStyle="h3">
-          Solution
-        </Heading>
+        <Heading as="h3" style="h3"> Solution </Heading>
         <MarkdownContent value={solution} />
       </div>
       {
         technicalWhy && (
           <div class="flex w-full flex-col gap-5">
-            <Heading as="h3" headingStyle="h3">
+            <Heading as="h3" style="h3">
               Technical Why
             </Heading>
             <MarkdownContent value={technicalWhy} />
@@ -144,16 +150,26 @@ const related = [
       }
     </section>
 
-    <section class="flex flex-col gap-5 bg-(--image-bg) p-6 text-(--description-text) sm:p-12">
-      <Heading as="h3" headingStyle="h3">
-        Tech Stack
-      </Heading>
-      <ul class="flex w-full list-disc flex-col gap-3 pl-5 text-sm leading-relaxed font-normal">
-        {techStack.map((item) => <li><MarkdownContent value={item} /></li>)}
+    <section
+      class="flex flex-col gap-5 bg-(--image-bg) p-6 text-(--description-text) sm:p-12"
+    >
+      <Heading as="h3" style="h3"> Tech Stack </Heading>
+      <ul
+        class="flex w-full list-disc flex-col gap-3 pl-5 text-sm leading-relaxed font-normal"
+      >
+        {
+          techStack.map((item) => (
+            <li>
+              <MarkdownContent value={item} />
+            </li>
+          ))
+        }
       </ul>
     </section>
 
-    <section class="col-span-full bg-(--image-bg) p-6 text-(--description-text) sm:col-span-1 sm:p-12">
+    <section
+      class="col-span-full bg-(--image-bg) p-6 text-(--description-text) sm:col-span-1 sm:p-12"
+    >
       <div class="grid gap-10">
         <div class="flex flex-col gap-3">
           <div class="overflow-hidden rounded-4xl bg-(--image-frame-bg)">
@@ -169,7 +185,7 @@ const related = [
           </div>
           {
             caseStudy.systemOverview.diagram.caption && (
-              <p class="px-4 text-pretty text-xs leading-relaxed font-normal text-(--description-text)/75">
+              <p class="px-4 text-xs leading-relaxed font-normal text-pretty text-(--description-text)/75">
                 {caseStudy.systemOverview.diagram.caption}
               </p>
             )
