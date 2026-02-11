@@ -118,33 +118,29 @@ const related = [
       </div>
     </section>
 
-    <section class="bg-(--image-bg) sm:col-span-1 sm:row-span-2">
-      <div class="sticky top-0 grid gap-12 p-6 sm:p-12">
-        <section class="flex flex-col gap-10 text-sm leading-relaxed font-normal text-(--description-text)">
-          <div class="flex w-full flex-col gap-5">
-            <h3 class="font-light">
-              Problem
-            </h3>
-            <MarkdownContent value={problem} />
-          </div>
-          <div class="flex w-full flex-col gap-5">
-            <h3 class="font-light">
-              Solution
-            </h3>
-            <MarkdownContent value={solution} />
-          </div>
-          {
-            technicalWhy && (
-              <div class="flex w-full flex-col gap-5">
-                <h3 class="font-light">
-                  Technical Why
-                </h3>
-                <MarkdownContent value={technicalWhy} />
-              </div>
-            )
-          }
-        </section>
+    <section class="flex flex-col gap-10 bg-(--image-bg) p-6 text-sm leading-relaxed font-normal text-(--description-text) sm:col-span-1 sm:row-span-2 sm:p-12">
+      <div class="flex w-full flex-col gap-5">
+        <h3 class="font-light">
+          Problem
+        </h3>
+        <MarkdownContent value={problem} />
       </div>
+      <div class="flex w-full flex-col gap-5">
+        <h3 class="font-light">
+          Solution
+        </h3>
+        <MarkdownContent value={solution} />
+      </div>
+      {
+        technicalWhy && (
+          <div class="flex w-full flex-col gap-5">
+            <h3 class="font-light">
+              Technical Why
+            </h3>
+            <MarkdownContent value={technicalWhy} />
+          </div>
+        )
+      }
     </section>
 
     <section class="flex flex-col gap-5 bg-(--image-bg) p-6 text-(--description-text) sm:p-12">
