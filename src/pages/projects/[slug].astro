@@ -35,6 +35,7 @@ const technicalWhy = caseStudy.problemSolution.technicalWhy
     ? caseStudy.problemSolution.technicalWhy
     : caseStudy.problemSolution.technicalWhy.text
   : null;
+const flowNote = caseStudy.systemOverview.flowNote;
 
 const scope = [
   "Product design + UX",
@@ -189,7 +190,7 @@ const related = [
             )
           }
         </div>
-        <MarkdownContent value={caseStudy.systemOverview.flowNote} containerClass="grid gap-5" />
+        {flowNote && <MarkdownContent value={flowNote} containerClass="grid gap-5" />}
       </div>
     </section>
     <section class="bg-(--description-bg) p-6 sm:p-12">

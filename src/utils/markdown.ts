@@ -1,16 +1,9 @@
 import { unified } from "unified";
 import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
+import type { RichText } from "../content/caseStudies/types";
 
-export type MarkdownValue =
-  | string
-  | {
-      text: string;
-      type?: string;
-      format?: string;
-    }
-  | null
-  | undefined;
+export type MarkdownValueInput = RichText;
 
 export type MarkdownInlineToken =
   | { type: "text"; value: string }
@@ -98,14 +91,11 @@ function toMarkdownBlock(node: any): MarkdownBlockToken | null {
   return null;
 }
 
-export function parseMarkdownValue(value: MarkdownValue): ParsedMarkdownContent {
-  if (!value) return { kind: "empty" };
-
+export function parseMarkdownValue(value: MarkdownValueInput): ParsedMarkdownContent {
   const text = typeof value === "string" ? value : value.text ?? "";
   if (!text) return { kind: "empty" };
 
-  const isMarkdown =
-    typeof value !== "string" && (value.type === "md" || value.format === "md");
+  const isMarkdown = typeof value !== "string" && value.type === "md";
 
   if (!isMarkdown) {
     return { kind: "plain", text };
@@ -122,4 +112,3 @@ export function parseMarkdownValue(value: MarkdownValue): ParsedMarkdownContent 
 
   return { kind: "markdown", blocks };
 }
-

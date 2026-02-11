@@ -1,6 +1,6 @@
 ---
 import MarkdownInlines from "./MarkdownInlines.astro";
-import { parseMarkdownValue, type MarkdownValue } from "../utils/markdown";
+import { parseMarkdownValue, type MarkdownValueInput } from "../utils/markdown";
 
 const {
   value,
@@ -15,7 +15,7 @@ const {
   inlineCodeClass = "rounded bg-black/10 px-1 py-0.5 font-mono text-[0.9em]",
   linkClass = "underline underline-offset-2",
 } = Astro.props as {
-  value: MarkdownValue;
+  value: MarkdownValueInput;
   containerClass?: string;
   plainClass?: string;
   paragraphClass?: string;
@@ -129,4 +129,3 @@ const parsed = parseMarkdownValue(value);
     </div>
   )
 }
-
