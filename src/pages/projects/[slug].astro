@@ -2,7 +2,6 @@
 import type { GetStaticPaths } from "astro";
 import { Image } from "astro:assets";
 import ProjectLayout from "../../layouts/ProjectLayout.astro";
-import weddingReadyComposite from "../../assets/projects/wedding-ready/wedding-ready-composite.png";
 import weddingReadyFeedDiagram from "../../assets/projects/wedding-ready/wedding-ready-diagram-feed.png";
 import { allCaseStudies } from "../../content/caseStudies";
 import type { CaseStudy } from "../../content/caseStudies/types";
@@ -17,7 +16,6 @@ const { caseStudy } = Astro.props as { caseStudy: CaseStudy };
 
 const mediaBySlug = {
   "wedding-ready": {
-    hero: weddingReadyComposite,
     feedDiagram: weddingReadyFeedDiagram,
   },
 } as const;
@@ -35,7 +33,6 @@ const marqueeItems = Array.from({ length: MARQUEE_REPEAT }, () => marqueeBase).f
 const marqueeDuration = `${marqueeItems.length * MARQUEE_SECONDS_PER_ITEM}s`;
 
 const overview = caseStudy.oneLiner;
-const overviewDetail = caseStudy.excerpt;
 
 const scope = [
   "Product design + UX",
@@ -138,18 +135,16 @@ const gridImages: Array<{ src: string; alt: string } | { src: any; alt: string }
           Overview
         </h2>
         <p class="mt-4 text-[1rem] leading-[1.6]">{overview}</p>
-        <p class="mt-4 text-[1rem] leading-[1.6]">{overviewDetail}</p>
       </div>
     </section>
 
     <section class="col-span-full bg-(--image-bg) p-6 sm:col-span-1 sm:p-12">
       <div class="overflow-hidden rounded-4xl bg-(--image-frame-bg)">
-        <Image
-          src={media.hero}
-          alt={caseStudy.heroImage.alt}
-          width={1024}
-          height={1536}
-          sizes="(min-width: 640px) 66vw, 100vw"
+        <img
+          src={caseStudy.systemOverview.diagram.src}
+          alt={caseStudy.systemOverview.diagram.alt}
+          width="1024"
+          height="1536"
           class="h-full w-full object-cover"
           loading="lazy"
           decoding="async"
