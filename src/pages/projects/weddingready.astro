@@ -1,0 +1,236 @@
+---
+import { Image } from "astro:assets";
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+import weddingReadyComposite from "../../assets/projects/wedding-ready/wedding-ready-composite.png";
+import weddingReadyFeedDiagram from "../../assets/projects/wedding-ready/wedding-ready-diagram-feed.png";
+import { weddingReadyCaseStudy } from "../../content/caseStudies";
+
+const caseStudy = weddingReadyCaseStudy;
+
+const MARQUEE_REPEAT = 100;
+const MARQUEE_SECONDS_PER_ITEM = 3;
+const marqueeBase = caseStudy.role.split("•").map((item) => item.trim());
+const marqueeItems = Array.from({ length: MARQUEE_REPEAT }, () => marqueeBase).flat();
+const marqueeDuration = `${marqueeItems.length * MARQUEE_SECONDS_PER_ITEM}s`;
+
+const overview = caseStudy.oneLiner;
+const overviewDetail = caseStudy.excerpt;
+
+const scope = [
+  "Product design + UX",
+  "Full-stack implementation (Next.js + Supabase)",
+  "Ranked feed retrieval + save-state cache pre-hydration",
+  "Supplier publishing: multi-step batch uploads + supplier crediting",
+  "End-to-end validation + access control",
+];
+
+const goals = [
+  "Turn inspiration into real purchases via local supplier links",
+  "Keep supplier publishing friction low while maintaining data integrity",
+  "Keep the feed fast and relevant with clear, testable ranking signals",
+  "Maintain a type-safe, layered architecture across client/server/DB",
+];
+
+const outcomes = caseStudy.outcomes.map((item) => (typeof item === "string" ? item : item.text));
+
+const links = [
+  { label: "Docs", href: "/wedding-ready/README.md" },
+  { label: "Tech stack", href: "/wedding-ready/tech-stack.md" },
+  { label: "Architecture", href: "/wedding-ready/architecture.md" },
+].filter((item) => item.href);
+
+const related = [
+  { label: "With Thanks", href: "/projects/with-thanks-v4" },
+];
+
+const gridImages: Array<{ src: string; alt: string } | { src: any; alt: string }> = [
+  { src: weddingReadyFeedDiagram, alt: "Wedding Ready feed ranking diagram" },
+  { src: caseStudy.systemOverview.diagram.src, alt: caseStudy.systemOverview.diagram.alt },
+  { src: "/wedding-ready/upload-component-hierarchy.svg", alt: "Upload flow component hierarchy diagram" },
+  { src: "/wedding-ready/system-diagram.svg", alt: "Wedding Ready system overview diagram" },
+];
+---
+
+<ProjectLayout title={`${caseStudy.name} — Case Study`}>
+  <main id={caseStudy.slug} class="grid min-h-screen grid-cols-2 gap-px bg-black">
+    <section
+      class="col-span-full bg-(--image-bg) px-6 py-0"
+      style="height: var(--nav-height);"
+    >
+      <a
+        href="/"
+        class="inline-flex h-full items-center gap-2 text-[0.7rem] font-semibold tracking-[0.22em] text-(--description-text) uppercase"
+      >
+        <span>←</span>
+        Back
+      </a>
+    </section>
+
+    <section
+      class="col-span-full grid aspect-2/1 max-h-[25dvh] w-full place-items-center bg-(--brand-bg) p-6 sm:p-12"
+    >
+      <h1
+        class="text-left text-[0.82rem] font-medium tracking-[0.35em] text-(--brand-text) uppercase"
+      >
+        {caseStudy.name}
+      </h1>
+    </section>
+
+    <section class="col-span-full overflow-x-clip bg-(--brand-bg) p-0">
+      <div
+        class="project-marquee overflow-x-hidden overflow-y-clip whitespace-nowrap"
+        style={`--project-marquee-duration: ${marqueeDuration};`}
+        aria-label={`Roles: ${marqueeBase.join(", ")}`}
+      >
+        <div class="project-marquee-track flex w-max p-0">
+          <div
+            class="project-marquee-group flex items-start gap-x-10"
+            aria-hidden="true"
+          >
+            {
+              marqueeItems.map((item) => (
+                <p class="text-4xl leading-none font-extrabold tracking-[0.2em] text-(--description-bg) uppercase">
+                  {item}
+                </p>
+              ))
+            }
+          </div>
+          <div
+            class="project-marquee-group flex items-start gap-x-10"
+            aria-hidden="true"
+          >
+            {
+              marqueeItems.map((item) => (
+                <p class="text-4xl leading-none font-extrabold tracking-[0.2em] text-(--brand-text) uppercase">
+                  {item}
+                </p>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="col-span-full bg-(--image-bg) sm:col-span-1 sm:row-span-2">
+      <div class="sticky top-0 p-6 sm:p-12">
+        <h2 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+          Overview
+        </h2>
+        <p class="mt-4 text-[1rem] leading-[1.6]">{overview}</p>
+        <p class="mt-4 text-[1rem] leading-[1.6]">{overviewDetail}</p>
+      </div>
+    </section>
+
+    <section class="col-span-full bg-(--image-bg) p-6 sm:col-span-1 sm:p-12">
+      <div class="overflow-hidden rounded-4xl bg-(--image-frame-bg)">
+        <Image
+          src={weddingReadyComposite}
+          alt={caseStudy.heroImage.alt}
+          width={1024}
+          height={1536}
+          sizes="(min-width: 640px) 66vw, 100vw"
+          class="h-full w-full object-cover"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </section>
+
+    <section class="col-span-full bg-(--image-bg) p-6 sm:col-span-1 sm:p-12">
+      <div class="grid grid-cols-2 gap-4">
+        {
+          gridImages.map((image) => (
+            <div class="overflow-hidden rounded-[1.6rem] bg-(--image-frame-bg)">
+              {
+                typeof image.src === "string" ? (
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    width="1024"
+                    height="1536"
+                    loading="lazy"
+                    decoding="async"
+                    class="h-full w-full object-cover"
+                  />
+                ) : (
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    width={1024}
+                    height={1536}
+                    sizes="(min-width: 640px) 40vw, 100vw"
+                    class="h-full w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                )
+              }
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="bg-(--description-bg) p-6 sm:p-12">
+      <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+        Scope
+      </h3>
+      <ul class="mt-4 space-y-2 text-[0.95rem]">
+        {scope.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+    <section class="bg-(--description-bg) p-6 sm:p-12">
+      <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+        Goals
+      </h3>
+      <ul class="mt-4 space-y-2 text-[0.95rem]">
+        {goals.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+    <section class="bg-(--brand-bg) p-6 text-(--brand-text) sm:p-12">
+      <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+        Outcomes
+      </h3>
+      <ul class="mt-4 space-y-2 text-[0.95rem]">
+        {outcomes.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+
+    <section class="grid gap-px bg-black sm:grid-cols-[1.2fr_0.8fr]">
+      <div class="bg-(--description-bg) p-6 sm:p-12">
+        <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+          Links
+        </h3>
+        <div
+          class="mt-4 flex flex-wrap gap-4 text-[0.9rem] font-semibold tracking-[0.18em] uppercase"
+        >
+          {
+            links.map((link) => (
+              <a class="underline underline-offset-4" href={link.href}>
+                {link.label}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+      <div class="bg-(--description-bg) p-6 sm:p-12">
+        <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
+          Next
+        </h3>
+        <div class="mt-4 space-y-3">
+          {
+            related.map((item) => (
+              <a
+                href={item.href}
+                class="block text-[0.95rem] font-semibold tracking-[0.18em] uppercase underline underline-offset-4"
+              >
+                {item.label}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+</ProjectLayout>
+
