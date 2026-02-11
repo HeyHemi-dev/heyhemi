@@ -18,7 +18,7 @@ export type ContentBlock =
   | { type: "h2"; text: string }
   | { type: "h3"; text: string }
   | { type: "p"; text: string }
-  | { type: "list"; items: string[] }
+  | { type: "ul"; items: string[] }
   | { type: "callout"; title?: string; text: string }
   | { type: "code"; language: CodeLanguage; code: string }
   | ({ type: "image" } & ImageAsset);
@@ -64,7 +64,7 @@ export type CaseStudy = CaseStudyPreview & {
 
   systemOverview: {
     diagram: ImageAsset;
-    flowNote?: string;
+    flowNote?: RichText;
   };
 
   constraintsDecisions: {
@@ -74,7 +74,7 @@ export type CaseStudy = CaseStudyPreview & {
 
   deepDive: ContentBlock[];
 
-  outcomes: string[];
+  outcomes: RichText[];
 
   // Per-case-study design tokens that can be emitted as CSS variables.
   theme: CaseStudyTheme;

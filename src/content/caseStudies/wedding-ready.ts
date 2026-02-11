@@ -36,42 +36,57 @@ export const weddingReadyCaseStudy = {
   },
   systemOverview: {
     diagram: {
-      src: "/wedding-ready/system-diagram.svg",
-      alt: "Wedding Ready system overview diagram",
+      src: "/wedding-ready/feed-fetch-architecture.svg",
+      alt: "Wedding Ready feed fetch architecture diagram",
       caption:
-        "High-level flow: UI -> server boundary -> Supabase and UploadThing.",
+        "Feed route architecture: /feed -> API -> operations/model layer -> Postgres, with ranked retrieval via a simple scoring algorithm and client save-state cache pre-hydration.",
     },
-    flowNote:
-      "A Next.js App Router frontend uses server actions/handlers for authenticated mutations and validation, with Supabase (Auth + Postgres) and UploadThing for storage.",
+    flowNote: {
+      type: "md",
+      text: [
+        "When `/feed` loads, the API returns tiles ordered by a simple scoring algorithm, excluding private, recently viewed, and already saved tiles, then marks returned tiles as viewed.",
+        "The score is a weighted blend of recency, quality, and social signals, normalised to 0..1.",
+        "The client pre-populates save-state cache entries in the same pass to avoid an N+1 per-tile save-state fetch pattern, while still allowing isolated per-tile save/unsave mutation.",
+      ].join("\n"),
+    },
   },
   constraintsDecisions: {
     rows: [
       {
-        constraint:
-          "Supporting multiple authentication providers (email/password + Google OAuth)",
+        constraint: {
+          type: "md",
+          text: "**Supporting multiple authentication providers** (email/password + Google OAuth)",
+        },
         decision:
           "Refactored authentication architecture to separate authentication from onboarding; introduced an explicit onboarded state with routing guards.",
         tradeOff:
           "Significant rework of signup and routing logic; added complexity around user state management (authenticated but not onboarded vs authenticated and onboarded).",
       },
       {
-        constraint:
-          "Multi-entity ownership and team access (one user -> multiple suppliers; one supplier -> multiple staff)",
+        constraint: {
+          type: "md",
+          text: "**Multi-entity ownership and team access** (one user -> multiple suppliers; one supplier -> multiple staff)",
+        },
         decision:
           "Designed a relational database schema supporting 1-to-many ownership and team-based access with scoped roles and permissions.",
         tradeOff:
           "Increased schema and validation complexity; required strict backend access controls and careful UI context switching.",
       },
       {
-        constraint:
-          "Need for stable, low-downtime deployments as a solo dev",
+        constraint: {
+          type: "md",
+          text: "**Need for stable, low-downtime deployments as a solo dev**",
+        },
         decision:
           "Established a structured testing environment (Vitest), added integration tests, used preview deployments, and automated database migrations via GitHub Actions before production releases.",
         tradeOff:
           "Significant upfront engineering time to build deployment and testing discipline; payoff was safer releases, higher confidence, and faster long-term iteration.",
       },
       {
-        constraint: "Limited developer capacity (single builder)",
+        constraint: {
+          type: "md",
+          text: "**Limited developer capacity** (single builder)",
+        },
         decision:
           "Adopted a serverless-first architecture (Next.js on Vercel + Supabase) to reduce infrastructure overhead, simplify scaling, and enable scale-to-zero.",
         tradeOff:
@@ -81,59 +96,40 @@ export const weddingReadyCaseStudy = {
   },
   deepDive: [
     {
-      type: "h2",
-      text: "Deep Dive: Batch Upload + Supplier Tagging Without a Clunky Form",
-    },
-    {
-      type: "p",
-      text: "Wedding Ready needs fresh pins to stay useful, and pins only work if they link to the right local suppliers. The hard part was making supplier uploads fast enough to be repeatable, while keeping tagging accurate and the UI calm.",
-    },
-    { type: "h3", text: "Approach" },
-    {
-      type: "list",
-      items: [
-        "Use a multi-stage form to reduce cognitive load: upload -> details -> tagging -> review.",
-        "Support batch selection (up to 10 images) and keep per-image metadata lightweight.",
-        "Make tagging fast with search-first UI and sensible defaults (remember last-used suppliers where possible).",
-        "Validate on both client and server so errors are caught early, but server remains the source of truth.",
-      ],
-    },
-    {
-      type: "code",
-      language: "ts",
-      code: [
-        "// Pseudocode: multi-stage upload state (batch files + per-file metadata).",
-        'type UploadStage = "upload" | "details" | "tag" | "review";',
+      type: "md",
+      text: [
+        "## Deep Dive: Multi-Step Tile Upload (Batch + Supplier Crediting)",
         "",
-        "type DraftPin = {",
-        "  fileKey: string;",
-        "  caption?: string;",
-        "  taggedSupplierIds: string[];",
-        "};",
+        "### Problem",
+        "Wedding Ready depends on fresh tiles from suppliers, and tiles only work if credited accurately. The original one-step upload could not support proper supplier crediting or a multi-step UX for multiple images. I also wanted to avoid a naive implementation that would cause unnecessary re-renders and make typing/search feel laggy once there are several tiles in the batch.",
         "",
-        "const MAX_FILES = 10;",
-        'const [stage, setStage] = useState<UploadStage>("upload");',
-        "const [drafts, setDrafts] = useState<DraftPin[]>([]);",
+        "### What I Built",
+        "A client-side refactor of the supplier upload flow at `/suppliers/[handle]/new`:",
+        "- Batch add up to ~10 images into a single upload session",
+        "- Configure each tile in two steps: details -> credit suppliers",
+        "- Upload and delete per tile (no draft persistence; safe to lose state on refresh)",
         "",
-        "function onFilesSelected(files: File[]) {",
-        '  if (files.length > MAX_FILES) throw new Error("Too many files");',
-        "  // Upload files and store fileKeys, then initialize drafts.",
-        "}",
+        "### Component Hierarchy (Placeholder)",
+        "![Upload component hierarchy](/wedding-ready/upload-component-hierarchy.svg)",
+        "",
+        "### Architecture: Separation of Concerns",
+        "The core design goal was clear ownership. Each layer owns a narrow responsibility and does not own the rest:",
+        "- `UploadProvider` owns the batch file list, stable `uploadId`s, and object URL lifecycle (add/remove/cleanup). It does not own form state or mutations.",
+        "- `UploadPreviewItem` owns one tile's lifecycle: build payload, run the upload mutation, show progress, and remove the item from the batch on success.",
+        "- `UploadPreviewForm` owns form state (React Hook Form), step state, and credit rows via `useFieldArray`.",
+        "- Each credit row owns its own supplier search input (debounced query + shared cache by search term).",
+        "",
+        "### Performance: Avoiding Unnecessary Re-renders",
+        "I treated re-render strategy as a first-class requirement:",
+        "- Stable keys: `uploadId` per tile card and `field.id` per credit row keep component identity stable.",
+        "- High-frequency actions (typing, supplier search) stay local to a single card/row.",
+        "- List-level updates only happen on low-frequency events (add/remove/clear files).",
+        "",
+        "### Outcome",
+        "- Suppliers can batch upload multiple tiles and credit other suppliers without a clunky, error-prone form.",
+        "- Each tile upload is isolated: one failing tile does not break the entire batch.",
+        "- The flow stays extensible as requirements grow (more metadata, moderation, ranking signals).",
       ].join("\n"),
-    },
-    {
-      type: "callout",
-      title: "Trade-off",
-      text: "A multi-stage flow improves UX, but it increases the number of states and failure modes. I kept it manageable by making the server authoritative and keeping draft state explicit and serializable.",
-    },
-    { type: "h3", text: "Outcome" },
-    {
-      type: "list",
-      items: [
-        "Suppliers can upload up to 10 images in one go, then tag the right suppliers without getting buried in fields.",
-        "Pins reliably link to relevant local suppliers, reinforcing the core product promise.",
-        "The flow stays extensible as requirements grow (more metadata, moderation, ranking signals).",
-      ],
     },
   ],
   outcomes: [
