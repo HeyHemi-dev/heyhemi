@@ -1,30 +1,22 @@
 ---
 import type { MarkdownInlineToken } from "../utils/markdown";
 
-const {
-  tokens = [],
-  strongClass = "[font-weight:bolder]",
-  emphasisClass = "italic",
-  inlineCodeClass = "rounded bg-current/10 px-1 py-0.5 font-mono text-[0.9em]",
-  linkClass = "underline underline-offset-2",
-} = Astro.props as {
+const { tokens = [] } = Astro.props as {
   tokens?: MarkdownInlineToken[];
-  strongClass?: string;
-  emphasisClass?: string;
-  inlineCodeClass?: string;
-  linkClass?: string;
 };
 ---
 
 {
   tokens.map((token) => {
     if (token.type === "text") return token.value;
-    if (token.type === "strong") return <strong class={strongClass}>{token.value}</strong>;
-    if (token.type === "emphasis") return <em class={emphasisClass}>{token.value}</em>;
-    if (token.type === "inlineCode") return <code class={inlineCodeClass}>{token.value}</code>;
+    if (token.type === "strong") return <strong class="[font-weight:bolder]">{token.value}</strong>;
+    if (token.type === "emphasis") return <em class="italic">{token.value}</em>;
+    if (token.type === "inlineCode") {
+      return <code class="rounded bg-current/10 px-1 py-0.5 font-mono text-[0.9em]">{token.value}</code>;
+    }
     if (token.type === "link") {
       return (
-        <a href={token.url} class={linkClass}>
+        <a href={token.url} class="underline underline-offset-2">
           {token.value}
         </a>
       );

@@ -2,52 +2,24 @@
 import MarkdownInlines from "./MarkdownInlines.astro";
 import { parseMarkdownValue, type MarkdownValueInput } from "../utils/markdown";
 
-const {
-  value,
-  containerClass = "grid gap-5",
-  plainClass = "whitespace-pre-line",
-  paragraphClass = "",
-  strongClass = "[font-weight:bolder]",
-  emphasisClass = "italic",
-  inlineCodeClass = "rounded bg-current/10 px-1 py-0.5 font-mono text-[0.9em]",
-  linkClass = "underline underline-offset-2",
-} = Astro.props as {
-  value: MarkdownValueInput;
-  containerClass?: string;
-  plainClass?: string;
-  paragraphClass?: string;
-  strongClass?: string;
-  emphasisClass?: string;
-  inlineCodeClass?: string;
-  linkClass?: string;
-};
+const { value } = Astro.props as { value: MarkdownValueInput };
 
 const parsed = parseMarkdownValue(value);
 ---
 
 {
   parsed.kind === "empty" ? null : parsed.kind === "plain" ? (
-    <p class={plainClass}>{parsed.text}</p>
+    <p class="whitespace-pre-line">{parsed.text}</p>
   ) : (
-    <div class={containerClass}>
-      {
-        parsed.blocks.map((block) => {
-          if (block.type === "paragraph") {
-            return (
-              <p class={paragraphClass}>
-                <MarkdownInlines
-                  tokens={block.inlines}
-                  strongClass={strongClass}
-                  emphasisClass={emphasisClass}
-                  inlineCodeClass={inlineCodeClass}
-                  linkClass={linkClass}
-                />
-              </p>
-            );
-          }
-          return null;
-        })
+    parsed.blocks.map((block) => {
+      if (block.type === "paragraph") {
+        return (
+          <p>
+            <MarkdownInlines tokens={block.inlines} />
+          </p>
+        );
       }
-    </div>
+      return null;
+    })
   )
 }
