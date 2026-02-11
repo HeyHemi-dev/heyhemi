@@ -15,11 +15,7 @@ export type MarkdownInlineToken =
   | { type: "break" };
 
 export type MarkdownBlockToken =
-  | { type: "paragraph"; inlines: MarkdownInlineToken[] }
-  | { type: "heading"; depth: 2 | 3 | 4; inlines: MarkdownInlineToken[] }
-  | { type: "list"; ordered: boolean; items: MarkdownInlineToken[][] }
-  | { type: "code"; value: string }
-  | { type: "hr" };
+  | { type: "paragraph"; inlines: MarkdownInlineToken[] };
 
 export type ParsedMarkdownContent =
   | { kind: "empty" }
@@ -59,35 +55,9 @@ function toInlineTokens(nodes: any[] = []): MarkdownInlineToken[] {
   return nodes.map((node) => toInlineToken(node)).filter(Boolean) as MarkdownInlineToken[];
 }
 
-function toListItemInlines(listItem: any): MarkdownInlineToken[] {
-  const tokens: MarkdownInlineToken[] = [];
-  for (const child of listItem.children ?? []) {
-    if (child.type === "paragraph") {
-      tokens.push(...toInlineTokens(child.children));
-    } else {
-      const token = toInlineToken(child);
-      if (token) tokens.push(token);
-    }
-  }
-  return tokens;
-}
-
 function toMarkdownBlock(node: any): MarkdownBlockToken | null {
   if (!node) return null;
   if (node.type === "paragraph") return { type: "paragraph", inlines: toInlineTokens(node.children) };
-  if (node.type === "heading") {
-    const depth = Math.min(Math.max(node.depth ?? 3, 2), 4) as 2 | 3 | 4;
-    return { type: "heading", depth, inlines: toInlineTokens(node.children) };
-  }
-  if (node.type === "list") {
-    return {
-      type: "list",
-      ordered: Boolean(node.ordered),
-      items: (node.children ?? []).map((listItem: any) => toListItemInlines(listItem)),
-    };
-  }
-  if (node.type === "code") return { type: "code", value: node.value ?? "" };
-  if (node.type === "thematicBreak") return { type: "hr" };
   return null;
 }
 

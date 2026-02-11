@@ -5,25 +5,19 @@ import { parseMarkdownValue, type MarkdownValueInput } from "../utils/markdown";
 const {
   value,
   containerClass = "grid gap-5",
-  plainClass = "whitespace-pre-line text-sm leading-relaxed font-normal text-(--description-text)",
-  paragraphClass = "text-sm leading-relaxed font-normal text-(--description-text)",
-  headingClass = "font-light text-(--description-text)",
-  listClass = "flex list-disc flex-col gap-3 pl-5 text-sm leading-relaxed font-normal text-(--description-text)",
-  orderedListClass = "flex list-decimal flex-col gap-3 pl-5 text-sm leading-relaxed font-normal text-(--description-text)",
-  codeClass = "overflow-x-auto rounded-lg bg-black/10 p-4 text-sm leading-relaxed font-normal",
-  hrClass = "border-(--description-text)/20",
-  inlineCodeClass = "rounded bg-black/10 px-1 py-0.5 font-mono text-[0.9em]",
+  plainClass = "whitespace-pre-line",
+  paragraphClass = "",
+  strongClass = "[font-weight:bolder]",
+  emphasisClass = "italic",
+  inlineCodeClass = "rounded bg-current/10 px-1 py-0.5 font-mono text-[0.9em]",
   linkClass = "underline underline-offset-2",
 } = Astro.props as {
   value: MarkdownValueInput;
   containerClass?: string;
   plainClass?: string;
   paragraphClass?: string;
-  headingClass?: string;
-  listClass?: string;
-  orderedListClass?: string;
-  codeClass?: string;
-  hrClass?: string;
+  strongClass?: string;
+  emphasisClass?: string;
   inlineCodeClass?: string;
   linkClass?: string;
 };
@@ -43,85 +37,13 @@ const parsed = parseMarkdownValue(value);
               <p class={paragraphClass}>
                 <MarkdownInlines
                   tokens={block.inlines}
+                  strongClass={strongClass}
+                  emphasisClass={emphasisClass}
                   inlineCodeClass={inlineCodeClass}
                   linkClass={linkClass}
                 />
               </p>
             );
-          }
-          if (block.type === "heading") {
-            if (block.depth === 2) {
-              return (
-                <h2 class={headingClass}>
-                  <MarkdownInlines
-                    tokens={block.inlines}
-                    inlineCodeClass={inlineCodeClass}
-                    linkClass={linkClass}
-                  />
-                </h2>
-              );
-            }
-            if (block.depth === 3) {
-              return (
-                <h3 class={headingClass}>
-                  <MarkdownInlines
-                    tokens={block.inlines}
-                    inlineCodeClass={inlineCodeClass}
-                    linkClass={linkClass}
-                  />
-                </h3>
-              );
-            }
-            return (
-              <h4 class={headingClass}>
-                <MarkdownInlines
-                  tokens={block.inlines}
-                  inlineCodeClass={inlineCodeClass}
-                  linkClass={linkClass}
-                />
-              </h4>
-            );
-          }
-          if (block.type === "list") {
-            return block.ordered ? (
-              <ol class={orderedListClass}>
-                {
-                  block.items.map((item) => (
-                    <li>
-                      <MarkdownInlines
-                        tokens={item}
-                        inlineCodeClass={inlineCodeClass}
-                        linkClass={linkClass}
-                      />
-                    </li>
-                  ))
-                }
-              </ol>
-            ) : (
-              <ul class={listClass}>
-                {
-                  block.items.map((item) => (
-                    <li>
-                      <MarkdownInlines
-                        tokens={item}
-                        inlineCodeClass={inlineCodeClass}
-                        linkClass={linkClass}
-                      />
-                    </li>
-                  ))
-                }
-              </ul>
-            );
-          }
-          if (block.type === "code") {
-            return (
-              <pre class={codeClass}>
-                <code>{block.value}</code>
-              </pre>
-            );
-          }
-          if (block.type === "hr") {
-            return <hr class={hrClass} />;
           }
           return null;
         })

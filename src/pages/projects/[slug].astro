@@ -51,6 +51,16 @@ const links = [
 const related = [
   { label: "With Thanks", href: "/projects/with-thanks-v4" },
 ];
+
+const markdownTextProps = {
+  plainClass: "whitespace-pre-line text-sm leading-relaxed font-normal",
+  paragraphClass: "text-sm leading-relaxed font-normal",
+  headingClass: "font-light",
+  listClass: "flex list-disc flex-col gap-3 pl-5 text-sm leading-relaxed font-normal",
+  orderedListClass: "flex list-decimal flex-col gap-3 pl-5 text-sm leading-relaxed font-normal",
+  codeClass: "overflow-x-auto rounded-lg bg-black/10 p-4 text-sm leading-relaxed font-normal",
+  hrClass: "border-(--description-text)/20",
+};
 ---
 
 <ProjectLayout title={`${caseStudy.name} — Case Study`}>
@@ -120,18 +130,18 @@ const related = [
 
     <section class="bg-(--image-bg) sm:col-span-1 sm:row-span-2">
       <div class="sticky top-0 grid gap-12 p-6 sm:p-12">
-        <section class="flex flex-col gap-10">
+        <section class="flex flex-col gap-10 text-(--description-text)">
           <div class="flex w-full flex-col gap-5">
             <h3 class="font-light text-(--description-text)">
               Problem
             </h3>
-            <MarkdownContent value={problem} />
+            <MarkdownContent value={problem} {...markdownTextProps} />
           </div>
           <div class="flex w-full flex-col gap-5">
             <h3 class="font-light text-(--description-text)">
               Solution
             </h3>
-            <MarkdownContent value={solution} />
+            <MarkdownContent value={solution} {...markdownTextProps} />
           </div>
           {
             technicalWhy && (
@@ -139,7 +149,7 @@ const related = [
                 <h3 class="font-light text-(--description-text)">
                   Technical Why
                 </h3>
-                <MarkdownContent value={technicalWhy} />
+                <MarkdownContent value={technicalWhy} {...markdownTextProps} />
               </div>
             )
           }
@@ -147,16 +157,16 @@ const related = [
       </div>
     </section>
 
-    <section class="flex flex-col gap-5 bg-(--image-bg) p-6 sm:p-12">
+    <section class="flex flex-col gap-5 bg-(--image-bg) p-6 text-(--description-text) sm:p-12">
       <h3 class="font-light text-(--description-text)">
         Tech Stack
       </h3>
       <ul class="flex w-full list-disc flex-col gap-3 pl-5 text-sm leading-relaxed font-normal marker:text-(--description-text)">
-        {techStack.map((item) => <li><MarkdownContent value={item} /></li>)}
+        {techStack.map((item) => <li><MarkdownContent value={item} {...markdownTextProps} /></li>)}
       </ul>
     </section>
 
-    <section class="col-span-full bg-(--image-bg) p-6 sm:col-span-1 sm:p-12">
+    <section class="col-span-full bg-(--image-bg) p-6 text-(--description-text) sm:col-span-1 sm:p-12">
       <div class="grid gap-10">
         <div class="flex flex-col gap-3">
           <div class="overflow-hidden rounded-4xl bg-(--image-frame-bg)">
@@ -178,7 +188,7 @@ const related = [
             )
           }
         </div>
-        {flowNote && <MarkdownContent value={flowNote} containerClass="grid gap-5" />}
+        {flowNote && <MarkdownContent value={flowNote} containerClass="grid gap-5" {...markdownTextProps} />}
       </div>
     </section>
     <section class="bg-(--description-bg) p-6 sm:p-12">

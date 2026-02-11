@@ -3,10 +3,14 @@ import type { MarkdownInlineToken } from "../utils/markdown";
 
 const {
   tokens = [],
-  inlineCodeClass = "rounded bg-black/10 px-1 py-0.5 font-mono text-[0.9em]",
+  strongClass = "[font-weight:bolder]",
+  emphasisClass = "italic",
+  inlineCodeClass = "rounded bg-current/10 px-1 py-0.5 font-mono text-[0.9em]",
   linkClass = "underline underline-offset-2",
 } = Astro.props as {
   tokens?: MarkdownInlineToken[];
+  strongClass?: string;
+  emphasisClass?: string;
   inlineCodeClass?: string;
   linkClass?: string;
 };
@@ -15,8 +19,8 @@ const {
 {
   tokens.map((token) => {
     if (token.type === "text") return token.value;
-    if (token.type === "strong") return <strong>{token.value}</strong>;
-    if (token.type === "emphasis") return <em>{token.value}</em>;
+    if (token.type === "strong") return <strong class={strongClass}>{token.value}</strong>;
+    if (token.type === "emphasis") return <em class={emphasisClass}>{token.value}</em>;
     if (token.type === "inlineCode") return <code class={inlineCodeClass}>{token.value}</code>;
     if (token.type === "link") {
       return (
@@ -30,4 +34,3 @@ const {
     return null;
   })
 }
-
