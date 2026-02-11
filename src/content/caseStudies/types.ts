@@ -4,21 +4,28 @@ export type ImageAsset = {
   caption?: string;
 };
 
+export type MarkdownText = {
+  format: "md";
+  text: string;
+};
+
+export type RichText = string | MarkdownText;
+
 export type CodeLanguage = "ts" | "js" | "sql" | "bash" | "txt";
 
 export type ContentBlock =
   | { type: "h2"; text: string }
   | { type: "h3"; text: string }
-  | { type: "p"; text: string }
-  | { type: "list"; items: string[] }
-  | { type: "callout"; title?: string; text: string }
+  | { type: "p"; text: RichText }
+  | { type: "list"; items: RichText[] }
+  | { type: "callout"; title?: string; text: RichText }
   | { type: "code"; language: CodeLanguage; code: string }
   | ({ type: "image" } & ImageAsset);
 
 export type ConstraintDecisionRow = {
-  constraint: string;
-  decision: string;
-  tradeOff: string;
+  constraint: RichText;
+  decision: RichText;
+  tradeOff: RichText;
 };
 
 export type ConstraintsDecisionsTable = {
@@ -51,12 +58,12 @@ export type CaseStudyPreview = {
 export type CaseStudy = CaseStudyPreview & {
   oneLiner: string;
   role: string;
-  techStack: string[];
+  techStack: RichText[];
 
   problemSolution: {
-    problem: string;
-    solution: string;
-    technicalWhy?: string;
+    problem: RichText;
+    solution: RichText;
+    technicalWhy?: RichText;
   };
 
   systemOverview: {
