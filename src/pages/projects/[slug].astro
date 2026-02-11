@@ -168,9 +168,18 @@ const related = [{ label: "With Thanks", href: "/projects/with-thanks-v4" }];
     </section>
 
     <section
-      class="col-span-full bg-(--image-bg) p-6 text-(--description-text) sm:col-span-1 sm:p-12"
+      class="col-span-full grid gap-px text-(--description-text) sm:col-span-1"
     >
-      <div class="grid gap-10">
+      <header class="overflow-x-clip bg-(--description-bg) p-6 sm:p-12">
+        <Heading
+          as="h3"
+          style="h3"
+          class="whitespace-nowrap text-xl leading-none font-extrabold tracking-[0.2em] uppercase"
+        >
+          Architecture Diagram
+        </Heading>
+      </header>
+      <div class="grid gap-10 bg-(--image-bg) p-6 sm:p-12">
         <div class="flex flex-col gap-3">
           <div class="overflow-hidden rounded-4xl bg-(--image-frame-bg)">
             <img
@@ -203,12 +212,12 @@ const related = [{ label: "With Thanks", href: "/projects/with-thanks-v4" }];
     <section data-eng-decisions class="col-span-full grid gap-px">
       <header
         data-eng-decisions-title
-        class="bg-(--description-bg) p-6 text-(--description-text) sm:p-12"
+        class="overflow-x-clip bg-(--description-bg) p-6 text-(--description-text) sm:p-12"
       >
         <Heading
           as="h3"
           style="h3"
-          class="overflow-x-clip whitespace-nowrap text-xl leading-none font-extrabold tracking-[0.2em] uppercase"
+          class="whitespace-nowrap text-xl leading-none font-extrabold tracking-[0.2em] uppercase"
         >
           Engineering Decisions
         </Heading>
