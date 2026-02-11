@@ -47,9 +47,35 @@ export const weddingReadyCaseStudy = {
   constraintsDecisions: {
     rows: [
       {
-        constraint: "",
-        decision: "",
-        tradeOff: "",
+        constraint:
+          "Supporting multiple authentication providers (email/password + Google OAuth)",
+        decision:
+          "Refactored authentication architecture to separate authentication from onboarding; introduced an explicit onboarded state with routing guards.",
+        tradeOff:
+          "Significant rework of signup and routing logic; added complexity around user state management (authenticated but not onboarded vs authenticated and onboarded).",
+      },
+      {
+        constraint:
+          "Multi-entity ownership and team access (one user -> multiple suppliers; one supplier -> multiple staff)",
+        decision:
+          "Designed a relational database schema supporting 1-to-many ownership and team-based access with scoped roles and permissions.",
+        tradeOff:
+          "Increased schema and validation complexity; required strict backend access controls and careful UI context switching.",
+      },
+      {
+        constraint:
+          "Need for stable, low-downtime deployments as a solo dev",
+        decision:
+          "Established a structured testing environment (Vitest), added integration tests, used preview deployments, and automated database migrations via GitHub Actions before production releases.",
+        tradeOff:
+          "Significant upfront engineering time to build deployment and testing discipline; payoff was safer releases, higher confidence, and faster long-term iteration.",
+      },
+      {
+        constraint: "Limited developer capacity (single builder)",
+        decision:
+          "Adopted a serverless-first architecture (Next.js on Vercel + Supabase) to reduce infrastructure overhead, simplify scaling, and enable scale-to-zero.",
+        tradeOff:
+          "Tighter vendor coupling; performance considerations in serverless environments (e.g. cold starts); reduced low-level infrastructure control.",
       },
     ],
   },
