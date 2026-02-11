@@ -2,7 +2,6 @@
 import type { GetStaticPaths } from "astro";
 import { Image } from "astro:assets";
 import ProjectLayout from "../../layouts/ProjectLayout.astro";
-import weddingReadyFeedDiagram from "../../assets/projects/wedding-ready/wedding-ready-diagram-feed.png";
 import { allCaseStudies } from "../../content/caseStudies";
 import type { CaseStudy } from "../../content/caseStudies/types";
 
@@ -14,18 +13,6 @@ export const getStaticPaths = (() =>
 
 const { caseStudy } = Astro.props as { caseStudy: CaseStudy };
 
-const mediaBySlug = {
-  "wedding-ready": {
-    feedDiagram: weddingReadyFeedDiagram,
-  },
-} as const;
-
-const media = mediaBySlug[caseStudy.slug as keyof typeof mediaBySlug];
-
-if (!media) {
-  throw new Error(`Missing media mapping for case study slug: ${caseStudy.slug}`);
-}
-
 const MARQUEE_REPEAT = 100;
 const MARQUEE_SECONDS_PER_ITEM = 3;
 const marqueeBase = caseStudy.role.split("•").map((item) => item.trim());
@@ -33,6 +20,22 @@ const marqueeItems = Array.from({ length: MARQUEE_REPEAT }, () => marqueeBase).f
 const marqueeDuration = `${marqueeItems.length * MARQUEE_SECONDS_PER_ITEM}s`;
 
 const overview = caseStudy.oneLiner;
+const techStack = caseStudy.techStack.map((item) =>
+  typeof item === "string" ? item : item.text,
+);
+const problem =
+  typeof caseStudy.problemSolution.problem === "string"
+    ? caseStudy.problemSolution.problem
+    : caseStudy.problemSolution.problem.text;
+const solution =
+  typeof caseStudy.problemSolution.solution === "string"
+    ? caseStudy.problemSolution.solution
+    : caseStudy.problemSolution.solution.text;
+const technicalWhy = caseStudy.problemSolution.technicalWhy
+  ? typeof caseStudy.problemSolution.technicalWhy === "string"
+    ? caseStudy.problemSolution.technicalWhy
+    : caseStudy.problemSolution.technicalWhy.text
+  : null;
 
 const scope = [
   "Product design + UX",
@@ -59,13 +62,6 @@ const links = [
 
 const related = [
   { label: "With Thanks", href: "/projects/with-thanks-v4" },
-];
-
-const gridImages: Array<{ src: string; alt: string } | { src: any; alt: string }> = [
-  { src: media.feedDiagram, alt: "Wedding Ready feed ranking diagram" },
-  { src: caseStudy.systemOverview.diagram.src, alt: caseStudy.systemOverview.diagram.alt },
-  { src: "/wedding-ready/upload-component-hierarchy.svg", alt: "Upload flow component hierarchy diagram" },
-  { src: "/wedding-ready/system-diagram.svg", alt: "Wedding Ready system overview diagram" },
 ];
 ---
 
@@ -130,11 +126,45 @@ const gridImages: Array<{ src: string; alt: string } | { src: any; alt: string }
     </section>
 
     <section class="col-span-full bg-(--image-bg) sm:col-span-1 sm:row-span-2">
-      <div class="sticky top-0 p-6 sm:p-12">
-        <h2 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
-          Overview
-        </h2>
-        <p class="mt-4 text-[1rem] leading-[1.6]">{overview}</p>
+      <div class="sticky top-0 grid gap-12 p-6 sm:p-12">
+        <section class="grid gap-4">
+          <h2 class="font-light text-(--description-text)">
+            Overview
+          </h2>
+          <p class="text-sm leading-relaxed font-normal">{overview}</p>
+        </section>
+        <section class="grid gap-4">
+          <h3 class="font-light text-(--description-text)">
+            Tech Stack
+          </h3>
+          <ul class="grid list-disc gap-3 pl-5 text-sm leading-relaxed font-normal marker:text-(--description-text)">
+            {techStack.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+        <section class="grid gap-6">
+          <div class="grid gap-4">
+            <h3 class="font-light text-(--description-text)">
+              Problem
+            </h3>
+            <p class="text-sm leading-relaxed font-normal">{problem}</p>
+          </div>
+          <div class="grid gap-4">
+            <h3 class="font-light text-(--description-text)">
+              Solution
+            </h3>
+            <p class="text-sm leading-relaxed font-normal">{solution}</p>
+          </div>
+          {
+            technicalWhy && (
+              <div class="grid gap-4">
+                <h3 class="font-light text-(--description-text)">
+                  Technical Why
+                </h3>
+                <p class="text-sm leading-relaxed font-normal">{technicalWhy}</p>
+              </div>
+            )
+          }
+        </section>
       </div>
     </section>
 
@@ -149,41 +179,6 @@ const gridImages: Array<{ src: string; alt: string } | { src: any; alt: string }
           loading="lazy"
           decoding="async"
         />
-      </div>
-    </section>
-
-    <section class="col-span-full bg-(--image-bg) p-6 sm:col-span-1 sm:p-12">
-      <div class="grid grid-cols-2 gap-4">
-        {
-          gridImages.map((image) => (
-            <div class="overflow-hidden rounded-[1.6rem] bg-(--image-frame-bg)">
-              {
-                typeof image.src === "string" ? (
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    width="1024"
-                    height="1536"
-                    loading="lazy"
-                    decoding="async"
-                    class="h-full w-full object-cover"
-                  />
-                ) : (
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    width={1024}
-                    height={1536}
-                    sizes="(min-width: 640px) 40vw, 100vw"
-                    class="h-full w-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                )
-              }
-            </div>
-          ))
-        }
       </div>
     </section>
 
