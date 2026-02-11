@@ -38,42 +38,18 @@ export const weddingReadyCaseStudy = {
     diagram: {
       src: "/wedding-ready/system-diagram.svg",
       alt: "Wedding Ready system overview diagram",
-      caption: "High-level flow: UI -> server boundary -> Supabase and UploadThing.",
+      caption:
+        "High-level flow: UI -> server boundary -> Supabase and UploadThing.",
     },
     flowNote:
       "A Next.js App Router frontend uses server actions/handlers for authenticated mutations and validation, with Supabase (Auth + Postgres) and UploadThing for storage.",
   },
   constraintsDecisions: {
-    caption: "Constraints that shaped the implementation.",
     rows: [
       {
-        constraint:
-          "Fresh content and accurate supplier tagging require a low-friction publishing workflow.",
-        decision:
-          "Build a multi-stage upload flow that supports up to 10 images at once, with lightweight tagging UX to link pins to the right suppliers without overwhelming the user.",
-        tradeOff:
-          "More complex form state, validation, and error recovery than a single-step upload form.",
-      },
-      {
-        constraint: "Uploads must be secure and avoid malformed or orphaned records.",
-        decision:
-          "Gate uploads behind auth + validation (type/size/metadata) and only create DB rows after a successful upload completes.",
-        tradeOff:
-          "More moving parts and more careful error handling across client/server boundaries.",
-      },
-      {
-        constraint: "Type safety must hold from database to UI without leaking sensitive fields.",
-        decision:
-          "Define Drizzle schema as the source of truth and enforce boundary validation with Zod, separating raw rows from safe client-facing shapes.",
-        tradeOff:
-          "Upfront modeling work and occasional duplication between runtime schemas and static types.",
-      },
-      {
-        constraint: "Auth needs to work with SSR and protect server-side mutations.",
-        decision:
-          "Use Supabase Auth with SSR helpers/middleware so server actions can reliably authorize via headers/cookies.",
-        tradeOff:
-          "Extra cookie/header plumbing and careful handling of session lifecycles.",
+        constraint: "",
+        decision: "",
+        tradeOff: "",
       },
     ],
   },
@@ -101,7 +77,7 @@ export const weddingReadyCaseStudy = {
       language: "ts",
       code: [
         "// Pseudocode: multi-stage upload state (batch files + per-file metadata).",
-        "type UploadStage = \"upload\" | \"details\" | \"tag\" | \"review\";",
+        'type UploadStage = "upload" | "details" | "tag" | "review";',
         "",
         "type DraftPin = {",
         "  fileKey: string;",
@@ -110,14 +86,14 @@ export const weddingReadyCaseStudy = {
         "};",
         "",
         "const MAX_FILES = 10;",
-        "const [stage, setStage] = useState<UploadStage>(\"upload\");",
+        'const [stage, setStage] = useState<UploadStage>("upload");',
         "const [drafts, setDrafts] = useState<DraftPin[]>([]);",
         "",
         "function onFilesSelected(files: File[]) {",
-        "  if (files.length > MAX_FILES) throw new Error(\"Too many files\");",
+        '  if (files.length > MAX_FILES) throw new Error("Too many files");',
         "  // Upload files and store fileKeys, then initialize drafts.",
         "}",
-      ].join(\"\\n\"),
+      ].join("\n"),
     },
     {
       type: "callout",
