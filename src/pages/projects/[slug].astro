@@ -200,6 +200,57 @@ const related = [{ label: "With Thanks", href: "/projects/with-thanks-v4" }];
         }
       </div>
     </section>
+    <section data-eng-decisions class="col-span-full grid gap-px">
+      <header
+        data-eng-decisions-title
+        class="bg-(--description-bg) p-6 text-(--description-text) sm:p-12"
+      >
+        <Heading as="h3" style="h3" class="text-4xl leading-none font-extrabold tracking-[0.2em] uppercase">
+          Engineering Decisions
+        </Heading>
+      </header>
+
+      <div
+        data-eng-decisions-scroll
+        class="w-full overflow-x-auto overscroll-x-contain"
+      >
+        <div
+          data-eng-decisions-grid
+          class="grid min-w-[56rem] grid-cols-3 gap-px"
+        >
+          <div data-eng-decisions-head class="col-span-full grid grid-cols-subgrid">
+            <div class="bg-(--description-bg) p-4 text-(--description-text) sm:p-6">
+              <Heading as="h4" style="h3">Constraint</Heading>
+            </div>
+            <div class="bg-(--description-bg) p-4 text-(--description-text) sm:p-6">
+              <Heading as="h4" style="h3">Decision</Heading>
+            </div>
+            <div class="bg-(--description-bg) p-4 text-(--description-text) sm:p-6">
+              <Heading as="h4" style="h3">Trade-off</Heading>
+            </div>
+          </div>
+
+          {
+            caseStudy.constraintsDecisions.rows.map((row, index) => (
+              <article
+                data-eng-decisions-row={index}
+                class="col-span-full grid grid-cols-subgrid"
+              >
+                <div class="bg-(--image-bg) p-4 text-sm leading-relaxed font-normal text-(--description-text) sm:p-6">
+                  <MarkdownContent value={row.constraint} />
+                </div>
+                <div class="bg-(--image-bg) p-4 text-sm leading-relaxed font-normal text-(--description-text) sm:p-6">
+                  <MarkdownContent value={row.decision} />
+                </div>
+                <div class="bg-(--image-bg) p-4 text-sm leading-relaxed font-normal text-(--description-text) sm:p-6">
+                  <MarkdownContent value={row.tradeOff} />
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
     <section class="bg-(--description-bg) p-6 sm:p-12">
       <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
         Scope
