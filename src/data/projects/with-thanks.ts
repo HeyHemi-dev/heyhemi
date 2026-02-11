@@ -47,7 +47,7 @@ export const withThanksProject = {
     { src: withThanksImage, alt: "Mobile capture" },
   ],
   related: [
-    { label: "Wedding Ready", href: "/projects/weddingready" },
+    { label: "Wedding Ready", href: "/projects/wedding-ready" },
     { label: "Sharesies", href: "/projects/sharesies" },
   ],
 };
