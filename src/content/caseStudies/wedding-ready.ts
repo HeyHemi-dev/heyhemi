@@ -4,7 +4,7 @@ export const weddingReadyCaseStudy = {
   slug: "wedding-ready",
   name: "Wedding Ready",
   excerpt:
-    "A Pinterest-inspired wedding planning platform where each idea links to the local suppliers who can bring it to life.",
+    "Pinterest-inspired wedding planning platform built with Next.js + Supabase, featuring a ranked tile feed (simple scoring algorithm + React Query cache to avoid N+1 save-state fetching) and a multi-step batch upload flow for supplier crediting.",
   heroImage: {
     src: "/wedding-ready/hero.png",
     alt: "Wedding Ready project preview",
@@ -109,9 +109,18 @@ export const weddingReadyCaseStudy = {
         "- Configure each tile in two steps: details -> credit suppliers",
         "- Upload and delete per tile (no draft persistence; safe to lose state on refresh)",
         "",
-        "### Component Hierarchy (Placeholder)",
-        "![Upload component hierarchy](/wedding-ready/upload-component-hierarchy.svg)",
-        "",
+      ].join("\n"),
+    },
+    {
+      type: "image",
+      src: "/wedding-ready/upload-component-hierarchy.svg",
+      alt: "Upload flow component hierarchy diagram",
+      caption:
+        "Component hierarchy for the multi-step supplier tile upload flow.",
+    },
+    {
+      type: "md",
+      text: [
         "### Architecture: Separation of Concerns",
         "The core design goal was clear ownership. Each layer owns a narrow responsibility and does not own the rest:",
         "- `UploadProvider` owns the batch file list, stable `uploadId`s, and object URL lifecycle (add/remove/cleanup). It does not own form state or mutations.",
