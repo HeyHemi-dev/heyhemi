@@ -36,7 +36,7 @@ export const weddingReadyCaseStudy = {
   },
   systemOverview: {
     diagram: {
-      src: "/wedding-ready/feed-fetch-architecture.svg",
+      src: "/wedding-ready/wedding-ready-diagram-feed.png",
       alt: "Wedding Ready feed fetch architecture diagram",
       caption:
         "Feed route architecture: /feed -> API -> operations/model layer -> Postgres, with ranked retrieval via a simple scoring algorithm and client save-state cache pre-hydration.",
