@@ -27,7 +27,7 @@ const techStack = caseStudy.techStack;
 const problem = caseStudy.problemSolution.problem;
 const solution = caseStudy.problemSolution.solution;
 const technicalWhy = caseStudy.problemSolution.technicalWhy;
-const flowNote = caseStudy.systemOverview.flowNote;
+const flowNote = caseStudy.architecture.flowNote;
 
 const scope = [
   "Product design + UX",
@@ -92,9 +92,9 @@ const related = [{ label: "With Thanks", href: "/projects/with-thanks-v4" }];
       </div>
     </section>
 
-    <section class="col-span-full overflow-x-clip bg-(--brand-bg) p-0">
+    <section class="col-span-full bg-(--brand-bg) p-0">
       <div
-        class="project-marquee overflow-x-hidden overflow-y-clip whitespace-nowrap"
+        class="project-marquee overflow-x-clip overflow-y-clip whitespace-nowrap"
         style={`--project-marquee-duration: ${marqueeDuration};`}
         aria-label={`Roles: ${marqueeBase.join(", ")}`}
       >
@@ -155,7 +155,7 @@ const related = [{ label: "With Thanks", href: "/projects/with-thanks-v4" }];
     >
       <Heading as="h3" style="h3"> Tech Stack </Heading>
       <ul
-        class="flex w-full list-disc flex-col gap-3 pl-5 text-sm leading-relaxed font-normal"
+        class="flex w-full flex-col gap-5 text-sm leading-relaxed font-normal"
       >
         {
           techStack.map((item) => (
@@ -170,21 +170,21 @@ const related = [{ label: "With Thanks", href: "/projects/with-thanks-v4" }];
     <section
       class="col-span-full grid gap-px text-(--description-text) sm:col-span-1"
     >
-      <header class="overflow-x-clip bg-(--description-bg) p-6 sm:p-12">
+      <header class="min-w-0 overflow-x-clip bg-(--description-bg) p-6 sm:p-12">
         <Heading
           as="h3"
           style="h3"
-          class="whitespace-nowrap text-xl leading-none font-extrabold tracking-[0.2em] uppercase"
+          class="text-xl leading-none font-extrabold tracking-[0.2em] whitespace-nowrap uppercase"
         >
-          Architecture Diagram
+          Architecture
         </Heading>
       </header>
       <div class="grid gap-10 bg-(--image-bg) p-6 sm:p-12">
         <div class="flex flex-col gap-3">
           <div class="overflow-hidden rounded-4xl bg-(--image-frame-bg)">
             <img
-              src={caseStudy.systemOverview.diagram.src}
-              alt={caseStudy.systemOverview.diagram.alt}
+              src={caseStudy.architecture.diagram.src}
+              alt={caseStudy.architecture.diagram.alt}
               width="1024"
               height="1536"
               class="h-full w-full object-cover"
@@ -193,9 +193,9 @@ const related = [{ label: "With Thanks", href: "/projects/with-thanks-v4" }];
             />
           </div>
           {
-            caseStudy.systemOverview.diagram.caption && (
+            caseStudy.architecture.diagram.caption && (
               <p class="px-4 text-xs leading-relaxed font-normal text-pretty text-(--description-text)/75">
-                {caseStudy.systemOverview.diagram.caption}
+                {caseStudy.architecture.diagram.caption}
               </p>
             )
           }
@@ -212,14 +212,14 @@ const related = [{ label: "With Thanks", href: "/projects/with-thanks-v4" }];
     <section data-eng-decisions class="col-span-full grid gap-px">
       <header
         data-eng-decisions-title
-        class="overflow-x-clip bg-(--description-bg) p-6 text-(--description-text) sm:p-12"
+        class="min-w-0 overflow-x-clip bg-(--description-bg) p-6 text-(--description-text) sm:p-12"
       >
         <Heading
           as="h3"
           style="h3"
-          class="whitespace-nowrap text-xl leading-none font-extrabold tracking-[0.2em] uppercase"
+          class="text-xl leading-none font-extrabold tracking-[0.2em] whitespace-nowrap uppercase"
         >
-          Engineering Decisions
+          Engineering
         </Heading>
       </header>
 
@@ -227,24 +227,30 @@ const related = [{ label: "With Thanks", href: "/projects/with-thanks-v4" }];
         data-eng-decisions-scroll
         class="w-full overflow-x-auto overscroll-x-contain"
       >
-        <div
-          data-eng-decisions-grid
-          class="grid min-w-[56rem] grid-cols-3 gap-px"
-        >
-          <div data-eng-decisions-head class="col-span-full grid grid-cols-subgrid">
-            <div class="bg-(--description-bg) p-6 text-(--description-text) sm:p-12">
+        <div data-eng-decisions-grid class="grid min-w-4xl grid-cols-3 gap-px">
+          <div
+            data-eng-decisions-head
+            class="col-span-full grid grid-cols-subgrid"
+          >
+            <div
+              class="bg-(--description-bg) p-6 text-(--description-text) sm:p-12"
+            >
               <Heading as="h4" style="h3">Constraint</Heading>
             </div>
-            <div class="bg-(--description-bg) p-6 text-(--description-text) sm:p-12">
+            <div
+              class="bg-(--description-bg) p-6 text-(--description-text) sm:p-12"
+            >
               <Heading as="h4" style="h3">Decision</Heading>
             </div>
-            <div class="bg-(--description-bg) p-6 text-(--description-text) sm:p-12">
+            <div
+              class="bg-(--description-bg) p-6 text-(--description-text) sm:p-12"
+            >
               <Heading as="h4" style="h3">Trade-off</Heading>
             </div>
           </div>
 
           {
-            caseStudy.constraintsDecisions.rows.map((row, index) => (
+            caseStudy.engineering.rows.map((row, index) => (
               <article
                 data-eng-decisions-row={index}
                 class="col-span-full grid grid-cols-subgrid"
@@ -263,30 +269,6 @@ const related = [{ label: "With Thanks", href: "/projects/with-thanks-v4" }];
           }
         </div>
       </div>
-    </section>
-    <section class="bg-(--description-bg) p-6 sm:p-12">
-      <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
-        Scope
-      </h3>
-      <ul class="mt-4 space-y-2 text-[0.95rem]">
-        {scope.map((item) => <li>{item}</li>)}
-      </ul>
-    </section>
-    <section class="bg-(--description-bg) p-6 sm:p-12">
-      <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
-        Goals
-      </h3>
-      <ul class="mt-4 space-y-2 text-[0.95rem]">
-        {goals.map((item) => <li>{item}</li>)}
-      </ul>
-    </section>
-    <section class="bg-(--brand-bg) p-6 text-(--brand-text) sm:p-12">
-      <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
-        Outcomes
-      </h3>
-      <ul class="mt-4 space-y-2 text-[0.95rem]">
-        {outcomes.map((item) => <li>{item}</li>)}
-      </ul>
     </section>
 
     <section class="grid gap-px bg-black sm:grid-cols-[1.2fr_0.8fr]">

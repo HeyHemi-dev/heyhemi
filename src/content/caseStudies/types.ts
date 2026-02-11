@@ -62,12 +62,12 @@ export type CaseStudy = CaseStudyPreview & {
     technicalWhy?: RichText;
   };
 
-  systemOverview: {
+  architecture: {
     diagram: ImageAsset;
     flowNote?: RichText;
   };
 
-  constraintsDecisions: {
+  engineering: {
     caption?: string;
     rows: ConstraintDecisionRow[];
   };

@@ -34,7 +34,7 @@ export const weddingReadyCaseStudy = {
     technicalWhy:
       "Fresh, relevant content is the product. That meant investing in a low-friction supplier publishing flow (batch uploads, fast tagging, good defaults) while keeping validation, auth, and data integrity tight end-to-end.",
   },
-  systemOverview: {
+  architecture: {
     diagram: {
       src: "/wedding-ready/wedding-ready-diagram-feed.png",
       alt: "Wedding Ready feed fetch architecture diagram",
@@ -45,12 +45,14 @@ export const weddingReadyCaseStudy = {
       type: "md",
       text: [
         "When `/feed` loads, the API returns tiles ordered by a simple scoring algorithm, excluding private, recently viewed, and already saved tiles, then marks returned tiles as viewed.",
+        "",
         "The score is a weighted blend of recency, quality, and social signals, normalised to 0..1.",
+        "",
         "The client pre-populates save-state cache entries in the same pass to avoid an N+1 per-tile save-state fetch pattern, while still allowing isolated per-tile save/unsave mutation.",
       ].join("\n"),
     },
   },
-  constraintsDecisions: {
+  engineering: {
     rows: [
       {
         constraint: {
@@ -95,21 +97,26 @@ export const weddingReadyCaseStudy = {
     ],
   },
   deepDive: [
+    { type: "h2", text: "Multi-Step Tile Upload (Batch + Supplier Crediting)" },
+    { type: "h3", text: "Problem" },
     {
       type: "md",
       text: [
-        "## Deep Dive: Multi-Step Tile Upload (Batch + Supplier Crediting)",
-        "",
-        "### Problem",
         "Wedding Ready depends on fresh tiles from suppliers, and tiles only work if credited accurately. The original one-step upload could not support proper supplier crediting or a multi-step UX for multiple images. I also wanted to avoid a naive implementation that would cause unnecessary re-renders and make typing/search feel laggy once there are several tiles in the batch.",
-        "",
-        "### What I Built",
-        "A client-side refactor of the supplier upload flow at `/suppliers/[handle]/new`:",
-        "- Batch add up to ~10 images into a single upload session",
-        "- Configure each tile in two steps: details -> credit suppliers",
-        "- Upload and delete per tile (no draft persistence; safe to lose state on refresh)",
-        "",
       ].join("\n"),
+    },
+    { type: "h3", text: "What I Built" },
+    {
+      type: "md",
+      text: "A client-side refactor of the supplier upload flow at `/suppliers/[handle]/new`:",
+    },
+    {
+      type: "ul",
+      items: [
+        "Batch add up to ~10 images into a single upload session",
+        "Configure each tile in two steps: details -> credit suppliers",
+        "Upload and delete per tile (no draft persistence; safe to lose state on refresh)",
+      ],
     },
     {
       type: "image",
@@ -118,27 +125,41 @@ export const weddingReadyCaseStudy = {
       caption:
         "Component hierarchy for the multi-step supplier tile upload flow.",
     },
+    { type: "h3", text: "Architecture: Separation of Concerns" },
     {
       type: "md",
-      text: [
-        "### Architecture: Separation of Concerns",
-        "The core design goal was clear ownership. Each layer owns a narrow responsibility and does not own the rest:",
+      text: "The core design goal was clear ownership. Each layer owns a narrow responsibility and does not own the rest:",
+    },
+    {
+      type: "ul",
+      items: [
         "- `UploadProvider` owns the batch file list, stable `uploadId`s, and object URL lifecycle (add/remove/cleanup). It does not own form state or mutations.",
         "- `UploadPreviewItem` owns one tile's lifecycle: build payload, run the upload mutation, show progress, and remove the item from the batch on success.",
         "- `UploadPreviewForm` owns form state (React Hook Form), step state, and credit rows via `useFieldArray`.",
         "- Each credit row owns its own supplier search input (debounced query + shared cache by search term).",
-        "",
-        "### Performance: Avoiding Unnecessary Re-renders",
-        "I treated re-render strategy as a first-class requirement:",
+      ],
+    },
+    { type: "h3", text: "Performance: Avoiding Unnecessary Re-renders" },
+    {
+      type: "md",
+      text: "I treated re-render strategy as a first-class requirement:",
+    },
+    {
+      type: "ul",
+      items: [
         "- Stable keys: `uploadId` per tile card and `field.id` per credit row keep component identity stable.",
         "- High-frequency actions (typing, supplier search) stay local to a single card/row.",
         "- List-level updates only happen on low-frequency events (add/remove/clear files).",
-        "",
-        "### Outcome",
-        "- Suppliers can batch upload multiple tiles and credit other suppliers without a clunky, error-prone form.",
-        "- Each tile upload is isolated: one failing tile does not break the entire batch.",
-        "- The flow stays extensible as requirements grow (more metadata, moderation, ranking signals).",
-      ].join("\n"),
+      ],
+    },
+    { type: "h3", text: "Outcome" },
+    {
+      type: "ul",
+      items: [
+        "Suppliers can batch upload multiple tiles and credit other suppliers without a clunky, error-prone form.",
+        "Each tile upload is isolated: one failing tile does not break the entire batch.",
+        "The flow stays extensible as requirements grow (more metadata, moderation, ranking signals).",
+      ],
     },
   ],
   outcomes: [
