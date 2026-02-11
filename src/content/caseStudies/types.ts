@@ -29,11 +29,6 @@ export type ConstraintDecisionRow = {
   tradeOff: RichText;
 };
 
-export type ConstraintsDecisionsTable = {
-  caption?: string;
-  rows: ConstraintDecisionRow[];
-};
-
 // These map directly to CSS custom properties used by project sections.
 export type CaseStudyTheme = {
   brandBg: string;
@@ -72,7 +67,10 @@ export type CaseStudy = CaseStudyPreview & {
     flowNote?: string;
   };
 
-  constraintsDecisions: ConstraintsDecisionsTable;
+  constraintsDecisions: {
+    caption?: string;
+    rows: ConstraintDecisionRow[];
+  };
 
   deepDive: ContentBlock[];
 
