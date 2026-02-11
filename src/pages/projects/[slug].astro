@@ -19,22 +19,10 @@ const marqueeBase = caseStudy.role.split("•").map((item) => item.trim());
 const marqueeItems = Array.from({ length: MARQUEE_REPEAT }, () => marqueeBase).flat();
 const marqueeDuration = `${marqueeItems.length * MARQUEE_SECONDS_PER_ITEM}s`;
 
-const techStack = caseStudy.techStack.map((item) =>
-  typeof item === "string" ? item : item.text,
-);
-const problem =
-  typeof caseStudy.problemSolution.problem === "string"
-    ? caseStudy.problemSolution.problem
-    : caseStudy.problemSolution.problem.text;
-const solution =
-  typeof caseStudy.problemSolution.solution === "string"
-    ? caseStudy.problemSolution.solution
-    : caseStudy.problemSolution.solution.text;
-const technicalWhy = caseStudy.problemSolution.technicalWhy
-  ? typeof caseStudy.problemSolution.technicalWhy === "string"
-    ? caseStudy.problemSolution.technicalWhy
-    : caseStudy.problemSolution.technicalWhy.text
-  : null;
+const techStack = caseStudy.techStack;
+const problem = caseStudy.problemSolution.problem;
+const solution = caseStudy.problemSolution.solution;
+const technicalWhy = caseStudy.problemSolution.technicalWhy;
 const flowNote = caseStudy.systemOverview.flowNote;
 
 const scope = [
@@ -137,13 +125,13 @@ const related = [
             <h3 class="font-light text-(--description-text)">
               Problem
             </h3>
-            <p class="text-sm leading-relaxed font-normal">{problem}</p>
+            <MarkdownContent value={problem} />
           </div>
           <div class="flex w-full flex-col gap-5">
             <h3 class="font-light text-(--description-text)">
               Solution
             </h3>
-            <p class="text-sm leading-relaxed font-normal">{solution}</p>
+            <MarkdownContent value={solution} />
           </div>
           {
             technicalWhy && (
@@ -151,7 +139,7 @@ const related = [
                 <h3 class="font-light text-(--description-text)">
                   Technical Why
                 </h3>
-                <p class="text-sm leading-relaxed font-normal">{technicalWhy}</p>
+                <MarkdownContent value={technicalWhy} />
               </div>
             )
           }
@@ -164,7 +152,7 @@ const related = [
         Tech Stack
       </h3>
       <ul class="flex w-full list-disc flex-col gap-3 pl-5 text-sm leading-relaxed font-normal marker:text-(--description-text)">
-        {techStack.map((item) => <li>{item}</li>)}
+        {techStack.map((item) => <li><MarkdownContent value={item} /></li>)}
       </ul>
     </section>
 
