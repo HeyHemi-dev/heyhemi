@@ -1,5 +1,6 @@
 ---
 import Heading from "./Heading.astro";
+import CaseStudyImage from "./CaseStudyImage.astro";
 import MarkdownContent from "./MarkdownContent.astro";
 import type { ContentBlock } from "../content/caseStudies/types";
 
@@ -22,22 +23,7 @@ const { block } = Astro.props as { block: ContentBlock };
       ))}
     </ul>
   ) : block.type === "image" ? (
-    <div class="grid gap-3">
-      <div class="overflow-hidden rounded-4xl bg-(--image-frame-bg)">
-        <img
-          src={block.src}
-          alt={block.alt}
-          class="h-full w-full object-cover"
-          loading="lazy"
-          decoding="async"
-        />
-      </div>
-      {block.caption && (
-        <p class="px-4 text-xs leading-relaxed font-normal text-pretty text-(--description-text)/75">
-          {block.caption}
-        </p>
-      )}
-    </div>
+    <CaseStudyImage src={block.src} alt={block.alt} caption={block.caption} />
   ) : block.type === "callout" ? (
     <aside class="grid gap-3 rounded-4xl bg-(--description-bg)/25 p-4 sm:p-6">
       {block.title && <Heading style="h4">{block.title}</Heading>}

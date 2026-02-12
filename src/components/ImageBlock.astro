@@ -1,0 +1,68 @@
+---
+import { cn } from "../utils/cn";
+
+type InformativeImageProps = {
+  decorative?: false;
+  alt: string;
+};
+
+type DecorativeImageProps = {
+  decorative: true;
+  alt?: "";
+};
+
+type Props = {
+  src: string;
+  caption?: string;
+  class?: string;
+  frameClass?: string;
+  imageClass?: string;
+  captionClass?: string;
+  width?: number | string;
+  height?: number | string;
+  loading?: "eager" | "lazy";
+  decoding?: "sync" | "async" | "auto";
+} & (InformativeImageProps | DecorativeImageProps);
+
+const {
+  src,
+  decorative = false,
+  alt,
+  caption,
+  class: className = "",
+  frameClass = "",
+  imageClass = "",
+  captionClass = "",
+  width,
+  height,
+  loading = "lazy",
+  decoding = "async",
+} = Astro.props as Props;
+---
+
+<figure class={cn("grid gap-3", className)}>
+  <div class={cn("overflow-hidden rounded-4xl bg-(--image-frame-bg)", frameClass)}>
+    <img
+      src={src}
+      alt={decorative ? "" : alt}
+      width={width}
+      height={height}
+      loading={loading}
+      decoding={decoding}
+      aria-hidden={decorative ? "true" : undefined}
+      class={cn("h-full w-full object-cover", imageClass)}
+    />
+  </div>
+  {
+    caption && (
+      <figcaption
+        class={cn(
+          "px-4 text-xs leading-relaxed font-normal text-pretty text-(--description-text)/75",
+          captionClass,
+        )}
+      >
+        {caption}
+      </figcaption>
+    )
+  }
+</figure>

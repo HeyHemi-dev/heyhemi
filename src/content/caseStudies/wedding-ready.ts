@@ -31,8 +31,6 @@ export const weddingReadyCaseStudy = {
       "Couples can easily collect inspiration on Pinterest, but it is hard to turn ideas into a realistic plan with suppliers who can actually deliver locally.",
     solution:
       "Wedding Ready combines inspiration and sourcing: users browse and save vendor-created pins, and each pin links directly to the relevant local suppliers.",
-    technicalWhy:
-      "Fresh, relevant content is the product. That meant investing in a low-friction supplier publishing flow (batch uploads, fast tagging, good defaults) while keeping validation, auth, and data integrity tight end-to-end.",
   },
   architecture: {
     diagram: {
