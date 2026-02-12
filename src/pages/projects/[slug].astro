@@ -32,7 +32,7 @@ const techStack = caseStudy.techStack;
 const problem = caseStudy.problemSolution.problem;
 const solution = caseStudy.problemSolution.solution;
 const technicalWhy = caseStudy.problemSolution.technicalWhy;
-const explanation = caseStudy.architecture.explanation;
+const architecture = caseStudy.architecture;
 const deepDive = caseStudy.deepDive;
 
 const previous = allCaseStudies[index - 1];
@@ -148,34 +148,26 @@ const next = allCaseStudies[index + 1];
       <Panel background="accent" as="header" class="sm:py-6">
         <HeadingBlock style="h2"> Architecture </HeadingBlock>
       </Panel>
-      <div class="grid sm:grid-cols-2">
-        <Panel as="div">
-          <ImageBlock
-            src={caseStudy.architecture.diagram.src}
-            alt={caseStudy.architecture.diagram.alt}
-            caption={caseStudy.architecture.diagram.caption}
-            width={1024}
-            height={1536}
-          />
-        </Panel>
+      <Panel as="div" class="block gap-12 sm:columns-2">
+        <ImageBlock
+          src={architecture.diagram.src}
+          alt={architecture.diagram.alt}
+          caption={architecture.diagram.caption}
+          width={1024}
+          height={1536}
+          class="break-inside-avoid py-2.5"
+        />
 
         {
-          explanation && (
-            <Panel as="div" class="flex flex-col gap-5">
-              <MarkdownBlock value={explanation} />
-            </Panel>
-          )
+          architecture.content?.map((block) => (
+            <ContentBlock block={block} class="break-inside-avoid py-2.5" />
+          ))
         }
-      </div>
+      </Panel>
     </section>
 
-    <section data-eng-decisions class="col-span-full grid gap-px">
-      <Panel
-        background="accent"
-        as="header"
-        class="sm:py-6"
-        data-eng-decisions-title
-      >
+    <section class="col-span-full grid gap-px">
+      <Panel background="accent" as="header" class="sm:py-6">
         <HeadingBlock style="h2"> Engineering </HeadingBlock>
       </Panel>
 
@@ -221,19 +213,16 @@ const next = allCaseStudies[index + 1];
       </div>
     </section>
     <section class="col-span-full grid min-w-0 gap-px">
-      <Panel as="header" background="accent" class="grid gap-3 sm:py-6">
+      <Panel background="accent" as="header" class="grid gap-3 sm:py-6">
         <HeadingBlock as="p" style="h4">Deep Dive</HeadingBlock>
         <HeadingBlock style="h2">
           {deepDive.title}
         </HeadingBlock>
       </Panel>
-      <Panel as="div" class="grid gap-5 sm:block sm:columns-2 sm:gap-24">
+      <Panel as="div" class="block gap-12 sm:columns-2">
         {
           deepDive.content.map((block) => (
-            <ContentBlock
-              block={block}
-              class="sm:break-inside-avoid sm:py-2.5"
-            />
+            <ContentBlock block={block} class="break-inside-avoid py-2.5" />
           ))
         }
       </Panel>

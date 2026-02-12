@@ -37,16 +37,18 @@ export const weddingReadyCaseStudy = {
       alt: "Feed route architecture. /feed -> API -> operations/model layer -> Postgres, with ranked retrieval via a simple scoring algorithm and client save-state cache pre-hydration.",
       caption: "Typical full-stack architecture; /feed route.",
     },
-    explanation: {
-      type: "md",
-      text: [
-        "When `/feed` loads, the API returns tiles ordered by a simple scoring algorithm, excluding private, recently viewed, and already saved tiles, then marks returned tiles as viewed.",
-        "",
-        "The score is a weighted blend of recency, quality, and social signals, normalised to 0..1.",
-        "",
-        "The client pre-populates save-state cache entries in the same pass to avoid an N+1 per-tile save-state fetch pattern, while still allowing isolated per-tile save/unsave mutation.",
-      ].join("\n"),
-    },
+    content: [
+      {
+        type: "md",
+        text: [
+          "When `/feed` loads, the API returns tiles ordered by a simple scoring algorithm, excluding private, recently viewed, and already saved tiles, then marks returned tiles as viewed.",
+          "",
+          "The score is a weighted blend of recency, quality, and social signals, normalised to 0..1.",
+          "",
+          "The client pre-populates save-state cache entries in the same pass to avoid an N+1 per-tile save-state fetch pattern, while still allowing isolated per-tile save/unsave mutation.",
+        ].join("\n"),
+      },
+    ],
   },
   engineering: {
     rows: [
@@ -83,7 +85,7 @@ export const weddingReadyCaseStudy = {
       {
         constraint: {
           type: "md",
-          text: "**Limited developer capacity** (single builder)",
+          text: "**Limited developer capacity** (solo founder/developer)",
         },
         decision:
           "Adopted a serverless-first architecture (Next.js on Vercel + Supabase) to reduce infrastructure overhead, simplify scaling, and enable scale-to-zero.",

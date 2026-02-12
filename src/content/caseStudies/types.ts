@@ -64,7 +64,7 @@ export type CaseStudy = CaseStudyPreview & {
 
   architecture: {
     diagram: ImageAsset;
-    explanation?: RichText;
+    content?: ContentBlock[];
   };
 
   engineering: {
