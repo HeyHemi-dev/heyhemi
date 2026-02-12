@@ -58,60 +58,48 @@ const next = allCaseStudies[index + 1];
       </a>
     </section>
 
-    <section
-      class="col-span-full grid aspect-2/1 max-h-[25dvh] w-full place-items-center bg-(--brand-bg) p-6 sm:p-12"
+    <Panel
+      as="section"
+      background="primary"
+      class="col-span-full grid aspect-2/1 max-h-[25dvh] w-full place-items-center"
     >
       <div class="grid max-w-2xl gap-6 text-center">
-        <h1
+        <Heading
+          as="h1"
+          style="h4"
           class="text-[0.82rem] font-medium tracking-[0.35em] text-(--brand-text) uppercase"
         >
           {caseStudy.name}
-        </h1>
+        </Heading>
         <p
           class="text-sm leading-relaxed font-normal text-balance text-(--brand-text)/75"
         >
           {caseStudy.oneLiner}
         </p>
       </div>
-    </section>
+    </Panel>
 
-    <section class="col-span-full bg-(--brand-bg) p-0">
+    <Panel as="section" background="primary" class="col-span-full p-0">
       <div
-        class="project-marquee overflow-x-clip overflow-y-clip whitespace-nowrap"
+        class="project-marquee overflow-x-clip overflow-y-clip text-4xl leading-none font-extrabold tracking-[0.2em] whitespace-nowrap text-(--description-bg) uppercase"
         style={`--project-marquee-duration: ${marqueeDuration};`}
+        role="img"
         aria-label={`Roles: ${marqueeBase.join(", ")}`}
       >
-        <div class="project-marquee-track flex w-max p-0">
-          <div
-            class="project-marquee-group flex items-start gap-x-10"
-            aria-hidden="true"
-          >
-            {
-              marqueeItems.map((item) => (
-                <p class="text-4xl leading-none font-extrabold tracking-[0.2em] text-(--description-bg) uppercase">
-                  {item}
-                </p>
-              ))
-            }
+        <div class="project-marquee-track flex w-max p-0" aria-hidden="true">
+          <div class="project-marquee-group flex items-start gap-x-10">
+            {marqueeItems.map((item) => <p>{item}</p>)}
           </div>
-          <div
-            class="project-marquee-group flex items-start gap-x-10"
-            aria-hidden="true"
-          >
-            {
-              marqueeItems.map((item) => (
-                <p class="text-4xl leading-none font-extrabold tracking-[0.2em] text-(--brand-text) uppercase">
-                  {item}
-                </p>
-              ))
-            }
+          <div class="project-marquee-group flex items-start gap-x-10">
+            {marqueeItems.map((item) => <p>{item}</p>)}
           </div>
         </div>
       </div>
-    </section>
+    </Panel>
 
-    <section
-      class="flex flex-col gap-10 bg-(--image-bg) p-6 text-sm leading-relaxed font-normal text-(--description-text) sm:col-span-1 sm:row-span-2 sm:p-12"
+    <Panel
+      as="section"
+      class="flex flex-col gap-10 p-6 text-sm leading-relaxed font-normal"
     >
       <div class="flex w-full flex-col gap-5">
         <Heading as="h3" style="h3"> Problem </Heading>
@@ -131,12 +119,10 @@ const next = allCaseStudies[index + 1];
           </div>
         )
       }
-    </section>
+    </Panel>
 
-    <section
-      class="flex flex-col gap-5 bg-(--image-bg) p-6 text-(--description-text) sm:p-12"
-    >
-      <Heading as="h3" style="h3"> Tech Stack </Heading>
+    <Panel as="section" class="flex flex-col gap-5">
+      <Heading as="h3" style="h3">Tech Stack</Heading>
       <ul
         class="flex w-full flex-col gap-5 text-sm leading-relaxed font-normal"
       >
@@ -148,7 +134,7 @@ const next = allCaseStudies[index + 1];
           ))
         }
       </ul>
-    </section>
+    </Panel>
 
     <section
       class="col-span-full grid gap-px text-(--description-text) sm:col-span-1"
@@ -156,7 +142,7 @@ const next = allCaseStudies[index + 1];
       <Panel background="accent" as="header">
         <Heading style="h2"> Architecture </Heading>
       </Panel>
-      <Panel class="grid gap-10">
+      <Panel as="div" class="grid gap-10">
         <div class="flex flex-col gap-3">
           <div class="overflow-hidden rounded-4xl bg-(--image-frame-bg)">
             <img
@@ -196,36 +182,36 @@ const next = allCaseStudies[index + 1];
         class="w-full overflow-x-auto overscroll-x-contain"
       >
         <div data-eng-decisions-grid class="grid min-w-4xl grid-cols-3 gap-px">
-          <div
+          <header
             data-eng-decisions-head
             class="col-span-full grid grid-cols-subgrid"
           >
-            <Panel background="secondary">
+            <Panel background="secondary" as="div">
               <Heading as="p" style="h4">Constraint</Heading>
             </Panel>
-            <Panel background="secondary">
+            <Panel background="secondary" as="div">
               <Heading as="p" style="h4">Decision</Heading>
             </Panel>
-            <Panel background="secondary">
+            <Panel background="secondary" as="div">
               <Heading as="p" style="h4">Trade-off</Heading>
             </Panel>
-          </div>
+          </header>
 
           {
             caseStudy.engineering.rows.map((row, index) => (
               <article
                 data-eng-decisions-row={index}
-                class="col-span-full grid grid-cols-subgrid"
+                class="col-span-full grid grid-cols-subgrid text-sm leading-relaxed font-normal"
               >
-                <div class="bg-(--image-bg) p-6 text-sm leading-relaxed font-normal text-(--description-text) sm:p-12">
+                <Panel as="div">
                   <MarkdownContent value={row.constraint} />
-                </div>
-                <div class="bg-(--image-bg) p-6 text-sm leading-relaxed font-normal text-(--description-text) sm:p-12">
+                </Panel>
+                <Panel as="div">
                   <MarkdownContent value={row.decision} />
-                </div>
-                <div class="bg-(--image-bg) p-6 text-sm leading-relaxed font-normal text-(--description-text) sm:p-12">
+                </Panel>
+                <Panel as="div">
                   <MarkdownContent value={row.tradeOff} />
-                </div>
+                </Panel>
               </article>
             ))
           }
@@ -239,22 +225,23 @@ const next = allCaseStudies[index + 1];
           {deepDive.title}
         </Heading>
       </Panel>
-      <Panel class="grid gap-5 text-sm leading-relaxed font-normal">
+      <Panel as="div" class="grid gap-5 text-sm leading-relaxed font-normal">
         {deepDive.content.map((block) => <ContentBlock block={block} />)}
       </Panel>
     </section>
 
     <section class="col-span-full grid grid-cols-subgrid gap-px">
-      <Panel background="accent" class="col-span-full">
+      <Panel background="accent" as="header" class="col-span-full">
         <Heading style="h2"> More projects </Heading>
       </Panel>
       <Panel
         background="secondary"
+        as="div"
         class="grid aspect-square place-items-center"
       >
         {
           previous && (
-            <a href={previous.slug}>
+            <a href={`/projects/${previous.slug}`}>
               <Heading as="h3" style="h1" aria-label="Previous project">
                 &lt;-
               </Heading>
@@ -266,11 +253,12 @@ const next = allCaseStudies[index + 1];
 
       <Panel
         background="secondary"
+        as="div"
         class="grid aspect-square place-items-center"
       >
         {
           next && (
-            <a href={next.slug}>
+            <a href={`/projects/${next.slug}`}>
               <Heading as="h3" style="h1" aria-label="Next project">
                 -&gt;
               </Heading>
