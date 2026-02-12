@@ -16,9 +16,8 @@ export type CodeLanguage = "ts" | "js" | "sql" | "bash" | "txt";
 export type ContentBlock =
   | MarkdownText
   | { type: "h3"; text: string }
-  | { type: "p"; text: string }
-  | { type: "ul"; items: string[] }
-  | { type: "callout"; title?: string; text: string }
+  | { type: "ul"; items: RichText[] }
+  | { type: "callout"; title?: string; content: RichText }
   | { type: "code"; language: CodeLanguage; code: string }
   | ({ type: "image" } & ImageAsset);
 

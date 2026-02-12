@@ -9,12 +9,15 @@ import { allCaseStudies } from "../../content/caseStudies";
 import type { CaseStudy } from "../../content/caseStudies/types";
 
 export const getStaticPaths = (() =>
-  allCaseStudies.map((caseStudy) => ({
+  allCaseStudies.map((caseStudy, index) => ({
     params: { slug: caseStudy.slug },
-    props: { caseStudy },
+    props: { caseStudy, index },
   }))) satisfies GetStaticPaths;
 
-const { caseStudy } = Astro.props as { caseStudy: CaseStudy };
+const { caseStudy, index } = Astro.props as {
+  caseStudy: CaseStudy;
+  index: number;
+};
 
 const MARQUEE_REPEAT = 100;
 const MARQUEE_SECONDS_PER_ITEM = 3;
@@ -31,33 +34,10 @@ const solution = caseStudy.problemSolution.solution;
 const technicalWhy = caseStudy.problemSolution.technicalWhy;
 const flowNote = caseStudy.architecture.flowNote;
 const deepDive = caseStudy.deepDive;
+const outcomes = caseStudy.outcomes;
 
-const scope = [
-  "Product design + UX",
-  "Full-stack implementation (Next.js + Supabase)",
-  "Ranked feed retrieval + save-state cache pre-hydration",
-  "Supplier publishing: multi-step batch uploads + supplier crediting",
-  "End-to-end validation + access control",
-];
-
-const goals = [
-  "Turn inspiration into real purchases via local supplier links",
-  "Keep supplier publishing friction low while maintaining data integrity",
-  "Keep the feed fast and relevant with clear, testable ranking signals",
-  "Maintain a type-safe, layered architecture across client/server/DB",
-];
-
-const outcomes = caseStudy.outcomes.map((item) =>
-  typeof item === "string" ? item : item.text,
-);
-
-const links = [
-  { label: "Docs", href: "/wedding-ready/README.md" },
-  { label: "Tech stack", href: "/wedding-ready/tech-stack.md" },
-  { label: "Architecture", href: "/wedding-ready/architecture.md" },
-].filter((item) => item.href);
-
-const related = [{ label: "With Thanks", href: "/projects/with-thanks-v4" }];
+const previous = allCaseStudies[index - 1];
+const next = allCaseStudies[index + 1];
 ---
 
 <ProjectLayout title={`${caseStudy.name} — Case Study`}>
@@ -173,10 +153,10 @@ const related = [{ label: "With Thanks", href: "/projects/with-thanks-v4" }];
     <section
       class="col-span-full grid gap-px text-(--description-text) sm:col-span-1"
     >
-      <header class="min-w-0 overflow-x-clip bg-(--description-bg) p-6 sm:p-12">
+      <Panel background="accent" as="header">
         <Heading style="h2"> Architecture </Heading>
-      </header>
-      <div class="grid gap-10 bg-(--image-bg) p-6 sm:p-12">
+      </Panel>
+      <Panel class="grid gap-10">
         <div class="flex flex-col gap-3">
           <div class="overflow-hidden rounded-4xl bg-(--image-frame-bg)">
             <img
@@ -204,15 +184,12 @@ const related = [{ label: "With Thanks", href: "/projects/with-thanks-v4" }];
             </div>
           )
         }
-      </div>
+      </Panel>
     </section>
     <section data-eng-decisions class="col-span-full grid gap-px">
-      <header
-        data-eng-decisions-title
-        class="min-w-0 overflow-x-clip bg-(--description-bg) p-6 text-(--description-text) sm:p-12"
-      >
+      <Panel background="accent" as="header" data-eng-decisions-title>
         <Heading style="h2"> Engineering </Heading>
-      </header>
+      </Panel>
 
       <div
         data-eng-decisions-scroll
@@ -223,19 +200,15 @@ const related = [{ label: "With Thanks", href: "/projects/with-thanks-v4" }];
             data-eng-decisions-head
             class="col-span-full grid grid-cols-subgrid"
           >
-            <Panel background="default">
+            <Panel background="secondary">
               <Heading as="p" style="h4">Constraint</Heading>
             </Panel>
-            <div
-              class="bg-(--description-bg) p-6 text-(--description-text) sm:p-12"
-            >
+            <Panel background="secondary">
               <Heading as="p" style="h4">Decision</Heading>
-            </div>
-            <div
-              class="bg-(--description-bg) p-6 text-(--description-text) sm:p-12"
-            >
+            </Panel>
+            <Panel background="secondary">
               <Heading as="p" style="h4">Trade-off</Heading>
-            </div>
+            </Panel>
           </div>
 
           {
@@ -260,58 +233,52 @@ const related = [{ label: "With Thanks", href: "/projects/with-thanks-v4" }];
       </div>
     </section>
     <section class="col-span-full grid min-w-0 gap-px">
-      <Panel
-        as="header"
-        background="accent"
-        class="grid min-w-0 gap-3 overflow-x-clip text-(--description-text)"
-      >
+      <Panel as="header" background="accent" class="grid gap-3">
         <Heading as="p" style="h4">Deep Dive</Heading>
         <Heading style="h2">
           {deepDive.title}
         </Heading>
       </Panel>
-      <Panel
-        background="secondary"
-        class="grid gap-8 text-sm leading-relaxed font-normal text-(--description-text)"
-      >
+      <Panel class="grid gap-5 text-sm leading-relaxed font-normal">
         {deepDive.content.map((block) => <ContentBlock block={block} />)}
       </Panel>
     </section>
 
-    <section class="grid gap-px bg-black sm:grid-cols-[1.2fr_0.8fr]">
-      <div class="bg-(--description-bg) p-6 sm:p-12">
-        <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
-          Links
-        </h3>
-        <div
-          class="mt-4 flex flex-wrap gap-4 text-[0.9rem] font-semibold tracking-[0.18em] uppercase"
-        >
-          {
-            links.map((link) => (
-              <a class="underline underline-offset-4" href={link.href}>
-                {link.label}
-              </a>
-            ))
-          }
-        </div>
-      </div>
-      <div class="bg-(--description-bg) p-6 sm:p-12">
-        <h3 class="text-[0.8rem] font-semibold tracking-[0.22em] uppercase">
-          Next
-        </h3>
-        <div class="mt-4 space-y-3">
-          {
-            related.map((item) => (
-              <a
-                href={item.href}
-                class="block text-[0.95rem] font-semibold tracking-[0.18em] uppercase underline underline-offset-4"
-              >
-                {item.label}
-              </a>
-            ))
-          }
-        </div>
-      </div>
+    <section class="col-span-full grid grid-cols-subgrid gap-px">
+      <Panel background="accent" class="col-span-full">
+        <Heading style="h2"> More projects </Heading>
+      </Panel>
+      <Panel
+        background="secondary"
+        class="grid aspect-square place-items-center"
+      >
+        {
+          previous && (
+            <a href={previous.slug}>
+              <Heading as="h3" style="h1" aria-label="Previous project">
+                &lt;-
+              </Heading>
+              {previous.name}
+            </a>
+          )
+        }
+      </Panel>
+
+      <Panel
+        background="secondary"
+        class="grid aspect-square place-items-center"
+      >
+        {
+          next && (
+            <a href={next.slug}>
+              <Heading as="h3" style="h1" aria-label="Next project">
+                -&gt;
+              </Heading>
+              {next.name}
+            </a>
+          )
+        }
+      </Panel>
     </section>
   </main>
 </ProjectLayout>
