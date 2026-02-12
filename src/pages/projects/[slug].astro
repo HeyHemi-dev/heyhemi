@@ -1,6 +1,6 @@
 ---
 import type { GetStaticPaths } from "astro";
-import CaseStudyImage from "../../components/CaseStudyImage.astro";
+import ImageBlock from "../../components/ImageBlock.astro";
 import ContentBlock from "../../components/ContentBlock.astro";
 import Heading from "../../components/Heading.astro";
 import MarkdownContent from "../../components/MarkdownContent.astro";
@@ -144,7 +144,7 @@ const next = allCaseStudies[index + 1];
         <Heading style="h2"> Architecture </Heading>
       </Panel>
       <Panel as="div" class="grid gap-10">
-        <CaseStudyImage
+        <ImageBlock
           src={caseStudy.architecture.diagram.src}
           alt={caseStudy.architecture.diagram.alt}
           caption={caseStudy.architecture.diagram.caption}
