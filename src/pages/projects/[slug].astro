@@ -2,8 +2,8 @@
 import type { GetStaticPaths } from "astro";
 import ImageBlock from "../../components/ImageBlock.astro";
 import ContentBlock from "../../components/ContentBlock.astro";
-import Heading from "../../components/Heading.astro";
-import MarkdownContent from "../../components/MarkdownContent.astro";
+import HeadingBlock from "../../components/HeadingBlock.astro";
+import MarkdownBlock from "../../components/MarkdownBlock.astro";
 import Panel from "../../components/Panel.astro";
 import ProjectLayout from "../../layouts/ProjectLayout.astro";
 import { allCaseStudies } from "../../content/caseStudies";
@@ -65,13 +65,13 @@ const next = allCaseStudies[index + 1];
       class="col-span-full grid aspect-2/1 max-h-[25dvh] w-full place-items-center"
     >
       <div class="grid max-w-2xl gap-6 text-center">
-        <Heading
+        <HeadingBlock
           as="h1"
           style="h4"
           class="text-[0.82rem] font-medium tracking-[0.35em] text-(--brand-text) uppercase"
         >
           {caseStudy.name}
-        </Heading>
+        </HeadingBlock>
         <p
           class="text-sm leading-relaxed font-normal text-balance text-(--brand-text)/75"
         >
@@ -103,34 +103,34 @@ const next = allCaseStudies[index + 1];
       class="flex flex-col gap-10 p-6 text-sm leading-relaxed font-normal"
     >
       <div class="flex w-full flex-col gap-5">
-        <Heading as="h3" style="h3"> Problem </Heading>
-        <MarkdownContent value={problem} />
+        <HeadingBlock as="h3" style="h3"> Problem </HeadingBlock>
+        <MarkdownBlock value={problem} />
       </div>
       <div class="flex w-full flex-col gap-5">
-        <Heading as="h3" style="h3"> Solution </Heading>
-        <MarkdownContent value={solution} />
+        <HeadingBlock as="h3" style="h3"> Solution </HeadingBlock>
+        <MarkdownBlock value={solution} />
       </div>
       {
         technicalWhy && (
           <div class="flex w-full flex-col gap-5">
-            <Heading as="h3" style="h3">
+            <HeadingBlock as="h3" style="h3">
               Technical Why
-            </Heading>
-            <MarkdownContent value={technicalWhy} />
+            </HeadingBlock>
+            <MarkdownBlock value={technicalWhy} />
           </div>
         )
       }
     </Panel>
 
     <Panel as="section" class="flex flex-col gap-5">
-      <Heading as="h3" style="h3">Tech Stack</Heading>
+      <HeadingBlock as="h3" style="h3">Tech Stack</HeadingBlock>
       <ul
         class="flex w-full flex-col gap-5 text-sm leading-relaxed font-normal"
       >
         {
           techStack.map((item) => (
             <li>
-              <MarkdownContent value={item} />
+              <MarkdownBlock value={item} />
             </li>
           ))
         }
@@ -141,7 +141,7 @@ const next = allCaseStudies[index + 1];
       class="col-span-full grid gap-px text-(--description-text) sm:col-span-1"
     >
       <Panel background="accent" as="header">
-        <Heading style="h2"> Architecture </Heading>
+        <HeadingBlock style="h2"> Architecture </HeadingBlock>
       </Panel>
       <Panel as="div" class="grid gap-10">
         <ImageBlock
@@ -154,7 +154,7 @@ const next = allCaseStudies[index + 1];
         {
           flowNote && (
             <div class="grid gap-5 text-sm leading-relaxed font-normal">
-              <MarkdownContent value={flowNote} />
+              <MarkdownBlock value={flowNote} />
             </div>
           )
         }
@@ -162,7 +162,7 @@ const next = allCaseStudies[index + 1];
     </section>
     <section data-eng-decisions class="col-span-full grid gap-px">
       <Panel background="accent" as="header" data-eng-decisions-title>
-        <Heading style="h2"> Engineering </Heading>
+        <HeadingBlock style="h2"> Engineering </HeadingBlock>
       </Panel>
 
       <div
@@ -175,13 +175,13 @@ const next = allCaseStudies[index + 1];
             class="col-span-full grid grid-cols-subgrid"
           >
             <Panel background="secondary" as="div">
-              <Heading as="p" style="h4">Constraint</Heading>
+              <HeadingBlock as="p" style="h4">Constraint</HeadingBlock>
             </Panel>
             <Panel background="secondary" as="div">
-              <Heading as="p" style="h4">Decision</Heading>
+              <HeadingBlock as="p" style="h4">Decision</HeadingBlock>
             </Panel>
             <Panel background="secondary" as="div">
-              <Heading as="p" style="h4">Trade-off</Heading>
+              <HeadingBlock as="p" style="h4">Trade-off</HeadingBlock>
             </Panel>
           </header>
 
@@ -192,13 +192,13 @@ const next = allCaseStudies[index + 1];
                 class="col-span-full grid grid-cols-subgrid text-sm leading-relaxed font-normal"
               >
                 <Panel as="div">
-                  <MarkdownContent value={row.constraint} />
+                  <MarkdownBlock value={row.constraint} />
                 </Panel>
                 <Panel as="div">
-                  <MarkdownContent value={row.decision} />
+                  <MarkdownBlock value={row.decision} />
                 </Panel>
                 <Panel as="div">
-                  <MarkdownContent value={row.tradeOff} />
+                  <MarkdownBlock value={row.tradeOff} />
                 </Panel>
               </article>
             ))
@@ -208,10 +208,10 @@ const next = allCaseStudies[index + 1];
     </section>
     <section class="col-span-full grid min-w-0 gap-px">
       <Panel as="header" background="accent" class="grid gap-3">
-        <Heading as="p" style="h4">Deep Dive</Heading>
-        <Heading style="h2">
+        <HeadingBlock as="p" style="h4">Deep Dive</HeadingBlock>
+        <HeadingBlock style="h2">
           {deepDive.title}
-        </Heading>
+        </HeadingBlock>
       </Panel>
       <Panel as="div" class="grid gap-5 text-sm leading-relaxed font-normal">
         {deepDive.content.map((block) => <ContentBlock block={block} />)}
@@ -220,7 +220,7 @@ const next = allCaseStudies[index + 1];
 
     <section class="col-span-full grid grid-cols-subgrid gap-px">
       <Panel background="accent" as="header" class="col-span-full">
-        <Heading style="h2"> More projects </Heading>
+        <HeadingBlock style="h2"> More projects </HeadingBlock>
       </Panel>
       <Panel
         background="secondary"
@@ -230,9 +230,9 @@ const next = allCaseStudies[index + 1];
         {
           previous && (
             <a href={`/projects/${previous.slug}`}>
-              <Heading as="h3" style="h1" aria-label="Previous project">
+              <HeadingBlock as="h3" style="h1" aria-label="Previous project">
                 &lt;-
-              </Heading>
+              </HeadingBlock>
               {previous.name}
             </a>
           )
@@ -247,9 +247,9 @@ const next = allCaseStudies[index + 1];
         {
           next && (
             <a href={`/projects/${next.slug}`}>
-              <Heading as="h3" style="h1" aria-label="Next project">
+              <HeadingBlock as="h3" style="h1" aria-label="Next project">
                 -&gt;
-              </Heading>
+              </HeadingBlock>
               {next.name}
             </a>
           )

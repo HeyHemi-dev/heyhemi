@@ -1,7 +1,7 @@
 ---
-import Heading from "./Heading.astro";
+import HeadingBlock from "./HeadingBlock.astro";
 import ImageBlock from "./ImageBlock.astro";
-import MarkdownContent from "./MarkdownContent.astro";
+import MarkdownBlock from "./MarkdownBlock.astro";
 import type { ContentBlock } from "../content/caseStudies/types";
 
 const { block } = Astro.props as { block: ContentBlock };
@@ -9,16 +9,16 @@ const { block } = Astro.props as { block: ContentBlock };
 
 {
   block.type === "h3" ? (
-    <Heading as="h3" style="h3" class="mt-4 first:mt-0">
+    <HeadingBlock as="h3" style="h3" class="mt-4 first:mt-0">
       {block.text}
-    </Heading>
+    </HeadingBlock>
   ) : block.type === "md" ? (
-    <MarkdownContent value={block} class="" />
+    <MarkdownBlock value={block} class="" />
   ) : block.type === "ul" ? (
     <ul class="flex list-disc flex-col gap-3 pl-5">
       {block.items.map((item) => (
         <li>
-          <MarkdownContent value={item} />
+          <MarkdownBlock value={item} />
         </li>
       ))}
     </ul>
@@ -26,8 +26,8 @@ const { block } = Astro.props as { block: ContentBlock };
     <ImageBlock src={block.src} alt={block.alt} caption={block.caption} />
   ) : block.type === "callout" ? (
     <aside class="grid gap-3 rounded-4xl bg-(--description-bg)/25 p-4 sm:p-6">
-      {block.title && <Heading style="h4">{block.title}</Heading>}
-      <MarkdownContent value={block.content} />
+      {block.title && <HeadingBlock style="h4">{block.title}</HeadingBlock>}
+      <MarkdownBlock value={block.content} />
     </aside>
   ) : (
     <pre class="overflow-x-auto rounded-4xl bg-black/10 p-4 text-sm sm:p-6">
