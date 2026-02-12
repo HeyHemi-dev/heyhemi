@@ -6,8 +6,8 @@ import HeadingBlock from "../../components/HeadingBlock.astro";
 import MarkdownBlock from "../../components/MarkdownBlock.astro";
 import Panel from "../../components/Panel.astro";
 import ProjectLayout from "../../layouts/ProjectLayout.astro";
-import { allCaseStudies } from "../../content/caseStudies";
-import type { CaseStudy } from "../../content/caseStudies/types";
+import { allCaseStudies } from "../../content/projects";
+import type { CaseStudy } from "../../content/projects/types";
 
 export const getStaticPaths = (() =>
   allCaseStudies.map((caseStudy, index) => ({

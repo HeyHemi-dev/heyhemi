@@ -1,7 +1,7 @@
 import { unified } from "unified";
 import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
-import type { RichText } from "../content/caseStudies/types";
+import type { RichText } from "../content/projects/types";
 
 export type MarkdownValueInput = RichText;
 

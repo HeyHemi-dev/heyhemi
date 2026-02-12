@@ -74,4 +74,4 @@ Add concise outcome statements that describe impact.
 
 ## Data Model Reference
 
-See `src/content/caseStudies/types.ts` for the source-of-truth schema.
+See `src/content/projects/types.ts` for the source-of-truth schema.
