@@ -10,23 +10,17 @@ type Props = {
   style: HeadingStyle;
 };
 
-const {
-  as,
-  class: className = "",
-  style,
-  ...rest
-} = Astro.props as Props;
+const { as, class: className = "", style, ...rest } = Astro.props as Props;
 
-const styleClasses: Record<HeadingStyle, string> = {
+const styleClasses = {
   h1: "text-6xl leading-none font-thin",
-  h2: "text-3xl leading-tight font-thin",
-  h3: "text-base leading-snug font-light",
-  h4: "text-sm font-medium tracking-[0.35em] uppercase",
-};
+  h2: "text-xl leading-tight font-extrabold tracking-widest uppercase",
+  h3: "text-lg leading-snug font-light",
+  h4: "text-xs font-bold tracking-widest uppercase",
+} satisfies Record<HeadingStyle, string>;
 
 const Tag = as ?? style;
-const effectiveStyle = style;
-const classes = cn(styleClasses[effectiveStyle], className);
+const classes = cn(styleClasses[style], className);
 ---
 
 <Tag class={classes} {...rest}>

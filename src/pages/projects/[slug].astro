@@ -174,13 +174,7 @@ const related = [{ label: "With Thanks", href: "/projects/with-thanks-v4" }];
       class="col-span-full grid gap-px text-(--description-text) sm:col-span-1"
     >
       <header class="min-w-0 overflow-x-clip bg-(--description-bg) p-6 sm:p-12">
-        <Heading
-          as="h3"
-          style="h3"
-          class="text-xl leading-none font-extrabold tracking-[0.2em] whitespace-nowrap uppercase"
-        >
-          Architecture
-        </Heading>
+        <Heading style="h2"> Architecture </Heading>
       </header>
       <div class="grid gap-10 bg-(--image-bg) p-6 sm:p-12">
         <div class="flex flex-col gap-3">
@@ -217,13 +211,7 @@ const related = [{ label: "With Thanks", href: "/projects/with-thanks-v4" }];
         data-eng-decisions-title
         class="min-w-0 overflow-x-clip bg-(--description-bg) p-6 text-(--description-text) sm:p-12"
       >
-        <Heading
-          as="h3"
-          style="h3"
-          class="text-xl leading-none font-extrabold tracking-[0.2em] whitespace-nowrap uppercase"
-        >
-          Engineering
-        </Heading>
+        <Heading style="h2"> Engineering </Heading>
       </header>
 
       <div
@@ -235,20 +223,18 @@ const related = [{ label: "With Thanks", href: "/projects/with-thanks-v4" }];
             data-eng-decisions-head
             class="col-span-full grid grid-cols-subgrid"
           >
+            <Panel background="default">
+              <Heading as="p" style="h4">Constraint</Heading>
+            </Panel>
             <div
               class="bg-(--description-bg) p-6 text-(--description-text) sm:p-12"
             >
-              <Heading as="h4" style="h3">Constraint</Heading>
+              <Heading as="p" style="h4">Decision</Heading>
             </div>
             <div
               class="bg-(--description-bg) p-6 text-(--description-text) sm:p-12"
             >
-              <Heading as="h4" style="h3">Decision</Heading>
-            </div>
-            <div
-              class="bg-(--description-bg) p-6 text-(--description-text) sm:p-12"
-            >
-              <Heading as="h4" style="h3">Trade-off</Heading>
+              <Heading as="p" style="h4">Trade-off</Heading>
             </div>
           </div>
 
@@ -273,17 +259,14 @@ const related = [{ label: "With Thanks", href: "/projects/with-thanks-v4" }];
         </div>
       </div>
     </section>
-    <section class="col-span-full min-w-0 grid gap-px">
+    <section class="col-span-full grid min-w-0 gap-px">
       <Panel
         as="header"
         background="accent"
-        class="min-w-0 overflow-x-clip text-(--description-text)"
+        class="grid min-w-0 gap-3 overflow-x-clip text-(--description-text)"
       >
-        <Heading
-          as="h3"
-          style="h3"
-          class="text-xl leading-none font-extrabold tracking-[0.2em] whitespace-nowrap uppercase"
-        >
+        <Heading as="p" style="h4">Deep Dive</Heading>
+        <Heading style="h2">
           {deepDive.title}
         </Heading>
       </Panel>
@@ -291,11 +274,7 @@ const related = [{ label: "With Thanks", href: "/projects/with-thanks-v4" }];
         background="secondary"
         class="grid gap-8 text-sm leading-relaxed font-normal text-(--description-text)"
       >
-        {
-          deepDive.content.map((block) => (
-            <ContentBlock block={block} />
-          ))
-        }
+        {deepDive.content.map((block) => <ContentBlock block={block} />)}
       </Panel>
     </section>
 
