@@ -46,7 +46,7 @@ const next = allCaseStudies[index + 1];
     id={caseStudy.slug}
     class="grid min-h-screen grid-cols-2 gap-px bg-black"
   >
-    <section
+    <nav
       class="col-span-full bg-(--image-bg) px-6 py-0"
       style="height: var(--nav-height);"
     >
@@ -55,9 +55,9 @@ const next = allCaseStudies[index + 1];
         class="inline-flex h-full items-center gap-2 text-[0.7rem] font-semibold tracking-[0.22em] text-(--description-text) uppercase"
       >
         <span aria-hidden="true">←</span>
-        Home
+        <HeadingBlock as="p" style="h4">Home</HeadingBlock>
       </a>
-    </section>
+    </nav>
 
     <Panel
       as="section"
@@ -103,17 +103,17 @@ const next = allCaseStudies[index + 1];
       class="flex flex-col gap-10 p-6 text-sm leading-relaxed font-normal"
     >
       <div class="flex w-full flex-col gap-5">
-        <HeadingBlock as="h3" style="h3"> Problem </HeadingBlock>
+        <HeadingBlock as="h2" style="h3"> Problem </HeadingBlock>
         <MarkdownBlock value={problem} />
       </div>
       <div class="flex w-full flex-col gap-5">
-        <HeadingBlock as="h3" style="h3"> Solution </HeadingBlock>
+        <HeadingBlock as="h2" style="h3"> Solution </HeadingBlock>
         <MarkdownBlock value={solution} />
       </div>
       {
         technicalWhy && (
           <div class="flex w-full flex-col gap-5">
-            <HeadingBlock as="h3" style="h3">
+            <HeadingBlock as="h2" style="h3">
               Technical Why
             </HeadingBlock>
             <MarkdownBlock value={technicalWhy} />
@@ -123,7 +123,7 @@ const next = allCaseStudies[index + 1];
     </Panel>
 
     <Panel as="section" class="flex flex-col gap-5">
-      <HeadingBlock as="h3" style="h3">Tech Stack</HeadingBlock>
+      <HeadingBlock as="h2" style="h3">Tech Stack</HeadingBlock>
       <ul
         class="flex w-full flex-col gap-5 text-sm leading-relaxed font-normal"
       >
@@ -218,9 +218,12 @@ const next = allCaseStudies[index + 1];
       </Panel>
     </section>
 
-    <section class="col-span-full grid grid-cols-subgrid gap-px">
+    <nav
+      class="col-span-full grid grid-cols-subgrid gap-px"
+      aria-labelledby="more-projects-heading"
+    >
       <Panel background="accent" as="header" class="col-span-full">
-        <HeadingBlock style="h2"> More projects </HeadingBlock>
+        <HeadingBlock style="h2">More projects</HeadingBlock>
       </Panel>
       <Panel
         background="secondary"
@@ -229,11 +232,14 @@ const next = allCaseStudies[index + 1];
       >
         {
           previous && (
-            <a href={`/projects/${previous.slug}`}>
-              <HeadingBlock as="h3" style="h1" aria-label="Previous project">
+            <a
+              href={`/projects/${previous.slug}`}
+              aria-label={`Previous project: ${previous.name}`}
+            >
+              <p class="text-6xl leading-none font-thin" aria-hidden="true">
                 &lt;-
-              </HeadingBlock>
-              {previous.name}
+              </p>
+              <p>{previous.name}</p>
             </a>
           )
         }
@@ -246,15 +252,20 @@ const next = allCaseStudies[index + 1];
       >
         {
           next && (
-            <a href={`/projects/${next.slug}`}>
-              <HeadingBlock as="h3" style="h1" aria-label="Next project">
+            <a
+              href={`/projects/${next.slug}`}
+              aria-label={`Next project: ${next.name}`}
+            >
+              <p class="text-6xl leading-none font-thin" aria-hidden="true">
                 -&gt;
+              </p>
+              <HeadingBlock as="p" style="h4">
+                {next.name}
               </HeadingBlock>
-              {next.name}
             </a>
           )
         }
       </Panel>
-    </section>
+    </nav>
   </main>
 </ProjectLayout>
