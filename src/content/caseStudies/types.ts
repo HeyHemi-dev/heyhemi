@@ -50,8 +50,10 @@ export type CaseStudyPreview = {
 };
 
 export type CaseStudy = CaseStudyPreview & {
+  liveUrl?: string;
+  repoUrl?: string;
   oneLiner: string;
-  role: string;
+  roles: string[];
   techStack: RichText[];
 
   problemSolution: {
@@ -62,7 +64,7 @@ export type CaseStudy = CaseStudyPreview & {
 
   architecture: {
     diagram: ImageAsset;
-    flowNote?: RichText;
+    explanation?: RichText;
   };
 
   engineering: {
@@ -74,8 +76,6 @@ export type CaseStudy = CaseStudyPreview & {
     title: string;
     content: ContentBlock[];
   };
-
-  outcomes: RichText[];
 
   // Per-case-study design tokens that can be emitted as CSS variables.
   theme: CaseStudyTheme;

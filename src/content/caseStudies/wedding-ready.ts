@@ -9,9 +9,8 @@ export const weddingReadyCaseStudy = {
     src: "/wedding-ready/hero.png",
     alt: "Wedding Ready project preview",
   },
-  oneLiner:
-    "Convert wedding inspiration into real purchases by connecting couples with local suppliers.",
-  role: "Founder • Product Design • Full-Stack Development",
+  oneLiner: "Wedding inspiration you can actually book.",
+  roles: ["Founder", "Full-Stack Dev", "Design"],
   techStack: [
     "Next.js (App Router)",
     "React",
@@ -36,9 +35,9 @@ export const weddingReadyCaseStudy = {
     diagram: {
       src: "/wedding-ready/wedding-ready-diagram-feed.png",
       alt: "Feed route architecture. /feed -> API -> operations/model layer -> Postgres, with ranked retrieval via a simple scoring algorithm and client save-state cache pre-hydration.",
-      caption: "The /feed route architecture.",
+      caption: "Typical full-stack architecture; /feed route.",
     },
-    flowNote: {
+    explanation: {
       type: "md",
       text: [
         "When `/feed` loads, the API returns tiles ordered by a simple scoring algorithm, excluding private, recently viewed, and already saved tiles, then marks returned tiles as viewed.",
@@ -116,6 +115,7 @@ export const weddingReadyCaseStudy = {
           "Upload and delete per tile (no draft persistence; safe to lose state on refresh)",
         ],
       },
+      { type: "h3", text: "Separation of Concerns" },
       {
         type: "image",
         src: "/wedding-ready/upload-component-hierarchy.svg",
@@ -123,7 +123,7 @@ export const weddingReadyCaseStudy = {
         caption:
           "Component hierarchy for the multi-step supplier tile upload flow.",
       },
-      { type: "h3", text: "Separation of Concerns" },
+
       {
         type: "md",
         text: "The core design goal was clear ownership. Each layer owns a narrow responsibility and does not own the rest:",
@@ -170,12 +170,7 @@ export const weddingReadyCaseStudy = {
       },
     ],
   },
-  outcomes: [
-    "Built a full-stack, server-rendered Next.js application with clear boundaries between UI, server actions/handlers, operations, and data access.",
-    "Implemented secure, validated file uploads integrated with authentication and database record creation.",
-    "Designed a multi-stage supplier publishing workflow with batch uploads and fast supplier tagging to support fresh content and accurate pin-to-supplier links.",
-    "Defined a layered, type-safe data model using Drizzle + Zod to keep DB, server, and client in sync without leaking unsafe fields.",
-  ],
+
   theme: {
     brandBg: "#005e52",
     indexBg: "#e6f72a",

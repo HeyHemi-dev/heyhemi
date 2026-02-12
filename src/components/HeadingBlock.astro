@@ -20,7 +20,7 @@ const styleClasses = {
 } satisfies Record<HeadingStyle, string>;
 
 const Tag = as ?? style;
-const classes = cn(styleClasses[style], className);
+const classes = cn(styleClasses[style], "text-balance", className);
 ---
 
 <Tag class={classes} {...rest}>
