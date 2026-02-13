@@ -166,7 +166,7 @@ export const weddingReadyCaseStudy = {
 
       {
         type: "md",
-        text: "The core design goal was clear ownership. Each layer owns a narrow responsibility and does not own the rest:",
+        text: "The core design goal was clear ownership. Each layer owns a narrow responsibility:",
       },
       {
         type: "ul",
