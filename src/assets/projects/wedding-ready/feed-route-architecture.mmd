@@ -1,0 +1,10 @@
+flowchart TB
+  User["Authenticated user"] --> FeedPage["/feed page"]
+  FeedPage --> FeedClient["FeedClient + useFeed hook"]
+  FeedClient --> FeedApi["GET /api/feed?pageSize=n"]
+  FeedApi --> FeedOps["tileOperations.getFeedForUser"]
+  FeedOps --> FeedModel["tileModel.getFeed"]
+  FeedModel --> DB[("Postgres: tiles, viewed_tiles, saved_tiles")]
+  FeedApi --> FeedClient
+  FeedClient --> Cache["React Query cache\nsetTilesSaveStateCache"]
+  Cache --> TileCards["Tile cards + save buttons"]

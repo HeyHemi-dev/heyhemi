@@ -1,0 +1,22 @@
+flowchart TB
+  subgraph Page [NewSupplierTilePage]
+    subgraph Provider [UploadProvider]
+      subgraph Layout [UploadLayout]
+        subgraph WhenEmpty ["when files.length === 0"]
+          Dropzone[UploadDropzone]
+        end
+        subgraph WhenFiles ["when files.length > 0"]
+          subgraph List [UploadPreviewList]
+            subgraph Item [UploadPreviewItem]
+              subgraph Form [UploadPreviewForm]
+                Step1[Add Details]
+                subgraph Step2 [Credit Suppliers]
+                  Rows[Credit rows]
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
