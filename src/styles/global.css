@@ -108,7 +108,7 @@ body {
     animation-play-state: paused;
   }
 
-  .panel--hero .panel__image:hover .hero-skills-track {
+  #hero [data-hero-skills-viewport]:hover .hero-skills-track {
     animation-play-state: running;
   }
 }
