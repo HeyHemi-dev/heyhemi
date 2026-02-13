@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 865.3999999999999 584" width="865.3999999999999" height="584" style="--bg:#1a1b26;--fg:#a9b1d6;--line:#3d59a1;--accent:#7aa2f7;--muted:#565f89;background:var(--bg)">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+  text { font-family: 'Inter', system-ui, sans-serif; }
+  svg {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 30%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="arrowhead" markerWidth="8" markerHeight="4.8" refX="8" refY="2.4" orient="auto">
+    <polygon points="0 0, 8 2.4, 0 4.8" fill="var(--_arrow)" />
+  </marker>
+  <marker id="arrowhead-start" markerWidth="8" markerHeight="4.8" refX="0" refY="2.4" orient="auto-start-reverse">
+    <polygon points="8 0, 0 2.4, 8 4.8" fill="var(--_arrow)" />
+  </marker>
+</defs>
+<rect x="40" y="40" width="765.4" height="504" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+<rect x="40" y="40" width="765.4" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+<text x="52" y="54" dy="0.35em" font-size="12" font-weight="600" fill="var(--_text-sec)">NewSupplierTilePage</text>
+<rect x="60" y="76" width="725.4" height="448" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+<rect x="60" y="76" width="725.4" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+<text x="72" y="90" dy="0.35em" font-size="12" font-weight="600" fill="var(--_text-sec)">UploadProvider</text>
+<rect x="80" y="112" width="685.4" height="392" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+<rect x="80" y="112" width="685.4" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+<text x="92" y="126" dy="0.35em" font-size="12" font-weight="600" fill="var(--_text-sec)">UploadLayout</text>
+<rect x="100" y="212" width="176.0999999999999" height="272" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+<rect x="100" y="212" width="176.0999999999999" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+<text x="112" y="226" dy="0.35em" font-size="12" font-weight="600" fill="var(--_text-sec)">&quot;when files.length === 0&quot;</text>
+<rect x="296.1" y="148" width="449.29999999999995" height="336" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+<rect x="296.1" y="148" width="449.29999999999995" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+<text x="308.1" y="162" dy="0.35em" font-size="12" font-weight="600" fill="var(--_text-sec)">&quot;when files.length &gt; 0&quot;</text>
+<rect x="316.1" y="184" width="409.29999999999995" height="280" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+<rect x="316.1" y="184" width="409.29999999999995" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+<text x="328.1" y="198" dy="0.35em" font-size="12" font-weight="600" fill="var(--_text-sec)">UploadPreviewList</text>
+<rect x="336.1" y="220" width="369.29999999999995" height="224" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+<rect x="336.1" y="220" width="369.29999999999995" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+<text x="348.1" y="234" dy="0.35em" font-size="12" font-weight="600" fill="var(--_text-sec)">UploadPreviewItem</text>
+<rect x="356.1" y="256" width="329.29999999999995" height="168" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+<rect x="356.1" y="256" width="329.29999999999995" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+<text x="368.1" y="270" dy="0.35em" font-size="12" font-weight="600" fill="var(--_text-sec)">UploadPreviewForm</text>
+<rect x="510.75000000000006" y="292" width="154.64999999999998" height="112" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+<rect x="510.75000000000006" y="292" width="154.64999999999998" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+<text x="522.75" y="306" dy="0.35em" font-size="12" font-weight="600" fill="var(--_text-sec)">Credit Suppliers</text>
+<rect x="121.99999999999994" y="348" width="132.10000000000002" height="36" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<rect x="378.09999999999997" y="348" width="110.65" height="36" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<rect x="532.7499999999999" y="348" width="110.65" height="36" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<text x="188.04999999999995" y="366" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">UploadDropzone</text>
+<text x="433.42499999999995" y="366" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">Add Details</text>
+<text x="588.0749999999999" y="366" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">Credit rows</text>
+</svg>
