@@ -12,18 +12,21 @@ export const weddingReadyCaseStudy = {
   oneLiner: "Wedding inspiration you can actually book.",
   roles: ["Founder", "Full-Stack Dev", "Design"],
   techStack: [
-    "Next.js (App Router)",
-    "React",
-    "TypeScript",
-    "TanStack Query",
-    "React Hook Form",
-    "Zod",
-    "Supabase (Postgres + Auth)",
-    "Drizzle ORM",
-    "UploadThing",
-    "Tailwind CSS",
-    "shadcn/ui",
-    "Vitest",
+    { type: "md", text: "**Next.js (App Router)** - React/Node w SSR/RSC" },
+    { type: "md", text: "**TanStack Query**" },
+    { type: "md", text: "**React Hook Form**" },
+    { type: "md", text: "**Zod**" },
+    { type: "md", text: "**Vercel** - deployment branching and cron" },
+    { type: "md", text: "**GitHub Actions** - CI/CD" },
+    { type: "md", text: "**Supabase** - integrated Postgres + Auth" },
+    { type: "md", text: "**Drizzle ORM** - DAL, no client-side queries" },
+    { type: "md", text: "**UploadThing** - S3 wrapper" },
+    { type: "md", text: "**Tailwind CSS**" },
+    { type: "md", text: "**Shadcn/ui**" },
+    {
+      type: "md",
+      text: "**Vitest** - integration testing w 'scene' pattern",
+    },
   ],
   problemSolution: {
     problem:
@@ -35,60 +38,93 @@ export const weddingReadyCaseStudy = {
     diagram: {
       src: "/wedding-ready/wedding-ready-diagram-feed.png",
       alt: "Feed route architecture. /feed -> API -> operations/model layer -> Postgres, with ranked retrieval via a simple scoring algorithm and client save-state cache pre-hydration.",
-      caption: "Typical full-stack architecture; /feed route.",
+      caption: "Wedding Ready full-stack architecture; /feed route.",
     },
     content: [
       {
         type: "md",
-        text: [
-          "When `/feed` loads, the API returns tiles ordered by a simple scoring algorithm, excluding private, recently viewed, and already saved tiles, then marks returned tiles as viewed.",
-          "",
-          "The score is a weighted blend of recency, quality, and social signals, normalised to 0..1.",
-          "",
-          "The client pre-populates save-state cache entries in the same pass to avoid an N+1 per-tile save-state fetch pattern, while still allowing isolated per-tile save/unsave mutation.",
-        ].join("\n"),
+        text: "I adopted a layered architecture for Wedding Ready so each part of the stack owns a clear concern: UI rendering, request boundaries, business operations, and data access/definitions. The goal is to keep ownership boundaries explicit as the product grew, so complexity stays manageable.",
+      },
+      {
+        type: "md",
+        text: "The `/feed` route shows how this works in practice:",
+      },
+      {
+        type: "ul",
+        items: [
+          {
+            type: "md",
+            text: "**Proxy gate:** JWT-based authentication is enforced before route rendering, so unauthenticated users are redirected before the server loads `/feed`.",
+          },
+          {
+            type: "md",
+            text: "**Server-rendered route shell (RSC):** `/feed` uses React Server Components, handles Suspense and error boundaries around the interactive feed client.",
+          },
+          {
+            type: "md",
+            text: "**UI components (tiles):** tile cards stay presentational ('dumb') with no business logic, so they remain reusable across different contexts.",
+          },
+          {
+            type: "md",
+            text: "**Client boundary (feed client + `useFeed`):** owns interaction state and client orchestration, not business rules.",
+          },
+          {
+            type: "md",
+            text: "**Server boundary (API endpoint):** handles authentication, request parsing/validation, and invokes operations.",
+          },
+          {
+            type: "md",
+            text: "**Operations layer:** enforces authorization and maps raw model/database outputs into safe response DTOs before returning data to the client.",
+          },
+          {
+            type: "md",
+            text: "**Data layer:** performs typed retrieval using precomputed ranking signals (recency, quality, social) and updates delivery/view state so duplicate tiles are not returned to the feed.",
+          },
+        ],
+      },
+      {
+        type: "md",
+        text: "This separation lets me change ranking logic or retrieval strategy without rewriting UI components. On `/feed`, the API returns ranked tiles and the client pre-hydrates save-state cache entries in the same pass, avoiding N+1 per-tile save-state requests while preserving isolated save/unsave mutations.",
       },
     ],
   },
   engineering: {
     rows: [
       {
-        constraint: {
+        constraint:
+          "Supporting multiple authentication providers (email/password + Google OAuth)",
+        decision: {
           type: "md",
-          text: "**Supporting multiple authentication providers** (email/password + Google OAuth)",
+          text: "**Separated authentication from onboarding** and introduced an explicit onboarded state with routing guards.",
         },
-        decision:
-          "Refactored authentication architecture to separate authentication from onboarding; introduced an explicit onboarded state with routing guards.",
         tradeOff:
           "Significant rework of signup and routing logic; added complexity around user state management (authenticated but not onboarded vs authenticated and onboarded).",
       },
       {
-        constraint: {
+        constraint:
+          "Multi-entity ownership and team access (one user -> multiple suppliers; one supplier -> multiple staff)",
+        decision: {
           type: "md",
-          text: "**Multi-entity ownership and team access** (one user -> multiple suppliers; one supplier -> multiple staff)",
+          text: "**Designed a relational ownership model** with team-based access, scoped roles, and permissions.",
         },
-        decision:
-          "Designed a relational database schema supporting 1-to-many ownership and team-based access with scoped roles and permissions.",
         tradeOff:
           "Increased schema and validation complexity; required strict backend access controls and careful UI context switching.",
       },
       {
-        constraint: {
+        constraint: "Need for stable, low-downtime deployments as a solo dev",
+        decision: {
           type: "md",
-          text: "**Need for stable, low-downtime deployments as a solo dev**",
+          text: "**Built a safer release pipeline** with Vitest, integration tests, preview deployments, and automated database migrations in GitHub Actions.",
         },
-        decision:
-          "Established a structured testing environment (Vitest), added integration tests, used preview deployments, and automated database migrations via GitHub Actions before production releases.",
         tradeOff:
           "Significant upfront engineering time to build deployment and testing discipline; payoff was safer releases, higher confidence, and faster long-term iteration.",
       },
       {
-        constraint: {
+        constraint: "Limited developer capacity (solo founder/developer)",
+        decision: {
           type: "md",
-          text: "**Limited developer capacity** (solo founder/developer)",
+          text: "**Adopted a serverless-first stack** (Next.js on Vercel + Supabase) to offload infrastructure, and used **TypeScript end-to-end** to reduce context switching and ship faster across frontend and backend.",
         },
-        decision:
-          "Adopted a serverless-first architecture (Next.js on Vercel + Supabase) to reduce infrastructure overhead, simplify scaling, and enable scale-to-zero.",
         tradeOff:
           "Tighter vendor coupling; performance considerations in serverless environments (e.g. cold starts); reduced low-level infrastructure control.",
       },
@@ -101,7 +137,7 @@ export const weddingReadyCaseStudy = {
       {
         type: "md",
         text: [
-          "Wedding Ready depends on fresh tiles from suppliers, and tiles only work if credited accurately. The original one-step upload could not support proper supplier crediting or a multi-step UX for multiple images. I also wanted to avoid a naive implementation that would cause unnecessary re-renders and make typing/search feel laggy once there are several tiles in the batch.",
+          "Wedding Ready depends on fresh tiles from suppliers, and tiles are most useful if credited accurately. The original one-step upload had a poor UX for supplier crediting and would be a bottleneck for planned features. I also wanted to avoid a naive implementation that would cause unnecessary re-renders and make typing/search feel laggy once there are several tiles in the batch.",
         ].join("\n"),
       },
       { type: "h3", text: "What I Built" },
@@ -113,7 +149,7 @@ export const weddingReadyCaseStudy = {
         type: "ul",
         items: [
           "Batch add up to ~10 images into a single upload session",
-          "Configure each tile in two steps: details -> credit suppliers",
+          "Configure each tile in two steps: basic details -> crediting suppliers",
           "Upload and delete per tile (no draft persistence; safe to lose state on refresh)",
         ],
       },
