@@ -37,6 +37,7 @@ const deepDive = caseStudy.deepDive;
 
 const previous = allCaseStudies[index - 1];
 const next = allCaseStudies[index + 1];
+const hasProjectLinks = Boolean(caseStudy.liveUrl || caseStudy.repoUrl);
 ---
 
 <ProjectLayout title={`${caseStudy.name} — Case Study`}>
@@ -62,19 +63,53 @@ const next = allCaseStudies[index + 1];
       background="primary"
       class="col-span-full grid aspect-2/1 max-h-[25dvh] w-full place-items-center"
     >
-      <div class="grid max-w-2xl gap-6 text-center">
-        <HeadingBlock
-          as="h1"
-          style="h4"
-          class="text-[0.82rem] font-medium tracking-[0.35em] text-(--brand-text) uppercase"
-        >
-          {caseStudy.name}
-        </HeadingBlock>
-        <p
-          class="text-sm leading-relaxed font-normal text-balance text-(--brand-text)/75"
-        >
-          {caseStudy.oneLiner}
-        </p>
+      <div class="grid max-w-2xl gap-12 text-center">
+        <div class="grid gap-6">
+          <HeadingBlock
+            as="h1"
+            style="h4"
+            class="text-[0.82rem] font-medium tracking-[0.35em] text-(--brand-text) uppercase"
+          >
+            {caseStudy.name}
+          </HeadingBlock>
+          <p
+            class="text-sm leading-relaxed font-normal text-balance text-(--brand-text)/75"
+          >
+            {caseStudy.oneLiner}
+          </p>
+        </div>
+        {
+          hasProjectLinks && (
+            <div class="flex items-center justify-center gap-3 text-xs tracking-[0.16em] text-(--brand-text) uppercase">
+              {caseStudy.liveUrl && (
+                <a
+                  href={caseStudy.liveUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  class="inline underline decoration-1 underline-offset-3 hover:opacity-80"
+                >
+                  View Live ↗
+                </a>
+              )}
+              {caseStudy.liveUrl && caseStudy.repoUrl && (
+                <span
+                  aria-hidden="true"
+                  class="h-3.5 w-px bg-(--brand-text)/45"
+                />
+              )}
+              {caseStudy.repoUrl && (
+                <a
+                  href={caseStudy.repoUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  class="inline underline decoration-1 underline-offset-3 hover:opacity-80"
+                >
+                  GitHub ↗
+                </a>
+              )}
+            </div>
+          )
+        }
       </div>
     </Panel>
 
