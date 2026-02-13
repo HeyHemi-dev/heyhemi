@@ -1,0 +1,4 @@
+interface:
+  display_name: "Frontend Design"
+  short_description: "Distinctive, production-grade frontend design"
+  default_prompt: "Design and implement a distinctive, production-grade frontend interface that avoids generic AI aesthetics."

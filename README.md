@@ -1,43 +1,29 @@
-# Astro Starter Kit: Minimal
+# heyhemi.dev
 
-```sh
-pnpm create astro@latest -- --template minimal
-```
+Personal portfolio site focused on software engineering work, project depth, and hiring signal.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Purpose
 
-## 🚀 Project Structure
+This repository supports a portfolio used alongside a CV to show details that do not fit in a resume.
 
-Inside of your Astro project, you'll see the following folders and files:
+- technical depth
+- engineering judgment
+- product thinking
+- end-to-end delivery capability
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+Primary outcome: help hiring managers and technical interviewers quickly assess real-world engineering ability.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Commands
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+All commands run from the repository root:
 
-Any static assets, like images, can be placed in the `public/` directory.
+| Command | Action |
+| :-- | :-- |
+| `pnpm install` | Install dependencies |
+| `pnpm dev` | Start local dev server |
+| `pnpm build` | Build production output |
+| `pnpm preview` | Preview production build locally |
 
-## 🧞 Commands
+## Documentation
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- `docs/case-study-context.md`: Case study structure, writing rules, and schema notes.

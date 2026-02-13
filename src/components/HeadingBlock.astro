@@ -1,0 +1,28 @@
+---
+import { cn } from "../utils/cn";
+
+type HeadingTag = "h1" | "h2" | "h3" | "h4" | "p";
+type HeadingStyle = "h1" | "h2" | "h3" | "h4";
+
+type Props = {
+  as?: HeadingTag;
+  class?: string;
+  style: HeadingStyle;
+};
+
+const { as, class: className = "", style, ...rest } = Astro.props as Props;
+
+const styleClasses = {
+  h1: "text-6xl leading-none font-thin",
+  h2: "text-xl leading-tight font-extrabold tracking-widest uppercase",
+  h3: "text-lg leading-snug font-light",
+  h4: "text-xs font-bold tracking-widest uppercase",
+} satisfies Record<HeadingStyle, string>;
+
+const Tag = as ?? style;
+const classes = cn(styleClasses[style], "text-balance", className);
+---
+
+<Tag class={classes} {...rest}>
+  <slot />
+</Tag>

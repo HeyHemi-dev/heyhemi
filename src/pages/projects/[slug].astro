@@ -1,0 +1,281 @@
+---
+import type { GetStaticPaths } from "astro";
+import ImageBlock from "../../components/ImageBlock.astro";
+import ContentBlock from "../../components/ContentBlock.astro";
+import HeadingBlock from "../../components/HeadingBlock.astro";
+import MarkdownBlock from "../../components/MarkdownBlock.astro";
+import Panel from "../../components/Panel.astro";
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+import { allCaseStudies } from "../../content/projects";
+import type { CaseStudy } from "../../content/projects/types";
+
+export const getStaticPaths = (() =>
+  allCaseStudies.map((caseStudy, index) => ({
+    params: { slug: caseStudy.slug },
+    props: { caseStudy, index },
+  }))) satisfies GetStaticPaths;
+
+const { caseStudy, index } = Astro.props as {
+  caseStudy: CaseStudy;
+  index: number;
+};
+
+const MARQUEE_REPEAT = 100;
+const MARQUEE_SECONDS_PER_ITEM = 3;
+const marqueeItems = Array.from(
+  { length: MARQUEE_REPEAT },
+  () => caseStudy.roles,
+).flat();
+const marqueeDuration = `${marqueeItems.length * MARQUEE_SECONDS_PER_ITEM}s`;
+
+const techStack = caseStudy.techStack;
+const problem = caseStudy.problemSolution.problem;
+const solution = caseStudy.problemSolution.solution;
+const technicalWhy = caseStudy.problemSolution.technicalWhy;
+const architecture = caseStudy.architecture;
+const deepDive = caseStudy.deepDive;
+
+const previous = allCaseStudies[index - 1];
+const next = allCaseStudies[index + 1];
+---
+
+<ProjectLayout title={`${caseStudy.name} — Case Study`}>
+  <main
+    id={caseStudy.slug}
+    class="grid min-h-screen grid-cols-2 gap-px bg-black"
+  >
+    <nav
+      class="col-span-full bg-(--image-bg) px-6 py-0"
+      style="height: var(--nav-height);"
+    >
+      <a
+        href="/"
+        class="inline-flex h-full items-center gap-2 text-[0.7rem] font-semibold tracking-[0.22em] text-(--description-text) uppercase"
+      >
+        <span aria-hidden="true">←</span>
+        <HeadingBlock as="p" style="h4">Home</HeadingBlock>
+      </a>
+    </nav>
+
+    <Panel
+      as="section"
+      background="primary"
+      class="col-span-full grid aspect-2/1 max-h-[25dvh] w-full place-items-center"
+    >
+      <div class="grid max-w-2xl gap-6 text-center">
+        <HeadingBlock
+          as="h1"
+          style="h4"
+          class="text-[0.82rem] font-medium tracking-[0.35em] text-(--brand-text) uppercase"
+        >
+          {caseStudy.name}
+        </HeadingBlock>
+        <p
+          class="text-sm leading-relaxed font-normal text-balance text-(--brand-text)/75"
+        >
+          {caseStudy.oneLiner}
+        </p>
+      </div>
+    </Panel>
+
+    <Panel as="section" background="primary" class="col-span-full p-0 sm:p-0">
+      <div
+        class="project-marquee overflow-x-clip overflow-y-clip text-4xl leading-none font-extrabold tracking-widest whitespace-nowrap text-(--description-bg) uppercase"
+        style={`--project-marquee-duration: ${marqueeDuration};`}
+        role="img"
+        aria-label={`Roles: ${caseStudy.roles.join(", ")}`}
+      >
+        <div class="project-marquee-track flex w-max p-0" aria-hidden="true">
+          <div class="project-marquee-group flex items-start gap-x-10">
+            {
+              marqueeItems.map((item) => (
+                <>
+                  <p>{item}</p>
+                  <span>•</span>
+                </>
+              ))
+            }
+          </div>
+          <div class="project-marquee-group flex items-start gap-x-10">
+            {
+              marqueeItems.map((item) => (
+                <>
+                  <p>{item}</p>
+                  <span>•</span>
+                </>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </Panel>
+
+    <Panel as="section" class="flex flex-col gap-10 p-6">
+      <div class="flex w-full flex-col gap-5">
+        <HeadingBlock as="h2" style="h3"> Problem </HeadingBlock>
+        <MarkdownBlock value={problem} />
+      </div>
+      <div class="flex w-full flex-col gap-5">
+        <HeadingBlock as="h2" style="h3"> Solution </HeadingBlock>
+        <MarkdownBlock value={solution} />
+      </div>
+      {
+        technicalWhy && (
+          <div class="flex w-full flex-col gap-5">
+            <HeadingBlock as="h2" style="h3">
+              Technical Why
+            </HeadingBlock>
+            <MarkdownBlock value={technicalWhy} />
+          </div>
+        )
+      }
+    </Panel>
+
+    <Panel as="section" class="flex flex-col gap-5">
+      <HeadingBlock as="h2" style="h3">Tech Stack</HeadingBlock>
+      <ul class="flex w-full flex-col gap-5">
+        {
+          techStack.map((item) => (
+            <li>
+              <MarkdownBlock value={item} />
+            </li>
+          ))
+        }
+      </ul>
+    </Panel>
+
+    <section class="col-span-full grid gap-px">
+      <Panel background="accent" as="header" class="sm:py-6">
+        <HeadingBlock style="h2"> Architecture </HeadingBlock>
+      </Panel>
+      <Panel as="div" class="block gap-12 sm:columns-2">
+        <ImageBlock
+          src={architecture.diagram.src}
+          alt={architecture.diagram.alt}
+          caption={architecture.diagram.caption}
+          width={1024}
+          height={1536}
+          class="break-inside-avoid py-2.5"
+        />
+
+        {
+          architecture.content?.map((block) => (
+            <ContentBlock block={block} class="break-inside-avoid py-2.5" />
+          ))
+        }
+      </Panel>
+    </section>
+
+    <section class="col-span-full grid gap-px">
+      <Panel background="accent" as="header" class="sm:py-6">
+        <HeadingBlock style="h2"> Engineering </HeadingBlock>
+      </Panel>
+
+      <div
+        data-eng-decisions-scroll
+        class="w-full overflow-x-auto overscroll-x-contain"
+      >
+        <div data-eng-decisions-grid class="grid min-w-4xl grid-cols-3 gap-px">
+          <header
+            data-eng-decisions-head
+            class="col-span-full grid grid-cols-subgrid"
+          >
+            <Panel background="secondary" as="div" class="sm:py-6">
+              <HeadingBlock as="p" style="h4">Constraint</HeadingBlock>
+            </Panel>
+            <Panel background="secondary" as="div" class="sm:py-6">
+              <HeadingBlock as="p" style="h4">Decision</HeadingBlock>
+            </Panel>
+            <Panel background="secondary" as="div" class="sm:py-6">
+              <HeadingBlock as="p" style="h4">Trade-off</HeadingBlock>
+            </Panel>
+          </header>
+
+          {
+            caseStudy.engineering.rows.map((row, index) => (
+              <article
+                data-eng-decisions-row={index}
+                class="col-span-full grid grid-cols-subgrid"
+              >
+                <Panel as="div" class="sm:py-6">
+                  <MarkdownBlock value={row.constraint} />
+                </Panel>
+                <Panel as="div" class="sm:py-6">
+                  <MarkdownBlock value={row.decision} />
+                </Panel>
+                <Panel as="div" class="sm:py-6">
+                  <MarkdownBlock value={row.tradeOff} />
+                </Panel>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+    <section class="col-span-full grid min-w-0 gap-px">
+      <Panel background="accent" as="header" class="grid gap-3 sm:py-6">
+        <HeadingBlock as="p" style="h4">Deep Dive</HeadingBlock>
+        <HeadingBlock style="h2">
+          {deepDive.title}
+        </HeadingBlock>
+      </Panel>
+      <Panel as="div" class="block gap-12 sm:columns-2">
+        {
+          deepDive.content.map((block) => (
+            <ContentBlock block={block} class="break-inside-avoid py-2.5" />
+          ))
+        }
+      </Panel>
+    </section>
+
+    <nav
+      class="col-span-full grid grid-cols-subgrid gap-px"
+      aria-labelledby="more-projects-heading"
+    >
+      <Panel background="accent" as="header" class="col-span-full sm:py-6">
+        <HeadingBlock style="h2">More projects</HeadingBlock>
+      </Panel>
+      <Panel
+        background="secondary"
+        as="div"
+        class="grid aspect-square max-h-[25dvh] w-full place-items-center"
+      >
+        {
+          previous && (
+            <a
+              href={`/projects/${previous.slug}`}
+              aria-label={`Previous project: ${previous.name}`}
+            >
+              <p class="text-6xl leading-none font-thin" aria-hidden="true">
+                &lt;-
+              </p>
+              <p>{previous.name}</p>
+            </a>
+          )
+        }
+      </Panel>
+
+      <Panel
+        background="secondary"
+        as="div"
+        class="grid aspect-square max-h-[25dvh] w-full place-items-center"
+      >
+        {
+          next && (
+            <a
+              href={`/projects/${next.slug}`}
+              aria-label={`Next project: ${next.name}`}
+            >
+              <p class="text-6xl leading-none font-thin" aria-hidden="true">
+                -&gt;
+              </p>
+              <HeadingBlock as="p" style="h4">
+                {next.name}
+              </HeadingBlock>
+            </a>
+          )
+        }
+      </Panel>
+    </nav>
+  </main>
+</ProjectLayout>

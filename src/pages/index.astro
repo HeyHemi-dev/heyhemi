@@ -1,17 +1,219 @@
 ---
-import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import NavLink from "../components/NavLink.astro";
+import withThanksImage from "../assets/projects/with_thanks_comp.png";
+import weddingReadyImage from "../assets/projects/wedding-ready/wedding-ready-composite.png";
+import sharesiesImage from "../assets/projects/sharesies_open_comp.png";
+
+const heroSkills = [
+  "Full-Stack Developer",
+  "Product Designer",
+  "SaaS Operations",
+  "Customer Support",
+  "Workflow Automation",
+  "Node.js",
+  "Strategic Planning",
+  "Customer Interviews",
+  "Conflict Resolution",
+  "React Developer",
+  "Database Schema Design",
+  "Figma Prototyping",
+  "MVP Scoping",
+  "E2E Customer Ownership",
+];
+const HERO_SKILLS_REPEAT = 100;
+const heroSkillsParallax = Array.from(
+  { length: HERO_SKILLS_REPEAT },
+  () => heroSkills,
+).flat();
+const HERO_SKILLS_DURATION = `${HERO_SKILLS_REPEAT * 6}s`;
+
+const projectPanels = [
+  {
+    id: "with-thanks",
+    className: "panel--01",
+    brand: "WITH THANKS",
+    index: "01",
+    description:
+      "With Thanks is the fastest and easiest way to collect wedding supplier details from just-married couples, formatted and ready-to-paste into Instagram. Fullstack Tanstack Start application (Vite), deployed on Vercel, with Better Auth, and Neon DB.",
+    image: withThanksImage,
+    imageAlt: "With Thanks project preview",
+    href: "#with-thanks",
+  },
+  {
+    id: "wedding-ready",
+    className: "panel--02",
+    brand: "WEDDING READY",
+    index: "02",
+    description:
+      "Wedding Ready is wedding platform inspired by Pinterest, which aims to solve the problem for couples making their dreams a reality. Every idea on Wedding Ready links directly to local suppliers who can bring it to life.",
+    image: weddingReadyImage,
+    imageAlt: "Wedding Ready project preview",
+    href: "#wedding-ready",
+  },
+  {
+    id: "sharesies",
+    className: "panel--03",
+    brand: "SHARESIES",
+    index: "03",
+    description:
+      "At Sharesies, I developed a self-service portal for companies managing employee share schemes (ESS) during my summer internship. This was the first step in a major expanding Sharesies Open’s feature set. The portal will replace a manual, spreadsheet-based workflow with a fully integrated company-facing interface. ",
+    image: sharesiesImage,
+    imageAlt: "Sharesies project preview",
+    href: "#sharesies",
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1 class="text-4xl font-bold text-slate-900">Astro + Tailwind v4</h1>
-	</body>
-</html>
+<BaseLayout title="Hey Hemi">
+  <main class="grid gap-y-px bg-black">
+    <section
+      id="hero"
+      class="panel--hero grid min-h-svh snap-start snap-always grid-cols-2 grid-rows-[auto_minmax(0,1fr)] gap-px bg-black pb-(--nav-height) sm:grid-cols-[2fr_1fr]"
+    >
+      <div
+        class="col-span-2 row-start-1 flex items-baseline overflow-clip bg-(--brand-bg) p-0 sm:justify-center"
+      >
+        <h1
+          class="panel-hero-wordmark grid grow grid-cols-[auto_1fr] text-[32vw] font-bold tracking-tight whitespace-nowrap text-(--brand-text) sm:grid-cols-[auto_auto_1fr] sm:text-[21vw]"
+        >
+          <span
+            class="col-start-1 row-start-2 flex aspect-square w-full items-center justify-center rounded-full bg-[#10316B] text-[25%] font-extralight tracking-normal text-(--brand-text)/50 sm:col-start-1 sm:row-start-1"
+            >hey!</span
+          >
+          <span class="col-span-2 justify-self-end sm:col-span-1">I'm</span>
+          <span class="col-span-1 justify-self-end">Hemi</span>
+        </h1>
+      </div>
+
+      <div class="col-start-1 row-start-2 min-h-0 bg-(--description-bg) p-6">
+        <div class="flex h-full items-start justify-end">
+          <p
+            class="flex flex-col gap-y-[0.5em] text-right text-[2rem] leading-[1.1] font-thin text-(--description-muted)"
+          >
+            <span>Jack of many trades,</span>
+
+            <span>Master of <span class="font-medium italic">some</span></span>
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="col-start-2 row-start-2 min-h-0 overflow-hidden bg-(--image-bg) pt-0 pr-0 pb-0 pl-6"
+      >
+        <div
+          class="relative h-full min-h-0 overflow-hidden"
+          data-hero-skills-viewport
+          style={`--hero-skills-duration: ${HERO_SKILLS_DURATION};`}
+          aria-label={`Hemi's skills: ${heroSkills.join(", ")}`}
+        >
+          <ul
+            class="hero-skills-track absolute top-0 left-0 m-0 grid w-full list-none gap-y-[1.2em] p-0 font-light whitespace-nowrap text-(--description-text) will-change-transform"
+            data-hero-skills-track
+            aria-hidden="true"
+          >
+            {heroSkillsParallax.map((skill) => <li>{skill}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <nav
+      class="site-nav sticky top-0 z-50 -mt-(--nav-height) grid h-(--nav-height) grid-cols-2 gap-px bg-black shadow-[0_1px_0_0_#000]"
+    >
+      <div
+        class="flex items-center bg-(--nav-bg-active) px-4 transition-colors duration-200"
+      >
+        <NavLink href="#hero">Contact Hemi</NavLink>
+      </div>
+      <div
+        class="flex items-center justify-between bg-(--nav-bg-active) px-4 transition-colors duration-200"
+      >
+        <NavLink href={`#${projectPanels[0].id}`}>Work</NavLink>
+        <NavLink href="#contact">About</NavLink>
+      </div>
+    </nav>
+
+    {
+      projectPanels.map((panel, index) => (
+        <section
+          id={panel.id}
+          data-project-section="true"
+          data-nav-bg="var(--image-bg)"
+          class={`${panel.className} panel grid h-screen snap-start snap-always grid-cols-2 grid-rows-[calc(50vw+var(--nav-height))_50vw_1fr] gap-px bg-black sm:grid-cols-[1fr_2fr]`}
+        >
+          <div class="col-start-1 row-start-1 flex items-center justify-center bg-(--brand-bg) px-6 pt-[calc(1.5rem+var(--nav-height))] pb-6 text-center sm:col-span-1 sm:pt-[calc(1.5rem+var(--nav-height))]">
+            <p class="panel-brand-label text-[0.82rem] font-medium tracking-[0.35em] text-(--brand-text)">
+              {panel.brand}
+            </p>
+          </div>
+
+          <div class="col-start-2 row-start-1 flex items-center justify-center bg-(--index-bg) px-6 pt-[calc(1.5rem+var(--nav-height))] pb-6 sm:col-start-1 sm:row-start-4 sm:pt-6">
+            <p class="panel-index-number text-[3.75rem] leading-none font-thin text-(--index-text)">
+              <span>-&gt;</span>
+            </p>
+          </div>
+
+          <div class="col-span-2 row-start-2 min-h-0 bg-(--description-bg) sm:col-span-1 sm:row-span-2 sm:row-start-2">
+            <div
+              class="h-full min-h-0 overflow-auto"
+              data-project-description-viewport
+            >
+              <div class="h-full p-6">
+                <p class="panel-copy text-[0.98rem] leading-[1.4] text-(--description-text)">
+                  {panel.description}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-2 row-start-3 min-h-0 bg-(--image-bg) p-6 sm:col-span-1 sm:col-start-2 sm:row-span-4 sm:row-start-1 sm:pt-[calc(1.5rem+var(--nav-height))]">
+            <a
+              class="group block h-full w-full overflow-hidden rounded-[2.2rem]"
+              href={panel.href}
+              aria-label={`View ${panel.brand} project`}
+            >
+              <div class="relative h-full w-full overflow-hidden bg-(--image-frame-bg)">
+                {panel.image ? (
+                  <Image
+                    src={panel.image}
+                    alt={panel.imageAlt}
+                    width={1024}
+                    height={1536}
+                    sizes="(min-width: 640px) 66vw, 100vw"
+                    class="block h-full w-full object-cover object-center"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : (
+                  <img
+                    class="block h-full w-full object-cover object-center"
+                    src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                )}
+                <div
+                  class="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/45 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                  aria-hidden="true"
+                >
+                  <span class="text-[0.7rem] font-semibold tracking-[0.26em] text-white uppercase">
+                    View project
+                  </span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </section>
+      ))
+    }
+  </main>
+
+  <script>
+    import { initNavColorSync } from "../scripts/nav-color-sync";
+
+    initNavColorSync();
+  </script>
+</BaseLayout>

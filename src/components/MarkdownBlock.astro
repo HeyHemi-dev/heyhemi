@@ -1,0 +1,30 @@
+---
+import MarkdownInlines from "./MarkdownInlines.astro";
+import { parseMarkdownValue, type MarkdownValueInput } from "../utils/markdown";
+import { cn } from "../utils/cn";
+
+const { value, class: className = "" } = Astro.props as {
+  value: MarkdownValueInput;
+  class?: string;
+};
+
+const classes = cn("whitespace-pre-line", className);
+const parsed = parseMarkdownValue(value);
+---
+
+{
+  parsed.kind === "empty" ? null : parsed.kind === "plain" ? (
+    <p class={classes}>{parsed.text}</p>
+  ) : (
+    parsed.blocks.map((block) => {
+      if (block.type === "paragraph") {
+        return (
+          <p class={classes}>
+            <MarkdownInlines tokens={block.inlines} />
+          </p>
+        );
+      }
+      return null;
+    })
+  )
+}

@@ -1,0 +1,32 @@
+---
+import { cn } from "../utils/cn";
+
+type PanelTag = "section" | "article" | "aside" | "div" | "header" | "footer";
+type PanelBackground = "default" | "primary" | "secondary" | "accent";
+
+type Props = {
+  as?: PanelTag;
+  class?: string;
+  background?: PanelBackground;
+};
+
+const {
+  as: Tag = "section",
+  class: className = "",
+  background = "default",
+  ...rest
+} = Astro.props as Props;
+
+const backgroundClasses: Record<PanelBackground, string> = {
+  default: "bg-(--image-bg) text-(--description-text)",
+  primary: "bg-(--brand-bg) text-(--brand-text)",
+  secondary: "bg-(--description-bg) text-(--description-text)",
+  accent: "bg-(--index-bg) text-(--index-text)",
+};
+
+const classes = cn(backgroundClasses[background], "p-6 sm:p-12", className);
+---
+
+<Tag class={classes} {...rest}>
+  <slot />
+</Tag>

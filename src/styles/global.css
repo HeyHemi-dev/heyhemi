@@ -1,1 +1,184 @@
 @import "tailwindcss";
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter/Inter-Italic-VariableFont_opsz,wght.ttf")
+    format("truetype");
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --separator: #000;
+  --nav-bg: #f1c65d;
+  --nav-bg-active: var(--nav-bg);
+  --nav-text: #111111;
+  --nav-height: 3rem;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --nav-height: 4.5rem;
+  }
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+body {
+  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-optical-sizing: auto;
+  @apply text-sm leading-relaxed font-normal;
+}
+
+/* Apply text-box trimming globally to all rendered copy-like elements. */
+:where(h1, h2, h3, h4, h5, h6, p, a, li, span) {
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}
+
+[data-hero-skills-viewport] {
+  --skills-fade-size: clamp(1.5rem, 14%, 4.5rem);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 var(--skills-fade-size),
+    #000 calc(100% - var(--skills-fade-size)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 var(--skills-fade-size),
+    #000 calc(100% - var(--skills-fade-size)),
+    transparent 100%
+  );
+}
+
+[data-project-description-viewport] {
+  --description-fade-size: clamp(1.2rem, 12%, 2rem);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 var(--description-fade-size),
+    #000 calc(100% - var(--description-fade-size)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 var(--description-fade-size),
+    #000 calc(100% - var(--description-fade-size)),
+    transparent 100%
+  );
+}
+
+.hero-skills-track {
+  animation: hero-skills-scroll var(--hero-skills-duration, 18s) linear infinite;
+}
+
+@keyframes hero-skills-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+@media (min-width: 640px) {
+  .hero-skills-track {
+    animation-play-state: paused;
+  }
+
+  .panel--hero .panel__image:hover .hero-skills-track {
+    animation-play-state: running;
+  }
+}
+
+.project-marquee-track {
+  animation: project-marquee-scroll var(--project-marquee-duration, 26s) linear
+    infinite;
+  will-change: transform;
+}
+
+@keyframes project-marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+#hero {
+  --brand-bg: #17397a;
+  --index-bg: #17397a;
+  --description-bg: #d6dbe4;
+  --image-bg: #d6dbe4;
+  --image-frame-bg: transparent;
+  --brand-text: #d6dbe4;
+  --index-text: #ffffff;
+  --description-text: #20232d;
+  --description-muted: #363c45;
+}
+
+#with-thanks {
+  --brand-bg: #a94012;
+  --index-bg: #255f29;
+  --description-bg: #f2864a;
+  --image-bg: #ddd5b0;
+  --image-frame-bg: #d2caa5;
+  --brand-text: #f6eadf;
+  --index-text: #98be9b;
+  --description-text: #2f2d26;
+}
+
+#wedding-ready {
+  --brand-bg: #005e52;
+  --index-bg: #e6f72a;
+  --description-bg: #81d2c2;
+  --image-bg: #cbe0de;
+  --image-frame-bg: #bfd6d2;
+  --brand-text: #d3e9e3;
+  --index-text: #2c2f1e;
+  --description-text: #204448;
+}
+
+#sharesies {
+  --brand-bg: #f7008b;
+  --index-bg: #7e0067;
+  --description-bg: #e6caec;
+  --image-bg: #ebebee;
+  --image-frame-bg: #dddddf;
+  --brand-text: #f8e6fa;
+  --index-text: #f5cce8;
+  --description-text: #3f2f45;
+}
+
+/* Subtract 1px to each row to allow for the gap-y-px, add 1px to the first row since there is one less gaps than there are panels */
+@media (min-width: 640px) {
+  .panel:not(.panel--hero) {
+    --project-row: calc((100dvh - var(--nav-height)) / 4 - 1px);
+    grid-template-rows:
+      calc(var(--project-row) + var(--nav-height) + 1px) var(--project-row)
+      var(--project-row) var(--project-row);
+  }
+}
