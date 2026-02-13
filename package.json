@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "diagrams:build": "node scripts/render-mermaid.mjs",
+    "diagrams:build": "node scripts/render-mermaid.mjs --overwrite",
     "preview": "astro build && wrangler pages dev",
     "astro": "astro",
     "deploy:preview": "astro build && wrangler pages deploy ./dist --project-name heyhemi --branch preview",
