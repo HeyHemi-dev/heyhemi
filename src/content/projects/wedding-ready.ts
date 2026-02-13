@@ -9,6 +9,8 @@ export const weddingReadyCaseStudy = {
     src: "/wedding-ready/hero.png",
     alt: "Wedding Ready project preview",
   },
+  liveUrl: "https://wedding-ready.vercel.app/",
+  repoUrl: "https://github.com/HeyHemi-dev/wedding-ready",
   oneLiner: "Wedding inspiration you can actually book.",
   roles: ["Founder", "Full-Stack Dev", "Design"],
   techStack: [
@@ -36,7 +38,7 @@ export const weddingReadyCaseStudy = {
   },
   architecture: {
     diagram: {
-      src: "/wedding-ready/wedding-ready-diagram-feed.png",
+      src: "/projects/wedding-ready/feed-route-architecture.svg",
       alt: "Feed route architecture. /feed -> API -> operations/model layer -> Postgres, with ranked retrieval via a simple scoring algorithm and client save-state cache pre-hydration.",
       caption: "Wedding Ready full-stack architecture; /feed route.",
     },
@@ -156,7 +158,7 @@ export const weddingReadyCaseStudy = {
       { type: "h3", text: "Separation of Concerns" },
       {
         type: "image",
-        src: "/wedding-ready/upload-component-hierarchy.svg",
+        src: "/projects/wedding-ready/tile-upload-components.svg",
         alt: "Upload flow component hierarchy diagram",
         caption:
           "Component hierarchy for the multi-step supplier tile upload flow.",

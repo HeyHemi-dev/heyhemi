@@ -5,9 +5,10 @@ import { existsSync } from "node:fs";
 
 const SOURCE_ROOT = path.resolve("src/assets/projects");
 const OUTPUT_ROOT = path.resolve("public/projects");
-const THEME_NAME = process.env.MERMAID_THEME ?? "tokyo-night";
+const THEME_NAME = process.env.MERMAID_THEME ?? "github-light";
 const theme = THEMES[THEME_NAME];
-const overwrite = process.argv.includes("--overwrite") || process.argv.includes("-f");
+const overwrite =
+  process.argv.includes("--overwrite") || process.argv.includes("-f");
 
 if (!theme) {
   console.error(
@@ -89,15 +90,25 @@ async function main() {
 if (process.argv.includes("--help") || process.argv.includes("-h")) {
   console.log("Usage: node scripts/render-mermaid.mjs [--overwrite|-f]");
   console.log("");
-  console.log("Renders .mmd files from src/assets/projects to public/projects.");
+  console.log(
+    "Renders .mmd files from src/assets/projects to public/projects.",
+  );
   console.log("Default behavior skips SVG files that already exist.");
   console.log("Pass --overwrite to regenerate and replace existing SVGs.");
   process.exit(0);
 }
 
-if (process.argv.some((arg) => arg.startsWith("-") && !["--overwrite", "-f", "--help", "-h"].includes(arg))) {
+if (
+  process.argv.some(
+    (arg) =>
+      arg.startsWith("-") &&
+      !["--overwrite", "-f", "--help", "-h"].includes(arg),
+  )
+) {
   const invalid = process.argv.find(
-    (arg) => arg.startsWith("-") && !["--overwrite", "-f", "--help", "-h"].includes(arg),
+    (arg) =>
+      arg.startsWith("-") &&
+      !["--overwrite", "-f", "--help", "-h"].includes(arg),
   );
   console.error(`Unknown option: ${invalid}`);
   console.error("Run with --help for usage.");
