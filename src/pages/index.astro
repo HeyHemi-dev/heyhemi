@@ -149,10 +149,19 @@ const projectPanels = [
             </p>
           </div>
 
-          <div class="col-start-2 row-start-1 flex items-center justify-center bg-(--index-bg) px-6 pt-[calc(1.5rem+var(--nav-height))] pb-6 sm:col-start-1 sm:row-start-4 sm:pt-6">
-            <p class="panel-index-number text-[3.75rem] leading-none font-thin text-(--index-text)">
-              <span>-&gt;</span>
-            </p>
+          <div class="col-start-2 row-start-1 bg-(--index-bg) sm:col-start-1 sm:row-start-4">
+            <a
+              class="group flex h-full w-full flex-col items-center justify-center gap-y-3 px-6 pt-[calc(1.5rem+var(--nav-height))] pb-6 text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/60 sm:pt-6"
+              href={panel.href}
+              aria-label={`View ${panel.brand} project`}
+            >
+              <p class="panel-index-number text-[3.75rem] leading-none font-thin text-(--index-text)">
+                <span>-&gt;</span>
+              </p>
+              <h4 class="text-[0.82rem] font-semibold tracking-[0.26em] text-(--index-text) uppercase">
+                View project
+              </h4>
+            </a>
           </div>
 
           <div class="col-span-2 row-start-2 min-h-0 bg-(--description-bg) sm:col-span-1 sm:row-span-2 sm:row-start-2">
