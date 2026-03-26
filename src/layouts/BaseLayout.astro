@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 
-const { title = "Hey Hemi" } = Astro.props;
+const { title = "Hey Hemi", bodyClass = "bg-black" } = Astro.props;
 ---
 
 <html lang="en">
@@ -12,7 +12,7 @@ const { title = "Hey Hemi" } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
   </head>
-  <body class="bg-black">
+  <body class={bodyClass}>
     <slot />
   </body>
 </html>
