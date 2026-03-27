@@ -14,39 +14,39 @@ type Milestone = {
   note?: string;
 };
 
-const projects = [
+const projects: Project[] = [
   {
     name: { label: "With Thanks", href: "" },
     client: "",
-    description: "Effortlessly collect supplier details from couples.",
+    description: "Effortlessly collect supplier details from wedding couples.",
   },
   {
     name: { label: "Wedding Ready", href: "" },
     client: "",
     description: "Pinterest, but hyper-local and supplier-lead.",
   },
-  {
-    name: { label: "Mayday", href: "" },
-    client: "",
-    description: "Job board for wedding suppliers during Covid-19.",
-  },
-  {
-    name: { label: "Knowie", href: "" },
-    client: " for Patina Photo",
-    description: "Lead and job management, + analytics.",
-  },
-  {
-    name: { label: "Sharesies Open", href: "" },
-    client: " for Sharesies",
-    description: "Employee-shares management portal for businesses.",
-  },
-] satisfies Project[];
+  // {
+  //   name: { label: "Mayday", href: "" },
+  //   client: "",
+  //   description: "Job board for wedding suppliers during Covid-19.",
+  // },
+  // {
+  //   name: { label: "Knowie", href: "" },
+  //   client: " for Patina Photo",
+  //   description: "Lead and job management, + analytics.",
+  // },
+  // {
+  //   name: { label: "Sharesies Open", href: "" },
+  //   client: " for Sharesies",
+  //   description: "Employee-shares management portal for businesses.",
+  // },
+];
 
-const milestones = [
+const milestones: Milestone[] = [
   {
     title: "Freelance Developer",
+    organisation: { label: "Various Projects", href: "" },
     period: "2024 — now",
-    note: "Various Projects",
   },
   {
     title: "Customer Experience",
@@ -76,7 +76,7 @@ const milestones = [
     },
     period: "2008 — 2012",
   },
-] satisfies Milestone[];
+];
 
 const contact = ["Email", "Github", "Threads"];
 ---
@@ -85,14 +85,14 @@ const contact = ["Email", "Github", "Threads"];
   <main class="mx-auto w-full max-w-2xl px-6 pt-12 pb-36">
     <div class="flex flex-col gap-12">
       <header class="flex flex-col gap-6">
-        <h1 class="text-xl">Hey, I’m Hemi</h1>
+        <h1 class="text-2xl">Hey, I’m Hemi</h1>
         <p>I have ideas, and I build them.</p>
       </header>
 
       <hr class="w-full border-neutral-200" />
 
       <section class="flex flex-col gap-12" aria-labelledby="projects-heading">
-        <h2 id="projects-heading" class="text-lg">Projects</h2>
+        <h2 id="projects-heading" class="text-xl font-normal">Projects</h2>
 
         <ul class="flex list-none flex-col gap-12" role="list">
           {
@@ -104,7 +104,7 @@ const contact = ["Email", "Github", "Threads"];
                   </a>
                   {project.client && <span>{`${project.client}`}</span>}
                 </p>
-                <p class="text-stone-600">{project.description}</p>
+                <p class="text-muted text-sm">{project.description}</p>
               </li>
             ))
           }
@@ -114,19 +114,19 @@ const contact = ["Email", "Github", "Threads"];
       <hr class="w-full border-neutral-200" />
 
       <section class="flex flex-col gap-12" aria-labelledby="career-heading">
-        <h2 id="career-heading" class="text-lg">Career</h2>
+        <h2 id="career-heading" class="text-xl font-normal">Career</h2>
 
         <ul class="flex list-none flex-col gap-12" role="list">
           {
             milestones.map((milestone) => (
               <li class="flex flex-col gap-3">
-                <p class="font-medium text-stone-600">
+                <p class="text-muted font-medium">
                   {milestone.organisation ? (
                     <>
                       <span>{`${milestone.title}, `}</span>
                       <a
                         href={milestone.organisation.href}
-                        class="font-medium text-stone-900 underline"
+                        class="text-body underline"
                       >
                         {milestone.organisation.label}
                       </a>
@@ -135,8 +135,10 @@ const contact = ["Email", "Github", "Threads"];
                     <span>{`${milestone.title}.`}</span>
                   )}
                 </p>
-                <p class="text-stone-600">{milestone.period}</p>
-                {milestone.note && <p>{milestone.note}</p>}
+                <p class="text-muted text-sm">{milestone.period}</p>
+                {milestone.note && (
+                  <p class="text-muted text-sm">{milestone.note}</p>
+                )}
               </li>
             ))
           }
@@ -146,19 +148,19 @@ const contact = ["Email", "Github", "Threads"];
       <hr class="w-full border-neutral-200" />
 
       <section class="flex flex-col gap-12" aria-labelledby="about-heading">
-        <h2 id="about-heading" class="text-lg">About</h2>
+        <h2 id="about-heading" class="text-xl font-normal">About</h2>
 
-        <div class="home-copy-group flex flex-col gap-6">
+        <div class="flex flex-col gap-6 font-normal">
           <p>
             I've always admired builders; the ability to take an idea and turn
             it into something real. It's the same reason I love software
             development; making awesome digital products for people.
           </p>
           <p>
-            I originally studied architecture, before building my own
-            photography business (together with my wife), and now I’ve turned to
-            software development. I’m a generalist, self-motivated, and a
-            super-quick learner.
+            After studying architecture, My wife and I grew a photography
+            business for 10+ years. I got serious about software development in
+            2024 and I've been building products ever since. I’m a generalist,
+            self-motivated, and a super-quick learner.
           </p>
           <p>
             I’m looking to join a team who are passionate about what they are
@@ -172,7 +174,7 @@ const contact = ["Email", "Github", "Threads"];
       <hr class="w-full border-neutral-200" />
 
       <section class="flex flex-col gap-12" aria-labelledby="contact-heading">
-        <h2 id="contact-heading" class="text-lg">Contact</h2>
+        <h2 id="contact-heading" class="text-xl font-normal">Contact</h2>
 
         <ul class="flex list-none flex-col gap-6" role="list">
           {

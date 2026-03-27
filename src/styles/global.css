@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  --color-body: var(--color-neutral-900);
+  --color-muted: var(--color-neutral-500);
+}
+
 @font-face {
   font-family: "Inter";
   src: url("/fonts/inter/Inter-VariableFont_opsz,wght.ttf") format("truetype");
@@ -17,26 +22,10 @@
   font-display: swap;
 }
 
-:root {
-  --nav-height: 3rem;
-}
-
-@media (min-width: 640px) {
-  :root {
-    --nav-height: 4.5rem;
-  }
-}
-
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
-
 body {
   font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
-  @apply text-sm leading-relaxed font-normal;
+  @apply text-body leading-relaxed font-normal;
 }
 
 /* Apply text-box trimming globally to all rendered copy-like elements. */
