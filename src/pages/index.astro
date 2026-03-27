@@ -118,10 +118,9 @@ const contact = ["Email", "Github", "Threads"];
             milestones.map((milestone) => (
               <li class="flex flex-col gap-3">
                 <p class="font-medium">
-                  <span>{milestone.title}</span>
                   {milestone.organisation ? (
                     <>
-                      <span>, </span>
+                      <span>{`${milestone.title}, `}</span>
                       <a
                         href={milestone.organisation.href}
                         class="font-medium underline"
@@ -130,7 +129,7 @@ const contact = ["Email", "Github", "Threads"];
                       </a>
                     </>
                   ) : (
-                    <span>.</span>
+                    <span>{`${milestone.title}.`}</span>
                   )}
                 </p>
                 <p class="">{milestone.period}</p>
