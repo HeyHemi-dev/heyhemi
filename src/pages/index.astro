@@ -85,26 +85,26 @@ const contact = ["Email", "Github", "Threads"];
   <main class="mx-auto w-full max-w-2xl px-6 pt-12 pb-36">
     <div class="flex flex-col gap-12">
       <header class="flex flex-col gap-6">
-        <h1 class="text-2xl">Hey, I’m Hemi</h1>
+        <h1 class="heading-1">Hey, I’m Hemi</h1>
         <p>I have ideas, and I build them.</p>
       </header>
 
       <hr class="w-full border-neutral-200" />
 
       <section class="flex flex-col gap-12" aria-labelledby="projects-heading">
-        <h2 id="projects-heading" class="text-xl font-normal">Projects</h2>
+        <h2 id="projects-heading" class="heading-2">Projects</h2>
 
         <ul class="flex list-none flex-col gap-12" role="list">
           {
             projects.map((project) => (
               <li class="flex flex-col gap-3">
                 <p>
-                  <a href={project.name.href} class="font-medium">
-                    <span class="underline">{project.name.label}</span>
+                  <a href={project.name.href} class="heading-3">
+                    <span class="body-link">{project.name.label}</span>
                   </a>
                   {project.client && <span>{`${project.client}`}</span>}
                 </p>
-                <p class="text-muted text-sm">{project.description}</p>
+                <p class="body-small">{project.description}</p>
               </li>
             ))
           }
@@ -114,18 +114,18 @@ const contact = ["Email", "Github", "Threads"];
       <hr class="w-full border-neutral-200" />
 
       <section class="flex flex-col gap-12" aria-labelledby="career-heading">
-        <h2 id="career-heading" class="text-xl font-normal">Career</h2>
+        <h2 id="career-heading" class="heading-2">Career</h2>
 
         <ul class="flex list-none flex-col gap-12" role="list">
           {
             milestones.map((milestone) => (
               <li class="flex flex-col gap-3">
-                <p class="text-muted font-medium">
+                <p class="text-muted heading-3">
                   {milestone.organisation ? (
                     <>
                       <span>{`${milestone.title}, `}</span>
-                      <a href={milestone.organisation.href} class="text-body">
-                        <span class="underline">
+                      <a href={milestone.organisation.href}>
+                        <span class="body-link">
                           {milestone.organisation.label}
                         </span>
                       </a>
@@ -134,10 +134,8 @@ const contact = ["Email", "Github", "Threads"];
                     <span>{`${milestone.title}.`}</span>
                   )}
                 </p>
-                <p class="text-muted text-sm">{milestone.period}</p>
-                {milestone.note && (
-                  <p class="text-muted text-sm">{milestone.note}</p>
-                )}
+                <p class="body-small">{milestone.period}</p>
+                {milestone.note && <p class="body-small">{milestone.note}</p>}
               </li>
             ))
           }
@@ -147,7 +145,7 @@ const contact = ["Email", "Github", "Threads"];
       <hr class="w-full border-neutral-200" />
 
       <section class="flex flex-col gap-12" aria-labelledby="about-heading">
-        <h2 id="about-heading" class="text-xl font-normal">About</h2>
+        <h2 id="about-heading" class="heading-2">About</h2>
 
         <div class="flex flex-col gap-6 font-normal">
           <p>
@@ -173,14 +171,10 @@ const contact = ["Email", "Github", "Threads"];
       <hr class="w-full border-neutral-200" />
 
       <section class="flex flex-col gap-12" aria-labelledby="contact-heading">
-        <h2 id="contact-heading" class="text-xl font-normal">Contact</h2>
+        <h2 id="contact-heading" class="heading-2">Contact</h2>
 
         <ul class="flex list-none flex-col gap-6" role="list">
-          {
-            contact.map((item) => (
-              <li class="home-contact-item leading-normal">{item}</li>
-            ))
-          }
+          {contact.map((item) => <li class="leading-normal">{item}</li>)}
         </ul>
       </section>
     </div>

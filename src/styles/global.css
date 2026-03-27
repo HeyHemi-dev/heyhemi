@@ -28,6 +28,26 @@ body {
   @apply text-body leading-relaxed font-normal;
 }
 
+@utility heading-1 {
+  @apply text-2xl font-normal;
+}
+
+@utility heading-2 {
+  @apply text-xl font-normal;
+}
+
+@utility heading-3 {
+  @apply text-base font-medium;
+}
+
+@utility body-small {
+  @apply text-muted text-sm;
+}
+
+@utility body-link {
+  @apply text-body underline underline-offset-2;
+}
+
 /* Apply text-box trimming globally to all rendered copy-like elements. */
 :where(h1, h2, h3, h4, h5, h6, p, a, li, span) {
   text-box-trim: trim-both;
