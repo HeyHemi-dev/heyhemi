@@ -1,5 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Divider from "../components/Divider.astro";
+import List from "../components/List.astro";
+import ListItem from "../components/ListItem.astro";
+import Section from "../components/Section.astro";
 
 type Project = {
   name: { label: string; href: string };
@@ -89,15 +93,15 @@ const contact = ["Email", "Github", "Threads"];
         <p>I have ideas, and I build them.</p>
       </header>
 
-      <hr class="w-full border-neutral-200" />
+      <Divider />
 
-      <section class="flex flex-col gap-12" aria-labelledby="projects-heading">
+      <Section aria-labelledby="projects-heading">
         <h2 id="projects-heading" class="heading-2">Projects</h2>
 
-        <ul class="flex list-none flex-col gap-12" role="list">
+        <List class="gap-12" role="list">
           {
             projects.map((project) => (
-              <li class="flex flex-col gap-3">
+              <ListItem class="flex flex-col gap-3">
                 <p>
                   <a href={project.name.href} class="heading-3">
                     <span class="body-link">{project.name.label}</span>
@@ -105,21 +109,21 @@ const contact = ["Email", "Github", "Threads"];
                   {project.client && <span>{`${project.client}`}</span>}
                 </p>
                 <p class="body-small">{project.description}</p>
-              </li>
+              </ListItem>
             ))
           }
-        </ul>
-      </section>
+        </List>
+      </Section>
 
-      <hr class="w-full border-neutral-200" />
+      <Divider />
 
-      <section class="flex flex-col gap-12" aria-labelledby="career-heading">
+      <Section aria-labelledby="career-heading">
         <h2 id="career-heading" class="heading-2">Career</h2>
 
-        <ul class="flex list-none flex-col gap-12" role="list">
+        <List class="gap-12" role="list">
           {
             milestones.map((milestone) => (
-              <li class="flex flex-col gap-3">
+              <ListItem class="flex flex-col gap-3">
                 <p class="text-muted heading-3">
                   {milestone.organisation ? (
                     <>
@@ -136,15 +140,15 @@ const contact = ["Email", "Github", "Threads"];
                 </p>
                 <p class="body-small">{milestone.period}</p>
                 {milestone.note && <p class="body-small">{milestone.note}</p>}
-              </li>
+              </ListItem>
             ))
           }
-        </ul>
-      </section>
+        </List>
+      </Section>
 
-      <hr class="w-full border-neutral-200" />
+      <Divider />
 
-      <section class="flex flex-col gap-12" aria-labelledby="about-heading">
+      <Section aria-labelledby="about-heading">
         <h2 id="about-heading" class="heading-2">About</h2>
 
         <div class="flex flex-col gap-6 font-normal">
@@ -166,17 +170,23 @@ const contact = ["Email", "Github", "Threads"];
           </p>
           <p>If this resonates with you, I’d love to chat.</p>
         </div>
-      </section>
+      </Section>
 
-      <hr class="w-full border-neutral-200" />
+      <Divider />
 
-      <section class="flex flex-col gap-12" aria-labelledby="contact-heading">
+      <Section aria-labelledby="contact-heading">
         <h2 id="contact-heading" class="heading-2">Contact</h2>
 
-        <ul class="flex list-none flex-col gap-6" role="list">
-          {contact.map((item) => <li class="leading-normal">{item}</li>)}
-        </ul>
-      </section>
+        <List role="list">
+          {
+            contact.map((item) => (
+              <ListItem>
+                <p>{item}</p>
+              </ListItem>
+            ))
+          }
+        </List>
+      </Section>
     </div>
   </main>
 </BaseLayout>

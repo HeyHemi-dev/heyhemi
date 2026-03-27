@@ -1,0 +1,16 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "../utils/cn";
+
+type ListTag = "ul" | "ol" | "div";
+
+type Props = HTMLAttributes<"ul"> & {
+  as?: ListTag;
+};
+
+const { as: Tag = "ul", class: className = "", ...rest } = Astro.props as Props;
+---
+
+<Tag class={cn("flex list-none flex-col gap-6", className)} {...rest}>
+  <slot />
+</Tag>
