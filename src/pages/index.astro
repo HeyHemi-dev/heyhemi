@@ -50,27 +50,30 @@ const milestones = [
   },
   {
     title: "Customer Experience",
-    organisation: { label: "Xero", href: "" },
+    organisation: { label: "Xero", href: "https://www.xero.com/" },
     period: "2025",
   },
   {
     title: "Software Developer Intern",
-    organisation: { label: "Sharesies", href: "" },
+    organisation: { label: "Sharesies", href: "https://www.sharesies.nz" },
     period: "2024 — 2025",
   },
   {
     title: "Cert. Applied Software Development",
-    organisation: { label: "Dev Academy", href: "" },
+    organisation: { label: "Dev Academy", href: "https://devacademy.co.nz" },
     period: "2024",
   },
   {
     title: "Owner & Photographer",
-    organisation: { label: "Patina Photo", href: "" },
+    organisation: { label: "Patina Photo", href: "https://www.patina.photo" },
     period: "2012 — 2024",
   },
   {
     title: "Bachelor of Architectural Studies",
-    organisation: { label: "Victoria University", href: "" },
+    organisation: {
+      label: "Victoria University",
+      href: "https://www.wgtn.ac.nz/architecture",
+    },
     period: "2008 — 2012",
   },
 ] satisfies Milestone[];
@@ -79,14 +82,14 @@ const contact = ["Email", "Github", "Threads"];
 ---
 
 <BaseLayout title="Hey Hemi" bodyClass="home-page">
-  <main class="mx-auto w-full max-w-2xl px-6 pt-6 pb-12">
+  <main class="mx-auto w-full max-w-2xl px-6 pt-12 pb-36">
     <div class="flex flex-col gap-12">
       <header class="flex flex-col gap-6">
         <h1 class="text-xl">Hey, I’m Hemi</h1>
         <p>I have ideas, and I build them.</p>
       </header>
 
-      <hr class="home-rule w-full border-0 border-b" />
+      <hr class="w-full border-neutral-200" />
 
       <section class="flex flex-col gap-12" aria-labelledby="projects-heading">
         <h2 id="projects-heading" class="text-lg">Projects</h2>
@@ -99,7 +102,7 @@ const contact = ["Email", "Github", "Threads"];
                   <a href={project.name.href} class="font-medium underline">
                     {project.name.label}
                   </a>
-                  {project.client ? <span>{project.client}</span> : null}
+                  {project.client && <span>{`${project.client}`}</span>}
                 </p>
                 <p class="text-stone-600">{project.description}</p>
               </li>
@@ -108,7 +111,7 @@ const contact = ["Email", "Github", "Threads"];
         </ul>
       </section>
 
-      <hr class="home-rule w-full border-0 border-b" />
+      <hr class="w-full border-neutral-200" />
 
       <section class="flex flex-col gap-12" aria-labelledby="career-heading">
         <h2 id="career-heading" class="text-lg">Career</h2>
@@ -117,13 +120,13 @@ const contact = ["Email", "Github", "Threads"];
           {
             milestones.map((milestone) => (
               <li class="flex flex-col gap-3">
-                <p class="font-medium">
+                <p class="font-medium text-stone-600">
                   {milestone.organisation ? (
                     <>
                       <span>{`${milestone.title}, `}</span>
                       <a
                         href={milestone.organisation.href}
-                        class="font-medium underline"
+                        class="font-medium text-stone-900 underline"
                       >
                         {milestone.organisation.label}
                       </a>
@@ -132,44 +135,46 @@ const contact = ["Email", "Github", "Threads"];
                     <span>{`${milestone.title}.`}</span>
                   )}
                 </p>
-                <p class="">{milestone.period}</p>
+                <p class="text-stone-600">{milestone.period}</p>
+                {milestone.note && <p>{milestone.note}</p>}
               </li>
             ))
           }
         </ul>
       </section>
 
-      <hr class="home-rule w-full border-0 border-b" />
+      <hr class="w-full border-neutral-200" />
 
-      <section class="flex flex-col gap-6" aria-labelledby="about-heading">
-        <h2 id="about-heading" class="home-section-title">About</h2>
+      <section class="flex flex-col gap-12" aria-labelledby="about-heading">
+        <h2 id="about-heading" class="text-lg">About</h2>
 
         <div class="home-copy-group flex flex-col gap-6">
           <p>
-            I always admired builders; the ability to take an idea and turn it
-            into something real. This what I love about software development;
-            creating digital products for people.
+            I've always admired builders; the ability to take an idea and turn
+            it into something real. It's the same reason I love software
+            development; making awesome digital products for people.
           </p>
           <p>
-            I started as an architect, before building my own photographer
-            business (together with my wife), and now I’ve turned to software
-            development. I’m a generalist, self-motivated, and a super-quick
-            learner.
+            I originally studied architecture, before building my own
+            photography business (together with my wife), and now I’ve turned to
+            software development. I’m a generalist, self-motivated, and a
+            super-quick learner.
           </p>
           <p>
             I’m looking to join a team who are passionate about what they are
-            building, that needs someone who can muck in, and is more than just
-            an engineer. If this is you, I’d love to chat.
+            building, that needs someone who can muck-in, and is more than just
+            an engineer.
           </p>
+          <p>If this resonates with you, I’d love to chat.</p>
         </div>
       </section>
 
-      <hr class="home-rule w-full border-0 border-b" />
+      <hr class="w-full border-neutral-200" />
 
-      <section class="flex flex-col gap-6" aria-labelledby="contact-heading">
-        <h2 id="contact-heading" class="home-section-title">Contact</h2>
+      <section class="flex flex-col gap-12" aria-labelledby="contact-heading">
+        <h2 id="contact-heading" class="text-lg">Contact</h2>
 
-        <ul class="flex list-none flex-col gap-3" role="list">
+        <ul class="flex list-none flex-col gap-6" role="list">
           {
             contact.map((item) => (
               <li class="home-contact-item leading-normal">{item}</li>
