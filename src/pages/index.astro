@@ -55,67 +55,69 @@ const contact = ["Email", "Github", "Threads"];
 ---
 
 <BaseLayout title="Hey Hemi" bodyClass="home-page">
-  <main class="home-shell">
-    <div class="home-stack">
-      <header class="home-intro">
+  <main class="mx-auto w-full max-w-5xl px-6 pt-6 pb-12">
+    <div class="flex flex-col gap-6">
+      <header class="flex flex-col gap-6">
         <h1 class="home-title">Hey Hemi</h1>
 
-        <div class="home-copy-group">
-          <p class="home-lead">Hey, I’m Hemi</p>
-          <p>I have ideas; I build them.</p>
+        <div class="home-copy-group flex flex-col gap-6">
+          <p class="home-lead m-0">Hey, I’m Hemi</p>
+          <p class="m-0">I have ideas; I build them.</p>
         </div>
       </header>
 
-      <hr class="home-rule" />
+      <hr class="home-rule m-0 w-full border-0 border-b" />
 
-      <section class="home-section" aria-labelledby="projects-heading">
+      <section class="flex flex-col gap-6" aria-labelledby="projects-heading">
         <h2 id="projects-heading" class="home-section-title">Projects</h2>
 
-        <ul class="home-entry-list" role="list">
+        <ul class="m-0 flex list-none flex-col gap-7 p-0" role="list">
           {
             projects.map((project) => (
-              <li class="home-entry">
-                <p class="home-entry-title">{project.name}</p>
-                <p class="home-entry-support">{project.description}</p>
+              <li class="flex flex-col gap-1">
+                <p class="home-entry-title m-0">{project.name}</p>
+                <p class="home-entry-support m-0">{project.description}</p>
               </li>
             ))
           }
         </ul>
       </section>
 
-      <hr class="home-rule" />
+      <hr class="home-rule m-0 w-full border-0 border-b" />
 
-      <section class="home-section" aria-labelledby="career-heading">
+      <section class="flex flex-col gap-6" aria-labelledby="career-heading">
         <h2 id="career-heading" class="home-section-title">Career</h2>
 
-        <ul class="home-entry-list" role="list">
+        <ul class="m-0 flex list-none flex-col gap-7 p-0" role="list">
           {
             career.map((item) => (
-              <li class="home-entry">
-                <p class="home-entry-title">{item.title}</p>
-                <p class="home-entry-support">{item.years}</p>
+              <li class="flex flex-col gap-1">
+                <p class="home-entry-title m-0">{item.title}</p>
+                <p class="home-entry-support m-0">{item.years}</p>
               </li>
             ))
           }
         </ul>
       </section>
 
-      <hr class="home-rule" />
+      <hr class="home-rule m-0 w-full border-0 border-b" />
 
-      <section class="home-section" aria-labelledby="about-heading">
+      <section class="flex flex-col gap-6" aria-labelledby="about-heading">
         <h2 id="about-heading" class="home-section-title">About</h2>
 
-        <div class="home-copy-group">
-          <p>
+        <div class="home-copy-group flex flex-col gap-6">
+          <p class="m-0">
             I always admired builders; the ability to take an idea and turn it
             into something real. This what I love about software development;
             creating digital products for people.
-          </p><p>
+          </p>
+          <p class="m-0">
             I started as an architect, before building my own photographer
             business (together with my wife), and now I’ve turned to software
             development. I’m a generalist, self-motivated, and a super-quick
             learner.
-          </p><p>
+          </p>
+          <p class="m-0">
             I’m looking to join a team who are passionate about what they are
             building, that needs someone who can muck in, and is more than just
             an engineer. If this is you, I’d love to chat.
@@ -123,13 +125,17 @@ const contact = ["Email", "Github", "Threads"];
         </div>
       </section>
 
-      <hr class="home-rule" />
+      <hr class="home-rule m-0 w-full border-0 border-b" />
 
-      <section class="home-section" aria-labelledby="contact-heading">
+      <section class="flex flex-col gap-6" aria-labelledby="contact-heading">
         <h2 id="contact-heading" class="home-section-title">Contact</h2>
 
-        <ul class="home-contact-list" role="list">
-          {contact.map((item) => <li class="home-contact-item">{item}</li>)}
+        <ul class="m-0 flex list-none flex-col gap-3 p-0" role="list">
+          {
+            contact.map((item) => (
+              <li class="home-contact-item leading-normal">{item}</li>
+            ))
+          }
         </ul>
       </section>
     </div>
