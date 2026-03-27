@@ -59,7 +59,6 @@ export type CaseStudy = CaseStudyPreview & {
   problemSolution: {
     problem: RichText;
     solution: RichText;
-    technicalWhy?: RichText;
   };
 
   architecture: {

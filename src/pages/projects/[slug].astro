@@ -1,11 +1,13 @@
 ---
 import type { GetStaticPaths } from "astro";
+import Divider from "../../components/Divider.astro";
 import ImageBlock from "../../components/ImageBlock.astro";
 import ContentBlock from "../../components/ContentBlock.astro";
-import HeadingBlock from "../../components/HeadingBlock.astro";
+import List from "../../components/List.astro";
+import ListItem from "../../components/ListItem.astro";
 import MarkdownBlock from "../../components/MarkdownBlock.astro";
-import Panel from "../../components/Panel.astro";
 import ProjectLayout from "../../layouts/ProjectLayout.astro";
+import Section from "../../components/Section.astro";
 import { allCaseStudies } from "../../content/projects";
 import type { CaseStudy } from "../../content/projects/types";
 
@@ -20,20 +22,22 @@ const { caseStudy, index } = Astro.props as {
   index: number;
 };
 
-const MARQUEE_REPEAT = 100;
-const MARQUEE_SECONDS_PER_ITEM = 3;
-const marqueeItems = Array.from(
-  { length: MARQUEE_REPEAT },
-  () => caseStudy.roles,
-).flat();
-const marqueeDuration = `${marqueeItems.length * MARQUEE_SECONDS_PER_ITEM}s`;
-
 const techStack = caseStudy.techStack;
 const problem = caseStudy.problemSolution.problem;
 const solution = caseStudy.problemSolution.solution;
 const technicalWhy = caseStudy.problemSolution.technicalWhy;
 const architecture = caseStudy.architecture;
 const deepDive = caseStudy.deepDive;
+const engineeringRows = caseStudy.engineering.rows;
+const architectureBlocks = architecture.content ?? [];
+const deepDiveBlocks = deepDive.content ?? [];
+const hasEngineering = engineeringRows.length > 0;
+const hasArchitecture = Boolean(
+  architecture.diagram.src || architectureBlocks.length,
+);
+const hasDeepDive = deepDiveBlocks.length > 0;
+const hasRoles = caseStudy.roles.length > 0;
+const hasTechStack = techStack.length > 0;
 
 const previous = allCaseStudies[index - 1];
 const next = allCaseStudies[index + 1];
@@ -41,276 +45,256 @@ const hasProjectLinks = Boolean(caseStudy.liveUrl || caseStudy.repoUrl);
 ---
 
 <ProjectLayout title={`${caseStudy.name} — Case Study`}>
-  <main
-    id={caseStudy.slug}
-    class="grid min-h-screen grid-cols-2 gap-px bg-black"
-  >
-    <nav
-      class="col-span-full bg-(--image-bg) px-6 py-0"
-      style="height: var(--nav-height);"
-    >
-      <a
-        href="/"
-        class="inline-flex h-full items-center gap-2 text-[0.7rem] font-semibold tracking-[0.22em] text-(--description-text) uppercase"
-      >
-        <span aria-hidden="true">←</span>
-        <HeadingBlock as="p" style="h4">Home</HeadingBlock>
-      </a>
-    </nav>
-
-    <Panel
-      as="section"
-      background="primary"
-      class="col-span-full grid aspect-2/1 max-h-[25dvh] w-full place-items-center"
-    >
-      <div class="grid max-w-2xl gap-12 text-center">
-        <div class="grid gap-6">
-          <HeadingBlock
-            as="h1"
-            style="h4"
-            class="text-[0.82rem] font-medium tracking-[0.35em] text-(--brand-text) uppercase"
-          >
-            {caseStudy.name}
-          </HeadingBlock>
-          <p
-            class="text-sm leading-relaxed font-normal text-balance text-(--brand-text)/75"
-          >
-            {caseStudy.oneLiner}
-          </p>
-        </div>
+  <main id={caseStudy.slug} class="mx-auto w-full max-w-2xl px-6 pt-12 pb-36">
+    <div class="flex flex-col gap-12">
+      <header class="flex flex-col gap-6">
+        <p class="body-small">
+          <a href="/">
+            <span class="body-link">Home</span>
+          </a>
+        </p>
+        <h1 class="heading-1">{caseStudy.name}</h1>
+        <p>{caseStudy.oneLiner}</p>
         {
           hasProjectLinks && (
-            <div class="flex items-center justify-center gap-3 text-xs tracking-[0.16em] text-(--brand-text) uppercase">
+            <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
               {caseStudy.liveUrl && (
-                <a
-                  href={caseStudy.liveUrl}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  class="inline underline decoration-1 underline-offset-3 hover:opacity-80"
-                >
-                  View Live ↗
-                </a>
-              )}
-              {caseStudy.liveUrl && caseStudy.repoUrl && (
-                <span
-                  aria-hidden="true"
-                  class="h-3.5 w-px bg-(--brand-text)/45"
-                />
+                <p class="body-small">
+                  <a
+                    href={caseStudy.liveUrl}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    <span class="body-link">View Live ↗</span>
+                  </a>
+                </p>
               )}
               {caseStudy.repoUrl && (
-                <a
-                  href={caseStudy.repoUrl}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  class="inline underline decoration-1 underline-offset-3 hover:opacity-80"
-                >
-                  GitHub ↗
-                </a>
+                <p class="body-small">
+                  <a
+                    href={caseStudy.repoUrl}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    <span class="body-link">GitHub ↗</span>
+                  </a>
+                </p>
               )}
             </div>
           )
         }
-      </div>
-    </Panel>
-
-    <Panel as="section" background="primary" class="col-span-full p-0 sm:p-0">
-      <div
-        class="project-marquee overflow-x-clip overflow-y-clip text-4xl leading-none font-extrabold tracking-widest whitespace-nowrap text-(--description-bg) uppercase"
-        style={`--project-marquee-duration: ${marqueeDuration};`}
-        role="img"
-        aria-label={`Roles: ${caseStudy.roles.join(", ")}`}
-      >
-        <div class="project-marquee-track flex w-max p-0" aria-hidden="true">
-          <div class="project-marquee-group flex items-start gap-x-10">
-            {
-              marqueeItems.map((item) => (
-                <>
-                  <p>{item}</p>
-                  <span>•</span>
-                </>
-              ))
-            }
+        <List as="div">
+          <div>
+            <h2 id="problem-heading" class="heading-3">Problem</h2>
+            <MarkdownBlock value={problem} class="text-sm" />
           </div>
-          <div class="project-marquee-group flex items-start gap-x-10">
-            {
-              marqueeItems.map((item) => (
-                <>
-                  <p>{item}</p>
-                  <span>•</span>
-                </>
-              ))
-            }
+          <div>
+            <h2 id="solution-heading" class="heading-3">Solution</h2>
+            <MarkdownBlock value={solution} />
           </div>
-        </div>
-      </div>
-    </Panel>
+        </List>
+      </header>
 
-    <Panel as="section" class="flex flex-col gap-10 p-6">
-      <div class="flex w-full flex-col gap-5">
-        <HeadingBlock as="h2" style="h3"> Problem </HeadingBlock>
+      <Section class="gap-6" aria-labelledby="problem-heading">
+        <h2 id="problem-heading" class="heading-3">Problem</h2>
         <MarkdownBlock value={problem} />
-      </div>
-      <div class="flex w-full flex-col gap-5">
-        <HeadingBlock as="h2" style="h3"> Solution </HeadingBlock>
+      </Section>
+
+      <Section class="gap-6" aria-labelledby="solution-heading">
+        <h2 id="solution-heading" class="heading-3">Solution</h2>
         <MarkdownBlock value={solution} />
-      </div>
+      </Section>
+
       {
         technicalWhy && (
-          <div class="flex w-full flex-col gap-5">
-            <HeadingBlock as="h2" style="h3">
-              Technical Why
-            </HeadingBlock>
-            <MarkdownBlock value={technicalWhy} />
-          </div>
+          <>
+            <Section class="gap-6" aria-labelledby="technical-why-heading">
+              <h2 id="technical-why-heading" class="heading-2">
+                Technical Why
+              </h2>
+              <MarkdownBlock value={technicalWhy} />
+            </Section>
+          </>
         )
       }
-    </Panel>
 
-    <Panel as="section" class="flex flex-col gap-5">
-      <HeadingBlock as="h2" style="h3">Tech Stack</HeadingBlock>
-      <ul class="flex w-full flex-col gap-5">
-        {
-          techStack.map((item) => (
-            <li>
-              <MarkdownBlock value={item} />
-            </li>
-          ))
-        }
-      </ul>
-    </Panel>
+      {
+        hasTechStack && (
+          <>
+            <Divider />
+            <Section class="gap-6" aria-labelledby="tech-stack-heading">
+              <h2 id="tech-stack-heading" class="heading-2">
+                Tech Stack
+              </h2>
+              <List class="list-disc gap-3 pl-5" role="list">
+                {techStack.map((item) => (
+                  <ListItem class="block">
+                    <MarkdownBlock value={item} />
+                  </ListItem>
+                ))}
+              </List>
+            </Section>
+          </>
+        )
+      }
 
-    <section class="col-span-full grid gap-px">
-      <Panel background="accent" as="header" class="sm:py-6">
-        <HeadingBlock style="h2"> Architecture </HeadingBlock>
-      </Panel>
-      <Panel as="div" class="block gap-12 sm:columns-2">
-        <ImageBlock
-          src={architecture.diagram.src}
-          alt={architecture.diagram.alt}
-          caption={architecture.diagram.caption}
-          width={1024}
-          height={1536}
-          class="break-inside-avoid py-2.5"
-        />
+      {
+        hasRoles && (
+          <>
+            <Divider />
+            <Section class="gap-6" aria-labelledby="my-role-heading">
+              <h2 id="my-role-heading" class="heading-2">
+                My Role
+              </h2>
+              <p>{caseStudy.roles.join(", ")}</p>
+            </Section>
+          </>
+        )
+      }
 
-        {
-          architecture.content?.map((block) => (
-            <ContentBlock block={block} class="break-inside-avoid py-2.5" />
-          ))
-        }
-      </Panel>
-    </section>
+      {
+        hasEngineering && (
+          <>
+            <Divider />
+            <Section class="gap-6" aria-labelledby="engineering-heading">
+              <h2 id="engineering-heading" class="heading-2">
+                Engineering
+              </h2>
+              {caseStudy.engineering.caption && (
+                <p class="body-small">{caseStudy.engineering.caption}</p>
+              )}
 
-    <section class="col-span-full grid gap-px">
-      <Panel background="accent" as="header" class="sm:py-6">
-        <HeadingBlock style="h2"> Engineering </HeadingBlock>
-      </Panel>
-
-      <div
-        data-eng-decisions-scroll
-        class="w-full overflow-x-auto overscroll-x-contain"
-      >
-        <div data-eng-decisions-grid class="grid min-w-4xl grid-cols-3 gap-px">
-          <header
-            data-eng-decisions-head
-            class="col-span-full grid grid-cols-subgrid"
-          >
-            <Panel background="secondary" as="div" class="sm:py-6">
-              <HeadingBlock as="p" style="h4">Constraint</HeadingBlock>
-            </Panel>
-            <Panel background="secondary" as="div" class="sm:py-6">
-              <HeadingBlock as="p" style="h4">Decision</HeadingBlock>
-            </Panel>
-            <Panel background="secondary" as="div" class="sm:py-6">
-              <HeadingBlock as="p" style="h4">Trade-off</HeadingBlock>
-            </Panel>
-          </header>
-
-          {
-            caseStudy.engineering.rows.map((row, index) => (
-              <article
-                data-eng-decisions-row={index}
-                class="col-span-full grid grid-cols-subgrid"
+              <div
+                data-eng-decisions-scroll
+                class="w-full overflow-x-auto overscroll-x-contain"
               >
-                <Panel as="div" class="sm:py-6">
-                  <MarkdownBlock value={row.constraint} />
-                </Panel>
-                <Panel as="div" class="sm:py-6">
-                  <MarkdownBlock value={row.decision} />
-                </Panel>
-                <Panel as="div" class="sm:py-6">
-                  <MarkdownBlock value={row.tradeOff} />
-                </Panel>
-              </article>
-            ))
-          }
-        </div>
-      </div>
-    </section>
-    <section class="col-span-full grid min-w-0 gap-px">
-      <Panel background="accent" as="header" class="grid gap-3 sm:py-6">
-        <HeadingBlock as="p" style="h4">Deep Dive</HeadingBlock>
-        <HeadingBlock style="h2">
-          {deepDive.title}
-        </HeadingBlock>
-      </Panel>
-      <Panel as="div" class="block gap-12 sm:columns-2">
-        {
-          deepDive.content.map((block) => (
-            <ContentBlock block={block} class="break-inside-avoid py-2.5" />
-          ))
-        }
-      </Panel>
-    </section>
+                <div class="min-w-4xl overflow-hidden border border-neutral-200">
+                  <header class="grid grid-cols-3 border-b border-neutral-200">
+                    <div class="border-r border-neutral-200 px-4 py-3">
+                      <p class="heading-3">Constraint</p>
+                    </div>
+                    <div class="border-r border-neutral-200 px-4 py-3">
+                      <p class="heading-3">Decision</p>
+                    </div>
+                    <div class="px-4 py-3">
+                      <p class="heading-3">Trade-off</p>
+                    </div>
+                  </header>
 
-    <nav
-      class="col-span-full grid grid-cols-subgrid gap-px"
-      aria-labelledby="more-projects-heading"
-    >
-      <Panel background="accent" as="header" class="col-span-full sm:py-6">
-        <HeadingBlock style="h2">More projects</HeadingBlock>
-      </Panel>
-      <Panel
-        background="secondary"
-        as="div"
-        class="grid aspect-square max-h-[25dvh] w-full place-items-center"
-      >
-        {
-          previous && (
-            <a
-              href={`/projects/${previous.slug}`}
-              aria-label={`Previous project: ${previous.name}`}
-            >
-              <p class="text-6xl leading-none font-thin" aria-hidden="true">
-                &lt;-
-              </p>
-              <p>{previous.name}</p>
-            </a>
-          )
-        }
-      </Panel>
+                  {engineeringRows.map((row, rowIndex) => (
+                    <article
+                      class={`grid grid-cols-3 ${rowIndex < engineeringRows.length - 1 ? "border-b border-neutral-200" : ""}`}
+                    >
+                      <div class="border-r border-neutral-200 px-4 py-4">
+                        <MarkdownBlock
+                          value={row.constraint}
+                          class="body-small"
+                        />
+                      </div>
+                      <div class="border-r border-neutral-200 px-4 py-4">
+                        <MarkdownBlock
+                          value={row.decision}
+                          class="body-small"
+                        />
+                      </div>
+                      <div class="px-4 py-4">
+                        <MarkdownBlock
+                          value={row.tradeOff}
+                          class="body-small"
+                        />
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </Section>
+          </>
+        )
+      }
 
-      <Panel
-        background="secondary"
-        as="div"
-        class="grid aspect-square max-h-[25dvh] w-full place-items-center"
-      >
-        {
-          next && (
-            <a
-              href={`/projects/${next.slug}`}
-              aria-label={`Next project: ${next.name}`}
-            >
-              <p class="text-6xl leading-none font-thin" aria-hidden="true">
-                -&gt;
-              </p>
-              <HeadingBlock as="p" style="h4">
-                {next.name}
-              </HeadingBlock>
-            </a>
-          )
-        }
-      </Panel>
-    </nav>
+      {
+        hasArchitecture && (
+          <>
+            <Divider />
+            <Section class="gap-6" aria-labelledby="architecture-heading">
+              <h2 id="architecture-heading" class="heading-2">
+                Architecture
+              </h2>
+
+              <div class="flex flex-col gap-6">
+                <ImageBlock
+                  src={architecture.diagram.src}
+                  alt={architecture.diagram.alt}
+                  caption={architecture.diagram.caption}
+                  width={1024}
+                  height={1536}
+                />
+
+                {architectureBlocks.map((block) => (
+                  <ContentBlock block={block} />
+                ))}
+              </div>
+            </Section>
+          </>
+        )
+      }
+
+      {
+        hasDeepDive && (
+          <>
+            <Divider />
+            <Section class="gap-6" aria-labelledby="deep-dive-heading">
+              <h2 id="deep-dive-heading" class="heading-2">
+                Deep Dive
+              </h2>
+              <p class="heading-3">{deepDive.title}</p>
+
+              <div class="flex flex-col gap-6">
+                {deepDiveBlocks.map((block) => (
+                  <ContentBlock block={block} />
+                ))}
+              </div>
+            </Section>
+          </>
+        )
+      }
+
+      {
+        (previous || next) && (
+          <>
+            <Divider />
+            <Section class="gap-6" aria-labelledby="more-projects-heading">
+              <h2 id="more-projects-heading" class="heading-2">
+                More Projects
+              </h2>
+
+              <List class="gap-6" role="list">
+                {previous && (
+                  <ListItem class="block">
+                    <p class="body-small">Previous</p>
+                    <p class="heading-3">
+                      <a href={`/projects/${previous.slug}`}>
+                        <span class="body-link">{previous.name}</span>
+                      </a>
+                    </p>
+                  </ListItem>
+                )}
+
+                {next && (
+                  <ListItem class="block">
+                    <p class="body-small">Next</p>
+                    <p class="heading-3">
+                      <a href={`/projects/${next.slug}`}>
+                        <span class="body-link">{next.name}</span>
+                      </a>
+                    </p>
+                  </ListItem>
+                )}
+              </List>
+            </Section>
+          </>
+        )
+      }
+    </div>
   </main>
 </ProjectLayout>

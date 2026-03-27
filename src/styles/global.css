@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
 @theme {
+  --color-bg: var(--color-neutral-50);
   --color-body: var(--color-neutral-900);
-  --color-muted: var(--color-neutral-500);
+  --color-muted: color-mix(in oklch, var(--color-body) 70%, transparent);
+  --color-linework: color-mix(in oklch, var(--color-body) 10%, transparent);
 }
 
 @font-face {
