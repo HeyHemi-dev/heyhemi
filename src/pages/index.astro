@@ -99,7 +99,7 @@ const contact = ["Email", "Github", "Threads"];
                   <a href={project.name.href} class="font-medium underline">
                     {project.name.label}
                   </a>
-                  {project.client ?? <span>{" " + project.client}</span>}
+                  {project.client ? <span>{project.client}</span> : null}
                 </p>
                 <p class="text-stone-600">{project.description}</p>
               </li>
@@ -119,12 +119,20 @@ const contact = ["Email", "Github", "Threads"];
               <li class="flex flex-col gap-3">
                 <p class="font-medium">
                   <span>{milestone.title}</span>
-                  {milestone.organisation ? 
-                  <span>, </span>
-                  <a href={milestone.organisation.href} class="font-medium underline">
-                    {milestone.organisation.label}
-                  </a>: <span>.</span>}
-                  </p>
+                  {milestone.organisation ? (
+                    <>
+                      <span>, </span>
+                      <a
+                        href={milestone.organisation.href}
+                        class="font-medium underline"
+                      >
+                        {milestone.organisation.label}
+                      </a>
+                    </>
+                  ) : (
+                    <span>.</span>
+                  )}
+                </p>
                 <p class="">{milestone.period}</p>
               </li>
             ))
