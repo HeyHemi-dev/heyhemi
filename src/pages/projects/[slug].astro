@@ -33,9 +33,10 @@ const architectureContent = architecture.content;
 const engineering = caseStudy.engineering;
 const engineeringRows = engineering.rows;
 const deepDive = caseStudy.deepDive;
+const caseStudyCount = allCaseStudies.length;
 
-const previous = allCaseStudies[index - 1];
-const next = allCaseStudies[index + 1];
+const previous = allCaseStudies[(index - 1 + caseStudyCount) % caseStudyCount]!;
+const next = allCaseStudies[(index + 1) % caseStudyCount]!;
 ---
 
 <ProjectLayout title={`${caseStudy.name} — Case Study`}>
@@ -136,14 +137,14 @@ const next = allCaseStudies[index + 1];
 
         <div
           data-eng-decisions-scroll
-          class="w-full overflow-x-auto overscroll-x-contain"
+          class="border-linework w-full overflow-x-auto overscroll-x-contain border"
         >
-          <div class="min-w-4xl overflow-hidden border border-neutral-200">
-            <header class="grid grid-cols-3 border-b border-neutral-200">
-              <div class="border-r border-neutral-200 px-4 py-3">
+          <div class="min-w-4xl overflow-hidden">
+            <header class="border-linework grid grid-cols-3 border-b">
+              <div class="border-linework border-r px-4 py-3">
                 <p class="heading-3">Constraint</p>
               </div>
-              <div class="border-r border-neutral-200 px-4 py-3">
+              <div class="border-linework border-r px-4 py-3">
                 <p class="heading-3">Decision</p>
               </div>
               <div class="px-4 py-3">
@@ -154,12 +155,12 @@ const next = allCaseStudies[index + 1];
             {
               engineeringRows.map((row, rowIndex) => (
                 <article
-                  class={`grid grid-cols-3 ${rowIndex < engineeringRows.length - 1 ? "border-b border-neutral-200" : ""}`}
+                  class={`grid grid-cols-3 ${rowIndex < engineeringRows.length - 1 ? "border-linework border-b" : ""}`}
                 >
-                  <div class="border-r border-neutral-200 px-4 py-4">
+                  <div class="border-linework border-r px-4 py-4">
                     <MarkdownBlock value={row.constraint} class="body-small" />
                   </div>
-                  <div class="border-r border-neutral-200 px-4 py-4">
+                  <div class="border-linework border-r px-4 py-4">
                     <MarkdownBlock value={row.decision} class="body-small" />
                   </div>
                   <div class="px-4 py-4">
@@ -220,39 +221,29 @@ const next = allCaseStudies[index + 1];
         )
       }
 
-      {
-        (previous || next) && (
-          <>
-            <Divider />
+      <Divider />
 
-            <Section aria-labelledby="more-projects-heading">
-              <h2 id="more-projects-heading" class="heading-2">
-                More Projects
-              </h2>
+      <Section aria-labelledby="more-projects-heading">
+        <h2 id="more-projects-heading" class="heading-2">More Projects</h2>
 
-              <List class="grid grid-cols-2">
-                {previous && (
-                  <ListItem class="col-start-1 flex flex-col gap-3">
-                    <p class="body-small">Previous</p>
-                    <a href={`/projects/${previous.slug}`} class="body-link">
-                      {previous.name}
-                    </a>
-                  </ListItem>
-                )}
+        <List class="grid grid-cols-2">
+          <ListItem class="col-start-1 flex flex-col gap-3">
+            <p class="body-small">Previous</p>
+            <a href={`/projects/${previous.slug}`} class="body-link">
+              {previous.name}
+            </a>
+          </ListItem>
 
-                {next && (
-                  <ListItem class="col-start-2 flex flex-col gap-3 justify-self-end text-right">
-                    <p class="body-small">Next</p>
-                    <a href={`/projects/${next.slug}`} class="body-link">
-                      {next.name}
-                    </a>
-                  </ListItem>
-                )}
-              </List>
-            </Section>
-          </>
-        )
-      }
+          <ListItem
+            class="col-start-2 flex flex-col gap-3 justify-self-end text-right"
+          >
+            <p class="body-small">Next</p>
+            <a href={`/projects/${next.slug}`} class="body-link">
+              {next.name}
+            </a>
+          </ListItem>
+        </List>
+      </Section>
     </div>
   </main>
 </ProjectLayout>

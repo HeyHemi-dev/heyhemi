@@ -10,7 +10,7 @@ const { tokens = [] } = Astro.props as {
   tokens.map((token) => {
     if (token.type === "text") return token.value;
     if (token.type === "strong")
-      return <strong class="[font-weight:bolder]">{token.value}</strong>;
+      return <span class="[font-weight:bolder]">{token.value}</span>;
     if (token.type === "emphasis") return <em class="italic">{token.value}</em>;
     if (token.type === "inlineCode") {
       return (
