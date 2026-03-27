@@ -1,123 +1,155 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
+type Project = {
+  name: { label: string; href: string };
+  client?: string;
+  description: string;
+};
+
+type Milestone = {
+  title: string;
+  organisation?: { label: string; href: string };
+  period: string;
+  note?: string;
+};
+
 const projects = [
   {
-    name: "With Thanks",
+    name: { label: "With Thanks", href: "" },
+    client: "",
     description: "Effortlessly collect supplier details from couples.",
   },
   {
-    name: "Wedding Ready",
+    name: { label: "Wedding Ready", href: "" },
+    client: "",
     description: "Pinterest, but hyper-local and supplier-lead.",
   },
   {
-    name: "Mayday",
+    name: { label: "Mayday", href: "" },
+    client: "",
     description: "Job board for wedding suppliers during Covid-19.",
   },
   {
-    name: "Knowie for Patina Photo",
+    name: { label: "Knowie", href: "" },
+    client: " for Patina Photo",
     description: "Lead and job management, + analytics.",
   },
   {
-    name: "Sharesies Open for Sharesies",
+    name: { label: "Sharesies Open", href: "" },
+    client: " for Sharesies",
     description: "Employee-shares management portal for businesses.",
   },
-];
+] satisfies Project[];
 
-const career = [
+const milestones = [
   {
-    title: "Freelance Developer, Various Projects",
-    years: "2024 — now",
+    title: "Freelance Developer",
+    period: "2024 — now",
+    note: "Various Projects",
   },
   {
-    title: "Customer Experience, Xero",
-    years: "2025",
+    title: "Customer Experience",
+    organisation: { label: "Xero", href: "" },
+    period: "2025",
   },
   {
-    title: "Software Developer Intern, Sharesies",
-    years: "2024 — 2025",
+    title: "Software Developer Intern",
+    organisation: { label: "Sharesies", href: "" },
+    period: "2024 — 2025",
   },
   {
-    title: "Cert. Applied Software Development, Dev Academy",
-    years: "2024",
+    title: "Cert. Applied Software Development",
+    organisation: { label: "Dev Academy", href: "" },
+    period: "2024",
   },
   {
-    title: "Owner & Photographer, Patina Photo",
-    years: "2012 — 2024",
+    title: "Owner & Photographer",
+    organisation: { label: "Patina Photo", href: "" },
+    period: "2012 — 2024",
   },
   {
-    title: "Bachelor of Architectural Studies, Victoria University",
-    years: "2008 — 2012",
+    title: "Bachelor of Architectural Studies",
+    organisation: { label: "Victoria University", href: "" },
+    period: "2008 — 2012",
   },
-];
+] satisfies Milestone[];
 
 const contact = ["Email", "Github", "Threads"];
 ---
 
 <BaseLayout title="Hey Hemi" bodyClass="home-page">
-  <main class="mx-auto w-full max-w-5xl px-6 pt-6 pb-12">
-    <div class="flex flex-col gap-6">
+  <main class="mx-auto w-full max-w-2xl px-6 pt-6 pb-12">
+    <div class="flex flex-col gap-12">
       <header class="flex flex-col gap-6">
-        <h1 class="home-title">Hey Hemi</h1>
-
-        <div class="home-copy-group flex flex-col gap-6">
-          <p class="home-lead m-0">Hey, I’m Hemi</p>
-          <p class="m-0">I have ideas; I build them.</p>
-        </div>
+        <h1 class="text-xl">Hey, I’m Hemi</h1>
+        <p>I have ideas, and I build them.</p>
       </header>
 
-      <hr class="home-rule m-0 w-full border-0 border-b" />
+      <hr class="home-rule w-full border-0 border-b" />
 
-      <section class="flex flex-col gap-6" aria-labelledby="projects-heading">
-        <h2 id="projects-heading" class="home-section-title">Projects</h2>
+      <section class="flex flex-col gap-12" aria-labelledby="projects-heading">
+        <h2 id="projects-heading" class="text-lg">Projects</h2>
 
-        <ul class="m-0 flex list-none flex-col gap-7 p-0" role="list">
+        <ul class="flex list-none flex-col gap-12" role="list">
           {
             projects.map((project) => (
-              <li class="flex flex-col gap-1">
-                <p class="home-entry-title m-0">{project.name}</p>
-                <p class="home-entry-support m-0">{project.description}</p>
+              <li class="flex flex-col gap-3">
+                <p>
+                  <a href={project.name.href} class="font-medium underline">
+                    {project.name.label}
+                  </a>
+                  {project.client ?? <span>{" " + project.client}</span>}
+                </p>
+                <p class="text-stone-600">{project.description}</p>
               </li>
             ))
           }
         </ul>
       </section>
 
-      <hr class="home-rule m-0 w-full border-0 border-b" />
+      <hr class="home-rule w-full border-0 border-b" />
 
-      <section class="flex flex-col gap-6" aria-labelledby="career-heading">
-        <h2 id="career-heading" class="home-section-title">Career</h2>
+      <section class="flex flex-col gap-12" aria-labelledby="career-heading">
+        <h2 id="career-heading" class="text-lg">Career</h2>
 
-        <ul class="m-0 flex list-none flex-col gap-7 p-0" role="list">
+        <ul class="flex list-none flex-col gap-12" role="list">
           {
-            career.map((item) => (
-              <li class="flex flex-col gap-1">
-                <p class="home-entry-title m-0">{item.title}</p>
-                <p class="home-entry-support m-0">{item.years}</p>
+            milestones.map((milestone) => (
+              <li class="flex flex-col gap-3">
+                <p class="font-medium">
+                  <span>{milestone.title}</span>
+                  {milestone.organisation ? 
+                  <span>, </span>
+                  <a href={milestone.organisation.href} class="font-medium underline">
+                    {milestone.organisation.label}
+                  </a>: <span>.</span>}
+                  </p>
+                <p class="">{milestone.period}</p>
               </li>
             ))
           }
         </ul>
       </section>
 
-      <hr class="home-rule m-0 w-full border-0 border-b" />
+      <hr class="home-rule w-full border-0 border-b" />
 
       <section class="flex flex-col gap-6" aria-labelledby="about-heading">
         <h2 id="about-heading" class="home-section-title">About</h2>
 
         <div class="home-copy-group flex flex-col gap-6">
-          <p class="m-0">
+          <p>
             I always admired builders; the ability to take an idea and turn it
             into something real. This what I love about software development;
             creating digital products for people.
           </p>
-          <p class="m-0">
+          <p>
             I started as an architect, before building my own photographer
             business (together with my wife), and now I’ve turned to software
             development. I’m a generalist, self-motivated, and a super-quick
             learner.
           </p>
-          <p class="m-0">
+          <p>
             I’m looking to join a team who are passionate about what they are
             building, that needs someone who can muck in, and is more than just
             an engineer. If this is you, I’d love to chat.
@@ -125,12 +157,12 @@ const contact = ["Email", "Github", "Threads"];
         </div>
       </section>
 
-      <hr class="home-rule m-0 w-full border-0 border-b" />
+      <hr class="home-rule w-full border-0 border-b" />
 
       <section class="flex flex-col gap-6" aria-labelledby="contact-heading">
         <h2 id="contact-heading" class="home-section-title">Contact</h2>
 
-        <ul class="m-0 flex list-none flex-col gap-3 p-0" role="list">
+        <ul class="flex list-none flex-col gap-3" role="list">
           {
             contact.map((item) => (
               <li class="home-contact-item leading-normal">{item}</li>
