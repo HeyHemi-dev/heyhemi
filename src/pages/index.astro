@@ -99,8 +99,8 @@ const contact = ["Email", "Github", "Threads"];
             projects.map((project) => (
               <li class="flex flex-col gap-3">
                 <p>
-                  <a href={project.name.href} class="font-medium underline">
-                    {project.name.label}
+                  <a href={project.name.href} class="font-medium">
+                    <span class="underline">{project.name.label}</span>
                   </a>
                   {project.client && <span>{`${project.client}`}</span>}
                 </p>
@@ -124,11 +124,10 @@ const contact = ["Email", "Github", "Threads"];
                   {milestone.organisation ? (
                     <>
                       <span>{`${milestone.title}, `}</span>
-                      <a
-                        href={milestone.organisation.href}
-                        class="text-body underline"
-                      >
-                        {milestone.organisation.label}
+                      <a href={milestone.organisation.href} class="text-body">
+                        <span class="underline">
+                          {milestone.organisation.label}
+                        </span>
                       </a>
                     </>
                   ) : (
