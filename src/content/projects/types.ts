@@ -71,7 +71,7 @@ export type CaseStudy = CaseStudyPreview & {
     rows: ConstraintDecisionRow[];
   };
 
-  deepDive: {
+  deepDive?: {
     title: string;
     content: ContentBlock[];
   };

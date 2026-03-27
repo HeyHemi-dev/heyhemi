@@ -55,3 +55,7 @@ body {
   text-box-trim: trim-both;
   text-box-edge: cap alphabetic;
 }
+
+:where(.heading-1, .heading-2, .heading-3):not(:first-child) {
+  @apply mt-6;
+}

@@ -11,6 +11,6 @@ type Props = HTMLAttributes<"li"> & {
 const { as: Tag = "li", class: className = "", ...rest } = Astro.props as Props;
 ---
 
-<Tag class={cn("", className)} {...rest}>
+<Tag class={cn("", className)} role="listitem" {...rest}>
   <slot />
 </Tag>

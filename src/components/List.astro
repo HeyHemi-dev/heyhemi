@@ -11,6 +11,10 @@ type Props = HTMLAttributes<"ul"> & {
 const { as: Tag = "ul", class: className = "", ...rest } = Astro.props as Props;
 ---
 
-<Tag class={cn("flex list-none flex-col gap-6", className)} {...rest}>
+<Tag
+  class={cn("flex list-none flex-col gap-6", className)}
+  {...rest}
+  role="list"
+>
   <slot />
 </Tag>

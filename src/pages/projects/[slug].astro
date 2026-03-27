@@ -22,39 +22,36 @@ const { caseStudy, index } = Astro.props as {
   index: number;
 };
 
-const techStack = caseStudy.techStack;
+const hasProjectLinks = Boolean(caseStudy.liveUrl || caseStudy.repoUrl);
+
 const problem = caseStudy.problemSolution.problem;
 const solution = caseStudy.problemSolution.solution;
-const technicalWhy = caseStudy.problemSolution.technicalWhy;
+const techStack = caseStudy.techStack;
+
 const architecture = caseStudy.architecture;
+const architectureContent = architecture.content;
+const engineering = caseStudy.engineering;
+const engineeringRows = engineering.rows;
 const deepDive = caseStudy.deepDive;
-const engineeringRows = caseStudy.engineering.rows;
-const architectureBlocks = architecture.content ?? [];
-const deepDiveBlocks = deepDive.content ?? [];
-const hasEngineering = engineeringRows.length > 0;
-const hasArchitecture = Boolean(
-  architecture.diagram.src || architectureBlocks.length,
-);
-const hasDeepDive = deepDiveBlocks.length > 0;
-const hasRoles = caseStudy.roles.length > 0;
-const hasTechStack = techStack.length > 0;
 
 const previous = allCaseStudies[index - 1];
 const next = allCaseStudies[index + 1];
-const hasProjectLinks = Boolean(caseStudy.liveUrl || caseStudy.repoUrl);
 ---
 
 <ProjectLayout title={`${caseStudy.name} — Case Study`}>
   <main id={caseStudy.slug} class="mx-auto w-full max-w-2xl px-6 pt-12 pb-36">
     <div class="flex flex-col gap-12">
-      <header class="flex flex-col gap-6">
+      <header class="flex flex-col gap-12">
         <p class="body-small">
           <a href="/">
             <span class="body-link">Home</span>
           </a>
         </p>
-        <h1 class="heading-1">{caseStudy.name}</h1>
-        <p>{caseStudy.oneLiner}</p>
+        <div class="flex flex-col gap-6">
+          <h1 class="heading-1">{caseStudy.name}</h1>
+          <p>{caseStudy.oneLiner}</p>
+        </div>
+
         {
           hasProjectLinks && (
             <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
@@ -76,26 +73,31 @@ const hasProjectLinks = Boolean(caseStudy.liveUrl || caseStudy.repoUrl);
                     target="_blank"
                     rel="noreferrer noopener"
                   >
-                    <span class="body-link">GitHub ↗</span>
+                    <span class="body-link">View GitHub ↗</span>
                   </a>
                 </p>
               )}
             </div>
           )
         }
+
         <List as="div">
-          <div>
+          <ListItem as="div" class="flex flex-col gap-3">
             <h2 id="problem-heading" class="heading-3">Problem</h2>
-            <MarkdownBlock value={problem} class="text-sm" />
-          </div>
-          <div>
+            <MarkdownBlock value={problem} class="body-small" />
+          </ListItem>
+          <ListItem as="div" class="flex flex-col gap-3">
             <h2 id="solution-heading" class="heading-3">Solution</h2>
-            <MarkdownBlock value={solution} />
-          </div>
+            <MarkdownBlock value={solution} class="body-small" />
+          </ListItem>
+          <ListItem as="div" class="flex flex-col gap-3">
+            <h2 id="my-role-heading" class="heading-3">My Role</h2>
+            <p class="body-small">{caseStudy.roles.join(", ")}</p>
+          </ListItem>
         </List>
       </header>
 
-      <Section class="gap-6" aria-labelledby="problem-heading">
+      <!-- <Section class="gap-6" aria-labelledby="problem-heading">
         <h2 id="problem-heading" class="heading-3">Problem</h2>
         <MarkdownBlock value={problem} />
       </Section>
@@ -103,154 +105,113 @@ const hasProjectLinks = Boolean(caseStudy.liveUrl || caseStudy.repoUrl);
       <Section class="gap-6" aria-labelledby="solution-heading">
         <h2 id="solution-heading" class="heading-3">Solution</h2>
         <MarkdownBlock value={solution} />
+      </Section> -->
+
+      <Divider />
+
+      <Section aria-labelledby="tech-stack-heading">
+        <h2 id="tech-stack-heading" class="heading-2">Tech Stack</h2>
+        <List>
+          {
+            techStack.map((item) => (
+              <ListItem>
+                <MarkdownBlock value={item} />
+              </ListItem>
+            ))
+          }
+        </List>
+      </Section>
+
+      <Divider />
+
+      <Section aria-labelledby="engineering-heading">
+        <div class="flex flex-col gap-6">
+          <h2 id="engineering-heading" class="heading-2">Engineering</h2>
+          {
+            engineering.caption && (
+              <p class="body-small">{engineering.caption}</p>
+            )
+          }
+        </div>
+
+        <div
+          data-eng-decisions-scroll
+          class="w-full overflow-x-auto overscroll-x-contain"
+        >
+          <div class="min-w-4xl overflow-hidden border border-neutral-200">
+            <header class="grid grid-cols-3 border-b border-neutral-200">
+              <div class="border-r border-neutral-200 px-4 py-3">
+                <p class="heading-3">Constraint</p>
+              </div>
+              <div class="border-r border-neutral-200 px-4 py-3">
+                <p class="heading-3">Decision</p>
+              </div>
+              <div class="px-4 py-3">
+                <p class="heading-3">Trade-off</p>
+              </div>
+            </header>
+
+            {
+              engineeringRows.map((row, rowIndex) => (
+                <article
+                  class={`grid grid-cols-3 ${rowIndex < engineeringRows.length - 1 ? "border-b border-neutral-200" : ""}`}
+                >
+                  <div class="border-r border-neutral-200 px-4 py-4">
+                    <MarkdownBlock value={row.constraint} class="body-small" />
+                  </div>
+                  <div class="border-r border-neutral-200 px-4 py-4">
+                    <MarkdownBlock value={row.decision} class="body-small" />
+                  </div>
+                  <div class="px-4 py-4">
+                    <MarkdownBlock value={row.tradeOff} class="body-small" />
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </Section>
+
+      <Divider />
+
+      <Section aria-labelledby="architecture-heading">
+        <div class="flex flex-col gap-6">
+          <h2 id="architecture-heading" class="heading-2">Architecture</h2>
+          <ImageBlock
+            src={architecture.diagram.src}
+            alt={architecture.diagram.alt}
+            caption={architecture.diagram.caption}
+            width={1024}
+            height={1536}
+          />
+        </div>
+
+        {
+          architectureContent && (
+            <div class="flex flex-col gap-6">
+              {architectureContent.map((block) => (
+                <ContentBlock block={block} />
+              ))}
+            </div>
+          )
+        }
       </Section>
 
       {
-        technicalWhy && (
-          <>
-            <Section class="gap-6" aria-labelledby="technical-why-heading">
-              <h2 id="technical-why-heading" class="heading-2">
-                Technical Why
-              </h2>
-              <MarkdownBlock value={technicalWhy} />
-            </Section>
-          </>
-        )
-      }
-
-      {
-        hasTechStack && (
+        deepDive && (
           <>
             <Divider />
-            <Section class="gap-6" aria-labelledby="tech-stack-heading">
-              <h2 id="tech-stack-heading" class="heading-2">
-                Tech Stack
-              </h2>
-              <List class="list-disc gap-3 pl-5" role="list">
-                {techStack.map((item) => (
-                  <ListItem class="block">
-                    <MarkdownBlock value={item} />
-                  </ListItem>
-                ))}
-              </List>
-            </Section>
-          </>
-        )
-      }
 
-      {
-        hasRoles && (
-          <>
-            <Divider />
-            <Section class="gap-6" aria-labelledby="my-role-heading">
-              <h2 id="my-role-heading" class="heading-2">
-                My Role
-              </h2>
-              <p>{caseStudy.roles.join(", ")}</p>
-            </Section>
-          </>
-        )
-      }
-
-      {
-        hasEngineering && (
-          <>
-            <Divider />
-            <Section class="gap-6" aria-labelledby="engineering-heading">
-              <h2 id="engineering-heading" class="heading-2">
-                Engineering
-              </h2>
-              {caseStudy.engineering.caption && (
-                <p class="body-small">{caseStudy.engineering.caption}</p>
-              )}
-
-              <div
-                data-eng-decisions-scroll
-                class="w-full overflow-x-auto overscroll-x-contain"
-              >
-                <div class="min-w-4xl overflow-hidden border border-neutral-200">
-                  <header class="grid grid-cols-3 border-b border-neutral-200">
-                    <div class="border-r border-neutral-200 px-4 py-3">
-                      <p class="heading-3">Constraint</p>
-                    </div>
-                    <div class="border-r border-neutral-200 px-4 py-3">
-                      <p class="heading-3">Decision</p>
-                    </div>
-                    <div class="px-4 py-3">
-                      <p class="heading-3">Trade-off</p>
-                    </div>
-                  </header>
-
-                  {engineeringRows.map((row, rowIndex) => (
-                    <article
-                      class={`grid grid-cols-3 ${rowIndex < engineeringRows.length - 1 ? "border-b border-neutral-200" : ""}`}
-                    >
-                      <div class="border-r border-neutral-200 px-4 py-4">
-                        <MarkdownBlock
-                          value={row.constraint}
-                          class="body-small"
-                        />
-                      </div>
-                      <div class="border-r border-neutral-200 px-4 py-4">
-                        <MarkdownBlock
-                          value={row.decision}
-                          class="body-small"
-                        />
-                      </div>
-                      <div class="px-4 py-4">
-                        <MarkdownBlock
-                          value={row.tradeOff}
-                          class="body-small"
-                        />
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              </div>
-            </Section>
-          </>
-        )
-      }
-
-      {
-        hasArchitecture && (
-          <>
-            <Divider />
-            <Section class="gap-6" aria-labelledby="architecture-heading">
-              <h2 id="architecture-heading" class="heading-2">
-                Architecture
-              </h2>
-
-              <div class="flex flex-col gap-6">
-                <ImageBlock
-                  src={architecture.diagram.src}
-                  alt={architecture.diagram.alt}
-                  caption={architecture.diagram.caption}
-                  width={1024}
-                  height={1536}
-                />
-
-                {architectureBlocks.map((block) => (
-                  <ContentBlock block={block} />
-                ))}
-              </div>
-            </Section>
-          </>
-        )
-      }
-
-      {
-        hasDeepDive && (
-          <>
-            <Divider />
-            <Section class="gap-6" aria-labelledby="deep-dive-heading">
+            <Section aria-labelledby="deep-dive-heading">
               <h2 id="deep-dive-heading" class="heading-2">
-                Deep Dive
+                <>
+                  <span>Deep Dive:</span>
+                  <span>{deepDive.title}</span>
+                </>
               </h2>
-              <p class="heading-3">{deepDive.title}</p>
 
               <div class="flex flex-col gap-6">
-                {deepDiveBlocks.map((block) => (
+                {deepDive.content.map((block) => (
                   <ContentBlock block={block} />
                 ))}
               </div>
@@ -263,31 +224,28 @@ const hasProjectLinks = Boolean(caseStudy.liveUrl || caseStudy.repoUrl);
         (previous || next) && (
           <>
             <Divider />
-            <Section class="gap-6" aria-labelledby="more-projects-heading">
+
+            <Section aria-labelledby="more-projects-heading">
               <h2 id="more-projects-heading" class="heading-2">
                 More Projects
               </h2>
 
-              <List class="gap-6" role="list">
+              <List class="grid grid-cols-2">
                 {previous && (
-                  <ListItem class="block">
+                  <ListItem class="col-start-1 flex flex-col gap-3">
                     <p class="body-small">Previous</p>
-                    <p class="heading-3">
-                      <a href={`/projects/${previous.slug}`}>
-                        <span class="body-link">{previous.name}</span>
-                      </a>
-                    </p>
+                    <a href={`/projects/${previous.slug}`} class="body-link">
+                      {previous.name}
+                    </a>
                   </ListItem>
                 )}
 
                 {next && (
-                  <ListItem class="block">
+                  <ListItem class="col-start-2 flex flex-col gap-3 justify-self-end text-right">
                     <p class="body-small">Next</p>
-                    <p class="heading-3">
-                      <a href={`/projects/${next.slug}`}>
-                        <span class="body-link">{next.name}</span>
-                      </a>
-                    </p>
+                    <a href={`/projects/${next.slug}`} class="body-link">
+                      {next.name}
+                    </a>
                   </ListItem>
                 )}
               </List>
