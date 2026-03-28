@@ -1,26 +1,32 @@
-flowchart LR
-  P["Photographer (signed in)\nSession token (Neon Auth)"]
-  C["Couple (guest link)\nShare token in URL"]
+flowchart TD
+  P[Photographer session]
+  NA[Neon Auth]
+  C[Couple share link]
 
-  NA["Neon Auth\n(users/sessions)"]
+  subgraph Server[Server functions]
+    direction TB
+    subgraph Checks[Authorization]
+      direction LR
+      SA[Session auth]
+      SB[Share-link auth]
+    end
 
-  subgraph Server["Server functions (createServerFn)"]
-    SA["Server function authorization\nSESSION REQUIRED"]
-    SB["Server function authorization\nSHARE TOKEN REQUIRED"]
-    Admin["Event admin API\nlist/create/get/delete events"]
-    Collab["Collaboration API\nget event for couple\ncreate/delete credits\ncreate supplier"]
+    subgraph Actions[Allowed actions]
+      direction LR
+      Admin[Event admin]
+      Collab[Collaboration]
+    end
   end
 
-  subgraph Data["Data access (server-side only)"]
-    Drizzle["Drizzle queries\n(server env creds)"]
-    DB[("Neon Postgres")]
+  subgraph Data[Data access]
+    direction TB
+    Drizzle[Drizzle ORM]
+    DB[(Neon Postgres)]
   end
 
-  %% Auth issuance/validation (conceptual)
-  P -. "sign in / session" .-> NA
   P --> SA
+  NA --> SA
   C --> SB
-
   SA --> Admin
   SA --> Collab
   SB --> Collab
