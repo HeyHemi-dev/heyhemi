@@ -62,7 +62,6 @@ export const withThanksCaseStudy = {
 
   architecture: {
     diagram: {
-      // TODO: Export `with-thanks-architecture-sequence.mmd` to SVG.
       src: "/projects/with-thanks/architecture-sequence.svg",
       alt: "Request flow architecture. Route renders, a hook calls a TanStack Start server function, the server function validates/authorizes, then Drizzle runs against Neon Postgres and returns a DTO back to the UI.",
       caption:
