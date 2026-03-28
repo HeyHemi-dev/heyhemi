@@ -15,17 +15,16 @@ flowchart TD
     C --> SB --> Collab
   end
 
-  subgraph Shared[Shared backend and data]
+  subgraph Shared[Backend and data]
     direction TB
-    ServerFns[TanStack Start server functions]
+    ServerFns[TanStack Start<br>server fn / authorisation]
     Drizzle[Drizzle ORM]
     DB[(Neon Postgres)]
     ServerFns --> Drizzle --> DB
   end
 
 
-  SessionFlow --> Shared
-  ShareFlow --> Shared
+  Admin & Collab --> ServerFns
 
 
 

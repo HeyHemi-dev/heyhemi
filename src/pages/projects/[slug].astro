@@ -10,6 +10,7 @@ import ProjectLayout from "../../layouts/ProjectLayout.astro";
 import Section from "../../components/Section.astro";
 import { allCaseStudies } from "../../content/projects";
 import type { CaseStudy } from "../../content/projects/types";
+import MarkdownInlines from "../../components/MarkdownInlines.astro";
 
 export const getStaticPaths = (() =>
   allCaseStudies.map((caseStudy, index) => ({

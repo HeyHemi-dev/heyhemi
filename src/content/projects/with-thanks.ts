@@ -75,9 +75,9 @@ export const withThanksCaseStudy = {
           "",
           "I chose TanStack (Start + Router) for strong end-to-end type-safety at the routing boundary and its ergonomics for layering in middleware-style enforcement over time (planned). Zod fits cleanly into this: routes can validate and type search params, and server functions validate incoming payloads at the request boundary before any business logic runs.",
           "",
-          "At a high level, routes render UI and delegate data loading and mutations to hooks (TanStack Query + `useServerFn`). Those hooks call server functions (`createServerFn`), which validate inputs and enforce authorization before executing database reads/writes.",
+          "At a high level, routes render UI and delegate data loading and mutations to hooks (TanStack Query + `useServerFn`). Those hooks call server functions (`createServerFn`), which validate inputs and enforce authorisation before executing database reads/writes.",
           "",
-          "The client never talks to the database directly. All database reads and writes run server-side through Drizzle against Neon Postgres using server environment credentials. Client tokens are used strictly for request authorization, not for database access.",
+          "The client never talks to the database directly. All database reads and writes run server-side through Drizzle against Neon Postgres using server environment credentials. Client tokens are used strictly for request authorisation, not for database access.",
           "",
           "A key product-specific detail is that the app supports two access modes (session dashboard vs share-link collaboration), but the architecture remains consistent: both modes still flow through the same server-function boundary.",
         ].join("\n"),
@@ -121,7 +121,7 @@ export const withThanksCaseStudy = {
           "Search is a core workflow, and typing-driven UX can easily create noisy requests and janky UI (especially with dedupe checks and “typeahead” search).",
         decision: {
           type: "md",
-          text: "Adopted TanStack Pacer early for debounced/throttled state so high-frequency interactions (supplier search inputs, dedupe checks, and copy-to-clipboard feedback) stay responsive and “batch” into fewer requests.",
+          text: "**Adopted TanStack Pacer for debounced/throttled state** so high-frequency interactions (supplier search inputs, dedupe checks, and copy-to-clipboard feedback) stay responsive and “batch” into fewer requests.",
         },
         tradeOff:
           "Requires careful tuning of debounce/throttle timing and doesn’t replace server-side protections. Planned: expand into explicit rate-limiting patterns as usage grows.",
@@ -131,7 +131,7 @@ export const withThanksCaseStudy = {
           "I wanted the UI to feel lightweight — actions like creating an event or tagging a supplier should feel quick, not like a “workflow” that pulls you away from what you were doing.",
         decision: {
           type: "md",
-          text: "Used a drawer-first interaction pattern for common actions (e.g. create event, add/tag supplier) so forms appear in-context instead of full page navigations.",
+          text: "**Used a drawer-first interaction pattern** for common actions (e.g. create event, add/tag supplier) so forms appear in-context instead of full page navigations.",
         },
         tradeOff:
           "Drawers are effectively modal dialogs, so stacking portal-based UI primitives (popovers/selects/date pickers) can create “popup-on-popup” and focus/portaling issues. In practice this constrained some input choices in favor of simpler components.",
@@ -141,7 +141,7 @@ export const withThanksCaseStudy = {
           "I envisioned the app being used primarily on a phone, and didn’t want to maintain separate “desktop vs mobile” layout complexity.",
         decision: {
           type: "md",
-          text: "Constrained the main app layout to a phone-like max width so the UI stays consistent and easy to design for, even when opened on desktop.",
+          text: "**Constrained the main app layout to a phone-like max width** so the UI stays consistent and easy to design for, even when opened on desktop.",
         },
         tradeOff:
           "The desktop experience intentionally doesn’t use the full screen. Some UI patterns need extra care at larger breakpoints to avoid looking sparse while keeping the phone-first feel.",
@@ -152,7 +152,7 @@ export const withThanksCaseStudy = {
         decision: {
           type: "md",
           text: [
-            "Allow couples to contribute supplier details, but with dedupe guardrails designed to keep the shared supplier database usable over time.",
+            "**Allow couples to contribute supplier details**, but with dedupe guardrails designed to keep the shared supplier database usable over time.",
             "",
             "- **Canonical identifier:** supplier email (supports future supplier profile claiming), enforced as a case-insensitive unique constraint on normalized email.",
             "- **UI guardrail:** a “did you mean…?” step that ranks potential duplicates using fuzzy matching on name/email plus email-domain signals (e.g. `hello@domain` vs `info@domain`).",
@@ -184,7 +184,7 @@ export const withThanksCaseStudy = {
       {
         type: "image",
         src: "/projects/with-thanks/access-mode-architecture.svg",
-        alt: "Access-mode architecture. Photographer uses a session-authenticated dashboard; couple uses a share-link token. Authorization happens in server functions before Drizzle queries run against Neon Postgres.",
+        alt: "Access-mode architecture. Photographer uses a session-authenticated dashboard; couple uses a share-link token. Authorisation happens in server functions before Drizzle queries run against Neon Postgres.",
         caption:
           "With Thanks access-mode architecture: session-authenticated event admin plus a share-link authenticated collaboration surface.",
       },
@@ -201,11 +201,11 @@ export const withThanksCaseStudy = {
           },
           {
             type: "md",
-            text: "**Single backend surface:** both modes call the same TanStack Start server functions; each function enforces its own required auth.",
+            text: "**Single backend surface:** both modes call the same TanStack Start server functions; each function enforces its own required authorisation",
           },
           {
             type: "md",
-            text: "**Server-side persistence:** after authorization, all reads/writes happen server-side via Drizzle + Neon Postgres.",
+            text: "**Server-side persistence:** after authorisation, all reads/writes happen server-side via Drizzle + Neon Postgres.",
           },
         ],
       },
@@ -243,7 +243,7 @@ export const withThanksCaseStudy = {
         items: [
           {
             type: "md",
-            text: "**Server-side authorization per function:** every write goes through a server function that checks required auth before hitting the database.",
+            text: "**Server-side authorisation per function:** every write goes through a server function that checks required auth before hitting the database.",
           },
           {
             type: "md",
@@ -262,7 +262,7 @@ export const withThanksCaseStudy = {
         items: [
           "Photographers get a protected admin surface without adding friction for couples.",
           "Couples can contribute quickly from a phone without onboarding.",
-          "Authorization stays explicit and capability-based at the server-function boundary, so the product can evolve without tangled permissions.",
+          "Authorisation stays explicit and capability-based at the server-function boundary, so the product can evolve without tangled permissions.",
         ],
       },
     ],
