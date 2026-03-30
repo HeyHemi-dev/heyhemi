@@ -41,7 +41,7 @@ const {
 ---
 
 <figure class={cn("grid gap-3", className)}>
-  <div class={cn("overflow-hidden rounded-4xl bg-(--image-frame-bg)", frameClass)}>
+  <div class={cn("overflow-hidden border border-linework", frameClass)}>
     <img
       src={src}
       alt={decorative ? "" : alt}
@@ -55,14 +55,7 @@ const {
   </div>
   {
     caption && (
-      <figcaption
-        class={cn(
-          "px-4 text-xs leading-relaxed font-normal text-pretty text-(--description-text)/75",
-          captionClass,
-        )}
-      >
-        {caption}
-      </figcaption>
+      <figcaption class={cn("body-small", captionClass)}>{caption}</figcaption>
     )
   }
 </figure>

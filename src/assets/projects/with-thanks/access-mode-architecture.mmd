@@ -1,0 +1,30 @@
+flowchart TD
+  subgraph SessionFlow[Photographer flow]
+    direction TB
+    P[Photographer dashboard]
+    SA[Session auth via Neon Auth]
+    Admin[Manage events and copy outputs]
+    P --> SA --> Admin
+  end
+
+  subgraph ShareFlow[Couple flow]
+    direction TB
+    C[Private share link]
+    SB[Share-link auth]
+    Collab[Add suppliers and edit credits]
+    C --> SB --> Collab
+  end
+
+  subgraph Shared[Backend and data]
+    direction TB
+    ServerFns[TanStack Start<br>server fn / authorisation]
+    Drizzle[Drizzle ORM]
+    DB[(Neon Postgres)]
+    ServerFns --> Drizzle --> DB
+  end
+
+
+  Admin & Collab --> ServerFns
+
+
+

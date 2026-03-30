@@ -1,0 +1,16 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "../utils/cn";
+
+type ListItemTag = "li" | "div";
+
+type Props = HTMLAttributes<"li"> & {
+  as?: ListItemTag;
+};
+
+const { as: Tag = "li", class: className = "", ...rest } = Astro.props as Props;
+---
+
+<Tag class={cn("", className)} role="listitem" {...rest}>
+  <slot />
+</Tag>

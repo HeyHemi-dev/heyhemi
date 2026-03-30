@@ -54,12 +54,12 @@ export type CaseStudy = CaseStudyPreview & {
   repoUrl?: string;
   oneLiner: string;
   roles: string[];
+  client?: string;
   techStack: RichText[];
 
   problemSolution: {
     problem: RichText;
     solution: RichText;
-    technicalWhy?: RichText;
   };
 
   architecture: {
@@ -72,11 +72,8 @@ export type CaseStudy = CaseStudyPreview & {
     rows: ConstraintDecisionRow[];
   };
 
-  deepDive: {
+  deepDive?: {
     title: string;
     content: ContentBlock[];
   };
-
-  // Per-case-study design tokens that can be emitted as CSS variables.
-  theme: CaseStudyTheme;
 };

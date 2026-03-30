@@ -1,0 +1,20 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "../utils/cn";
+
+type SectionTag = "section" | "div" | "header";
+
+type Props = HTMLAttributes<"section"> & {
+  as?: SectionTag;
+};
+
+const {
+  as: Tag = "section",
+  class: className = "",
+  ...rest
+} = Astro.props as Props;
+---
+
+<Tag class={cn("flex flex-col gap-12", className)} {...rest}>
+  <slot />
+</Tag>

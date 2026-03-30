@@ -1,0 +1,118 @@
+<body id="author" class="post inner embedded">
+    <div id="header">
+      <a id="logo" href="/">Article</a>
+
+      <ul id="nav">
+      <a href="/posts">Read</a>
+
+          <a href="/users/sign_up">Write</a>
+          <a href="/users/sign_in">Login</a>
+      </ul></div>
+    
+
+    
+<div id="post_977" class="post">
+  <h2><span class="published">Jordan Singer</span></h2>
+  <p class="meta"><a href="/jordan">jordan</a> <span class="date">Sat, Oct 04, 2025</span> </p>
+
+  <br>
+
+  <div class="post-content">
+    <p>I build my ideas</p>
+
+<hr>
+
+<h3>Work</h3>
+
+<p><strong>Founder &amp; CEO, <a href="https://mainframe.inc" target="_blank" rel="noopener noreferrer">Mainframe</a></strong><br>
+2024 — Now</p>
+
+<p><strong>Product Design, <a href="https://figma.com" target="_blank" rel="noopener noreferrer">Figma</a></strong><br>
+2023 — 2024</p>
+
+<p><strong>Founder &amp; CEO, <a href="https://figma.com/ai" target="_blank" rel="noopener noreferrer">Diagram</a></strong><br>
+2021 — 2023<br>
+Acquired by Figma</p>
+
+<p><strong>Product Design, <a href="https://square.com" target="_blank" rel="noopener noreferrer">Square</a></strong><br>
+2017 — 2021<br>
+Cash App</p>
+
+<hr>
+
+<h3>Projects</h3>
+
+<p><strong><a href="https://async.app" target="_blank" rel="noopener noreferrer">Async</a> at Mainframe</strong><br>
+Product Thinking</p>
+
+<p><strong><a href="https://cobot.co" target="_blank" rel="noopener noreferrer">Cobot</a> at Mainframe</strong><br>
+Autonomous Productivity</p>
+
+<p><strong><a href="https://figma.com/ai" target="_blank" rel="noopener noreferrer">Figma AI</a> at Figma</strong></p>
+
+<p><strong><a href="https://figma.com/ai" target="_blank" rel="noopener noreferrer">Design tools</a> at Diagram</strong><br>
+Automator, Prototyper, Magician, Genius, UI-AI</p>
+
+<p><strong><a href="https://cash.app" target="_blank" rel="noopener noreferrer">Cash App</a> at Square</strong><br>
+Design Systems, Cash App Borrow</p>
+
+<hr>
+
+<h3>Investing</h3>
+
+<p><strong><a href="https://lil.fund" target="_blank" rel="noopener noreferrer">lil fund</a></strong><br>
+AI, Consumer, Infrastructure</p>
+
+<hr>
+
+<h3>Side Projects</h3>
+
+<p><a href="https://article.app" target="_blank" rel="noopener noreferrer">Article</a><br>
+<a href="https://lil.software" target="_blank" rel="noopener noreferrer">lil software</a><br>
+<a href="https://ideas.ibuildmyideas.com" target="_blank" rel="noopener noreferrer">509 ideas</a><br>
+<a href="https://airport.community" target="_blank" rel="noopener noreferrer">Airport</a></p>
+
+<hr>
+
+<h3>Speaking</h3>
+
+<p><a href="https://www.youtube.com/watch?v=8Dm5EoJW764" target="_blank" rel="noopener noreferrer">AI for UI</a> at Config APAC, 2024<br>
+<a href="https://www.youtube.com/watch?v=_JMmdM00048" target="_blank" rel="noopener noreferrer">Here's how Figma thinks about AI</a> at Config, 2024<br>
+<a href="https://www.youtube.com/watch?v=bslH4Mv1ZHA" target="_blank" rel="noopener noreferrer">AI and the future of design: Designing with AI</a> at Config, 2023<br>
+<a href="https://www.youtube.com/watch?v=KKzHc8wz1uw" target="_blank" rel="noopener noreferrer">Diagram pitch deck</a>, 2022<br>
+<a href="https://www.youtube.com/watch?v=fpYmcsszClo" target="_blank" rel="noopener noreferrer">Playing with Plugins</a> at Config, 2021</p>
+
+<hr>
+
+<h3>Features</h3>
+
+<p><a href="https://www.youtube.com/watch?v=zWzqEgWxZQM" target="_blank" rel="noopener noreferrer">The future of AI in Figma</a> on Dive Club, 2024<br>
+<a href="https://www.figma.com/blog/what-is-good-design-in-the-age-of-ai/" target="_blank" rel="noopener noreferrer">What is good design in the age of AI?</a> on Figma, 2024<br>
+<a href="https://www.youtube.com/watch?v=JufWy5uW1xc" target="_blank" rel="noopener noreferrer">Building AI Design Tools at Figma</a> on Generative Now, 2024<br>
+<a href="https://arc.net/blog/a-convo-w-jordan-singer" target="_blank" rel="noopener noreferrer">Blending Design and AI Innovation</a> on Open Tab by Arc, 2023<br>
+<a href="https://www.fastcompany.com/90939386/figma-dylan-field-dev-mode-future-ai-adobe" target="_blank" rel="noopener noreferrer">Figma's future is about far more than design—or getting acquired</a> on Fast Company, 2023<br>
+<a href="https://www.figma.com/blog/ai-the-next-chapter-in-design/" target="_blank" rel="noopener noreferrer">AI: The next chapter in design</a> on Figma, 2023<br>
+<a href="https://stripe.com/customers/diagram-jordan-singer" target="_blank" rel="noopener noreferrer">Diagram on how AI helps designers be more creative and build ambitious projects</a> on Stripe, 2023<br>
+<a href="https://meridian.mercury.com/jordan-singer" target="_blank" rel="noopener noreferrer">Jordan Singer: Designer, coder, founder</a> on Meridian by Mercury, 2022<br>
+<a href="https://www.notboring.co/p/the-founders-letter-jordan-singer" target="_blank" rel="noopener noreferrer">The Founder's Letter: Jordan Singer, Diagram</a> on Not Boring, 2022<br>
+<a href="https://www.nytimes.com/2020/11/24/science/artificial-intelligence-ai-gpt3.html" target="_blank" rel="noopener noreferrer">Meet GPT-3. It Has Learned to Code (and Blog and Argue)</a> on The New York Times, 2020<br>
+<a href="https://web.archive.org/web/20240126073050/https://www.protocol.com/testflight-app-store" target="_blank" rel="noopener noreferrer">TestFlight forever: Developers are building a better world outside the App Store</a> on Protocol, 2020</p>
+
+<hr>
+
+<h3>Contact</h3>
+
+<p><a href="https://x.com/jsngr" target="_blank" rel="noopener noreferrer">@jsngr</a><br>
+<a href="https://article.app/jordan" target="_blank" rel="noopener noreferrer">Article</a><br>
+<a href="mailto:singer@hey.com" target="_blank" rel="noopener noreferrer">Email</a><br>
+<a href="https://linkedin.com/in/jordansinger" target="_blank" rel="noopener noreferrer">LinkedIn</a><br>
+<a href="https://github.com/jordansinger" target="_blank" rel="noopener noreferrer">GitHub</a><br>
+<a href="https://instagram.com/jordansinger" target="_blank" rel="noopener noreferrer">Instagram</a><br>
+<a href="https://ibuildmyideas.substack.com" target="_blank" rel="noopener noreferrer">Substack</a></p>
+
+  </div>
+</div>
+  
+
+
+</body>

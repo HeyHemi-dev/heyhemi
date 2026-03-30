@@ -1,16 +1,17 @@
-import type { CaseStudy } from "./types";
+import type { CaseStudy } from "../types";
 
-export const sharesiesCaseStudy = {
+export const sharesiesCaseStudy: CaseStudy = {
   slug: "sharesies",
-  name: "Sharesies",
+  name: "Sharesies Open",
   excerpt: "Case study coming soon.",
   heroImage: {
     src: "/favicon.svg",
     alt: "Sharesies project placeholder image",
   },
-  oneLiner: "Internal tooling for employee share scheme operations.",
+  oneLiner: "Employee-shares management portal for businesses.",
   roles: ["Software Engineer Intern"],
-  techStack: ["React"],
+  client: "Shareies",
+  techStack: ["React", "Python"],
   problemSolution: {
     problem:
       "Company-facing ESS workflows relied on manual spreadsheets and support-heavy operations.",
@@ -32,14 +33,4 @@ export const sharesiesCaseStudy = {
     title: "Deep dive coming soon",
     content: [],
   },
-  theme: {
-    brandBg: "#f7008b",
-    indexBg: "#7e0067",
-    descriptionBg: "#e6caec",
-    imageBg: "#ebebee",
-    imageFrameBg: "#dddddf",
-    brandText: "#f8e6fa",
-    indexText: "#f5cce8",
-    descriptionText: "#3f2f45",
-  },
-} satisfies CaseStudy;
+};

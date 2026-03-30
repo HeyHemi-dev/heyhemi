@@ -1,8 +1,7 @@
 ---
-import HeadingBlock from "./HeadingBlock.astro";
 import ImageBlock from "./ImageBlock.astro";
 import MarkdownBlock from "./MarkdownBlock.astro";
-import type { ContentBlock } from "../content/projects/types";
+import type { ContentBlock } from "../data/types";
 import { cn } from "../utils/cn";
 
 const { block, class: className = "" } = Astro.props as {
@@ -11,23 +10,20 @@ const { block, class: className = "" } = Astro.props as {
 };
 
 const classes = cn(
-  block.type === "h3" && "mt-4 first:mt-0",
+  block.type === "h3" && "heading-3",
   block.type === "md" && "",
   block.type === "ul" && "flex list-disc flex-col gap-3 pl-5",
   block.type === "image" && "",
-  block.type === "callout" &&
-    "grid gap-3 rounded-4xl bg-(--description-bg)/25 p-4 sm:p-6",
+  block.type === "callout" && "grid gap-3 border-l border-linework pl-4",
   block.type === "code" &&
-    "overflow-x-auto rounded-4xl bg-black/10 p-4 text-sm sm:p-6",
+    "overflow-x-auto border border-neutral-200 p-4 text-sm",
   className,
 );
 ---
 
 {
   block.type === "h3" ? (
-    <HeadingBlock as="h3" style="h3" class={classes}>
-      {block.text}
-    </HeadingBlock>
+    <h3 class={classes}>{block.text}</h3>
   ) : block.type === "md" ? (
     <MarkdownBlock value={block} class={classes} />
   ) : block.type === "ul" ? (
@@ -47,7 +43,7 @@ const classes = cn(
     />
   ) : block.type === "callout" ? (
     <aside class={classes}>
-      {block.title && <HeadingBlock style="h4">{block.title}</HeadingBlock>}
+      {block.title && <p class="heading-3">{block.title}</p>}
       <MarkdownBlock value={block.content} />
     </aside>
   ) : (
