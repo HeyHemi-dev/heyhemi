@@ -63,7 +63,10 @@ const milestones: Milestone[] = [
   },
 ];
 
-const contact = ["Email", "Github", "Threads"];
+const contactLinks = [
+  { label: "Github", href: "https://github.com/HeyHemi-dev" },
+  { label: "Threads", href: "https://www.threads.com/@heyhemi.dev" },
+];
 ---
 
 <BaseLayout title="Hey Hemi">
@@ -163,10 +166,25 @@ const contact = ["Email", "Github", "Threads"];
         <h2 id="contact-heading" class="heading-2">Contact</h2>
 
         <List role="list">
+          <ListItem>
+            <button
+              type="button"
+              class="body-link font-inherit cursor-pointer appearance-none border-0 bg-transparent p-0 text-left"
+              data-email-trigger
+              data-idle-label="Email"
+              data-loading-label="Loading email..."
+              data-success-label="Copied to clipboard"
+            >
+              Email
+            </button>
+          </ListItem>
+
           {
-            contact.map((item) => (
+            contactLinks.map((item) => (
               <ListItem>
-                <p>{item}</p>
+                <a href={item.href} class="body-link">
+                  {item.label}
+                </a>
               </ListItem>
             ))
           }
@@ -174,4 +192,6 @@ const contact = ["Email", "Github", "Threads"];
       </Section>
     </div>
   </main>
+
+  <script src="../scripts/contact-links.ts"></script>
 </BaseLayout>
