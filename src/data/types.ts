@@ -54,6 +54,7 @@ export type CaseStudy = CaseStudyPreview & {
   repoUrl?: string;
   oneLiner: string;
   roles: string[];
+  client?: string;
   techStack: RichText[];
 
   problemSolution: {
@@ -75,7 +76,4 @@ export type CaseStudy = CaseStudyPreview & {
     title: string;
     content: ContentBlock[];
   };
-
-  // Per-case-study design tokens that can be emitted as CSS variables.
-  theme: CaseStudyTheme;
 };

@@ -8,9 +8,8 @@ import ListItem from "../../components/ListItem.astro";
 import MarkdownBlock from "../../components/MarkdownBlock.astro";
 import ProjectLayout from "../../layouts/ProjectLayout.astro";
 import Section from "../../components/Section.astro";
-import { allCaseStudies } from "../../content/projects";
-import type { CaseStudy } from "../../content/projects/types";
-import MarkdownInlines from "../../components/MarkdownInlines.astro";
+import { allCaseStudies } from "../../data/projects";
+import type { CaseStudy } from "../../data/types";
 
 export const getStaticPaths = (() =>
   allCaseStudies.map((caseStudy, index) => ({
@@ -158,13 +157,13 @@ const next = allCaseStudies[(index + 1) % caseStudyCount]!;
                 <article
                   class={`grid grid-cols-3 ${rowIndex < engineeringRows.length - 1 ? "border-linework border-b" : ""}`}
                 >
-                  <div class="border-linework border-r px-4 py-4">
+                  <div class="border-linework flex flex-col gap-5 border-r px-4 py-4">
                     <MarkdownBlock value={row.constraint} class="body-small" />
                   </div>
-                  <div class="border-linework border-r px-4 py-4">
+                  <div class="border-linework flex flex-col gap-5 border-r px-4 py-4">
                     <MarkdownBlock value={row.decision} class="body-small" />
                   </div>
-                  <div class="px-4 py-4">
+                  <div class="flex flex-col gap-5 px-4 py-4">
                     <MarkdownBlock value={row.tradeOff} class="body-small" />
                   </div>
                 </article>

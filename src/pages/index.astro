@@ -4,6 +4,7 @@ import Divider from "../components/Divider.astro";
 import List from "../components/List.astro";
 import ListItem from "../components/ListItem.astro";
 import Section from "../components/Section.astro";
+import { allCaseStudies } from "../data/projects";
 
 type Project = {
   name: { label: string; href: string };
@@ -18,33 +19,13 @@ type Milestone = {
   note?: string;
 };
 
-const projects: Project[] = [
-  {
-    name: { label: "With Thanks", href: "" },
-    client: "",
-    description: "Effortlessly collect supplier details from wedding couples.",
-  },
-  {
-    name: { label: "Wedding Ready", href: "" },
-    client: "",
-    description: "Pinterest, but hyper-local and supplier-lead.",
-  },
-  // {
-  //   name: { label: "Mayday", href: "" },
-  //   client: "",
-  //   description: "Job board for wedding suppliers during Covid-19.",
-  // },
-  // {
-  //   name: { label: "Knowie", href: "" },
-  //   client: " for Patina Photo",
-  //   description: "Lead and job management, + analytics.",
-  // },
-  {
-    name: { label: "Sharesies Open", href: "" },
-    client: " for Sharesies",
-    description: "Employee-shares management portal for businesses.",
-  },
-];
+const projects: Project[] = allCaseStudies.map((caseStudy) => {
+  return {
+    name: { label: caseStudy.name, href: `projects/${caseStudy.slug}` },
+    client: caseStudy.client && `for ${caseStudy.client}`,
+    description: caseStudy.oneLiner,
+  } satisfies Project;
+});
 
 const milestones: Milestone[] = [
   {

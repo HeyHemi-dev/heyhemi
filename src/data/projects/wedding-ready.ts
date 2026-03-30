@@ -1,6 +1,6 @@
-import type { CaseStudy } from "./types";
+import type { CaseStudy } from "../types";
 
-export const weddingReadyCaseStudy = {
+export const weddingReadyCaseStudy: CaseStudy = {
   slug: "wedding-ready",
   name: "Wedding Ready",
   excerpt:
@@ -11,7 +11,7 @@ export const weddingReadyCaseStudy = {
   },
   liveUrl: "https://wedding-ready.vercel.app/",
   repoUrl: "https://github.com/HeyHemi-dev/wedding-ready",
-  oneLiner: "Wedding inspiration you can actually book.",
+  oneLiner: "Pinterest, but hyper-local and supplier-lead.",
   roles: ["Founder", "Full-Stack Dev", "Design"],
   techStack: [
     { type: "md", text: "**Next.js (App Router)** - React/Node w SSR/RSC" },
@@ -210,15 +210,4 @@ export const weddingReadyCaseStudy = {
       },
     ],
   },
-
-  theme: {
-    brandBg: "#005e52",
-    indexBg: "#e6f72a",
-    descriptionBg: "#81d2c2",
-    imageBg: "#cbe0de",
-    imageFrameBg: "#bfd6d2",
-    brandText: "#d3e9e3",
-    indexText: "#2c2f1e",
-    descriptionText: "#204448",
-  },
-} satisfies CaseStudy;
+};
