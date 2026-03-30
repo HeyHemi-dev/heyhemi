@@ -109,7 +109,11 @@ const contact = ["Email", "Github", "Threads"];
                   {milestone.organisation ? (
                     <>
                       <span>{`${milestone.title}, `}</span>
-                      <a href={milestone.organisation.href}>
+                      <a
+                        href={milestone.organisation.href}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                      >
                         <span class="body-link">
                           {milestone.organisation.label}
                         </span>
