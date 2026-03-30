@@ -41,7 +41,9 @@ export function initContactLinks(): void {
       }
 
       await navigator.clipboard.writeText(cachedEmail);
-      setLabel(emailTrigger.dataset.successLabel ?? "Copied to clipboard");
+      setLabel(
+        emailTrigger.dataset.successLabel ?? "Email copied to clipboard",
+      );
     } catch {
       setLabel(cachedEmail || "Email unavailable");
     } finally {
