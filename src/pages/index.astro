@@ -167,16 +167,26 @@ const contactLinks = [
 
         <List role="list">
           <ListItem>
-            <button
-              type="button"
-              class="body-link font-inherit cursor-pointer appearance-none border-0 bg-transparent p-0 text-left"
-              data-email-trigger
-              data-idle-label="Email"
-              data-loading-label="Loading email..."
-              data-success-label="Copied to clipboard"
-            >
-              Email
-            </button>
+            <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <button
+                type="button"
+                class="body-link font-inherit cursor-pointer appearance-none border-0 bg-transparent p-0 text-left"
+                data-email-trigger
+                data-loading-label="Loading email..."
+                data-success-label="Copied to clipboard"
+                data-error-label="Email unavailable"
+              >
+                Email
+              </button>
+
+              <span
+                class="body-small"
+                data-email-status
+                aria-live="polite"
+                aria-atomic="true"
+                hidden
+              ></span>
+            </div>
           </ListItem>
 
           {

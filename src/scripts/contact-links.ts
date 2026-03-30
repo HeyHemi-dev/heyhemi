@@ -2,53 +2,78 @@ export function initContactLinks(): void {
   const emailTrigger = document.querySelector<HTMLButtonElement>(
     "[data-email-trigger]",
   );
+  const emailStatus = document.querySelector<HTMLSpanElement>(
+    "[data-email-status]",
+  );
 
-  if (!emailTrigger) return;
+  if (!emailTrigger || !emailStatus) return;
 
   let cachedEmail = "";
   let resetTimer = 0;
+  let isPending = false;
 
-  const setLabel = (label: string): void => {
-    emailTrigger.textContent = label;
+  const setStatus = (message: string): void => {
+    emailStatus.textContent = message;
+    emailStatus.hidden = message.length === 0;
   };
 
-  const resetLabelSoon = (): void => {
+  const resetStatusSoon = (): void => {
     window.clearTimeout(resetTimer);
     resetTimer = window.setTimeout(() => {
-      setLabel(emailTrigger.dataset.idleLabel ?? "Email");
+      setStatus("");
     }, 2000);
   };
 
-  emailTrigger.addEventListener("click", async () => {
-    try {
-      setLabel(emailTrigger.dataset.loadingLabel ?? "Loading email...");
+  const loadEmail = async (): Promise<string> => {
+    if (cachedEmail) return cachedEmail;
 
-      if (!cachedEmail) {
-        const response = await fetch("/contact/email", {
-          headers: { accept: "application/json" },
-        });
+    const response = await fetch("/contact/email", {
+      headers: { accept: "application/json" },
+    });
 
-        if (!response.ok) {
-          throw new Error(`Unexpected status: ${response.status}`);
-        }
+    if (!response.ok) return "";
 
-        const data = (await response.json()) as { email?: string };
-        cachedEmail = data.email ?? "";
-      }
+    const data = (await response.json()) as { email?: string };
+    cachedEmail = typeof data.email === "string" ? data.email : "";
+    return cachedEmail;
+  };
 
-      if (!cachedEmail) {
-        throw new Error("Missing email");
-      }
+  const copyEmail = async (): Promise<void> => {
+    const email = await loadEmail().catch(() => "");
 
-      await navigator.clipboard.writeText(cachedEmail);
-      setLabel(
-        emailTrigger.dataset.successLabel ?? "Email copied to clipboard",
-      );
-    } catch {
-      setLabel(cachedEmail || "Email unavailable");
-    } finally {
-      resetLabelSoon();
+    if (!email) {
+      setStatus(emailTrigger.dataset.errorLabel ?? "Email unavailable");
+      return;
     }
+
+    const copied = await navigator.clipboard
+      .writeText(email)
+      .then(() => true)
+      .catch(() => false);
+
+    if (!copied) {
+      setStatus(emailTrigger.dataset.errorLabel ?? "Email unavailable");
+      return;
+    }
+
+    setStatus(emailTrigger.dataset.successLabel ?? "Copied to clipboard");
+  };
+
+  emailTrigger.addEventListener("click", () => {
+    if (isPending) return;
+
+    isPending = true;
+    emailTrigger.setAttribute("aria-busy", "true");
+
+    if (!cachedEmail) {
+      setStatus(emailTrigger.dataset.loadingLabel ?? "Loading email...");
+    }
+
+    void copyEmail().finally(() => {
+      isPending = false;
+      emailTrigger.removeAttribute("aria-busy");
+      resetStatusSoon();
+    });
   });
 }
 
