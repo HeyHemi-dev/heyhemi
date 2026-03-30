@@ -1,4 +1,4 @@
-flowchart TB
+graph TB
   User["Authenticated user"] --> FeedPage["/feed page"]
   FeedPage --> FeedClient["FeedClient + useFeed hook"]
   FeedClient --> FeedApi["GET /api/feed?pageSize=n"]

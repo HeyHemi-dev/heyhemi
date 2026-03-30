@@ -154,8 +154,9 @@ export const withThanksCaseStudy = {
           text: [
             "**Allow couples to contribute supplier details**, but with dedupe guardrails designed to keep the shared supplier database usable over time.",
             "",
-            "- **Canonical identifier:** supplier email (supports future supplier profile claiming), enforced as a case-insensitive unique constraint on normalized email.",
-            "- **UI guardrail:** a “did you mean…?” step that ranks potential duplicates using fuzzy matching on name/email plus email-domain signals (e.g. `hello@domain` vs `info@domain`).",
+            "**Canonical identifier:** supplier email (supports future supplier profile claiming), enforced as a case-insensitive unique constraint on normalized email.",
+            "",
+            "**UI guardrail:** a “did you mean…?” step that ranks potential duplicates using fuzzy matching on name/email plus email-domain signals (e.g. `hello@domain` vs `info@domain`).",
           ].join("\n"),
         },
         tradeOff:
