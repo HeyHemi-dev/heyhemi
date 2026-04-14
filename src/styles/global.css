@@ -51,7 +51,23 @@ body {
 }
 
 /* Apply text-box trimming globally to all rendered copy-like elements. */
-:where(h1, h2, h3, h4, h5, h6, p, a, li, span) {
+:where(
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  a,
+  li,
+  span,
+  .heading-1,
+  .heading-2,
+  .heading-3,
+  .body-small,
+  .body-link
+) {
   text-box-trim: trim-both;
   text-box-edge: cap alphabetic;
 }

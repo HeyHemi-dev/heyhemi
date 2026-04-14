@@ -17,11 +17,11 @@ Primary outcome: help hiring managers and technical interviewers quickly assess 
 
 All commands run from the repository root:
 
-| Command | Action |
-| :-- | :-- |
-| `pnpm install` | Install dependencies |
-| `pnpm dev` | Start local dev server |
-| `pnpm build` | Build production output |
+| Command        | Action                           |
+| :------------- | :------------------------------- |
+| `pnpm install` | Install dependencies             |
+| `pnpm dev`     | Start local dev server           |
+| `pnpm build`   | Build production output          |
 | `pnpm preview` | Preview production build locally |
 
 ## Documentation

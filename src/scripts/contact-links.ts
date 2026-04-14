@@ -66,7 +66,7 @@ export function initContactLinks(): void {
     emailTrigger.setAttribute("aria-busy", "true");
 
     if (!cachedEmail) {
-      setStatus(emailTrigger.dataset.loadingLabel ?? "Loading email...");
+      setStatus(emailTrigger.dataset.loadingLabel ?? "...");
     }
 
     void copyEmail().finally(() => {

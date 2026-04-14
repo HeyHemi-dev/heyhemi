@@ -161,19 +161,19 @@ A core design goal was **clear ownership**: each layer owns a narrow set of resp
 
 ### Action → owner (quick reference)
 
-| Action | Owned by |
-|--------|----------|
-| Add files to the batch | UploadProvider (`addFiles`) |
-| Remove file from list | UploadProvider (`removeFile`) |
-| Show dropzone vs list | UploadLayout |
-| Warn before leaving with unsaved files | UploadLayout (`beforeunload`) |
-| Validate file type/size and call addFiles | UploadDropzone |
-| Start upload for this card | UploadPreviewItem via `useTileCreate` |
-| Build payload (formData, imageRatio, authUserId, supplierId) | UploadPreviewItem |
-| Remove card on successful upload | useTileCreate (calls `removeFile(uploadId)`) |
-| Form fields, step, validation, credits array | UploadPreviewForm |
-| Add/remove credit row | UploadPreviewForm (`useFieldArray`) |
-| Supplier search and selection per row | Credit row / SupplierSearchInput |
+| Action                                                       | Owned by                                     |
+| ------------------------------------------------------------ | -------------------------------------------- |
+| Add files to the batch                                       | UploadProvider (`addFiles`)                  |
+| Remove file from list                                        | UploadProvider (`removeFile`)                |
+| Show dropzone vs list                                        | UploadLayout                                 |
+| Warn before leaving with unsaved files                       | UploadLayout (`beforeunload`)                |
+| Validate file type/size and call addFiles                    | UploadDropzone                               |
+| Start upload for this card                                   | UploadPreviewItem via `useTileCreate`        |
+| Build payload (formData, imageRatio, authUserId, supplierId) | UploadPreviewItem                            |
+| Remove card on successful upload                             | useTileCreate (calls `removeFile(uploadId)`) |
+| Form fields, step, validation, credits array                 | UploadPreviewForm                            |
+| Add/remove credit row                                        | UploadPreviewForm (`useFieldArray`)          |
+| Supplier search and selection per row                        | Credit row / SupplierSearchInput             |
 
 ---
 
@@ -185,11 +185,11 @@ One “upload item” in memory is:
 
 ```ts
 type UploadItem = {
-  uploadId: string   // stable key for React + hook identity
-  file: File
-  fileObjectUrl: string
-  ratio: number      // width/height, computed once in addFiles
-}
+  uploadId: string; // stable key for React + hook identity
+  file: File;
+  fileObjectUrl: string;
+  ratio: number; // width/height, computed once in addFiles
+};
 ```
 
 **Critical:** `uploadId` is set once when the file is added (e.g. `crypto.randomUUID()`) and never changes while the item is in the list. That keeps React’s reconciliation and hook state (including `useTileCreate` and RHF) attached to the correct instance when the parent re-renders.
@@ -315,11 +315,11 @@ From the original PR:
 - [src/app/suppliers/[handle]/new/upload-dropzone.tsx](src/app/suppliers/[handle]/new/upload-dropzone.tsx) – useDropzone, file checks, addFiles.
 - [src/app/suppliers/[handle]/new/upload-preview.tsx](src/app/suppliers/[handle]/new/upload-preview.tsx) – UploadPreviewList, UploadPreviewItem, ErrorBoundary.
 - [src/app/suppliers/[handle]/new/upload-preview-form.tsx](src/app/suppliers/[handle]/new/upload-preview-form.tsx) – UploadPreviewForm, steps, useFieldArray, CreditFieldArray.
-- [src/app/_hooks/use-tile-create.ts](src/app/_hooks/use-tile-create.ts) – useTileCreate, status, progress, startUpload, removeFile on success.
-- [src/app/_hooks/use-supplier-search.ts](src/app/_hooks/use-supplier-search.ts) – useSupplierSearch (debounced search).
+- [src/app/\_hooks/use-tile-create.ts](src/app/_hooks/use-tile-create.ts) – useTileCreate, status, progress, startUpload, removeFile on success.
+- [src/app/\_hooks/use-supplier-search.ts](src/app/_hooks/use-supplier-search.ts) – useSupplierSearch (debounced search).
 - [src/components/tiles/supplier-search-input.tsx](src/components/tiles/supplier-search-input.tsx) – SupplierSearchInput.
 - [src/app/api/uploadthing/core.ts](src/app/api/uploadthing/core.ts) – tileUploader route, middleware, onUploadComplete.
-- [src/app/_types/validation-schema.ts](src/app/_types/validation-schema.ts) – tileUploadFormSchema, creditSchema, TileUpload, TileUploadForm.
+- [src/app/\_types/validation-schema.ts](src/app/_types/validation-schema.ts) – tileUploadFormSchema, creditSchema, TileUpload, TileUploadForm.
 
 **Related docs:**
 

@@ -85,7 +85,7 @@ const contactLinks = [
         <List class="gap-12" role="list">
           {
             projects.map((project) => (
-              <ListItem class="flex flex-col gap-3">
+              <ListItem class="flex flex-col gap-4">
                 <p>
                   <a href={project.name.href} class="heading-3">
                     <span class="body-link">{project.name.label}</span>
@@ -107,7 +107,7 @@ const contactLinks = [
         <List class="gap-12" role="list">
           {
             milestones.map((milestone) => (
-              <ListItem class="flex flex-col gap-3">
+              <ListItem class="flex flex-col gap-4">
                 <p class="text-muted heading-3">
                   {milestone.organisation ? (
                     <>
@@ -172,7 +172,7 @@ const contactLinks = [
                 type="button"
                 class="body-link font-inherit cursor-pointer appearance-none border-0 bg-transparent p-0 text-left"
                 data-email-trigger
-                data-loading-label="Loading email..."
+                data-loading-label="..."
                 data-success-label="Copied to clipboard"
                 data-error-label="Email unavailable"
               >

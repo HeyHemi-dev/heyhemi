@@ -11,6 +11,7 @@
 
   3. Copy private link (token?)
   4. Send link to couple (email/CRM template).
+
 - Success: Link delivered with minimal friction (ideally < 60 seconds).
 - Failure cases: photographer forgets, link buried, couple never receives.
 - Edge cases:

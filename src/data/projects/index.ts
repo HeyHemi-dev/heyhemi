@@ -19,4 +19,5 @@ export {
 export const allCaseStudies: CaseStudy[] = [
   withThanksCaseStudy,
   weddingReadyCaseStudy,
+  mcpCaseStudy,
 ];

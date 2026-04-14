@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 540" width="860" height="540" style="--bg:#ffffff;--fg:#1f2328;--line:#d1d9e0;--accent:#0969da;--muted:#59636e;background:var(--bg)">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'Inter', system-ui, sans-serif; }
+    svg {
+      --_text:          var(--fg);
+      --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+      --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+      --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+      --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
+      --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+      --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+      --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    }
+  </style>
+
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="7" refY="2.5" orient="auto">
+      <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="860" height="540" fill="var(--bg)" />
+
+  <g>
+    <rect x="40" y="44" width="780" height="452" rx="18" fill="var(--_node-fill)" stroke="var(--_node-stroke)" />
+    <rect x="40" y="44" width="780" height="44" rx="18" fill="var(--_group-hdr)" />
+    <text x="60" y="72" font-size="14" font-weight="700" fill="var(--_text)">Custom MCP Server (Vercel)</text>
+  </g>
+
+  <g>
+    <rect x="80" y="120" width="300" height="110" rx="14" fill="var(--bg)" stroke="var(--_line)" />
+    <text x="230" y="148" font-size="14" font-weight="700" text-anchor="middle" fill="var(--_text)">Admin UI (Next.js SSR)</text>
+    <text x="230" y="174" font-size="12" text-anchor="middle" fill="var(--_text-muted)">Connect/disconnect integrations</text>
+    <text x="230" y="194" font-size="12" text-anchor="middle" fill="var(--_text-muted)">OAuth setup (Gmail, Xero)</text>
+    <text x="230" y="214" font-size="12" text-anchor="middle" fill="var(--_text-muted)">Connection status (Notion, Synology)</text>
+  </g>
+
+  <g>
+    <rect x="430" y="120" width="350" height="110" rx="14" fill="var(--bg)" stroke="var(--_line)" />
+    <text x="605" y="148" font-size="14" font-weight="700" text-anchor="middle" fill="var(--_text)">API Surface</text>
+    <text x="505" y="178" font-size="12" font-weight="600" text-anchor="middle" fill="var(--_text-sec)">MCP (HTTP)</text>
+    <text x="705" y="178" font-size="12" font-weight="600" text-anchor="middle" fill="var(--_text-sec)">Webhooks</text>
+    <text x="605" y="206" font-size="12" text-anchor="middle" fill="var(--_text-muted)">Shared-secret auth (env)</text>
+  </g>
+
+  <g>
+    <rect x="80" y="270" width="700" height="105" rx="14" fill="var(--bg)" stroke="var(--_line)" />
+    <text x="430" y="298" font-size="14" font-weight="700" text-anchor="middle" fill="var(--_text)">Flows / Orchestration</text>
+    <text x="430" y="322" font-size="12" text-anchor="middle" fill="var(--_text-muted)">Validate (Zod) → call provider clients → normalize errors</text>
+    <text x="430" y="345" font-size="12" text-anchor="middle" fill="var(--_text-muted)">Returns safe results (e.g. draft invoice link for human review)</text>
+  </g>
+
+  <g>
+    <rect x="80" y="405" width="270" height="70" rx="14" fill="var(--bg)" stroke="var(--_line)" />
+    <text x="215" y="436" font-size="13" font-weight="700" text-anchor="middle" fill="var(--_text)">Neon Postgres</text>
+    <text x="215" y="456" font-size="12" text-anchor="middle" fill="var(--_text-muted)">Drizzle • tokens/state</text>
+  </g>
+
+  <g>
+    <rect x="390" y="405" width="390" height="70" rx="14" fill="var(--bg)" stroke="var(--_line)" />
+    <text x="585" y="434" font-size="13" font-weight="700" text-anchor="middle" fill="var(--_text)">Provider APIs</text>
+    <text x="585" y="454" font-size="12" text-anchor="middle" fill="var(--_text-muted)">Notion • Dropbox • Gmail • Xero • Synology</text>
+  </g>
+
+  <g stroke="var(--_arrow)" stroke-width="1.2" fill="none" marker-end="url(#arrowhead)">
+    <path d="M380 175 L430 175" />
+    <path d="M605 230 L430 270" />
+    <path d="M430 375 L215 405" />
+    <path d="M430 375 L585 405" />
+  </g>
+</svg>

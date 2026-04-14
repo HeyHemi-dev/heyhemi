@@ -11,4 +11,3 @@
 - **Styling**: [Tailwind CSS v3](https://v3.tailwindcss.com/) with [shadcn/ui](https://ui.shadcn.com/docs) components.
 - **Language**: TypeScript throughout.
 - **Testing**: [Vitest](https://vitest.dev/) integration tests with local supabase instance.
-

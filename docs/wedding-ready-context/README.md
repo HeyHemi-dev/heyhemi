@@ -73,7 +73,6 @@ The project uses Next.js's ESLint configuration with TypeScript support. See `.e
 - Tailwind prettier plugin: `prettier-plugin-tailwindcss`
 - Tailwind CSS IntelliSense extension: `bradlc.vscode-tailwindcss`
 
-
 ## Additional Resources
 
 - [Next.js Documentation](https://nextjs.org/docs)
