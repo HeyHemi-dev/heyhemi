@@ -55,7 +55,7 @@ export const withThanksCaseStudy: CaseStudy = {
 
   problemSolution: {
     problem:
-      "Wedding photographers want to tag every supplier accurately, but collecting handles/emails after the event is tedious and error-prone — so credits get missed or tagged inconsistently.",
+      "Wedding photographers want to tag every supplier accurately, but collecting handles/emails after the event is tedious and error-prone, so credits get missed or tagged inconsistently.",
     solution:
       "With Thanks turns credit collection into a low-friction collaboration: the photographer creates an event and shares one private link; the couple adds suppliers; the photographer gets copy-ready Instagram tags and email lists back.",
   },
@@ -128,7 +128,7 @@ export const withThanksCaseStudy: CaseStudy = {
       },
       {
         constraint:
-          "I wanted the UI to feel lightweight — actions like creating an event or tagging a supplier should feel quick, not like a “workflow” that pulls you away from what you were doing.",
+          "I wanted the UI to feel lightweight. Actions like creating an event or tagging a supplier should feel quick, not like a “workflow” that pulls you away from what you were doing.",
         decision: {
           type: "md",
           text: "**Used a drawer-first interaction pattern** for common actions (e.g. create event, add/tag supplier) so forms appear in-context instead of full page navigations.",
@@ -217,7 +217,7 @@ export const withThanksCaseStudy: CaseStudy = {
         text: [
           "A share link is inherently less secure than a signed-in account: it can be forwarded, screenshotted, or guessed if implemented poorly.",
           "",
-          "I accepted that additional risk because the product’s core value depends on couples actually completing the data entry — and account creation would destroy the conversion rate for a one-time guest action.",
+          "I accepted that additional risk because the product’s core value depends on couples actually completing the data entry. Account creation would destroy the conversion rate for a one-time guest action.",
           "",
           "The key is scoping: the share-link mode is intentionally limited to collaboration actions, while event administration stays session-only.",
         ].join("\n"),

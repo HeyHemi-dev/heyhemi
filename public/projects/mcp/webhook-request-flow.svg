@@ -1,0 +1,213 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2311.9139999999998 1754" width="2311.9139999999998" height="1754" style="--bg:#ffffff;--fg:#1f2328;--line:#d1d9e0;--accent:#0969da;--muted:#59636e;background:var(--bg)">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+  text { font-family: 'Inter', system-ui, sans-serif; }
+  svg {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="7" refY="2.5" orient="auto">
+    <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="arrowhead-start" markerWidth="8" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse">
+    <polygon points="8 0, 0 2.5, 8 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+<g class="subgraph" data-id="WEBHOOK" data-label="Webhook route handler
+src/app/webhooks/{hook}/route.ts">
+  <rect x="40" y="606.3" width="1028.9509999999998" height="1107.7" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="40" y="606.3" width="1028.9509999999998" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="52" y="620.3" font-size="12" font-weight="600" fill="var(--_text-sec)"><tspan x="52" dy="-3.6000000000000014">Webhook route handler</tspan><tspan x="52" dy="15.600000000000001">src/app/webhooks/{hook}/route.ts</tspan></text>
+<g class="subgraph" data-id="PRE" data-label="1) Preflow (request boundary)">
+  <rect x="521.6360833333331" y="650.3" width="440.61575000000005" height="385.40000000000003" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="521.6360833333331" y="650.3" width="440.61575000000005" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="533.6360833333331" y="664.3" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">1) Preflow (request boundary)</text>
+</g>
+<g class="subgraph" data-id="FLOW" data-label="2) Flow (transport-agnostic)
+src/flows/*">
+  <rect x="174.36624999999987" y="1083.7" width="819.5319999999999" height="435.6" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="174.36624999999987" y="1083.7" width="819.5319999999999" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="186.36624999999987" y="1097.7" font-size="12" font-weight="600" fill="var(--_text-sec)"><tspan x="186.36624999999987" dy="-3.6000000000000014">2) Flow (transport-agnostic)</tspan><tspan x="186.36624999999987" dy="15.600000000000001">src/flows/*</tspan></text>
+<g class="subgraph" data-id="STEPS" data-label="Orchestration steps (1..N)">
+  <rect x="404.6962499999998" y="1212.6000000000001" width="312.664" height="266.70000000000005" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="404.6962499999998" y="1212.6000000000001" width="312.664" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="416.6962499999998" y="1226.6000000000001" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">Orchestration steps (1..N)</text>
+</g>
+</g>
+<g class="subgraph" data-id="END" data-label="3) Catch + shape HTTP response
+(visualized as one boundary)">
+  <rect x="56" y="1567.3" width="687.2039999999998" height="130.7" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="56" y="1567.3" width="687.2039999999998" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="68" y="1581.3" font-size="12" font-weight="600" fill="var(--_text-sec)"><tspan x="68" dy="-3.6000000000000014">3) Catch + shape HTTP response</tspan><tspan x="68" dy="15.600000000000001">(visualized as one boundary)</tspan></text>
+</g>
+</g>
+<g class="subgraph" data-id="CAP_LAYER" data-label="Capabilities (query/API layer)
+src/providers/{provider}/capabilities.ts">
+  <rect x="865.3329999999999" y="40" width="386.33000000000004" height="96.9" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="865.3329999999999" y="40" width="386.33000000000004" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="877.3329999999999" y="54" font-size="12" font-weight="600" fill="var(--_text-sec)"><tspan x="877.3329999999999" dy="-3.6000000000000014">Capabilities (query/API layer)</tspan><tspan x="877.3329999999999" dy="15.600000000000001">src/providers/{provider}/capabilities.ts</tspan></text>
+</g>
+<g class="subgraph" data-id="CLIENT_LAYER" data-label="Provider client wrapper (SDK boundary)
+src/providers/{provider}/client.ts">
+  <rect x="1060.9859999999999" y="180.9" width="733.8869999999997" height="368.5" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="1060.9859999999999" y="180.9" width="733.8869999999997" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="1072.9859999999999" y="194.9" font-size="12" font-weight="600" fill="var(--_text-sec)"><tspan x="1072.9859999999999" dy="-3.6000000000000014">Provider client wrapper (SDK boundary)</tspan><tspan x="1072.9859999999999" dy="15.600000000000001">src/providers/{provider}/client.ts</tspan></text>
+</g>
+
+<polyline class="edge" data-from="SDK" data-to="API" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="2054.5119999999997,559.4 2102.5119999999997,559.4" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="HTTP_IN" data-to="PRE_REQID" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="711.748208333333,650.3 711.748208333333,694.3" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="PRE_PARSE" data-to="FLOW_CALL" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="753.6625416666665,1019.7 753.6625416666665,1035.7 1814.8729999999996,1035.7 1814.8729999999996,441.40000000000003 707.8551666666665,441.40000000000003 483.99774999999977,441.40000000000003 483.99774999999977,477.40000000000003 1814.8729999999996,477.40000000000003 1814.8729999999996,1127.7 534.5472499999998,1127.7" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="FLOW_STACK" data-to="STEP1" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="857.6292499999997,1364.4 857.6292499999997,1491.3000000000002 792.4947499999998,1491.3000000000002 792.4947499999998,1519.3000000000002 20,1519.3000000000002 20,407.6 618.1284999999999,407.6 552.9939999999999,407.6 552.9939999999999,104.9 322.87999999999994,104.9 322.87999999999994,128.9 20,128.9 20,1256.6000000000001 484.28912499999984,1256.6000000000001" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="STEPN" data-to="FLOW_RETURN" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="563.7255833333331,1463.3000000000002 563.7255833333331,1479.3000000000002 1826.8729999999996,1479.3000000000002 1826.8729999999996,435.6 389.35933333333327,435.6 1826.8729999999996,435.6 1826.8729999999996,1491.3000000000002 563.7255833333331,1491.3000000000002 318.2529166666665,1491.3000000000002 318.2529166666665,1479.3000000000002" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="FLOW_RETURN" data-to="RESP_OK" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="259.8095833333332,1479.3000000000002 259.80958333333314,1519.3000000000002 8,1519.3000000000002 8,925 219.80958333333314,925 183.39099999999993,925 183.39099999999993,961 8,961 8,1611.3 223.39099999999993,1611.3" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="RESP_OK" data-to="HTTP_OK" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="223.39099999999993,1648.2 223.39099999999993,1698" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="STEP1" data-to="CAP_A" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="458.7724583333332,1293.5000000000002 458.7724583333332,1305.5000000000002 446.39158333333313,1305.5000000000002 446.39158333333313,1479.3000000000002 1838.8729999999996,1479.3000000000002 1838.8729999999996,84 944.9154999999998,84" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="CAP_A" data-to="CL_ENTRY" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="944.9154999999998,120.9 944.9154999999998,136.9 944.9154999999998,170.9 1297.774,170.9 1297.774,180.9 1297.774,224.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="STEP2" data-to="CAP_B" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="504.9550833333331,1378.4 504.9550833333331,1390.4 483.90824999999984,1390.4 483.90824999999984,1479.3000000000002 -4,1479.3000000000002 -4,84 1092.0804999999998,84" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="CAP_B" data-to="CL_ENTRY" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1092.0804999999998,120.9 1092.0804999999998,136.9 1092.0804999999998,158.89999999999998 1251.7185,158.89999999999998 1251.7185,180.9 1251.7185,224.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="STEPN" data-to="CAP_MORE" data-style="dotted" data-arrow-start="false" data-arrow-end="true" points="632.5429166666664,1463.3000000000002 632.5429166666664,1479.3000000000002 1850.8729999999996,1479.3000000000002 1850.8729999999996,84 1205.663,84" fill="none" stroke="var(--_line)" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="CAP_MORE" data-to="CL_ENTRY" data-style="dotted" data-arrow-start="false" data-arrow-end="true" points="1205.663,120.9 1205.663,136.9 1205.663,146.89999999999998 1205.663,146.89999999999998 1205.6629999999998,180.9 1205.6629999999998,224.9" fill="none" stroke="var(--_line)" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="CL_TRY" data-to="SDK" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1243.5674999999999,533.4 1243.5674999999999,549.4 1251.7185,559.4 1842.8729999999996,559.4" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="PRE_AUTH" data-to="RESP_ERR" data-style="dotted" data-arrow-start="false" data-arrow-end="true" points="688.0869166666664,917.9 688.0869166666664,929.9 637.6568333333331,929.9 637.6568333333331,1035.7 -16,1035.7 -16,453.40000000000003 597.6568333333332,453.40000000000003 1011.9509999999998,453.40000000000003 1011.9509999999998,937 604.0984999999998,937 604.0984999999998,961 -16,961 -16,1611.3 657.0556249999997,1611.3" fill="none" stroke="var(--_line)" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="PRE_PARSE" data-to="RESP_ERR" data-style="dotted" data-arrow-start="false" data-arrow-end="true" points="852.8608749999997,1019.7 852.8608749999997,1035.7 1862.8729999999996,1035.7 1862.8729999999996,441.40000000000003 807.0534999999998,441.40000000000003 963.8982499999997,441.40000000000003 963.8982499999997,925 520.9929999999998,925 520.9929999999998,961 1862.8729999999996,961 1862.8729999999996,1611.3 573.9501249999998,1611.3" fill="none" stroke="var(--_line)" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="FLOW_CALL" data-to="RESP_ERR" data-style="dotted" data-arrow-start="false" data-arrow-end="true" points="507.67208333333315,1164.6000000000001 507.67208333333315,1176.6000000000001 190.36624999999987,1176.6000000000001 190.36624999999987,1519.3000000000002 -28,1519.3000000000002 -28,937 150.36624999999987,937 437.8874999999998,937 437.8874999999998,961 -28,961 -28,1611.3 490.84462499999984,1611.3" fill="none" stroke="var(--_line)" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="PRE_REQID" data-to="PRE_CTX" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="711.748208333333,731.1999999999999 711.748208333333,779.1999999999999" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="PRE_CTX" data-to="PRE_AUTH" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="717.5555833333331,816.0999999999999 717.5555833333331,864.0999999999999" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="PRE_AUTH" data-to="PRE_PARSE" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="747.0242499999998,917.9 747.0242499999998,929.9 803.2617083333331,929.9 803.2617083333331,965.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="FLOW_CALL" data-to="FLOW_STACK" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="561.4224166666665,1164.6000000000001 561.4224166666665,1176.6000000000001 857.6292499999997,1176.6000000000001 857.6292499999997,1327.5" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="STEP1" data-to="STEP2" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="509.8057916666665,1293.5000000000002 509.8057916666665,1305.5000000000002 530.4717499999997,1305.5000000000002 530.4717499999997,1341.5000000000002" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="STEP2" data-to="STEPN" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="555.9884166666664,1378.4 555.9884166666664,1390.4 598.1342499999998,1390.4 598.1342499999998,1426.4" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="CL_ENTRY" data-to="CL_CONN" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1259.8695,261.8 1259.8695,309.8" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="CL_CONN" data-to="CL_CREATE" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1259.8695,346.70000000000005 1259.8695,394.70000000000005" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="CL_CREATE" data-to="CL_TRY" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1243.5674999999999,431.6 1243.5674999999999,479.6" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<g class="node" data-id="HTTP_IN" data-label="HTTP request
+POST /webhooks/{hook}" data-shape="rectangle">
+  <rect x="200.503" y="40" width="184.96299999999997" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="292.98449999999997" y="66.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="292.98449999999997" dy="-3.9000000000000012">HTTP request</tspan><tspan x="292.98449999999997" dy="16.900000000000002">POST /webhooks/{hook}</tspan></text>
+</g>
+<g class="node" data-id="NOTE" data-label="Note: routes often handle errors per-step via tryCatch/tryCatchSync;
+diagram shows a single catch boundary for readability." data-shape="rectangle">
+  <rect x="407.73912499999983" y="40" width="439.8669999999999" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="627.6726249999998" y="66.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="627.6726249999998" dy="-3.9000000000000012">Note: routes often handle errors per-step via tryCatch/tryCatchSync;</tspan><tspan x="627.6726249999998" dy="16.900000000000002">diagram shows a single catch boundary for readability.</tspan></text>
+</g>
+<g class="node" data-id="SDK" data-label="Provider SDK/client
+(@notionhq/client, dropbox, …)" data-shape="rectangle">
+  <rect x="1842.8729999999996" y="532.5" width="211.639" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1948.6924999999997" y="559.4" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="1948.6924999999997" dy="-3.9000000000000012">Provider SDK/client</tspan><tspan x="1948.6924999999997" dy="16.900000000000002">(@notionhq/client, dropbox, …)</tspan></text>
+</g>
+<g class="node" data-id="API" data-label="External provider API" data-shape="rectangle">
+  <rect x="2102.5119999999997" y="540.9499999999999" width="169.402" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="2187.2129999999997" y="559.4" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">External provider API</text>
+</g>
+<g class="node" data-id="HTTP_OK" data-label="HTTP 200
+{ data, requestId }" data-shape="rectangle">
+  <rect x="40" y="40" width="140.503" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="110.2515" y="66.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="110.2515" dy="-3.9000000000000012">HTTP 200</tspan><tspan x="110.2515" dy="16.900000000000002">{ data, requestId }</tspan></text>
+</g>
+<g class="node" data-id="PRE_REQID" data-label="PRE_REQID" data-shape="rectangle">
+  <rect x="654.4642083333331" y="694.3" width="114.568" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="711.7482083333331" y="712.75" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">PRE_REQID</text>
+</g>
+<g class="node" data-id="PRE_CTX" data-label="&quot;ctx: AppContext { requestId, callStack: [ROUTE_NAME" data-shape="rectangle">
+  <rect x="537.6360833333331" y="779.1999999999999" width="359.83900000000006" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="717.5555833333331" y="797.65" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">&quot;ctx: AppContext { requestId, callStack: [ROUTE_NAME</text>
+</g>
+<g class="node" data-id="PRE_AUTH" data-label="assertApiKey(request)
+(header: x-api-key)" data-shape="rectangle">
+  <rect x="629.1495833333331" y="864.0999999999999" width="176.81199999999998" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="717.5555833333331" y="890.9999999999999" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="717.5555833333331" dy="-3.9000000000000012">assertApiKey(request)</tspan><tspan x="717.5555833333331" dy="16.900000000000002">(header: x-api-key)</tspan></text>
+</g>
+<g class="node" data-id="PRE_PARSE" data-label="parseJsonBody(request, reqBodySchema)
+(JSON + Zod)" data-shape="rectangle">
+  <rect x="654.4642083333331" y="965.9" width="297.59499999999997" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="803.2617083333331" y="992.8" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="803.2617083333331" dy="-3.9000000000000012">parseJsonBody(request, reqBodySchema)</tspan><tspan x="803.2617083333331" dy="16.900000000000002">(JSON + Zod)</tspan></text>
+</g>
+<g class="node" data-id="FLOW_CALL" data-label="get&lt;Flow&gt;(input, ctx)" data-shape="rectangle">
+  <rect x="453.9217499999998" y="1127.7" width="161.251" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="534.5472499999998" y="1146.15" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">get&lt;Flow&gt;(input, ctx)</text>
+</g>
+<g class="node" data-id="FLOW_STACK" data-label="ctx.callStack.push(FLOW_NAME)" data-shape="rectangle">
+  <rect x="737.3602499999997" y="1327.5" width="240.53799999999995" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="857.6292499999997" y="1345.95" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">ctx.callStack.push(FLOW_NAME)</text>
+</g>
+<g class="node" data-id="FLOW_RETURN" data-label="return flowResult (data)" data-shape="rectangle">
+  <rect x="201.36624999999987" y="1442.4" width="175.32999999999998" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="289.0312499999999" y="1460.8500000000001" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">return flowResult (data)</text>
+</g>
+<g class="node" data-id="STEP1" data-label="Step: capability call" data-shape="rectangle">
+  <rect x="407.73912499999983" y="1256.6000000000001" width="153.10000000000002" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="484.28912499999984" y="1275.0500000000002" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Step: capability call</text>
+</g>
+<g class="node" data-id="STEP2" data-label="Step: capability call" data-shape="rectangle">
+  <rect x="453.9217499999998" y="1341.5000000000002" width="153.10000000000002" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="530.4717499999998" y="1359.9500000000003" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Step: capability call</text>
+</g>
+<g class="node" data-id="STEPN" data-label="… (many capabilities per flow)" data-shape="rectangle">
+  <rect x="494.90824999999984" y="1426.4" width="206.45199999999994" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="598.1342499999998" y="1444.8500000000001" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">… (many capabilities per flow)</text>
+</g>
+<g class="node" data-id="RESP_OK" data-label="createWebhookResponse({ data, requestId })" data-shape="rectangle">
+  <rect x="72" y="1611.3" width="302.78199999999987" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="223.39099999999993" y="1629.75" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">createWebhookResponse({ data, requestId })</text>
+</g>
+<g class="node" data-id="RESP_ERR" data-label="createWebhookErrorResponse(error, requestId)
+→ toAppError → toPublicErrorResponse
+→ status = appError.httpStatus" data-shape="rectangle">
+  <rect x="407.73912499999983" y="1611.3" width="332.42199999999997" height="70.7" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="573.9501249999998" y="1646.6499999999999" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="573.9501249999998" dy="-12.350000000000001">createWebhookErrorResponse(error, requestId)</tspan><tspan x="573.9501249999998" dy="16.900000000000002">→ toAppError → toPublicErrorResponse</tspan><tspan x="573.9501249999998" dy="16.900000000000002">→ status = appError.httpStatus</tspan></text>
+</g>
+<g class="node" data-id="CAP_A" data-label="Capability A(...)" data-shape="rectangle">
+  <rect x="881.3329999999999" y="84" width="127.165" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="944.9154999999998" y="102.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Capability A(...)</text>
+</g>
+<g class="node" data-id="CAP_B" data-label="Capability B(...)" data-shape="rectangle">
+  <rect x="1028.4979999999998" y="84" width="127.165" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1092.0804999999998" y="102.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Capability B(...)</text>
+</g>
+<g class="node" data-id="CAP_MORE" data-label="…" data-shape="rectangle">
+  <rect x="1175.663" y="84" width="60" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1205.663" y="102.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">…</text>
+</g>
+<g class="node" data-id="CL_ENTRY" data-label="run{Provider}Client(run)" data-shape="rectangle">
+  <rect x="1159.6074999999998" y="224.9" width="184.22199999999998" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1251.7185" y="243.35000000000002" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">run{Provider}Client(run)</text>
+</g>
+<g class="node" data-id="CL_CONN" data-label="getConnection/getFreshConnection + decryptSecret" data-shape="rectangle">
+  <rect x="1085.137" y="309.8" width="349.4649999999999" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1259.8694999999998" y="328.25" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">getConnection/getFreshConnection + decryptSecret</text>
+</g>
+<g class="node" data-id="CL_CREATE" data-label="create{Provider}Client(accessToken)" data-shape="rectangle">
+  <rect x="1119.5935" y="394.70000000000005" width="264.24999999999994" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1251.7185" y="413.15000000000003" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">create{Provider}Client(accessToken)</text>
+</g>
+<g class="node" data-id="CL_TRY" data-label="tryCatch(run(sdkClient), to{Provider}AppError)
+src/providers/{provider}/client-errors.ts" data-shape="rectangle">
+  <rect x="1085.137" y="479.6" width="316.8609999999999" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1243.5674999999999" y="506.5" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="1243.5674999999999" dy="-3.9000000000000012">tryCatch(run(sdkClient), to{Provider}AppError)</tspan><tspan x="1243.5674999999999" dy="16.900000000000002">src/providers/{provider}/client-errors.ts</tspan></text>
+</g>
+<g class="node" data-id="CL_MAP" data-label="to{Provider}AppError(rawError) → AppError" data-shape="rectangle">
+  <rect x="1446.4509999999998" y="224.9" width="304.26399999999995" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1598.5829999999999" y="243.35000000000002" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">to{Provider}AppError(rawError) → AppError</text>
+</g>
+<g class="node" data-id="CL_HEALTH" data-label="(optional) setConnectionHealth / upsertConnection" data-shape="rectangle">
+  <rect x="1446.4509999999998" y="281.8" width="332.42199999999985" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1612.6619999999998" y="300.25" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">(optional) setConnectionHealth / upsertConnection</text>
+</g>
+<g class="node" data-id="CL_THROW" data-label="throw AppError" data-shape="rectangle">
+  <rect x="1446.4509999999998" y="338.70000000000005" width="134.57500000000002" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1513.7384999999997" y="357.15000000000003" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">throw AppError</text>
+</g>
+</svg>
