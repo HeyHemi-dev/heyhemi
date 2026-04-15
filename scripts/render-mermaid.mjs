@@ -1,6 +1,6 @@
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { renderMermaid, THEMES } from "beautiful-mermaid";
+import { renderMermaidSVGAsync, THEMES } from "beautiful-mermaid";
 import { existsSync } from "node:fs";
 
 const SOURCE_ROOT = path.resolve("src/assets/projects");
@@ -43,7 +43,7 @@ async function renderFile(sourceFile) {
   }
 
   const mermaidSource = await readFile(sourceFile, "utf8");
-  const svg = await renderMermaid(mermaidSource, theme);
+  const svg = await renderMermaidSVGAsync(mermaidSource, theme);
   await mkdir(path.dirname(outputFile), { recursive: true });
   await writeFile(outputFile, svg, "utf8");
   return { sourceFile, outputFile, status: "rendered" };
