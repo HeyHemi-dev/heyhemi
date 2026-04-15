@@ -18,12 +18,11 @@ export const mcpCaseStudy: CaseStudy = {
     "Owner (Patina Photo)",
     "Full-Stack Developer",
     "AI Workflow Development",
-    "Systems / Integrations",
+    "Systems & Integration",
   ],
   techStack: [
-    { type: "md", text: "**Next.js (SSR)** - admin UI + endpoints" },
-    { type: "md", text: "**TypeScript**" },
-    { type: "md", text: "**Zod** - validation at request boundaries" },
+    { type: "md", text: "**Next.js (SSR)** - Admin UI + endpoints" },
+    { type: "md", text: "**Zod** - validation at endpoint and SDK boundaries" },
     { type: "md", text: "**Drizzle ORM**" },
     { type: "md", text: "**Neon Postgres**" },
     { type: "md", text: "**Tailwind CSS + shadcn/ui**" },
@@ -31,18 +30,14 @@ export const mcpCaseStudy: CaseStudy = {
     { type: "md", text: "**MCP over HTTP**" },
     {
       type: "md",
-      text: "**Provider SDKs** - official SDKs for Notion, Dropbox, Gmail, Xero",
-    },
-    {
-      type: "md",
-      text: "**Synology API client** - custom client built from API docs (no official SDK)",
+      text: "**Provider SDKs** - official SDKs where possible (e.g. Notion, Xero, Gmail etc.)",
     },
   ],
   problemSolution: {
     problem:
-      "Off-the-shelf agent platforms (like Notion AI background agents) couldn’t connect to key Patina tools—especially Xero—so “agents” couldn’t actually do the work we needed. Building and iterating on these integrations in no-code tools (e.g. Make.com) was also slow and cumbersome.",
+      "Off-the-shelf agent platforms (like Notion background agents) couldn’t connect to key Patina tools (esp. Xero) so AI agents couldn’t actually do the work we needed. Meanwhile, building and iterating on these integrations in no-code tools (e.g. Make.com) was also slow and cumbersome.",
     solution:
-      "I built a code-first integration layer that exposes Patina-specific capabilities as both webhook automations and MCP tools. It runs on Vercel with a small admin UI to manage integrations (including OAuth for Gmail/Xero), and it enables agents to turn unstructured job context into real actions like drafting invoices in Xero.",
+      "I built a code-first integration layer that exposes Patina-specific capabilities as both webhook automations and MCP tools. It runs on Vercel with a small admin UI to manage integrations (including OAuth for Gmail, Xero etc.). This enables agents to work with unstructured data to complete real actions like drafting invoices in Xero.",
   },
   architecture: {
     diagram: {
@@ -92,43 +87,23 @@ export const mcpCaseStudy: CaseStudy = {
     rows: [
       {
         constraint:
-          "This started as an internal tool and needed to ship quickly without spending weeks on user management.",
+          "This internal-first tool needed to ship quickly, without spending time on a proper user auth layer.",
         decision: {
           type: "md",
-          text: "Kept the admin UI auth as a simple env-var password check, with the expectation that a proper auth layer could be added later if the audience expands.",
+          text: "Admin UI auth was keep as a simple env-var password check, with the expectation that a proper auth layer could be added later if the audience expands.",
         },
         tradeOff:
-          "Not suitable for multi-user access as-is; expanding beyond an internal beta likely requires a real auth system or a rebuild of the admin surface.",
+          "Not suitable for productisation; expanding beyond an internal beta likely requires a real auth system or a rebuild of the admin surface.",
       },
       {
         constraint:
           "Each provider SDK throws different error shapes and details, making consistent handling and display difficult.",
         decision: {
           type: "md",
-          text: "Normalized provider errors into a consistent `AppError`-style shape across the app while still capturing the raw/unserialized error for debugging.",
+          text: "Normalized provider errors into a consistent `AppError` shape across the app while still capturing the raw/unserialized error for debugging.",
         },
         tradeOff:
-          "The normalized shape is intentionally lossy; deeper debugging sometimes requires digging into the captured raw error details.",
-      },
-    ],
-  },
-  deepDive: {
-    title: "Error normalization across providers",
-    content: [
-      { type: "h3", text: "The Problem" },
-      {
-        type: "md",
-        text: "Notion, Dropbox, Gmail, and Xero SDKs all surface errors differently. Without a consistent error shape, it’s hard to build predictable UI feedback, retry behavior, and logging across many integrations.",
-      },
-      { type: "h3", text: "What I Built" },
-      {
-        type: "md",
-        text: "A provider-agnostic error normalization layer that converts SDK/API errors into a consistent `AppError` shape used throughout the app, while also retaining the original error for deeper debugging when needed.",
-      },
-      { type: "h3", text: "Trade-off" },
-      {
-        type: "md",
-        text: "Normalizing errors means not every provider-specific detail is surfaced in the standard shape. The payoff is predictability in handling; the cost is that deeper investigation sometimes requires inspecting the captured raw error.",
+          "The normalized shape is intentionally lossy; deeper debugging may require digging into the captured raw error details.",
       },
     ],
   },
