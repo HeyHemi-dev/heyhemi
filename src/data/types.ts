@@ -17,6 +17,7 @@ export type ContentBlock =
   | MarkdownText
   | { type: "h3"; text: string }
   | { type: "ul"; items: RichText[] }
+  | { type: "ol"; items: RichText[] }
   | { type: "callout"; title?: string; content: RichText }
   | { type: "code"; language: CodeLanguage; code: string }
   | ({ type: "image" } & ImageAsset);
@@ -62,7 +63,7 @@ export type CaseStudy = CaseStudyPreview & {
     solution: RichText;
   };
 
-  architecture: {
+  architecture?: {
     diagram: ImageAsset;
     content?: ContentBlock[];
   };

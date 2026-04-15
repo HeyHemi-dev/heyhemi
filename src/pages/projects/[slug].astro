@@ -29,7 +29,7 @@ const solution = caseStudy.problemSolution.solution;
 const techStack = caseStudy.techStack;
 
 const architecture = caseStudy.architecture;
-const architectureContent = architecture.content;
+const architectureContent = architecture?.content;
 const engineering = caseStudy.engineering;
 const engineeringRows = engineering.rows;
 const deepDive = caseStudy.deepDive;
@@ -163,30 +163,36 @@ const next = allCaseStudies[(index + 1) % caseStudyCount]!;
         </div>
       </Section>
 
-      <Divider />
+      {
+        architecture && (
+          <>
+            <Divider />
 
-      <Section aria-labelledby="architecture-heading">
-        <div class="flex flex-col gap-6">
-          <h2 id="architecture-heading" class="heading-2">Architecture</h2>
-          <ImageBlock
-            src={architecture.diagram.src}
-            alt={architecture.diagram.alt}
-            caption={architecture.diagram.caption}
-            width={1024}
-            height={1536}
-          />
-        </div>
+            <Section aria-labelledby="architecture-heading">
+              <div class="flex flex-col gap-6">
+                <h2 id="architecture-heading" class="heading-2">
+                  Architecture
+                </h2>
+                <ImageBlock
+                  src={architecture.diagram.src}
+                  alt={architecture.diagram.alt}
+                  caption={architecture.diagram.caption}
+                  width={1024}
+                  height={1536}
+                />
+              </div>
 
-        {
-          architectureContent && (
-            <div class="flex flex-col gap-6">
-              {architectureContent.map((block) => (
-                <ContentBlock block={block} />
-              ))}
-            </div>
-          )
-        }
-      </Section>
+              {architectureContent && (
+                <div class="flex flex-col gap-6">
+                  {architectureContent.map((block) => (
+                    <ContentBlock block={block} />
+                  ))}
+                </div>
+              )}
+            </Section>
+          </>
+        )
+      }
 
       {
         deepDive && (
