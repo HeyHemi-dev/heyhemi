@@ -2,21 +2,22 @@ import type { CaseStudy } from "../types";
 
 export const mcpCaseStudy: CaseStudy = {
   slug: "mcp",
-  name: "Custom MCP Server",
+  name: "AI Agent Server",
   client: "Patina Photo",
   excerpt:
     "Patina’s internal automation platform: webhook workflows + MCP tools so AI agents can safely act across our stack (Notion, Dropbox, Gmail, Synology, Xero).",
   heroImage: {
     src: "/projects/mcp/hero.svg",
-    alt: "Custom MCP Server project preview",
+    alt: "AI Agent Server project preview",
   },
   liveUrl: "https://mcp-patina.vercel.app/",
   repoUrl: "https://github.com/HeyHemi-dev/mcp-patina",
   oneLiner:
-    "An internal automation platform for Patina: webhook workflows + MCP tools so AI agents can safely do real work across our tech stack.",
+    "Internal automation platform for AI agents; gives access to our data and tech stack",
   roles: [
     "Owner (Patina Photo)",
     "Full-Stack Developer",
+    "AI Workflow Development",
     "Systems / Integrations",
   ],
   techStack: [
@@ -48,7 +49,7 @@ export const mcpCaseStudy: CaseStudy = {
       src: "/projects/mcp/architecture.svg",
       alt: "Architecture diagram showing an admin UI, webhook and MCP HTTP endpoints, a flows layer, provider clients, and Neon Postgres for connection state.",
       caption:
-        "Custom MCP Server runs on Vercel with an admin UI plus webhook + MCP HTTP endpoints that route into a flows layer, backed by Neon Postgres and provider APIs.",
+        "AI Agent Server runs on Vercel with an admin UI plus webhook + MCP HTTP endpoints that route into a flows layer, backed by Neon Postgres and provider APIs.",
     },
     content: [
       {

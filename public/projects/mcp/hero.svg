@@ -21,8 +21,8 @@
     <rect x="120" y="130" width="220" height="34" rx="10" fill="var(--_badge)" stroke="var(--_badge-stroke)" />
     <text x="230" y="152" font-size="14" text-anchor="middle" font-weight="600" fill="var(--_badge-text)">Patina • Internal Beta</text>
 
-    <text x="120" y="230" font-size="44" font-weight="700" fill="var(--_text)">Custom MCP Server</text>
-    <text x="120" y="270" font-size="18" font-weight="500" fill="var(--_text-muted)">Webhook workflows + MCP tools so AI agents can safely do real work across Patina’s stack.</text>
+    <text x="120" y="230" font-size="44" font-weight="700" fill="var(--_text)">AI Agent Server</text>
+    <text x="120" y="270" font-size="18" font-weight="500" fill="var(--_text-muted)">Internal automation platform for AI agents; gives access to our data and tech stack.</text>
 
     <g>
       <rect x="120" y="330" width="220" height="64" rx="14" fill="var(--bg)" stroke="var(--_line)" />
