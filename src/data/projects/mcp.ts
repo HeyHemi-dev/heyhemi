@@ -7,8 +7,8 @@ export const mcpCaseStudy: CaseStudy = {
   excerpt:
     "Patina’s internal automation platform: webhook workflows + MCP tools so AI agents can safely act across our stack (Notion, Dropbox, Gmail, Synology, Xero).",
   heroImage: {
-    src: "/projects/mcp/hero.svg",
-    alt: "AI Agent Server project preview",
+    src: "/favicon.svg",
+    alt: "Mayday Weddings project placeholder image",
   },
   liveUrl: "https://mcp-patina.vercel.app/",
   repoUrl: "https://github.com/HeyHemi-dev/mcp-patina",
@@ -41,45 +41,11 @@ export const mcpCaseStudy: CaseStudy = {
   },
   architecture: {
     diagram: {
-      src: "/projects/mcp/architecture.svg",
-      alt: "Architecture diagram showing an admin UI, webhook and MCP HTTP endpoints, a flows layer, provider clients, and Neon Postgres for connection state.",
+      src: "/projects/mcp/webhook-request-flow.svg",
+      alt: "Webhook request flow and provider client boundary: request preflow (auth + Zod), flow orchestration, capability calls, provider client wrapper, and consistent error shaping into public HTTP responses.",
       caption:
-        "AI Agent Server runs on Vercel with an admin UI plus webhook + MCP HTTP endpoints that route into a flows layer, backed by Neon Postgres and provider APIs.",
+        "Endpoint request flow: request boundary (auth + Zod) → flow orchestration → capability → provider client wrapper (SDK boundary + error normalization) → consistent public HTTP responses.",
     },
-    content: [
-      {
-        type: "md",
-        text: [
-          "This project is intentionally “code-first”: instead of wiring automations in a no-code tool, Patina’s integrations live in one server that owns auth, request validation, provider API calls, and consistent error handling.",
-          "",
-          "There are two entry points into the same underlying capabilities:",
-          "",
-          "- **Webhooks** for predictable, event-driven workflows (e.g. create standard folder structures).",
-          "- **MCP tools** for agent-driven workflows that require reasoning over unstructured inputs (e.g. draft an invoice from job notes).",
-        ].join("\n"),
-      },
-      {
-        type: "ul",
-        items: [
-          {
-            type: "md",
-            text: "**Admin UI (Next.js SSR):** connect/disconnect integrations and view connection status.",
-          },
-          {
-            type: "md",
-            text: "**Auth gates:** admin password + shared secrets for webhook/MCP clients (env-based).",
-          },
-          {
-            type: "md",
-            text: "**Flows layer:** orchestration that calls provider SDKs/APIs (Notion, Dropbox, Gmail, Xero, Synology).",
-          },
-          {
-            type: "md",
-            text: "**Persistence:** Neon Postgres via Drizzle for integration state and tokens.",
-          },
-        ],
-      },
-    ],
   },
   engineering: {
     caption:

@@ -1,70 +1,38 @@
-flowchart LR
-  HTTP_IN["HTTP request<br/>POST /webhooks/{hook}"] --> PRE_REQID
-
-  subgraph WEBHOOK["Webhook route handler<br/>src/app/webhooks/{hook}/route.ts"]
-    direction TB
-
-    subgraph PRE["1) Preflow (request boundary)"]
-      direction TB
-      PRE_REQID["getRequestId(request) → requestId"]
-      PRE_CTX["ctx: AppContext { requestId, callStack: [ROUTE_NAME] }"]
-      PRE_AUTH["assertApiKey(request)<br/>(header: x-api-key)"]
-      PRE_PARSE["parseJsonBody(request, reqBodySchema)<br/>(JSON + Zod)"]
+graph TD
+  subgraph WEBHOOK["Webhook/MCP Endpoint"]
+    direction TD
+    
+    subgraph PREFLOW["1. Preflow"]
+      direction TD
+      W_AUTH["requireAuth"]
+      W_REQID["requestId + ctx"]
+      W_VALIDATE["parseReqBody (Zod)"]
     end
 
-    subgraph FLOW["2) Flow (transport-agnostic)<br/>src/flows/*"]
-      direction TB
-      FLOW_CALL["get&lt;Flow&gt;(input, ctx)"]
-      FLOW_STACK["ctx.callStack.push(FLOW_NAME)"]
-
-      subgraph STEPS["Orchestration steps (1..N)"]
-        direction TB
-        STEP1["Step: capability call"]
-        STEP2["Step: capability call"]
-        STEPN["… (many capabilities per flow)"]
+    subgraph FLOW["2. Flow"]
+      direction TD
+      subgraph CAP1["Capability"]
+        direction TD
+        subgraph CLIENT["SDK/client"]
+          direction TD
+          CL_RUN["run<Provider>Client()"]
+          CL_MAP["Maps SDK errors → AppError"]
+        end
       end
 
-      FLOW_RETURN["return flowResult (data)"]
+      subgraph CAP2["Capability"]
+        ETC["..."]
+      end
+
     end
 
-    subgraph END["3) Catch + shape HTTP response<br/>(visualized as one boundary)"]
-      direction TB
-      RESP_OK["createWebhookResponse({ data, requestId })"]
-      RESP_ERR["createWebhookErrorResponse(error, requestId)<br/>→ toAppError → toPublicErrorResponse<br/>→ status = appError.httpStatus"]
+    subgraph CATCH["3. Catch + respond"]
+      direction TD
+      W_OK["Success → JSON response"]
+      W_ERR["AppError → HTTP error response"]
     end
+
+    PREFLOW --> FLOW --> CATCH
   end
 
-  NOTE["Note: routes often handle errors per-step via tryCatch/tryCatchSync;<br/>diagram shows a single catch boundary for readability."] -.-> END
 
-  subgraph CAP_LAYER["Capabilities (query/API layer)<br/>src/providers/{provider}/capabilities.ts"]
-    direction TB
-    CAP_A["Capability A(...)"]
-    CAP_B["Capability B(...)"]
-    CAP_MORE["…"]
-  end
-
-  subgraph CLIENT_LAYER["Provider client wrapper (SDK boundary)<br/>src/providers/{provider}/client.ts"]
-    direction TB
-    CL_ENTRY["run{Provider}Client(run)"]
-    CL_CONN["getConnection/getFreshConnection + decryptSecret"]
-    CL_CREATE["create{Provider}Client(accessToken)"]
-    CL_TRY["tryCatch(run(sdkClient), to{Provider}AppError)<br/>src/providers/{provider}/client-errors.ts"]
-    CL_MAP["to{Provider}AppError(rawError) → AppError"]
-    CL_HEALTH["(optional) setConnectionHealth / upsertConnection"]
-    CL_THROW["throw AppError"]
-  end
-
-  SDK["Provider SDK/client<br/>(@notionhq/client, dropbox, …)"] --> API["External provider API"]
-
-  %% Happy path (calls)
-  PRE_REQID --> PRE_CTX --> PRE_AUTH --> PRE_PARSE --> FLOW_CALL --> FLOW_STACK --> STEP1 --> STEP2 --> STEPN --> FLOW_RETURN --> RESP_OK --> HTTP_OK["HTTP 200<br/>{ data, requestId }"]
-  STEP1 --> CAP_A --> CL_ENTRY
-  STEP2 --> CAP_B --> CL_ENTRY
-  STEPN -.-> CAP_MORE -.-> CL_ENTRY
-  CL_ENTRY --> CL_CONN --> CL_CREATE --> CL_TRY --> SDK
-
-  %% Error path (mapped to AppError at SDK boundary, then shaped for HTTP at webhook boundary)
-  SDK -.raw SDK error.-> CL_MAP --> CL_HEALTH --> CL_THROW -.AppError bubbles.-> RESP_ERR --> HTTP_ERR["HTTP {status}<br/>{ error: { code, message }, requestId }"]
-  PRE_AUTH -.-> RESP_ERR
-  PRE_PARSE -.-> RESP_ERR
-  FLOW_CALL -.-> RESP_ERR
