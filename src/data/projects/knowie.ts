@@ -5,7 +5,7 @@ export const knowieCaseStudy: CaseStudy = {
   name: "Knowie",
   excerpt: "Case study coming soon.",
   heroImage: {
-    src: "/favicon.svg",
+    src: "/apple-touch-icon.png",
     alt: "Project placeholder image",
   },
   oneLiner: "Lead and job management, + analytics.",
@@ -18,7 +18,7 @@ export const knowieCaseStudy: CaseStudy = {
   },
   architecture: {
     diagram: {
-      src: "/favicon.svg",
+      src: "/apple-touch-icon.png",
       alt: "",
       caption: "Architecture details coming soon.",
     },

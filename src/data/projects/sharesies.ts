@@ -5,7 +5,7 @@ export const sharesiesCaseStudy: CaseStudy = {
   name: "Sharesies Open",
   excerpt: "Case study coming soon.",
   heroImage: {
-    src: "/favicon.svg",
+    src: "/apple-touch-icon.png",
     alt: "Sharesies project placeholder image",
   },
   oneLiner: "Employee-shares management portal for businesses.",
@@ -20,7 +20,7 @@ export const sharesiesCaseStudy: CaseStudy = {
   },
   architecture: {
     diagram: {
-      src: "/favicon.svg",
+      src: "/apple-touch-icon.png",
       alt: "Sharesies architecture placeholder diagram",
       caption: "Architecture details coming soon.",
     },

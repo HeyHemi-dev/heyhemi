@@ -7,7 +7,7 @@ export const mcpCaseStudy: CaseStudy = {
   excerpt:
     "Patina’s internal automation platform: webhook workflows + MCP tools so AI agents can safely act across our stack (Notion, Dropbox, Gmail, Synology, Xero).",
   heroImage: {
-    src: "/favicon.svg",
+    src: "/apple-touch-icon.png",
     alt: "Mayday Weddings project placeholder image",
   },
   liveUrl: "https://mcp-patina.vercel.app/",

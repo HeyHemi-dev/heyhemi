@@ -6,7 +6,7 @@ export const maydayCaseStudy: CaseStudy = {
   excerpt:
     "A focused job board that helped wedding vendors find cover fast if they got sick during COVID-19. Built with a no-code/low-code stack, it matched jobs to qualified vendors, collected one-click responses, and presented a filterable candidate list.",
   heroImage: {
-    src: "/favicon.svg",
+    src: "/apple-touch-icon.png",
     alt: "Mayday Weddings project placeholder image",
   },
   liveUrl: undefined,
