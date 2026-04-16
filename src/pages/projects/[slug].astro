@@ -115,16 +115,16 @@ const next = allCaseStudies[(index + 1) % caseStudyCount]!;
 
   <Section
     aria-labelledby="engineering-heading"
-    class="col-start-1 -col-end-1 grid-cols-subgrid"
+    class="col-start-1 -col-end-1 grid grid-cols-subgrid gap-x-0"
   >
-    <div class="flex flex-col gap-6">
+    <div class="layout-use-inner-cols flex flex-col gap-6">
       <h2 id="engineering-heading" class="heading-2">Engineering</h2>
       {engineering.caption && <p class="body-small">{engineering.caption}</p>}
     </div>
 
     <div
       data-eng-decisions-scroll
-      class="border-linework w-full overflow-x-auto overscroll-x-contain border"
+      class="border-linework col-span-full w-full overflow-x-auto overscroll-x-contain border"
     >
       <div class="min-w-4xl overflow-hidden">
         <header class="border-linework grid grid-cols-3 border-b">

@@ -50,6 +50,19 @@ body {
   @apply text-body underline underline-offset-2;
 }
 
+@utility layout-main {
+  @apply grid grid-cols-[1fr_min(var(--container-2xl),100%)_1fr] gap-y-12 px-6 pt-12 pb-36;
+
+  /* All direct children use inner columns*/
+  & > :where(*) {
+    grid-column: 2 / -2;
+  }
+}
+
+@utility layout-use-inner-cols {
+  grid-column: 2 / -2;
+}
+
 /* Apply text-box trimming globally to all rendered copy-like elements. */
 :where(
   h1,
