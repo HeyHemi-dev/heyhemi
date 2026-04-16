@@ -146,7 +146,7 @@ export const withThanksCaseStudy: CaseStudy = {
       },
       {
         constraint:
-          "Encourage crowdsourcing of supplier information while minimizing duplicate suppliers as the database grows.",
+          "Encourage crowdsourcing of supplier information while minimising duplicate suppliers as the database grows.",
         decision: {
           type: "md",
           text: [

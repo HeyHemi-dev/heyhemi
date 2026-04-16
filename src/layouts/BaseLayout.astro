@@ -1,7 +1,12 @@
 ---
 import "../styles/global.css";
 
-const { title = "Hey Hemi" } = Astro.props;
+export interface Props {
+  title?: string;
+  mainId: string;
+}
+
+const { title = "Hey Hemi", mainId } = Astro.props;
 ---
 
 <html lang="en">
@@ -21,6 +26,11 @@ const { title = "Hey Hemi" } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <slot />
+    <main
+      id={mainId}
+      class="grid grid-cols-[1fr_min(var(--container-2xl),100%)_1fr] px-6 pt-12 pb-36 *:col-start-2 *:col-end-3"
+    >
+      <slot />
+    </main>
   </body>
 </html>
