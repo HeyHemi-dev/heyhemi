@@ -40,200 +40,201 @@ const next = allCaseStudies[(index + 1) % caseStudyCount]!;
 ---
 
 <ProjectLayout title={`${caseStudy.name} — Case Study`} mainId={caseStudy.slug}>
-  <div class="flex flex-col gap-12">
-    <header class="flex flex-col gap-12">
-      <p class="body-small">
-        <a href="/">
-          <span class="body-link">Home</span>
-        </a>
-      </p>
-      <div class="flex flex-col gap-6">
-        <h1 class="heading-1">{caseStudy.name}</h1>
-        <p>{caseStudy.oneLiner}</p>
-      </div>
-
-      {
-        hasProjectLinks && (
-          <div class="flex flex-wrap items-center gap-4">
-            {caseStudy.liveUrl && (
-              <p class="body-small">
-                <a
-                  href={caseStudy.liveUrl}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  <span class="body-link">View Live ↗</span>
-                </a>
-              </p>
-            )}
-            {caseStudy.repoUrl && (
-              <p class="body-small">
-                <a
-                  href={caseStudy.repoUrl}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  <span class="body-link">View GitHub ↗</span>
-                </a>
-              </p>
-            )}
-          </div>
-        )
-      }
-
-      <List as="div">
-        <ListItem as="div" class="flex flex-col gap-4">
-          <h2 id="problem-heading" class="heading-3">Problem</h2>
-          <MarkdownBlock value={problem} class="body-small" />
-        </ListItem>
-        <ListItem as="div" class="flex flex-col gap-4">
-          <h2 id="solution-heading" class="heading-3">Solution</h2>
-          <MarkdownBlock value={solution} class="body-small" />
-        </ListItem>
-        <ListItem as="div" class="flex flex-col gap-4">
-          <h2 id="my-role-heading" class="heading-3">My Role</h2>
-          <p class="body-small">{caseStudy.roles.join(", ")}</p>
-        </ListItem>
-      </List>
-    </header>
-
-    <Divider />
-
-    <Section aria-labelledby="tech-stack-heading">
-      <h2 id="tech-stack-heading" class="heading-2">Tech Stack</h2>
-      <List>
-        {
-          techStack.map((item) => (
-            <ListItem>
-              <MarkdownBlock value={item} />
-            </ListItem>
-          ))
-        }
-      </List>
-    </Section>
-
-    <Divider />
-
-    <Section aria-labelledby="engineering-heading">
-      <div class="flex flex-col gap-6">
-        <h2 id="engineering-heading" class="heading-2">Engineering</h2>
-        {engineering.caption && <p class="body-small">{engineering.caption}</p>}
-      </div>
-
-      <div
-        data-eng-decisions-scroll
-        class="border-linework w-full overflow-x-auto overscroll-x-contain border"
-      >
-        <div class="min-w-4xl overflow-hidden">
-          <header class="border-linework grid grid-cols-3 border-b">
-            <div class="border-linework border-r px-4 py-3">
-              <p class="heading-3">Constraint</p>
-            </div>
-            <div class="border-linework border-r px-4 py-3">
-              <p class="heading-3">Decision</p>
-            </div>
-            <div class="px-4 py-3">
-              <p class="heading-3">Trade-off</p>
-            </div>
-          </header>
-
-          {
-            engineeringRows.map((row, rowIndex) => (
-              <article
-                class={`grid grid-cols-3 ${rowIndex < engineeringRows.length - 1 ? "border-linework border-b" : ""}`}
-              >
-                <div class="border-linework flex flex-col gap-5 border-r px-4 py-4">
-                  <MarkdownBlock value={row.constraint} class="body-small" />
-                </div>
-                <div class="border-linework flex flex-col gap-5 border-r px-4 py-4">
-                  <MarkdownBlock value={row.decision} class="body-small" />
-                </div>
-                <div class="flex flex-col gap-5 px-4 py-4">
-                  <MarkdownBlock value={row.tradeOff} class="body-small" />
-                </div>
-              </article>
-            ))
-          }
-        </div>
-      </div>
-    </Section>
+  <header class="flex flex-col gap-12">
+    <p class="body-small">
+      <a href="/">
+        <span class="body-link">Home</span>
+      </a>
+    </p>
+    <div class="flex flex-col gap-6">
+      <h1 class="heading-1">{caseStudy.name}</h1>
+      <p>{caseStudy.oneLiner}</p>
+    </div>
 
     {
-      architecture && (
-        <>
-          <Divider />
-
-          <Section aria-labelledby="architecture-heading">
-            <div class="flex flex-col gap-6">
-              <h2 id="architecture-heading" class="heading-2">
-                Architecture
-              </h2>
-              <ImageBlock
-                src={architecture.diagram.src}
-                alt={architecture.diagram.alt}
-                caption={architecture.diagram.caption}
-                width={1024}
-                height={1536}
-              />
-            </div>
-
-            {architectureContent && (
-              <div class="flex flex-col gap-6">
-                {architectureContent.map((block) => (
-                  <ContentBlock block={block} />
-                ))}
-              </div>
-            )}
-          </Section>
-        </>
+      hasProjectLinks && (
+        <div class="flex flex-wrap items-center gap-4">
+          {caseStudy.liveUrl && (
+            <p class="body-small">
+              <a
+                href={caseStudy.liveUrl}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <span class="body-link">View Live ↗</span>
+              </a>
+            </p>
+          )}
+          {caseStudy.repoUrl && (
+            <p class="body-small">
+              <a
+                href={caseStudy.repoUrl}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <span class="body-link">View GitHub ↗</span>
+              </a>
+            </p>
+          )}
+        </div>
       )
     }
 
-    {
-      deepDive && (
-        <>
-          <Divider />
+    <List as="div">
+      <ListItem as="div" class="flex flex-col gap-4">
+        <h2 id="problem-heading" class="heading-3">Problem</h2>
+        <MarkdownBlock value={problem} class="body-small" />
+      </ListItem>
+      <ListItem as="div" class="flex flex-col gap-4">
+        <h2 id="solution-heading" class="heading-3">Solution</h2>
+        <MarkdownBlock value={solution} class="body-small" />
+      </ListItem>
+      <ListItem as="div" class="flex flex-col gap-4">
+        <h2 id="my-role-heading" class="heading-3">My Role</h2>
+        <p class="body-small">{caseStudy.roles.join(", ")}</p>
+      </ListItem>
+    </List>
+  </header>
 
-          <Section aria-labelledby="deep-dive-heading">
-            <h2 id="deep-dive-heading" class="heading-2">
-              <>
-                <span>Deep Dive:</span>
-                <span>{deepDive.title}</span>
-              </>
+  <Divider />
+
+  <Section aria-labelledby="tech-stack-heading">
+    <h2 id="tech-stack-heading" class="heading-2">Tech Stack</h2>
+    <List>
+      {
+        techStack.map((item) => (
+          <ListItem>
+            <MarkdownBlock value={item} />
+          </ListItem>
+        ))
+      }
+    </List>
+  </Section>
+
+  <Divider />
+
+  <Section
+    aria-labelledby="engineering-heading"
+    class="col-start-1 -col-end-1 grid-cols-subgrid"
+  >
+    <div class="flex flex-col gap-6">
+      <h2 id="engineering-heading" class="heading-2">Engineering</h2>
+      {engineering.caption && <p class="body-small">{engineering.caption}</p>}
+    </div>
+
+    <div
+      data-eng-decisions-scroll
+      class="border-linework w-full overflow-x-auto overscroll-x-contain border"
+    >
+      <div class="min-w-4xl overflow-hidden">
+        <header class="border-linework grid grid-cols-3 border-b">
+          <div class="border-linework border-r px-4 py-3">
+            <p class="heading-3">Constraint</p>
+          </div>
+          <div class="border-linework border-r px-4 py-3">
+            <p class="heading-3">Decision</p>
+          </div>
+          <div class="px-4 py-3">
+            <p class="heading-3">Trade-off</p>
+          </div>
+        </header>
+
+        {
+          engineeringRows.map((row, rowIndex) => (
+            <article
+              class={`grid grid-cols-3 ${rowIndex < engineeringRows.length - 1 ? "border-linework border-b" : ""}`}
+            >
+              <div class="border-linework flex flex-col gap-5 border-r px-4 py-4">
+                <MarkdownBlock value={row.constraint} class="body-small" />
+              </div>
+              <div class="border-linework flex flex-col gap-5 border-r px-4 py-4">
+                <MarkdownBlock value={row.decision} class="body-small" />
+              </div>
+              <div class="flex flex-col gap-5 px-4 py-4">
+                <MarkdownBlock value={row.tradeOff} class="body-small" />
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </Section>
+
+  {
+    architecture && (
+      <>
+        <Divider />
+
+        <Section aria-labelledby="architecture-heading">
+          <div class="flex flex-col gap-6">
+            <h2 id="architecture-heading" class="heading-2">
+              Architecture
             </h2>
+            <ImageBlock
+              src={architecture.diagram.src}
+              alt={architecture.diagram.alt}
+              caption={architecture.diagram.caption}
+              width={1024}
+              height={1536}
+            />
+          </div>
 
+          {architectureContent && (
             <div class="flex flex-col gap-6">
-              {deepDive.content.map((block) => (
+              {architectureContent.map((block) => (
                 <ContentBlock block={block} />
               ))}
             </div>
-          </Section>
-        </>
-      )
-    }
+          )}
+        </Section>
+      </>
+    )
+  }
 
-    <Divider />
+  {
+    deepDive && (
+      <>
+        <Divider />
 
-    <Section aria-labelledby="more-projects-heading">
-      <h2 id="more-projects-heading" class="heading-2">More Projects</h2>
+        <Section aria-labelledby="deep-dive-heading">
+          <h2 id="deep-dive-heading" class="heading-2">
+            <>
+              <span>Deep Dive:</span>
+              <span>{deepDive.title}</span>
+            </>
+          </h2>
 
-      <List class="grid grid-cols-2">
-        <ListItem class="col-start-1 flex flex-col gap-4">
-          <p class="body-small">Previous</p>
-          <a href={`/projects/${previous.slug}`} class="body-link">
-            {previous.name}
-          </a>
-        </ListItem>
+          <div class="flex flex-col gap-6">
+            {deepDive.content.map((block) => (
+              <ContentBlock block={block} />
+            ))}
+          </div>
+        </Section>
+      </>
+    )
+  }
 
-        <ListItem
-          class="col-start-2 flex flex-col gap-4 justify-self-end text-right"
-        >
-          <p class="body-small">Next</p>
-          <a href={`/projects/${next.slug}`} class="body-link">
-            {next.name}
-          </a>
-        </ListItem>
-      </List>
-    </Section>
-  </div>
+  <Divider />
+
+  <Section aria-labelledby="more-projects-heading">
+    <h2 id="more-projects-heading" class="heading-2">More Projects</h2>
+
+    <List class="grid grid-cols-2">
+      <ListItem class="col-start-1 flex flex-col gap-4">
+        <p class="body-small">Previous</p>
+        <a href={`/projects/${previous.slug}`} class="body-link">
+          {previous.name}
+        </a>
+      </ListItem>
+
+      <ListItem
+        class="col-start-2 flex flex-col gap-4 justify-self-end text-right"
+      >
+        <p class="body-small">Next</p>
+        <a href={`/projects/${next.slug}`} class="body-link">
+          {next.name}
+        </a>
+      </ListItem>
+    </List>
+  </Section>
 </ProjectLayout>

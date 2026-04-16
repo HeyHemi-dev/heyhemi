@@ -70,135 +70,133 @@ const contactLinks = [
 ---
 
 <BaseLayout title="Hey Hemi" mainId="home">
-  <div class="flex flex-col gap-12">
-    <header class="flex flex-col gap-6">
-      <h1 class="heading-1">Hey, I’m Hemi</h1>
-      <p>I have ideas, and I build them.</p>
-    </header>
+  <header class="flex flex-col gap-6">
+    <h1 class="heading-1">Hey, I’m Hemi</h1>
+    <p>I have ideas, and I build them.</p>
+  </header>
 
-    <Divider />
+  <Divider />
 
-    <Section aria-labelledby="projects-heading">
-      <h2 id="projects-heading" class="heading-2">Projects</h2>
+  <Section aria-labelledby="projects-heading">
+    <h2 id="projects-heading" class="heading-2">Projects</h2>
 
-      <List class="gap-12" role="list">
-        {
-          projects.map((project) => (
-            <ListItem class="flex flex-col gap-4">
-              <p>
-                <a href={project.name.href} class="heading-3">
-                  <span class="body-link">{project.name.label}</span>
-                </a>
-                {project.client && <span>{`${project.client}`}</span>}
-              </p>
-              <p class="body-small">{project.description}</p>
-            </ListItem>
-          ))
-        }
-      </List>
-    </Section>
-
-    <Divider />
-
-    <Section aria-labelledby="career-heading">
-      <h2 id="career-heading" class="heading-2">Career</h2>
-
-      <List class="gap-12" role="list">
-        {
-          milestones.map((milestone) => (
-            <ListItem class="flex flex-col gap-4">
-              <p class="text-muted heading-3">
-                {milestone.organisation ? (
-                  <>
-                    <span>{`${milestone.title}, `}</span>
-                    <a
-                      href={milestone.organisation.href}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                    >
-                      <span class="body-link">
-                        {milestone.organisation.label}
-                      </span>
-                    </a>
-                  </>
-                ) : (
-                  <span>{`${milestone.title}.`}</span>
-                )}
-              </p>
-              <p class="body-small">{milestone.period}</p>
-              {milestone.note && <p class="body-small">{milestone.note}</p>}
-            </ListItem>
-          ))
-        }
-      </List>
-    </Section>
-
-    <Divider />
-
-    <Section aria-labelledby="about-heading">
-      <h2 id="about-heading" class="heading-2">About</h2>
-
-      <div class="flex flex-col gap-6">
-        <p>
-          I've always admired builders; the ability to take an idea and turn it
-          into something real. It's the same reason I love software development;
-          making awesome digital products for people.
-        </p>
-        <p>
-          After studying architecture, My wife and I grew a photography business
-          for 10+ years. I got serious about software development in 2024 and
-          I've been building products ever since. I’m a generalist,
-          self-motivated, and a super-quick learner.
-        </p>
-        <p>
-          I’m looking to join a team who are passionate about what they are
-          building, that needs someone who can muck-in, and is more than just an
-          engineer.
-        </p>
-        <p>If this resonates with you, I’d love to chat.</p>
-      </div>
-    </Section>
-
-    <Divider />
-
-    <Section aria-labelledby="contact-heading">
-      <h2 id="contact-heading" class="heading-2">Contact</h2>
-
-      <List role="list">
-        <ListItem>
-          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <button
-              type="button"
-              class="body-link font-inherit cursor-pointer appearance-none border-0 bg-transparent p-0 text-left"
-              data-email-trigger
-              data-loading-label="..."
-              data-success-label="Copied to clipboard"
-              data-error-label="Email unavailable"
-            >
-              Email
-            </button>
-
-            <span
-              class="body-small"
-              data-email-status
-              aria-live="polite"
-              aria-atomic="true"
-              hidden></span>
-          </div>
-        </ListItem>
-
-        {
-          contactLinks.map((item) => (
-            <ListItem>
-              <a href={item.href} class="body-link">
-                {item.label}
+    <List class="gap-12" role="list">
+      {
+        projects.map((project) => (
+          <ListItem class="flex flex-col gap-4">
+            <p>
+              <a href={project.name.href} class="heading-3">
+                <span class="body-link">{project.name.label}</span>
               </a>
-            </ListItem>
-          ))
-        }
-      </List>
-    </Section>
-  </div>
+              {project.client && <span>{`${project.client}`}</span>}
+            </p>
+            <p class="body-small">{project.description}</p>
+          </ListItem>
+        ))
+      }
+    </List>
+  </Section>
+
+  <Divider />
+
+  <Section aria-labelledby="career-heading">
+    <h2 id="career-heading" class="heading-2">Career</h2>
+
+    <List class="gap-12" role="list">
+      {
+        milestones.map((milestone) => (
+          <ListItem class="flex flex-col gap-4">
+            <p class="text-muted heading-3">
+              {milestone.organisation ? (
+                <>
+                  <span>{`${milestone.title}, `}</span>
+                  <a
+                    href={milestone.organisation.href}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    <span class="body-link">
+                      {milestone.organisation.label}
+                    </span>
+                  </a>
+                </>
+              ) : (
+                <span>{`${milestone.title}.`}</span>
+              )}
+            </p>
+            <p class="body-small">{milestone.period}</p>
+            {milestone.note && <p class="body-small">{milestone.note}</p>}
+          </ListItem>
+        ))
+      }
+    </List>
+  </Section>
+
+  <Divider />
+
+  <Section aria-labelledby="about-heading">
+    <h2 id="about-heading" class="heading-2">About</h2>
+
+    <div class="flex flex-col gap-6">
+      <p>
+        I've always admired builders; the ability to take an idea and turn it
+        into something real. It's the same reason I love software development;
+        making awesome digital products for people.
+      </p>
+      <p>
+        After studying architecture, My wife and I grew a photography business
+        for 10+ years. I got serious about software development in 2024 and I've
+        been building products ever since. I’m a generalist, self-motivated, and
+        a super-quick learner.
+      </p>
+      <p>
+        I’m looking to join a team who are passionate about what they are
+        building, that needs someone who can muck-in, and is more than just an
+        engineer.
+      </p>
+      <p>If this resonates with you, I’d love to chat.</p>
+    </div>
+  </Section>
+
+  <Divider />
+
+  <Section aria-labelledby="contact-heading">
+    <h2 id="contact-heading" class="heading-2">Contact</h2>
+
+    <List role="list">
+      <ListItem>
+        <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <button
+            type="button"
+            class="body-link font-inherit cursor-pointer appearance-none border-0 bg-transparent p-0 text-left"
+            data-email-trigger
+            data-loading-label="..."
+            data-success-label="Copied to clipboard"
+            data-error-label="Email unavailable"
+          >
+            Email
+          </button>
+
+          <span
+            class="body-small"
+            data-email-status
+            aria-live="polite"
+            aria-atomic="true"
+            hidden></span>
+        </div>
+      </ListItem>
+
+      {
+        contactLinks.map((item) => (
+          <ListItem>
+            <a href={item.href} class="body-link">
+              {item.label}
+            </a>
+          </ListItem>
+        ))
+      }
+    </List>
+  </Section>
 
   <script src="../scripts/contact-links.ts"></script>
 </BaseLayout>
