@@ -18,3 +18,4 @@
 # Guardrails
 
 - Do not cast a type without explicitly describing why it is ok. This breaks type-checking and should be avoided if possible.
+- Use NZ English spelling in copy/user-facing strings.
