@@ -37,7 +37,7 @@ export const maydayCaseStudy: CaseStudy = {
           "A replacement workflow only works if it’s fast and low-friction for both sides.",
         decision: {
           type: "md",
-          text: "**Optimized for “post → notify → one-click response → shortlist”** so vendors can post quickly and candidates can indicate availability with minimal effort.",
+          text: "**Optimised for “post → notify → one-click response → shortlist”** so vendors can post quickly and candidates can indicate availability with minimal effort.",
         },
         tradeOff:
           "Requires careful UX tuning and dependable messaging; failures show up immediately as missed cover opportunities.",

@@ -66,10 +66,10 @@ export const mcpCaseStudy: CaseStudy = {
           "Each provider SDK throws different error shapes and details, making consistent handling and display difficult.",
         decision: {
           type: "md",
-          text: "Normalized provider errors into a consistent `AppError` shape across the app while still capturing the raw/unserialized error for debugging.",
+          text: "Normalised provider errors into a consistent `AppError` shape across the app while still capturing the raw/unserialised error for debugging.",
         },
         tradeOff:
-          "The normalized shape is intentionally lossy; deeper debugging may require digging into the captured raw error details.",
+          "The normalised shape is intentionally lossy; deeper debugging may require digging into the captured raw error details.",
       },
     ],
   },

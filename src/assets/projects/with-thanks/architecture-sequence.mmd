@@ -8,7 +8,7 @@ sequenceDiagram
   U->>R: Navigate to page
   R->>H: Render + request data
   H->>SF: Call server function
-  SF->>SF: Validate + authorize request
+  SF->>SF: Validate + authorise request
   SF->>DB: Run query/mutation
   DB-->>SF: Result rows
   SF-->>H: DTO response

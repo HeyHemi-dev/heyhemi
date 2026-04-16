@@ -17,9 +17,13 @@ export const withThanksCaseStudy: CaseStudy = {
   repoUrl: undefined,
 
   oneLiner: "Effortlessly collect supplier details from wedding couples.",
-  roles: ["Founder", "Full-Stack Dev", "Design"],
+  roles: ["Solo Founder", "Design", "Full-Stack Dev", "Strategy"],
 
   techStack: [
+    {
+      type: "md",
+      text: "**Codex (OpenAI)** - agentic developement",
+    },
     {
       type: "md",
       text: "**TanStack Start (Vite)** - full-stack React via server functions",
@@ -63,9 +67,9 @@ export const withThanksCaseStudy: CaseStudy = {
   architecture: {
     diagram: {
       src: "/projects/with-thanks/architecture-sequence.svg",
-      alt: "Request flow architecture. Route renders, a hook calls a TanStack Start server function, the server function validates/authorizes, then Drizzle runs against Neon Postgres and returns a DTO back to the UI.",
+      alt: "Request flow architecture. Route renders, a hook calls a TanStack Start server function, the server function validates/authorises, then Drizzle runs against Neon Postgres and returns a DTO back to the UI.",
       caption:
-        "With Thanks request flow: routes and hooks call TanStack Start server functions, which validate/authorize before Drizzle queries run against Neon Postgres.",
+        "With Thanks request flow: routes and hooks call TanStack Start server functions, which validate/authorise before Drizzle queries run against Neon Postgres.",
     },
     content: [
       {
@@ -95,19 +99,13 @@ export const withThanksCaseStudy: CaseStudy = {
           },
           {
             type: "md",
-            text: "**Server boundary:** server functions validate inputs and authorize capabilities.",
+            text: "**Server boundary:** server functions validate inputs and authorise capabilities.",
           },
           {
             type: "md",
             text: "**Data layer:** Drizzle queries against Neon Postgres (server-side env creds).",
           },
         ],
-      },
-      {
-        type: "callout",
-        title: "Note",
-        content:
-          "The “two access modes” (session vs share link) is the most distinctive system behavior. It’s best explained as a deep dive, but it sits on top of this same request-flow architecture.",
       },
     ],
   },
@@ -154,7 +152,7 @@ export const withThanksCaseStudy: CaseStudy = {
           text: [
             "**Allow couples to contribute supplier details**, but with dedupe guardrails designed to keep the shared supplier database usable over time.",
             "",
-            "**Canonical identifier:** supplier email (supports future supplier profile claiming), enforced as a case-insensitive unique constraint on normalized email.",
+            "**Canonical identifier:** supplier email (supports future supplier profile claiming), enforced as a case-insensitive unique constraint on normalised email.",
             "",
             "**UI guardrail:** a “did you mean…?” step that ranks potential duplicates using fuzzy matching on name/email plus email-domain signals (e.g. `hello@domain` vs `info@domain`).",
           ].join("\n"),
