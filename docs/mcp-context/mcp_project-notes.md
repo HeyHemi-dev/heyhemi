@@ -57,6 +57,33 @@ Example agent workflow (invoice):
 - Construct an invoice using extracted job details + chosen item(s).
 - Notify for human review/approval before sending to the client.
 
+## Top use cases (AI-in-the-loop)
+
+The differentiator is that the “decision” step can be AI-driven. Automations can start from messy notes, then use strongly-scoped capabilities to take real actions, with humans approving the final step when needed.
+
+1. Draft invoices from Notion job notes (human review)
+
+- We `@`-comment the agent in Notion on a photo job.
+- It reads unstructured notes (start/end, extensions, additional costs).
+- It gets the contact from the job, searches Xero contacts, and creates the contact if missing.
+- It searches our Xero items/products for the best match.
+- It creates a draft invoice and notifies us in Notion with the invoice link to review.
+
+2. Inbox management (triage + drafted replies, human approval)
+
+- Watches new inbound emails and categorizes them based on criteria.
+- If it’s a client email that needs more thought, gathers recent emails from that contact for context.
+- Uses our email templates/knowledge base to draft a reply.
+- Pastes the draft into Notion as a task for review.
+- Human reviews and `@`-comments the agent to send.
+- Sent emails are used to improve templates/knowledge base over time.
+
+3. Dropbox folders (create + archive)
+
+- Date-based automation triggers an agent to create a Dropbox project folder ready for photo data.
+- Chooses the correct parent folder and thoughtfully names it based on unstructured Notion job data.
+- After the job completes, another automation archives the folder into long-term storage.
+
 ## Draft copy (v0)
 
 ### One-liner options
