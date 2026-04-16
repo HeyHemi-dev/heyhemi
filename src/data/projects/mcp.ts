@@ -8,7 +8,7 @@ export const mcpCaseStudy: CaseStudy = {
     "Patina's internal automation platform: webhook workflows + MCP tools so AI agents can safely act across our stack (Notion, Dropbox, Gmail, Synology, Xero).",
   heroImage: {
     src: "/apple-touch-icon.png",
-    alt: "Mayday Weddings project placeholder image",
+    alt: "AI Agent Server project preview",
   },
   liveUrl: "https://mcp-patina.vercel.app/",
   repoUrl: "https://github.com/HeyHemi-dev/mcp-patina",
@@ -18,12 +18,12 @@ export const mcpCaseStudy: CaseStudy = {
     "Owner (Patina Photo)",
     "Full-Stack Developer",
     "AI Workflow Development",
-    "Systems & Integration",
+    "Systems / Integrations",
   ],
   techStack: [
     {
       type: "md",
-      text: "**Codex (OpenAI)** - agentic developement",
+      text: "**Codex (OpenAI)** - agentic development",
     },
     { type: "md", text: "**Next.js (SSR)** - Admin UI + endpoints" },
     { type: "md", text: "**Zod** - validation at endpoint and SDK boundaries" },
@@ -60,20 +60,20 @@ export const mcpCaseStudy: CaseStudy = {
           "This internal-first tool needed to ship quickly, without spending time on a proper user auth layer.",
         decision: {
           type: "md",
-          text: "Admin UI auth was keep as a simple env-var password check, with the expectation that a proper auth layer could be added later if the audience expands.",
+          text: "Admin UI auth was kept as a simple env-var password check, with the expectation that a proper auth layer could be added later if the audience expands.",
         },
         tradeOff:
-          "Not suitable for productisation; expanding beyond an internal beta likely requires a real auth system or a rebuild of the admin surface.",
+          "Not suitable for productization; expanding beyond an internal beta likely requires a real auth system or a rebuild of the admin surface.",
       },
       {
         constraint:
           "Each provider SDK throws different error shapes and details, making consistent handling and display difficult.",
         decision: {
           type: "md",
-          text: "Normalised provider errors into a consistent `AppError` shape across the app while still capturing the raw/unserialised error for debugging.",
+          text: "Normalized provider errors into a consistent `AppError` shape across the app while still capturing the raw/unserialized error for debugging.",
         },
         tradeOff:
-          "The normalised shape is intentionally lossy; deeper debugging may require digging into the captured raw error details.",
+          "The normalized shape is intentionally lossy; deeper debugging may require digging into the captured raw error details.",
       },
     ],
   },
@@ -86,7 +86,7 @@ export const mcpCaseStudy: CaseStudy = {
         text: [
           "Most automation tools work best when the input is clean and structured (a form submission, a fixed payload, a strict database schema). Patina's real workflows aren't like that.",
           "",
-          "We use Notion extensively, and love how it accomdates our human messiness. But this make automation difficult and brittle. This custom MCP server enables an agent to **read unstructured inputs, make human-like decisions**, and then use strongly-scoped tools to take action.",
+          "We use Notion extensively, and love how it accommodates our human messiness. But this makes automation difficult and brittle. This custom MCP server enables an agent to **read unstructured inputs, make human-like decisions**, and then use strongly-scoped tools to take action.",
         ].join("\n"),
       },
 
