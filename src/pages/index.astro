@@ -30,28 +30,28 @@ const projects: Project[] = allCaseStudies.map((caseStudy) => {
 const milestones: Milestone[] = [
   {
     title: "Freelance Developer",
-    organisation: { label: "Various Projects", href: "" },
-    period: "2024 — now",
+    organisation: { label: "Various Projects", href: projects[0].name.href },
+    period: "Mar 2025 — now",
   },
   {
-    title: "Customer Experience",
+    title: "Customer Experience (Billing)",
     organisation: { label: "Xero", href: "https://www.xero.com/" },
-    period: "2025",
+    period: "May 2025 — Oct 2025",
   },
   {
-    title: "Software Developer Intern",
+    title: "Software Developer Intern (B2B)",
     organisation: { label: "Sharesies", href: "https://www.sharesies.nz" },
-    period: "2024 — 2025",
+    period: "Nov 2024 — Mar 2025",
   },
   {
     title: "Cert. Applied Software Development",
     organisation: { label: "Dev Academy", href: "https://devacademy.co.nz" },
-    period: "2024",
+    period: "Jun 2024 — Oct 2024",
   },
   {
     title: "Owner & Photographer",
     organisation: { label: "Patina Photo", href: "https://www.patina.photo" },
-    period: "2012 — 2024",
+    period: "2012 — Jun 2024",
   },
   {
     title: "Bachelor of Architectural Studies",
@@ -72,7 +72,7 @@ const contactLinks = [
 <BaseLayout title="Hey Hemi" mainId="home">
   <header class="flex flex-col gap-6">
     <h1 class="heading-1">Hey, I’m Hemi</h1>
-    <p>I have ideas, and I build them.</p>
+    <p>I have ideas and I build them.</p>
   </header>
 
   <Divider />
